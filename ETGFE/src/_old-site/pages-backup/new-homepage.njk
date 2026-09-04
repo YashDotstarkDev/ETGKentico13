@@ -1,0 +1,52 @@
+{% set page_title = 'New homepage' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+  <link rel="stylesheet" href="https://unpkg.com/instantsearch.css@7/themes/satellite-min.css" />
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"
+/>
+{% endblock %}
+
+{% block beforeArticle %}
+  {% include "src/widgets/new-header/new-header.njk" %}
+{% endblock %}
+
+{% block article %}
+  {% include "src/widgets/new-homepage-hero/new-homepage-hero.njk" %}
+  {% include "src/widgets/new-experience-bar/new-experience-bar.njk" %}
+  {% include "src/widgets/spacer/spacer.njk" %}
+  {% include "src/widgets/new-featured-packages/new-featured-packages.njk" %}
+  {% include "src/widgets/spacer/spacer.njk" %}
+  {% include "src/widgets/new-covered/new-covered.njk" %}
+  {% include "src/widgets/spacer/spacer.njk" %}
+  {% include "src/widgets/experience-cta/experience-cta.njk" %}
+  {% include "src/widgets/spacer/spacer.njk" %}
+  <!-- note - On Sale Now is the same as the featured packages but just has a CTA after -->
+  {% include "src/widgets/new-featured-packages/new-featured-packages.njk" %}
+  {% include "src/widgets/spacer/spacer.njk" %}
+
+  {% include "src/widgets/customer-reviews/customer-reviews.njk" %}
+
+  {% include "src/widgets/faqs/faqs.njk" %}
+
+  {% include "src/widgets/spacer/spacer.njk" %}
+  {% include "src/widgets/blog-carousel/blog-carousel.njk" %}
+
+  {% include "src/widgets/spacer/spacer.njk" %}
+  {% include "src/widgets/experience-ticker/experience-ticker.njk" %}
+
+  {% include "src/widgets/subscribe-to-win-widget/subscribe-to-win-widget.njk" %}
+  {% include "src/widgets/subscribe-to-win-modal/subscribe-to-win-modal.njk" %}
+  {% include "src/widgets/nz-redirect-modal/nz-redirect-modal.njk" %}
+{% endblock %}
+
+{% block afterArticle %}
+{% include "src/widgets/new-footer/new-footer.njk" %}
+{% include "src/widgets/new-homepage-search-bar-v2/new-homepage-search-bar-v2.njk" %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="/scripts/new-homepage.js"></script>
+{% endblock %}

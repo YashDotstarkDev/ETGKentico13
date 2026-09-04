@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grid>
+    <actions>
+        <action name="edit" caption="$General.Edit$" fonticonclass="icon-edit" fonticonstyle="allow" />
+        <action externalsourcename="delete" name="#delete" caption="$General.Delete$" fonticonclass="icon-bin" fonticonstyle="critical" confirmation="$General.ConfirmDelete$" />
+    </actions>
+  <massactions>
+    <massaction name="#delete" caption="$general.delete$" behavior="OpenModal" />
+  </massactions>
+    <columns>
+      <column externalsourcename="itemid"  source="EnquireID" caption="ID" wrap="false" localize="true">
+      </column>
+      <column externalsourcename="dateinserted" source="FormInserted" caption="Date created" wrap="false" localize="true">
+      </column>
+      <column externalsourcename="destination" source="PreferredDestination" caption="Destination" wrap="false" localize="true">
+        <filter type="text" size="200" />
+      </column>
+      <column externalsourcename="status" source="status" caption="Status" wrap="false" localize="true">
+        <filter type="text" size="200" />
+      </column>
+      <column externalsourcename="assignee" source="AssignedUserGuid" caption="Consultant" wrap="false" localize="true">
+        <filter type="custom" path="~/custom/enquirymanagement/consultantfilter.ascx" />
+      </column>
+    <column source="Firstname" caption="First name" wrap="false" localize="true">
+        <filter type="text" size="200" />
+    </column>
+		<column source="Lastname" caption="Last name" wrap="false" localize="true">
+            <filter type="text" size="200" />
+    </column>
+      <column source="Email" caption="Email" wrap="false" localize="true" >
+        <filter type="text" size="200" />
+      </column>
+		<column source="Phone" caption="Phone" wrap="false" localize="true">
+    </column>
+      <column source="PreferredContactMethod" caption="Preferred contact method" wrap="false" localize="true" >
+      </column>
+      <column source="PreferredExperience" caption="Experience" wrap="false" localize="true">
+        <filter type="text" size="200" />
+      </column>
+		<column source="TourName" caption="Tour name" wrap="false" localize="true">
+            <filter type="text" size="200" />
+        </column>
+		<column source="TourCode" caption="Tour code" wrap="false" localize="true">
+            <filter type="text" size="200" />
+        </column>
+
+      <column source="UTMCampaign" caption="UTMCampaign" wrap="false" localize="true">
+        <filter type="text" size="200" />
+      </column>
+      <column source="UTMContent" caption="UTMContent" wrap="false" localize="true">
+        <filter type="text" size="200" />
+      </column>
+      <column source="UTMMedium" caption="UTMMedium" wrap="false" localize="true">
+        <filter type="text" size="200" />
+      </column>
+      <column source="UTMSource" caption="UTMSource" wrap="false" localize="true">
+        <filter type="text" size="200" />
+      </column>
+      <column source="UTMTerm" caption="UTMTerm" wrap="false" localize="true">
+        <filter type="text" size="200" />
+      </column>
+
+      <column externalsourcename="dateupdated" source="FormUpdated" caption="Last updated date" wrap="false" localize="true">
+      </column>
+    </columns>
+  <options>
+        <key name="DisplayFilter" value="true" />
+    </options>
+  
+</grid>

@@ -1,0 +1,58 @@
+{
+  "freedomOfChoices": [
+    {
+      "dayName": "day1",
+      "dayLabel": "Day 1",
+      "options": [
+        {
+          "key": "768b98f5-296e-482c-8507-2613bc531d0c",
+          "value": "Freedom of choice day 1 option 1"
+        }
+      ]
+    },
+    {
+      "dayName": "day2",
+      "dayLabel": "Day 2",
+      "options": [
+        {
+          "key": "5e6c392f-3072-4a5b-bab2-e324259998b1",
+          "value": "Freedom of choice day 1 option 2"
+        },
+        {
+          "key": "5e6c392f-3072-4a5b-bab2-e324259998b1",
+          "value": "Freedom of choice day 2 option 2"
+        },
+        {
+          "key": "5e6c392f-3072-4a5b-bab2-e324259998b1",
+          "value": "Freedom of choice day 3 option 3"
+        }
+      ]
+    },
+    {
+      "dayName": "day3",
+      "dayLabel": "Day 3",
+      "options": [
+        {
+          "key": "fecb55dc-c3b0-47ec-84a4-b5d347c90433",
+          "value": "Freedom of choice Day 4 Option 1"
+        }
+      ]
+    },
+    {
+      "dayName": "day4",
+      "dayLabel": "Day 4",
+      "options": [
+        {
+          "key": "0416881c-9fd7-46a3-9d27-12da7a45a9af",
+          "value": "Freedom of choice Day 1 Option 2"
+        },
+        {
+          "key": "0416881c-9fd7-46a3-9d27-12da7a45a9af",
+          "value": "Freedom of choice Day 4 Option 2"
+        }
+      ]
+    }
+  ],
+  "success": true,
+  "message": null
+}

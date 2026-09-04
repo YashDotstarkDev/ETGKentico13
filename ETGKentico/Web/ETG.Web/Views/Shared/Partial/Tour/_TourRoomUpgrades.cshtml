@@ -1,0 +1,54 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@model ETG.Web.Tour.Models.TourPageViewModel
+
+
+@if (Model == null || Model.RoomUpgrades.IsNullOrEmpty())
+{
+    return;
+}
+
+@{
+    var hotelName = "";
+
+    if (!Model.Hotels.IsNullOrEmpty())
+    {
+        hotelName = Model.Hotels.Where(h => h.IsMainHotel).Select(h => h.Name).FirstOrDefault();
+    }
+}
+
+<div class="title" data-step="roomOptions">
+    <div class="heading">Room Upgrades</div>
+    <i class="dropdown icon"></i>
+</div>
+<div class="content optional-extras" @Html.Raw(ViewBag.IsPrint == null ? "" : "style=\"display:block;clear:both\"")>
+    @if (!hotelName.IsNullOrEmpty())
+    {   
+        <div class="hotel-name"><b>Hotel:</b>&nbsp;@Html.Raw(hotelName)</div>
+    }
+    <div class="inner-content">
+        @foreach (var option in Model.RoomUpgrades)
+        {
+            <div class="extra">
+                <div class="image-container">
+                    @Html.Partial("Partial/Common/_Image", new Tuple<string, string, bool>(option.Image.Imgixify(), option.Title, ViewBag.IsPrint == null))
+                </div>
+                <h3>@option.Title</h3>
+                <p data-mh="even-copy">@Html.Raw(option.Description)</p>
+            </div>
+        }
+    </div>
+    @if (ViewBag.IsPrint != null)
+    {
+        <div class="info">
+            Prices are dynamic based on travel dates. Please proceed to <a href="@Model.TourInfo.TourSummaryInfo.Path">Book Now</a> or <a href="https://www.entiretravel.com.au/enquire/@Model.TourInfo.TourSummaryInfo.TourCode" target="_blank">Contact Us</a> for details.
+        </div>
+    }
+    else
+    {
+        <div class="info">
+            *Prices are dynamic based on travel dates. Please proceed to <a href="#" class="js-scrollto-book-now">Book Now</a> or <a href="https://www.entiretravel.com.au/enquire/@Model.TourInfo.TourSummaryInfo.TourCode" target="_blank">Contact Us</a> for details.
+        </div>  
+    }
+   
+</div>

@@ -1,0 +1,74 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.generic-enquire-side {
+  padding: 20px;
+  border: 1px solid #ededed;
+
+  &.sticky {
+    position: sticky;
+    top: calc($header-height-desktop + 10px);
+    z-index: 500;
+  }
+
+  .logo {
+    width: 120px;
+    display: none;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .title {
+    font-weight: 900;
+  }
+
+  p.label {
+    margin-bottom: 5px;
+  }
+
+  .ui.selection.dropdown {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .lines {
+    display: inline-flex;
+    flex-direction: column;
+
+    .line {
+      display: inline-flex;
+    }
+  }
+
+  .line {
+    margin-top: 5px;
+
+    display: block;
+    padding-left: 20px;
+    position: relative;
+
+    .icon {
+      color: $primary;
+      font-size: 14px;
+      position: absolute;
+      left: 0;
+      top: 7px;
+      margin: 0;
+    }
+  }
+
+  .brand-details {
+    padding: 0 0 20px 0;
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #d6d6d6;
+  }
+}

@@ -1,0 +1,84 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@model ETG.Web.Career.Models.CareerPageViewModel
+@if (Model == null || Model.Page == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page.Page)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/careers.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+@Html.Partial("Partial/Common/_PageHero", Model.Page.PageHero)
+
+<div class="widget career-callout wp" data-widget="career-callout">
+    <div class="wrapper">
+        <div class="inner">
+            @Html.Raw(Model.Page.Content)
+            <div class="button-container">
+                <a href="#vacancies" class="button ui white primary vacancies-trigger">View our vacancies</a>
+                <a href="/careers/apply" class="button ui transparent white primary">Send us your CV</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Kentico().EditableArea("Content")
+
+@if (!Model.Roles.IsNullOrEmpty())
+{
+    <div class="widget career-opportunities wp" data-widget="career-opportunities">
+        <div class="wrapper">
+            <a name="vacancies"></a>
+            <h2>Current career opportunities</h2>
+            <div class="opportunities">
+                @foreach (var role in Model.Roles)
+                {
+                    <a href="@role.Path" class="link">
+                        <span class="inner" data-mh="even-height">
+                            <div class="title">@role.Title</div>
+                            <span class="right">
+                                <span class="location">@role.Location</span>
+                                <span class="availability">@role.PositionType</span>
+                                <span class="arrow">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </span>
+                        </span>
+                        <span class="mobile-arrow" data-mh="even-height">
+                            <span class="arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </span>
+                    </a>
+                }
+            </div>
+            <div class="text-center">
+                <div class="or">Or</div>
+                <a href="/careers/apply" class="button ui transparent primary">Send us your CV</a>
+            </div>
+        </div>
+    </div>
+}
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")

@@ -1,0 +1,43 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.article {
+
+  .full-width-image {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    @media(--portrait) {
+      padding-left: 50px;
+    }
+
+    @media(--landscape) {
+      padding-left: 100px;
+    }
+  }
+}
+
+.full-width-image {
+  max-width: 780px;
+  margin: 0 auto;
+
+  .image {
+    @util aspect-ratio(16:9);
+
+    img {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      font-family: "object-fit: cover";
+    }
+  }
+
+  .caption {
+    opacity: 0.5;
+    font-size: 12px;
+  }
+}

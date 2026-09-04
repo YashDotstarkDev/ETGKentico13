@@ -1,0 +1,56 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+@import "_new-book-now-package-details.scss";
+@import "_new-book-now-form.scss";
+@import "_new-book-now-summary.scss";
+
+.cancel-booking-modal {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+
+  .inner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .btn-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 30px;
+
+    .button {
+      width: 100px;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.book-now-note {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  margin: 20px 0;
+  text-transform: uppercase;
+  color: $primary;
+  font-weight: 700;
+  line-height: 1.2;
+
+  .icon {
+    width: 25px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+}

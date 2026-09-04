@@ -1,0 +1,17 @@
+﻿@using ETG.Web.Models.Partial
+@model SiteSelectorPopupModel
+
+@if (Model != null && !Model.IsNz)
+{
+    <div class="widget nz-redirect-modal ui modal" data-widget="nz-redirect-modal"
+         data-cookie="nzRedirectModal_deny_cookie"
+         data-check-api-url="@Model.GetCountryEndpoint"
+         data-check-api-method="GET">
+        <h2>@Model.Title</h2>
+        <div class="spacer-40"></div>
+        <div class="buttons">
+            <a class="ui button primary" href="@Model.DomainNz">@Model.CtaTextNz</a>
+            <button type="button" class="js-deny-redirect ui button primary outline">@Model.CtaTextAu</button>
+        </div>
+    </div>
+}

@@ -1,0 +1,16 @@
+{{#each data}}
+<a href="{{url}}" class="item">
+  <span class="inner">
+    <span class="left">
+      <span class="image">
+        <img class="lazyload" data-src="{{image}}" alt="">
+        <span class="grad"></span>
+      </span>
+    </span>
+    <span class="right">
+      <span class="location">{{destination}}</span>
+      <span class="copy">{{title}}</span>
+    </span>
+  </span>
+</a>
+{{/each}}

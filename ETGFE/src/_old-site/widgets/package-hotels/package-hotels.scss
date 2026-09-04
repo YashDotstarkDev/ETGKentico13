@@ -1,0 +1,207 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-hotels {
+  margin-top: 40px;
+  break-inside: avoid-page; /* Ensure widget heading starts on same print page as its content */
+
+  @media(--portrait) {
+    margin-top: 60px;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    html.pdf-generation-template & {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media(--portrait), print {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media(--landscape) {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .hotels {
+
+    .stars {
+      margin-left: -4px;
+      margin-right: 12px;
+
+      html.pdf-generation-template & {
+        display: none;
+      }
+
+      .icon {
+        color: rgba(0, 0, 0, .15) !important;
+        font-size: 14px;
+
+        &.active {
+          opacity: 1;
+          color: $primary !important;
+        }
+
+        &.selected {
+          opacity: 1;
+        }
+      }
+    }
+
+    .image {
+      img {
+        display: block;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .ui.styled.accordion {
+    /* Accordion theme */
+    border-bottom: 1px solid #ededed;
+
+    > .title:first-child,
+    > .accordion-panel:first-child .title {
+      border-top: 1px solid #ededed !important;
+    }
+
+    .content {
+      padding: 0 !important; /* fix collapse transition jump at end */
+      background-color: #fff !important;
+    }
+
+    .title {
+      border-top: 1px solid #ededed;
+      background-color: #fff !important;
+    }
+
+    .active.content,
+    .animating {
+      background: #fff !important;
+    }
+
+    .active.title {
+      border-top-color: #ededed;
+      background: #fff !important;
+    }
+
+    &:hover .heading {
+      text-decoration: none;
+    }
+
+    /* END Accordion theme */
+
+    /* Accordion icon */
+    .title .dropdown.icon,
+    .accordion .title .dropdown.icon {
+      flex-shrink: 0;
+      margin: 0 -7px 0 0;
+      color: $primary;
+      font-size: 30px;
+      font-family: 'icomoon';
+
+      &:before {
+        content: "\e900"; /* Chevron icon */
+      }
+    }
+
+    .active.title .dropdown.icon,
+    .accordion .active.title .dropdown.icon {
+      transform: rotate(180deg);
+    }
+
+    /* END Accordion icon */
+
+    /* Accordion panel header */
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 10px;
+      flex-direction: row;
+      padding: 15px 20px;
+      color: #333;
+      font-size: 20px;
+      line-height: 28px;
+      font-family: $lato;
+      font-weight: normal;
+
+      html.pdf-generation-template & {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .w-heading {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        row-gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .heading {
+          flex-grow: 1;
+          display: flex;
+          align-items: center;
+          color: #333;
+          font-weight: 400;
+          margin: 0;
+          font-family: $lato;
+
+          @media(--portrait) {
+            min-width: 400px;
+          }
+
+          .stars {
+            flex-shrink: 0;
+          }
+        }
+
+        .label {
+          background-color: $primary;
+          margin-left: auto;
+          padding: 3px 7px;
+          color: #fff;
+          border-radius: 99px;
+          font-size: 11px;
+          line-height: 1.1;
+          text-align: center;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    /* END Accordion panel header */
+
+    /* Accordion panel body */
+    .content {
+      .inner-content {
+        padding: 5px 20px 40px;
+
+        html.pdf-generation-template & {
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        @media(--landscape) {
+          padding: 20px 20px 40px;
+        }
+      }
+    }
+
+    /* END Accordion panel body */
+
+  }
+}

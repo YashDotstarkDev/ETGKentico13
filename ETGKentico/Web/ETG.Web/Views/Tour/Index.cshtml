@@ -1,0 +1,621 @@
+﻿@using Castle.Core.Internal
+@using ETG.Booking.Pricing.Services
+@using ETG.Core.Extensions
+@using ETG.Data.Tour
+@using ETG.Web.Helpers
+
+@model ETG.Web.Tour.Models.TourPageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model?.TourInfo?.TourSummaryInfo == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.TourInfo)
+    @Html.Kentico().PageBuilderStyles()
+}
+
+@section AdditionalScripts {
+    @* NOTE jquery-ui and dayjs included in scripts bundle *@
+    @Html.ScriptTag("/scripts/package-detail.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+    @Html.Kentico().PageBuilderScripts()
+    }
+    <!-- Calendly badge widget begin -->
+    <link href=https://assets.calendly.com/assets/external/widget.css rel="stylesheet">
+    <script src=https://assets.calendly.com/assets/external/widget.js type="text/javascript" async></script>
+    <!-- Calendly badge widget end -->
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+
+<script type="application/ld+json">
+{
+     "@@context": "https://schema.org",
+     "@@type": "TouristTrip",
+     "name": "@(Model.TourInfo.TourSummaryInfo.Name)",
+     "description": "@(Model.TourInfo.PageDescription)",
+     "touristType": [
+       @Html.Raw(Model.TourInfo.TourSummaryInfo == null ? "" : string.Join(",", Model.TourInfo.TourSummaryInfo.TourTypeIcons.Select(x => $"\"{x.Key}\"")))
+     ],
+     "offers": {
+       "@@type": "Offer",
+       "name": "@(Model.TourInfo.TourSummaryInfo.Name) - @(Model.TourInfo.TourSummaryInfo.TourCode)",
+       "price": "@(Model.TourInfo.TourSummaryInfo.FromPrice?.LowestPrice)",
+       "priceCurrency": "AUD",
+       "url": "https://www.entiretravel.com.au/@(Request.RawUrl.TrimStart('/'))",
+       "eligibleRegion": {
+         "@@type": "Country",
+         "name": "AU"
+       },
+       "offeredBy": {
+         "@@type": "Organization",
+         "name": "Entire Travel Group",
+         "url": "https://www.entiretravel.com.au"
+       }
+     },
+     "itinerary": {
+         "@@type": "ItemList",
+         "numberOfItems": "@(Model.Itineraries?.Count ?? 0)",
+         "itemListElement": [
+               @{ var listItems = ""; }
+               @if (Model.Itineraries != null)
+               {
+                   var inCounter = 0;
+
+                   foreach (var itinerary in Model.Itineraries)
+                   {
+                       inCounter++;
+                       listItems += $"{{\"@type\" : \"ListItem\", \"position\" : {inCounter}, \"item\" : {{ \"@type\" : \"TouristAttraction\", \"name\" : \"{itinerary.Title}\" }} }},";
+                   }
+               }
+
+               @(Html.Raw(listItems.TrimEnd(',')))
+         ]
+     }
+}
+</script>
+
+<script type="application/ld+json">
+{
+     "@@context": "https://schema.org",
+     "@@type": "Product",
+     "name": "@(Model.TourInfo.TourSummaryInfo.Name)",
+     "url": "https://www.entiretravel.com.au/@(Request.RawUrl.TrimStart('/'))",
+     "description": "@(Model.TourInfo.TourSummaryInfo.SummaryFirst100Words)",
+     "image": "@(Model.TourInfo.TourSummaryInfo.HeroImage.ImagePath.Imgixify())",
+     "sku":"@(Model.TourInfo.TourSummaryInfo.TourCode)",
+     "Mpn":"@(Model.TourInfo.TourSummaryInfo.TourCode)",
+     "offers": {
+       "@@type": "Offer",
+       "url": "https://www.entiretravel.com.au/@(Request.RawUrl.TrimStart('/'))",
+       "availability": "http://schema.org/OnlineOnly",
+       "price": "@(Model.TourInfo.TourSummaryInfo.FromPrice?.LowestPrice)",
+       "priceCurrency": "AUD"
+       }
+}
+</script>
+
+
+@if (!Model.FAQSchema.IsNullOrEmpty())
+{
+<script type="application/ld+json">
+    @Html.Raw(Model.FAQSchema)
+</script>
+}
+@{
+    var currencyPricing = new CurrentCurrencyPricing(DependencyResolver.Current.GetService<ICurrencyService>());
+}
+@Html.Partial("Partial/Tour/_TourHeroImageWithSlider", Model)
+
+<div class="wrapper">
+    <div class="package-layout">
+        <div class="main">
+            <div class="top">
+                <div class="widget package-detail-title" data-widget="package-detail-title">
+                    <div class="destination">@Model.TourInfo.TourSummaryInfo.PrimaryCountryName</div>
+                    <h1 class="package-name">
+                        @Html.Raw(Model.TourInfo.TourSummaryInfo.Name) <span class="tour-code">(Tour code: @Model.TourInfo.TourSummaryInfo.TourCode)</span>
+                    </h1>
+                </div>
+                @Html.Partial("Partial/Tour/_TourPackageBar", Model.TourInfo)
+                @Html.Partial("Partial/Tour/_TourTopBasicDetails", Model.TourInfo.TourSummaryInfo)
+                @if (!Model.Highlights.IsNullOrEmpty())
+                {
+                <div class="widget package-highlights" data-widget="package-highlights">
+                    <h3>Highlights</h3>
+                    <div class="highlight-container">
+                        @foreach (var highlight in Model.Highlights)
+                            {
+                        <div class="item">
+                            <span class="icon @highlight.Name"></span>
+                            @Html.Raw(highlight.Value)
+                        </div>
+                            }
+                    </div>
+                </div>
+                }
+                @if (!Model.Bonuses.IsNullOrEmpty())
+                {
+                <div class="widget package-highlights" data-widget="package-highlights">
+                    <h3>Entire Bonus</h3>
+                    <div class="highlight-container">
+                        @foreach (var bonus in Model.Bonuses)
+                            {
+                        <div class="item">
+                            <span class="icon @bonus.Name"></span>
+                            @Html.Raw(bonus.Value)
+                        </div>
+                            }
+                    </div>
+                </div>
+                }
+            </div>
+
+            <div class="side">
+                @if (currencyPricing.CurrencyAppliesDiscounts)
+                {
+                    if (Model.TourInfo.TourSummaryInfo.Promotion != null)
+                    {
+                @Html.Partial("Partial/Tour/_TourPromotionDisplay", Model.TourInfo.TourSummaryInfo.Promotion)
+                    }
+                    else if ((Model.TourInfo.TourSummaryInfo.Discount != null &&
+                              (Model.TourInfo.TourSummaryInfo.Discount.ExpiryDate == DateTime.MinValue ||
+                               Model.TourInfo.TourSummaryInfo.Discount.ExpiryDate > DateTime.UtcNow.Date)))
+                    {
+                @Html.Partial("Partial/Tour/_TourDiscount", Model.TourInfo.TourSummaryInfo.Discount)
+                    }
+                }
+
+                @if (Model.TourInfo.BookNowEnabled)
+                {
+                @Html.Action("BookNow", "TourBooking")
+                }
+
+                else
+                {
+                @Html.Partial("Partial/Tour/_TourNoBookNowSidebar", Model.TourInfo)
+                }
+
+                @if (Model.Brochure != null)
+                {
+                @Html.Partial("Partial/Tour/_TourBrochure", Model.Brochure)
+                }
+                @if (!Model.InPartnershipImages.IsNullOrEmpty())
+                {
+                <div class="widget partnership-with-new" data-widget="partnership-with-new">
+                    <h2>In partnership</h2>
+
+                    <div class="images">
+                        @foreach (var partner in Model.InPartnershipImages)
+                            {
+                                if (partner.Url.IsNullOrEmpty())
+                                {
+                        <div class="item">
+                            <img class="lazyload" data-src="@partner.ImagePath.Imgixify()" alt="@partner.ImageAltText">
+                        </div>
+                                }
+                                else
+                                {
+                        <a href="@partner.Url" class="item" target="_blank">
+                            <img class="lazyload" data-src="@partner.ImagePath.Imgixify()" alt="@partner.ImageAltText">
+                        </a>
+                                }
+                            }
+                    </div>
+                </div>
+                }
+                <div class="disclaimer book-now-disclaimer"></div>
+            </div>
+            <div class="bottom">
+                <div class="widget package-jump-menu" data-widget="package-jump-menu">
+                    <div class="menu-select">
+                        <select>
+                            <option value="#section_overview">Overview</option>
+                            @if (!Model.Inclusions.IsNullOrEmpty())
+                            {
+                            <option value="#section_inclusions">Inclusions</option>
+                            }
+                            @if (!Model.Itineraries.IsNullOrEmpty())
+                            {
+                            <option value="#section_itinerary">Itinerary</option>
+                            }
+                            @if (!Model.Hotels.IsNullOrEmpty())
+                            {
+                            <option value="#section_accommodation">Accommodation</option>
+                            }
+                            @if (!Model.OptionalExtras.IsNullOrEmpty())
+                            {
+                            <option value="#section_optional-extras">Optional Extras</option>
+                            }
+                            @if (Model.HasSectionAdditionalInformation)
+                            {
+                            <option value="#section_additional-information">Additional Information</option>
+                            }
+                            @if (!Model.FAQs.IsNullOrEmpty())
+                            {
+                            <option value="#section_faqs">FAQs</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="menu-links">
+                        <a href="#section_overview">Overview</a>
+                        @if (!Model.Inclusions.IsNullOrEmpty())
+                        {
+                        <a href="#section_inclusions">Inclusions</a>
+                        }
+                        @if (!Model.Itineraries.IsNullOrEmpty())
+                        {
+                        <a href="#section_itinerary">Itinerary</a>
+                        }
+                        @if (!Model.Hotels.IsNullOrEmpty())
+                        {
+                        <a href="#section_accommodation">Accommodation</a>
+                        }
+                        @if (!Model.OptionalExtras.IsNullOrEmpty())
+                        {
+                        <a href="#section_optional-extras">Optional Extras</a>
+                        }
+                        @if (Model.HasSectionAdditionalInformation)
+                        {
+                        <a href="#section_additional-information">Additional Information</a>
+                        }
+                        @if (!Model.FAQs.IsNullOrEmpty())
+                        {
+                        <a href="#section_faqs">FAQs</a>
+                        }
+                    </div>
+                </div>
+                <div class="scroll-section" id="section_overview">
+                    @if (!Model.TourInfo.Details.IsNullOrEmpty())
+                    {
+                    <div class="widget package-overview" data-widget="package-overview">
+                        <div class="top">
+                            <h2>Overview</h2>
+                        </div>
+                        <div class="overview-container">
+                            @Html.Raw(Model.TourInfo.Details)
+                            @if (!Model.TourInfo.MapImage.IsNullOrEmpty())
+                                {
+                            <img src="@Model.TourInfo.MapImage.Imgixify()" />
+                                }
+                        </div>
+                    </div>
+                    }
+
+                    @if (Model.TourInfo.HasPeaceOfMindGuarantee && Model.TourInfo.BookNowEnabled)
+                    {
+                    <div class="widget peace-booking-plan" data-widget="peace-booking-plan">
+                        <div class="box">
+                            <div class="badge">
+                                <img src="/images/badge-pease-of-mind-booking-plan@2x.png" width="140" height="140"
+                                     alt="Peace of mind booking plan">
+                            </div>
+                            <div class="content">
+                                <ol class="list">
+                                    <li>ENTIRE Cooling-Off Period</li>
+                                    <li>ENTIRE AUD Prices</li>
+                                    <li>ENTIRE Change of Mind</li>
+                                    <li>ENTIRE Industry Accredited</li>
+                                    <li>ENTIRE On Ground Support</li>
+                                    <li>ENTIRE Australian Owned</li>
+                                </ol>
+                                <div class="cta">
+                                    <a href="/peace-of-mind" class="button ui primary" target="_blank">
+                                        More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <div class="scroll-section" id="section_inclusions">
+                    <div class="widget package-inclusions" data-widget="package-inclusions">
+                        @if (!Model.Inclusions.IsNullOrEmpty() || Model.TourInfo.HasFreedomOfChoice)
+                        {
+                        <div class="top">
+                            <h2>Inclusions</h2>
+                        </div>
+                        <div class="icons-listing">
+                            @if (!Model.Inclusions.IsNullOrEmpty())
+                                {
+                                    foreach (var inclusion in Model.Inclusions)
+                                    {
+                            <div class="item">
+                                <span class="icon @inclusion.Key"></span>
+                                @inclusion.Value
+                            </div>
+                                    }
+                                }
+                            @if (Model.TourInfo.HasFreedomOfChoice)
+                                {
+                            <div class="item">
+                                <span class="icon fal fa-tag"></span>
+                                Freedom of Choice Days
+                            </div>
+                                }
+                        </div>
+                        }
+                        @if (!Model.TourAlternativeDates.IsNullOrEmpty() || !Model.TourUpgrades.IsNullOrEmpty() || (Model.TourInfo.HasFreedomOfChoice && !Model.FreedomOfChoiceDays.IsNullOrEmpty()))
+                        {
+                        <div class="widget package-accordion" data-widget="package-accordion">
+                            <div class="ui styled fluid accordion">
+                                @Html.Partial("Partial/Tour/_TourFreedomOfChoiceAccordion", Model)
+                                @Html.Partial("Partial/Tour/_TourPackageUpgradesAccordion", (Model.TourUpgrades, "Package Upgrades"))
+                                @Html.Partial("Partial/Tour/_TourGenericTourAccordion", (Model.TourAlternativeDates, "Alternative Dates"))
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+                @Html.Partial("Partial/Tour/_TourItinerary", Model)
+                @Html.Partial("Partial/Tour/_TourHotels", Model)
+                @Html.Partial("Partial/Tour/_TourOptionalextras", Model)
+                @if (Model.HasSectionAdditionalInformation)
+                {
+                <div class="scroll-section" id="section_additional-information">
+                    <div class="widget package-additional-information" data-widget="package-additional-information">
+                        <div class="top">
+                            <h2>Additional information</h2>
+                        </div>
+                        @if (Model.Destination != null)
+                            {
+                        <div class="widget package-detail-bar" data-widget="package-detail-bar">
+                            <div class="item">
+                                <div class="label">Official language</div>
+                                <div class="value">@Model.Destination.OfficialLanguages</div>
+                            </div>
+                            <div class="item">
+                                <div class="label">Local currency</div>
+                                <div class="value">@Model.Destination.Currency</div>
+                            </div>
+                        </div>
+                            }
+                        <div>
+                            @Html.Raw(Model.TourInfo.ImportantNote)
+                            <div class="disclaimer">@Html.Raw(Model.TourInfo.Smallprints)</div>
+                            @if (!Model.TourInfo.Exclusions.IsNullOrEmpty())
+                                {
+                            <h3>Excluded</h3>
+                            @Html.Raw(Model.TourInfo.Exclusions)
+                                }
+                        </div>
+                    </div>
+                </div>
+                }
+
+                @if (!Model.FAQs.IsNullOrEmpty())
+                {
+                <a id="faqZone"></a>
+                <div class="scroll-section" id="section_faqs">
+                    <div class="widget package-accordion" data-widget="package-accordion">
+                        <div class="wrapper">
+                            <div class="top top--content-inline">
+                                <h2>FAQs</h2>
+                            </div>
+                            @Html.Partial("Partial/Common/_FAQs", Model.FAQs)
+                        </div>
+                    </div>
+                </div>
+                }
+                <div class="widget package-sticky-footer" data-widget="package-sticky-footer">
+                    @if (currencyPricing.CurrencyAppliesDiscounts)
+                    {
+                        var promotionText = "";
+                        var expiryDateText = "";
+                        int priceSaving = 0;
+
+                        if (Model.TourInfo.TourSummaryInfo.Promotion != null)
+                        {
+                            promotionText = Model.TourInfo.TourSummaryInfo.Promotion.PromotionName;
+                            expiryDateText = Model.TourInfo.TourSummaryInfo.Promotion.ExpiryDateText;
+                        }
+                        else if (Model.TourInfo.TourSummaryInfo.Discount != null && Model.TourInfo.TourSummaryInfo.Discount.DisplayAsLabel
+                                 && !Model.TourInfo.TourSummaryInfo.Discount.DisplayLabel.IsNullOrEmpty())
+                        {
+                            promotionText = Model.TourInfo.TourSummaryInfo.Discount.DisplayLabel;
+                            if (Model.TourInfo.TourSummaryInfo.Discount.ExpiryDate > DateTime.MinValue)
+                            {
+                                expiryDateText = Model.TourInfo.TourSummaryInfo.Discount.ExpiryDateText;
+                            }
+                        }
+
+                        if (currencyPricing.CurrencyAppliesDiscounts && Model.TourInfo.TourSummaryInfo.Promotion != null)
+                        {
+                            priceSaving = currencyPricing.ConvertAUDToCurrentCurrency(Model.TourInfo.TourSummaryInfo.Promotion.GetDiscount(Model.TourInfo.TourSummaryInfo.FromPrice.LowestPrice, 1));
+                        }
+
+                        if (!promotionText.IsNullOrEmpty() && !expiryDateText.IsNullOrEmpty())
+                        {
+                    <div class="tag js-mini-discounts-offers">
+                        <div class="title">@promotionText</div>
+                        @if (priceSaving > 0)
+                                {
+                        <div class="title">Save <span class="price-currency-symbol">$</span>@priceSaving<span>pp</span></div>
+                                }
+
+                        <div class="counter-container">
+                            <div class="timer js-discounts-offers-timer">
+                                <div class="timer-unit">
+                                    <span data-timer-unit="days"></span>
+                                </div>
+                                <div class="timer-unit">
+                                    <span data-timer-unit="hours"></span>
+                                </div>
+                                <div class="timer-unit">
+                                    <span data-timer-unit="minutes"></span>
+                                </div>
+                                <div class="timer-unit">
+                                    <span data-timer-unit="seconds"></span>
+                                </div>
+                            </div>
+                            <div class="counter-label">Remaining</div>
+                        </div>
+                    </div>
+                        }
+                    }
+                    <div class="bar expand-sticky">
+                        <div class="expand-sticky-trigger">
+                            <div class="icon up fas fa-chevron-up"></div>
+                            <div class="icon down fas fa-chevron-down"></div>
+                        </div>
+
+                        <div class="left">
+                            <div class="top">
+                                <div class="package-name">@Model.TourInfo.TourSummaryInfo.Name</div>
+                            </div>
+
+                            <div class="bottom">
+                                <div class="destination">
+                                    @Model.TourInfo.TourSummaryInfo.DepartAndDestinationCity(" / ")
+                                </div>
+
+                                @if (Model.TourInfo.TourSummaryInfo.FromPrice != null)
+                                {
+                                    if (Model.TourInfo.TourSummaryInfo.Promotion != null)
+                                    {
+                                <div class="prices">
+                                    <div class="price-from">
+                                        From
+                                        <span class="strike">
+                                            <span class="price-currency">@currencyPricing.CurrentCurrency</span> <span class="price-value">@currencyPricing.ConvertAUDToCurrentCurrency(Model.TourInfo.TourSummaryInfo.FromPrice.LowestPrice).ToString("#,###")pp</span>
+                                        </span>
+                                    </div>
+                                    <div class="price-actual">
+                                        <span class="price-currency">@currencyPricing.CurrentCurrency</span> <span class="price-value">@currencyPricing.ConvertAUDToCurrentCurrency(Model.TourInfo.TourSummaryInfo.Promotion.GetDiscountedPrice(Model.TourInfo.TourSummaryInfo.FromPrice.LowestPrice)).ToString("#,###")pp</span>
+                                    </div>
+                                </div>
+                                    }
+                                    else
+                                    {
+                                <div class="prices">
+                                    <div class="price-actual">
+                                        From <span class="price-currency">@currencyPricing.CurrentCurrency</span> <span class="price-value">@Model.TourInfo.TourSummaryInfo.FromPrice.DisplayedPriceNoCurrency<span>pp</span></span>
+                                    </div>
+                                </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        @{
+                            if (Model.GoogleReview != null)
+                            {
+                            <a class="reviews flex items-center gap-3 shrink-0 text-body hover:no-underline">
+                                <div class="logo shrink-0">
+                                    <img src="~/images/google-review-logo.png" width="52" height="46" />
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <div class="stars flex items-center justify-start -ml-1 gap-1">
+                                        @{
+                                                decimal rating = Model.GoogleReview.Totals.AverageRating;
+                                                int fullStars = (int)Math.Floor(rating);
+                                                decimal decimalOpacity = Math.Round(rating - fullStars, 1);
+                                        }
+
+                                        @for (int i = 0; i < 5; i++)
+                                            {
+                                                string style = "";
+
+                                                if (i < fullStars)
+                                                {
+                                                    style = "";
+                                                }
+                                                else if (i == fullStars && decimalOpacity > 0)
+                                                {
+                                                    style = $"opacity: {decimalOpacity};";
+                                                }
+                                                else
+                                                {
+                                                    style = "opacity: 0;";
+                                                }
+
+                                        <svg class="w-6 h-6 text-yellow-300 ms-1" style="@style" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                            }
+                                    </div>
+                                    <div class="text text-sm whitespace-nowrap tracking-tight">
+                                        <span class="rating text-lg">@Model.GoogleReview.Totals.AverageRating</span> stars, @Model.GoogleReview.Totals.ReviewCount reviews
+                                    </div>
+                                </div>
+                            </a>
+                            }
+                        }
+
+                        <div class="right">
+                            @if (Model.TourInfo.TourSummaryInfo.FromPrice != null)
+                            {
+                                if (currencyPricing.CurrencyAppliesDiscounts && Model.TourInfo.TourSummaryInfo.Promotion != null)
+                                {
+                            <div class="prices">
+                                <div class="price-from">
+                                    From
+                                    <span class="strike">
+                                        <span class="price-currency">@currencyPricing.CurrentCurrency</span> <span class="price-value">@Model.TourInfo.TourSummaryInfo.FromPrice.GetDisplayedPriceNoCurrencyForCurrentCurrency()pp</span>
+                                    </span>
+                                </div>
+                                <div class="price-actual">
+                                    <span class="price-currency">@currencyPricing.CurrentCurrency</span> <span class="price-value">@currencyPricing.ConvertAUDToCurrentCurrency(Model.TourInfo.TourSummaryInfo.Promotion.GetDiscountedPrice(Model.TourInfo.TourSummaryInfo.FromPrice.LowestPrice)).ToString("#,###")pp</span>
+                                </div>
+                            </div>
+                                }
+                                else
+                                {
+                            <div class="prices">
+                                <div class="price-actual">
+                                    From <span class="price-currency">@currencyPricing.CurrentCurrency</span> <span class="price-value">@Model.TourInfo.TourSummaryInfo.FromPrice.GetDisplayedPriceNoCurrencyForCurrentCurrency()pp</span>
+                                </div>
+                            </div>
+                                }
+                            }
+
+                            <div class="buttons">
+                                @if (Model.TourInfo.BookNowEnabled)
+                                {
+                                <button class="button ui primary book-now-trigger" data-scrollto-target=".form-steps">Pick Your Dates</button>
+                                <button class="button ui primary transparent ta-trigger">Travel agent quote & book</button>
+                                <a href="/enquire/@Model.TourInfo.TourSummaryInfo.TourCode" target="_blank" class="ui button primary transparent">
+                                    <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.1562 0.59375L1.28125 6.85156C0.859375 7.08594 0.90625 7.69531 1.32812 7.85938L3.83594 8.91406L10.5625 2.98438C10.6797 2.86719 10.8672 3.03125 10.75 3.17188L5.125 10.0391V11.9375C5.125 12.5 5.78125 12.7109 6.10938 12.3125L7.60938 10.4844L10.5156 11.7266C10.8438 11.8672 11.2422 11.6562 11.2891 11.2812L12.9766 1.15625C13.0703 0.6875 12.5547 0.359375 12.1562 0.59375Z" fill="currentColor" />
+                                    </svg>
+                                    Make an enquiry
+                                </a>
+                                }
+                                else
+                                {
+                                <a href="/enquire/@Model.TourInfo.TourSummaryInfo.TourCode" class="button ui primary@(Model.TourInfo.BookNowEnabled ? " transparent" : "")">Enquire</a>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+<div class="wrapper">
+
+    @Html.Partial("Partial/Tour/_TourConnectWithUs", Model.ConnectWithUs)
+
+</div>
+@if (Model.FeatureTours != null && !Model.FeatureTours.Tours.IsNullOrEmpty())
+{
+<div class="spacer"></div>
+@Html.Partial("Partial/Tour/_TourListing", (Model.FeatureTours, "SOMEWHERE ELSE TO CONSIDER", string.Empty))
+}

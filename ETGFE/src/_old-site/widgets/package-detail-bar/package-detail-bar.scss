@@ -1,0 +1,94 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-detail-bar {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 40px;
+  background-color: #ededed;
+  border-radius: 8px;
+  break-inside: avoid; /* Do not allow to break over printed pages*/
+
+  html.pdf-generation-template & {
+    box: horizontal;
+    padding: 15px 0;
+  }
+
+  @media(min-width: 768px), print {
+    box: horizontal;
+    padding: 15px 0;
+  }
+
+  .item {
+    padding: 15px;
+    border-bottom: 1px solid rgba(#fff, 0.9);
+
+    &:last-child {
+      border: none;
+    }
+
+    html.pdf-generation-template & {
+      padding: 0 15px;
+      border-bottom: none;
+      border-right: 1px solid rgba(#fff, 0.9);
+      flex: 1;
+    }
+
+    @media(min-width: 768px), print {
+      padding: 0 15px;
+      border-bottom: none;
+      border-right: 1px solid rgba(#fff, 0.9);
+      flex: 1;
+    }
+  }
+
+  .label {
+    font-weight: 900;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  .value {
+    margin-top: 7px;
+
+    .faded {
+      color: #929497;
+    }
+  }
+
+  ul.value {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+
+    li {
+      margin-left: 0;
+      padding-left: 0;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* icons are a mix of font-awesome and 'icomoon' font icons. */
+    .icon {
+      margin-right: 5px;
+
+      &:not(svg) {
+        font-size: 22px; /* controls size of 'icomoon' font icons */
+      }
+    }
+  }
+}
+
+.package-additional-information {
+  .package-detail-bar {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}

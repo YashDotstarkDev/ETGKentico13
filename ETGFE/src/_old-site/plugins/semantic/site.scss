@@ -1,0 +1,220 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+/*!
+ * # Semantic UI 2.4.2 - Site
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+
+/*******************************
+             Page
+*******************************/
+
+html,
+body {
+  @media screen {
+    height: 100%;
+  }
+}
+html {
+  font-size: $body-font-size-small;
+  /*font-size: responsive $body-font-size-small $body-font-size-large;
+  font-range: $body-responsive-font-range;*/
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+  min-width: 320px;
+  background: $body-background;
+  font-family: $body-font-family;
+  font-size: $body-font-size-small;
+  /*font-size: responsive $body-font-size-small $body-font-size-large;
+  font-range: $body-responsive-font-range;*/
+  line-height: $body-line-height;
+  color: $body-font-color;
+  font-smoothing: antialiased;
+  font-weight: $body-font-weight;
+}
+
+
+/*******************************
+             Headers
+*******************************/
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $headings-font-family;
+  line-height: $headings-line-height;
+  margin: $headings-margin;
+  font-weight: $headings-font-weight;
+  padding: 0em;
+  color: $headings-font-color;
+}
+
+.accordion-content {
+  h4,
+  h5 {
+    font-family: $lato;
+    font-weight: normal;
+  }
+}
+
+h1 {
+  min-height: 1rem;
+  font-size: $headings-h1-font-size-small;
+  font-size: responsive $headings-h1-font-size-small $headings-h1-font-size-large;
+  font-range: $headings-responsive-font-range;
+  text-transform: uppercase;
+}
+h2 {
+  font-size: $headings-h2-font-size-small;
+  font-size: responsive $headings-h2-font-size-small $headings-h2-font-size-large;
+  font-range: $headings-responsive-font-range;
+  text-transform: uppercase;
+}
+h3,
+.accordion-content h4 {
+  font-size: $headings-h3-font-size-small;
+  font-size: responsive $headings-h3-font-size-small $headings-h3-font-size-large;
+  font-range: $headings-responsive-font-range;
+}
+h4,
+.accordion-content h5  {
+  font-size: $headings-h4-font-size-small;
+  font-size: responsive $headings-h4-font-size-small $headings-h4-font-size-large;
+  font-range: $headings-responsive-font-range;
+}
+h5 {
+  font-size: $headings-h5-font-size-small;
+  font-size: responsive $headings-h5-font-size-small $headings-h5-font-size-large;
+  font-range: $headings-responsive-font-range;
+}
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child {
+  margin-top: 0em;
+}
+h1:last-child,
+h2:last-child,
+h3:last-child,
+h4:last-child,
+h5:last-child {
+  margin-bottom: 0em;
+}
+
+
+  /*******************************
+               Text
+  *******************************/
+
+p {
+  margin: $paragraph-margin;
+  line-height: $paragraph-line-height;
+}
+p:first-child {
+  margin-top: 0em;
+}
+p:last-child {
+  margin-bottom: 0em;
+}
+
+/*-------------------
+        Links
+--------------------*/
+
+a {
+  font-family: $link-font-family;
+  color: $link-colour;
+  text-decoration: $link-text-decoration;
+}
+a:hover {
+  color: $link-colour-hover;
+  text-decoration: $link-text-decoration-hover;
+}
+
+
+/*******************************
+         Scrollbars
+*******************************/
+
+
+
+/*******************************
+          Highlighting
+*******************************/
+
+
+::-webkit-selection {
+  background-color: $highlight-background;
+  color: $highlight-foreground;
+}
+::-moz-selection {
+  background-color: $highlight-background;
+  color: $highlight-foreground;
+}
+::selection {
+  background-color: $highlight-background;
+  color: $highlight-foreground;
+}
+
+/* Form */
+textarea::-webkit-selection,
+input::-webkit-selection {
+  background-color: rgba(100, 100, 100, 0.4);
+  color: rgba(0, 0, 0, 0.87);
+}
+textarea::selection,
+input::selection {
+  background-color: rgba(100, 100, 100, 0.4);
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Force Simple Scrollbars */
+body ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+}
+body ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+}
+body ::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.25);
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+body ::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 0, 0, 0.15);
+}
+body ::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 135, 139, 0.8);
+}
+
+/* Inverted UI */
+body .ui.inverted::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+body .ui.inverted::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+}
+body .ui.inverted::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(255, 255, 255, 0.15);
+}
+body .ui.inverted::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}

@@ -1,0 +1,14 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@using ETG.Data.Extensions
+@model ETG.Web.Tour.Models.TourViewModel
+
+@if (Model == null)
+{
+    return;
+}
+@if (Model.HasPeaceOfMindGuarantee)
+{
+    @Html.Partial("Partial/Tour/_TourPeaceOfMind", Model.PeaceOfMindCheckList)
+    @*Html.Partial("Partial/Tour/_TourPackageFeature", Model)*@
+}

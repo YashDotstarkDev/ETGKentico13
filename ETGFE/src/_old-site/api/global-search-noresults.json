@@ -1,0 +1,54 @@
+{
+  "all":{
+    "title":"View all results",
+    "url":"/search?keywords=galo"
+  },
+  "results":{
+    "tours":{
+      "name":"Tour",
+      "results":[
+        {
+          "title":"Essential St Gallen",
+          "url":"/Switzerland/essential-st-gallen"
+        },
+        {
+          "title":"Three Corners of Switzerland",
+          "url":"/Switzerland/three-corners-of-switzerland"
+        },
+        {
+          "title":"Madrid, Andalusia and the Mediterranean Coast",
+          "url":"/Spain/madrid-andalusia-and-the-mediterranean-coast"
+        }
+      ],
+      "links":[
+        {
+          "title":"View all",
+          "url":"/search?keywords=galo"
+        }
+      ]
+    },
+    "destinations":{
+      "name":"Destinations",
+      "results":[
+
+      ],
+      "links":[
+        {
+          "title":"View all",
+          "url":"/destinations"
+        }
+      ]
+    },
+    "inspired":{
+      "name":"Get Inspired",
+      "results":[
+      ],
+      "links":[
+        {
+          "title":"View all",
+          "url":"/articles"
+        }
+      ]
+    }
+  }
+}

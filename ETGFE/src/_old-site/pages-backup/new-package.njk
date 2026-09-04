@@ -1,0 +1,24 @@
+{% set page_title = 'New package' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+
+{% endblock %}
+
+{% block beforeArticle %}
+  {% include "src/widgets/header/header.njk" %}
+{% endblock %}
+
+{% block article %}
+
+{% endblock %}
+
+{% block afterArticle %}
+{% include "src/widgets/footer/footer.njk" %}
+{% include "src/widgets/footer-brands/footer-brands.njk" %}
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="/scripts/new-package.js"></script>
+{% endblock %}

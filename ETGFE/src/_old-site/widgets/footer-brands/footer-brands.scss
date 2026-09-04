@@ -1,0 +1,39 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.footer-brands {
+  padding: 25px 0 115px;
+
+  img {
+    filter: grayscale(100%);
+    display: block;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    float: left;
+    margin: 0 15px;
+    width: 200px;
+    height: 40px;
+  }
+
+  .brands {
+    background-color: transparent;
+    margin-top: 30px;
+
+    img {
+      display: block;
+      height: 100% !important;
+      width: auto !important;
+      margin: 0 auto;
+      opacity: 0.4;
+    }
+  }
+
+  .copy {
+    text-align: center;
+    font-size: 12px;
+    color: #929497;
+    padding: 0 20px;
+  }
+}

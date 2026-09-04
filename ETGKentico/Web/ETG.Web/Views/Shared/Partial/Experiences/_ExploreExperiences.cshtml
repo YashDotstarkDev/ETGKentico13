@@ -1,0 +1,24 @@
+﻿
+@model List<ETG.Web.Experience.Models.ExperienceSummaryViewModel>
+
+<div class="experience-bar relative z-20">
+    <div class="wrapper">
+        <div class="heading flex justify-center">
+            <h2 class="bg-white px-7 py-4 text-black -mt-8 rounded-3xl uppercase text-center mx-6 w-[280px] md:w-auto">Explore our experiences</h2>
+        </div>
+        <div class="experience-links text-xs mx-auto w-[250px] md:w-[450px] lg:w-[900px] uppercase font-black grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 mt-6">
+            @foreach (var experience in Model)
+            {
+                <a href="@experience.Path" class="flex flex-col gap-2 items-center hover:no-underline text-body hover:text-primary transition-colors duration-300">
+                    @Html.Raw(experience.SVGIcon)
+                    @experience.Name
+                </a>
+            }
+        </div>
+        <div class="cta mt-8 flex justify-center">
+            <a href="/experiences" class="btn btn-primary-outline">View all</a>
+        </div>
+    </div>
+</div>
+
+

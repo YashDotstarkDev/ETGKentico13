@@ -1,0 +1,135 @@
+﻿@model ETG.Web.Models.Forms.GenericEnquiryPageViewModel
+
+@Html.TextBoxFor(m => m.Form.Reason, new { style = "display:none" })
+<div class="gr-10">
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            <label>First name</label>
+            @Html.TextBoxFor(m => m.Form.FirstName, new
+            {
+                data_rules = "regExp[/[aeiou]/]",
+                data_prompts = "Please enter a valid first name"
+            })
+        </div>
+    </div>
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            <label>Last name</label>
+            @Html.TextBoxFor(m => m.Form.LastName, new
+            {
+                data_rules = "regExp[/[aeiou]/]",
+                data_prompts = "Please enter a valid last name"
+            })
+        </div>
+    </div>
+</div>
+<div class="gr-10">
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            <label>Email</label>
+            @Html.TextBoxFor(m => m.Form.Email, new
+            {
+                data_rules = "emailDependOnRadio[Form.PreferredContactType|Email]",
+                data_prompts = ""
+            })
+        </div>
+    </div>
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            <label>Phone</label>
+            @Html.TextBoxFor(m => m.Form.Phone, new
+            {
+                data_rules = "phoneDependOnRadio[Form.PreferredContactType|Phone]",
+                data_prompts = "Please enter only numbers in this field."
+            })
+        </div>
+    </div>
+</div>
+<div class="gr-10">
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            <label>Preferred contact method</label>
+            <div class="grouped fields">
+                <input type="hidden" data-validate="checkboxGroup1" data-rules="checkboxCount[1]" data-prompts="You must select at least one" />
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        @Html.RadioButtonFor(m => m.Form.PreferredContactType, "Email", new { name = "preferredContact", @checked = "checked" })
+                        <label>Email</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        @Html.RadioButtonFor(m => m.Form.PreferredContactType, "Phone", new { name = "preferredContact" })
+                        <label>Phone</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            <label>Preferred tour type</label>
+            @Html.DropDownListFor(m => m.Form.PreferredTourType, new List<SelectListItem>{
+                new SelectListItem{ Text="Please select", Value=""},
+                new SelectListItem{ Text="Small group tours", Value="Small group tours"},
+                new SelectListItem{ Text="Escorted group tours", Value="Escorted group tours"},
+                new SelectListItem{ Text="Private tours", Value="Private tours"},
+                new SelectListItem{ Text="Independent tours", Value="Independent tours"},
+                new SelectListItem{ Text="Packaged tours", Value="Packaged tours"},
+                new SelectListItem{ Text="Day tours", Value="Day tours"},
+                new SelectListItem{ Text="Rail Journeys", Value="Rail Journeys"},
+                new SelectListItem{ Text="Cruise Journeys", Value="Cruise Journeys"},
+                new SelectListItem{ Text="Group Journeys", Value="Group Journeys"},
+            }, new { @class = "make-dropdown" })
+        </div>
+    </div>
+</div>
+
+<div class="gr-10">
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            @if (Request.Path.ToLower().Contains("destinations"))
+            {
+                <label class="text-primary font-bold">Preferred destination</label>
+            }
+            else
+            {
+                <label>Preferred destination</label>
+            }
+            @Html.DropDownListFor(m => m.Form.PreferredDestination, Model.Destinations, new { @class = "make-dropdown" })
+        </div>
+    </div>
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            @if (Request.Path.ToLower().Contains("experiences"))
+            {
+                <label class="text-primary font-bold">Select experience (optional)</label>
+            }
+            else
+            {
+                <label>Select experience (optional)</label>
+            }
+            @Html.DropDownListFor(m => m.Form.PreferredExperience, Model.Experiences, new
+               {
+                   @class = "make-dropdown"
+               })
+
+        </div>
+    </div>
+</div>
+
+<div class="field">
+    <label>Questions or comments</label>
+    @Html.TextAreaFor(m => m.Form.Message, new
+    {
+        placeholder = "optional"
+    })
+</div>
+@Html.Partial("Partial/Form/_Recaptcha")
+<div class="field">
+    <div class="ui checkbox">
+        @*@Html.CheckBoxFor(m => m.Form.SubscribeToNewsletter)*@
+        <input type="checkbox" name="Form.SubscribeToNewsletter" value="true" />
+        <label>Subscribe to our newsletter for special deals.</label>
+    </div>
+</div>

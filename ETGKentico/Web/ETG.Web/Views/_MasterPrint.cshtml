@@ -1,0 +1,39 @@
+@using ETG.Web.Helpers
+<!DOCTYPE html>
+<html lang="en" class="show-gdpr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Title</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.icomoon.io/39161/ETGP0001EntireTravelGroup/style.css?c3unwu">
+    @* Google Maps
+    NOTE: Google Maps script is loaded by '@googlemaps/js-api-loader', so do not directly link
+    <script defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDHeI_wYHKuPbRXvq5q5U-l3It4DTBYDZM"></script>
+    *@
+    @* Expose maps api key to pass into config for '@googlemaps/js-api-loader' *@
+    <script>
+      const GOOGLE_MAPS_API_KEY = 'AIzaSyBQSwFeJc6YO0wrcLPtvCu-9KSXXRMWReI'
+    </script>
+    @* END Google maps *@
+    <!-- Please inline this css file -->
+    <link rel="stylesheet" href="/styles/global.css">
+    <style>
+        .widget {
+            opacity: 1!important
+        }
+    </style>
+</head>
+<body class="pushable" >
+    <div class="pusher">
+        @RenderBody()
+        
+    </div>
+        
+@Html.ScriptTag("/scripts/runtime.js", false)
+@Html.ScriptTag("/scripts/global.js", false)
+@RenderSection("AdditionalScripts", required: false)
+@Html.StyleTag("/styles/print.css")
+</body>
+</html>

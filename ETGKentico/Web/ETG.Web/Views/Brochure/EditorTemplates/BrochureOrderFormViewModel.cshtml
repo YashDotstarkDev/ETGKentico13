@@ -1,0 +1,56 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model ETG.Web.Brochure.Models.BrochureOrderFormViewModel
+<div class="gr-10">
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            <label>First name</label>
+            @Html.TextBoxFor(m => m.FirstName, new
+            {
+                data_rules = "regExp[/[aeiou]/]",
+                data_prompts = "Please enter a valid first name"
+            })
+        </div>
+    </div>
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            <label>Last name</label>
+            @Html.TextBoxFor(m => m.LastName, new
+            {
+                data_rules = "regExp[/[aeiou]/]",
+                data_prompts = "Please enter a valid last name"
+            })
+        </div>
+    </div>
+</div>
+<div class="gr-10">
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            <label>Email</label>
+            @Html.TextBoxFor(m => m.Email, new
+            {
+                data_rules = "empty,email",
+                data_prompts = ""
+            })
+        </div>
+    </div>
+    <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+        <div class="field">
+            <label>Phone</label>
+            @Html.TextBoxFor(m => m.Phone, new
+            {
+                data_rules = "numberVisible",
+                data_prompts = ""
+            })
+        </div>
+    </div>
+</div>
+<div class="field">
+    <label>Questions or comments</label>
+    @Html.TextAreaFor(m => m.Message, new
+    {
+        placeholder = "optional"
+    })
+</div>
+@Html.Partial("Partial/Form/_Recaptcha")
+@Html.HiddenFor(m => m.BrochureGuids)

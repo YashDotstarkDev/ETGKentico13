@@ -1,0 +1,75 @@
+{% set page_title = 'Package detail (print)' %}
+{% set is_pdf_generation = true %}
+
+{% extends "src/views/pdf-generation.njk" %}
+
+{% block beforeArticle %}
+<div class="print-logo">
+  <div class="wrapper">
+    <div class="logo-container">
+      <a href="#" style="display:inline-block">
+        <img src="images/etg.png" style="position: relative;width:auto"/>
+      </a>
+      <div class="website">
+        <a href="https://www.entiretravel.com.au" class="button primary ui">View Package</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block article %}
+<div class="wrapper">
+  {% include "src/widgets/new-package-hero/new-package-hero.njk" %}
+
+  {% include "src/widgets/package-detail-title/package-detail-title.njk" %}
+
+  {% include "src/widgets/package-detail-bar/package-detail-bar.njk" %}
+
+  <div class="article-layout">
+    <div class="main">
+      {% include "src/widgets/package-intro/package-intro.njk" %}
+
+      {% include "src/widgets/package-highlights/package-highlights.njk" %}
+
+      <!-- NOTE 'package-highlights' mark-up copied from live site. https://www.entiretravel.com.au/tourprint/pacific-resort-rarotonga -->
+      <div class="widget package-highlights">
+        <h3>Entire Bonus</h3>
+        <div class="highlight-container">
+          <div class="item">
+            <span class="icon fas fa-tag"></span>
+            <p><strong>BONUS - FREE&nbsp;</strong>Early Check-in&nbsp;(Valid for travel from 29JUN)</p>
+          </div>
+          <div class="item">
+            <span class="icon fas fa-tag"></span>
+            <p><strong>BONUS - FREE&nbsp;</strong>Late Check-Out&nbsp;(Valid for travel from 29JUN)</p>
+          </div>
+        </div>
+      </div>
+
+      {% include "src/widgets/peace-booking-plan/peace-booking-plan.njk" %}
+
+      {% include "src/widgets/package-inclusions/package-inclusions.njk" %}
+
+      {% include "src/widgets/package-itinerary/package-itinerary.njk" %}
+
+      {% include "src/widgets/package-accordion/package-accordion.njk" %}
+
+      {% include "src/widgets/package-hotels/package-hotels.njk" %}
+
+      {% include "src/widgets/package-additional-information/package-additional-information.njk" %}
+    </div>
+
+    <div class="side">
+      {% include "src/widgets/partnership-with-new/partnership-with-new.njk" %}
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="widget spacer"></div>
+  <div class="wrapper">
+    {% include "src/widgets/package-enquiry/package-enquiry.njk" %}
+  </div>
+</div>
+{% endblock %}

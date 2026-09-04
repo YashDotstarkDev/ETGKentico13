@@ -1,0 +1,49 @@
+﻿@model ETG.Web.Models.Competition.PopupCompetitionViewModel
+@if (Model == null || Model.ShowCompetitionPopup == false)
+{
+    return;
+}
+
+<div class="widget subscribe-to-win-modal ui modal" data-cookie="@Model.CompetitionCookieName" data-session-url="/api/competition/popup" data-widget="subscribe-to-win-modal">
+    <i class="close icon"><span class="fal fa-times"></span></i>
+
+    <h2>@Html.Raw(Model.PopupTitle)</h2>
+    <p class="sub-title">@Html.Raw(Model.PopupSubTitle)</p>
+    <div class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-endpoint="/api/competition/subscribe" data-method="POST">
+        <div class="form-container">
+            <div class="field">
+                <label>First name</label>
+                <input type="text" name="firstname" data-rules="regExp[/[aeiou]/]" data-prompts="Please enter a valid first name">
+            </div>
+    
+            <div class="field">
+                <label>Last name</label>
+                <input type="text" name="lastname" data-rules="regExp[/[aeiou]/]" data-prompts="Please enter a valid last name">
+            </div>
+    
+            <div class="field">
+                <label>Email address</label>
+                <input type="email" name="email" data-rules="empty,email" data-prompts="Please enter valid email" />
+            </div>
+    
+            <div class="field hide-mobile">
+                <label>Are you a travel agent?</label>
+                <select class="make-dropdown" name="isagent" data-rules="emptyVisible">
+                    <option value="">Please select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <input name="cookiename" type="hidden" value="@(Model.CompetitionCookieName + "stop")" />
+            <div class="button-container">
+                <button class="ui primary submit button" type="button">Subscribe</button>
+            </div>
+            <div class="disclaimer">Read our <a href="/legals/privacy-policy" target="_blank">Privacy Policy</a> and <a href="@Model.CompetitionTermsUrl" target="_blank">Terms and Conditions</a>.</div>
+            <div class="bottom-checkbox"><input type="checkbox" name="nevershow"> Never show me again</div>
+        </div>
+        <div class="response-container"></div>
+        <div class="button-container popup-close-button-container">
+            <a class="ui primary submit button close-popup">Close</a>
+        </div>
+    </div>
+</div>

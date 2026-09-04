@@ -1,0 +1,31 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-offer {
+  margin-bottom: 20px;
+
+  .top {
+    background-color: $primary;
+    color: #FFF;
+    padding: 5px 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .bottom {
+    padding: 15px 20px;
+    background-color: #EDEDED;
+
+    p {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .title {
+      color: $primary;
+      font-size: 20px;
+    }
+  }
+}

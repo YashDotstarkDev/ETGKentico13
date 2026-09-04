@@ -1,0 +1,10 @@
+﻿@model ETG.Web.Models.Widgets.SpacerWidget.SpacerWidgetViewModel
+
+@if (Model.Padding == 0)
+{
+    <div class="spacer"></div>    
+}
+else
+{
+    <div class="spacer-@(Model.Padding)"></div>
+}

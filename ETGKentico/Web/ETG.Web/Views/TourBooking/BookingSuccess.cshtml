@@ -1,0 +1,81 @@
+﻿@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@using ETG.Core.Extensions
+@using ETG.Data.Extensions
+@using ETG.Web.Helpers
+@using Newtonsoft.Json
+@model ETG.Web.Models.TourBooking.BookingSuccessViewModel
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/booking-thankyou.js")
+}
+@section AdditionalHeadScripts
+{
+    @if (Model.EcommerceDataLayer != null)
+    {
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push(
+            @Html.Raw(JsonConvert.SerializeObject(Model.EcommerceDataLayer))
+        )
+        </script>
+
+        <script>
+            fbq("track", "Schedule", {
+                booking_id: "@Model.EcommerceDataLayer.Ecommerce.BookNow.Id",
+                name: "@Model.EcommerceDataLayer.Ecommerce.BookNow.Name",
+                category: "@Model.EcommerceDataLayer.Ecommerce.BookNow.Category",
+                price: "@Model.EcommerceDataLayer.Ecommerce.BookNow.Price"
+            });
+        </script>
+    }
+}
+
+@if (Model == null)
+{
+    return;
+}
+<div class="widget new-hero" data-widget="new-hero">
+
+    <div class="share-modal ui modal">
+        <i class="close">
+            <span class="fal fa-times"></span>
+        </i>
+        <input type="text" class="url-holder" value="https://www.entiretravel.com.au/">
+
+        <div class="links">
+            <a href="#" class="button ui facebook"><span class="icon fab fa-facebook"></span>Facebook</a>
+            <a href="#" class="button ui instagram"><span class="icon fab fa-instagram"></span>Instagram</a>
+            <a href="#" class="button ui linkedin"><span class="icon fab fa-linkedin"></span>Linkedin</a>
+            <a href="#" class="button ui twitter"><span class="icon fab fa-twitter"></span>Twitter</a>
+            <a href="#" class="button ui pinterest"><span class="icon fab fa-pinterest"></span>Pinterest</a>
+            <a href="#" class="button ui copy-link" data-content="Link copied!"><span class="icon icon-chain"></span>Copy Link</a>
+        </div>
+    </div>
+    <div class="grad"></div>
+</div>
+<div class="booking-thankyou">
+    <div class="wrapper">
+        <div class="main-content">
+            @Html.Raw(Model.ThankYouCopy)
+        </div>
+        <div class="sidebar">
+            <div class="payment-summary">
+                <div class="item sub-total">
+                    <div class="total-label">Package total</div>
+                    <div class="total-price">@(Model.OrderTotalPriceInCurrentCurrency.FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrency))</div>
+                </div>
+                <div class="item">
+                    <div class="total-label">Amount Paid</div>
+
+                    <div class="total-price">
+                        @Model.BaseAmountPaidInCurrentCurrency.FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrency)
+                    @if (!Model.CurrentCurrencyPricing.CurrentCurrencyIsAUD)
+                    {
+                        <div>(@Model.BaseAmountPaid.FormatPrice(false, "AUD"))</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

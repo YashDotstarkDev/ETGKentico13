@@ -1,0 +1,40 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@model ETG.Web.Brochure.Models.BrochureViewModel
+
+@if (Model == null)
+{
+    return;
+}
+@helper ChangeNameToId(string name)
+{
+    @name.Replace(" ", "").Replace("&", "")
+}
+<div class="widget package-brochure" data-widget="package-brochure">
+    <div class="image">
+        <img class="lazyload" data-src="@Model.CoverImage.Imgixify()" alt="">
+    </div>
+    <div class="content">
+        <div class="title">@Model.Name</div>
+        <a id="@($"buttonView{ChangeNameToId(Model.Name)}")" href="@Model.BrochureLink" class="button primary ui transparent small brochure-gate-trigger">View</a>
+    </div>
+</div>
+
+<div class="widget brochure-gate-popup ui modal" data-widget="brochure-gate-popup">
+    <i class="close icon"><span class="fal fa-times"></span></i>
+    <h2>Signup to view brochure</h2>
+    <div class="ui form gate-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-endpoint-url="/api/form/brochuresignup" data-method="POST">
+        <div class="field">
+            <label>Name</label>
+            <input type="text" name="name" data-rules="empty" data-prompts="Please enter name" />
+        </div>
+
+        <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" data-rules="empty,email" data-prompts="Please enter valid email" />
+        </div>
+        <input type="hidden" name="brochure" value="@Model.Name" />
+        <input type="hidden" name="url" value="@Request.Url.PathAndQuery" />
+        <button class="ui transparent submit button primary" type="button">Submit</button>
+    </div>
+</div>

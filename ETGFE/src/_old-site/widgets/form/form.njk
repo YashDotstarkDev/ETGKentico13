@@ -1,0 +1,79 @@
+<div class="widget form">
+  <div class="wrapper contained">
+    <h2>Meet your destination expert</h2>
+
+    <div class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-endpoint="api/response-message.json" data-method="GET">
+      <div class="gr-10">
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>First name</label>
+            <input type="text" name="firstname" data-rules="regExp[/[aeiou]/]" data-prompts="Please enter a valid first name"/>
+          </div>
+        </div>
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Last name</label>
+            <input type="text" name="lastname" data-rules="regExp[/[aeiou]/]" data-prompts="Please enter a valid last name"/>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="gr-10">
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Email</label>
+            <input type="text" name="email" data-rules="empty,email" data-prompts=""/>
+          </div>
+        </div>
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Phone</label>
+            <input type="text" name="phone" data-rules="numberVisible" data-prompts="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="gr-10">
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Preferred contact method</label>
+            <div class="grouped fields">
+              <input type="hidden" data-validate="checkboxGroup1" data-rules="checkboxCount[1]" data-prompts="You must select at least one"/>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="contact" value="1" checked/>
+                  <label>Email</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="contact" value="2"/>
+                  <label>Phone</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Questions or comments</label>
+        <textarea name="message" data-rules="empty" data-prompts="" placeholder="Optional"></textarea>
+      </div>
+
+      <div class="field">
+        <div class="ui checkbox">
+          <input type="checkbox" name="subscribe" value="subscribe"/>
+          <label>Subscribe to our newsletter for special deals.</label>
+        </div>
+      </div>
+
+      <div class="response-container"></div>
+
+      <div class="submit-row">
+        <button class="ui button submit primary">Submit Enquiry</button>
+      </div>
+    </div>
+  </div>
+</div>

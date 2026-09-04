@@ -1,0 +1,22 @@
+﻿@model ETG.Web.Models.Layout.GDPRConsentViewModel
+
+@if (Model == null || !Model.ShowGDPRConsent)
+{
+    return;
+}
+
+    <div id="gdprPanel" class="widget gdpr-consent" data-widget="gdpr-consent">
+        @using (Ajax.BeginForm("Consent", "MasterPage", new AjaxOptions { UpdateTargetId = "gdprPanel" }))
+        {
+            <div class="wrapper">
+                <div class="copy">
+                    @Html.Raw(Model.ConsentContent)
+                </div>
+                <div class="links">
+                    <button class="ui button primary accept" type="submit" value="accept" name="submitbutton">Accept</button>
+                    <button class="ui inverted button transparent primary decline" type="submit" value="decline" name="submitbutton">Decline</button>
+                </div>
+            </div>
+
+        }
+    </div>

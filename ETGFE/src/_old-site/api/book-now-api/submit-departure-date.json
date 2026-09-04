@@ -1,0 +1,148 @@
+{
+  "selectedDepartureDisplayDate": "Wednesday, 23 Nov 2022",
+  "preNights": [
+    {
+      "label": "1 Night (22 - 23 Aug 2022)",
+      "value": "1",
+      "isSelected": false
+    },
+    {
+      "label": "2 Nights (21 - 23 Aug 2022)",
+      "value": "2",
+      "isSelected": false
+    },
+    {
+      "label": "3  Nights (20 - 23 Aug 2022)",
+      "value": "3",
+      "isSelected": false
+    },
+    {
+      "label": "... etc",
+      "value": "...",
+      "isSelected": false
+    }
+  ],
+  "postNights": [
+    {
+      "label": "1 Night (4 - 5 Sep 2022)",
+      "value": "1",
+      "isSelected": false
+    },
+    {
+      "label": "2 Nights (4 - 6 Sep 2022)",
+      "value": "2",
+      "isSelected": false
+    },
+    {
+      "label": "3 Nights (4 - 7 Sep 2022)",
+      "value": "3",
+      "isSelected": false
+    },
+    {
+      "label": "... etc",
+      "value": "...",
+      "isSelected": false
+    }
+  ],
+  "hasTwinShareOptions": true,
+  "hasSingleRoomOptions": false,
+  "hasSingleSupplementOption": true,
+  "twinShareOptions": [
+    {
+      "numberOfRooms": 1,
+      "numberOfPersons": 2,
+      "label": "1 (2 people)",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 2,
+      "numberOfPersons": 4,
+      "label": "2 (4 people)",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 3,
+      "numberOfPersons": 6,
+      "label": "3 (6 people)",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 4,
+      "numberOfPersons": 8,
+      "label": "4 (8 people)",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    }
+  ],
+  "singleRoomOptions": [
+    {
+      "numberOfRooms": 1,
+      "numberOfPersons": 1,
+      "label": "1 (+$388 )",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 2,
+      "numberOfPersons": 2,
+      "label": "2 (+$776 )",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 3,
+      "numberOfPersons": 3,
+      "label": "3 (+$1,164 )",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 4,
+      "numberOfPersons": 4,
+      "label": "4 (+$1,552 )",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 5,
+      "numberOfPersons": 5,
+      "label": "5 (+$1,940 )",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 6,
+      "numberOfPersons": 6,
+      "label": "6 (+$2,328 )",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 7,
+      "numberOfPersons": 7,
+      "label": "7 (+$2,716 )",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 8,
+      "numberOfPersons": 8,
+      "label": "8 (+$3,104 )",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    },
+    {
+      "numberOfRooms": 9,
+      "numberOfPersons": 9,
+      "label": "9 (+$3,492 )",
+      "supplementalCost": 0.0,
+      "isSelected": false
+    }
+  ],
+  
+  "success": true,
+  "message": null
+}

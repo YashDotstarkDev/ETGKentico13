@@ -1,0 +1,127 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.hotel-builder {
+  max-width: 800px;
+
+  .dropdowns {
+    .item {
+      label {
+        display: block;
+      }
+    }
+  }
+
+  .label {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .dropdowns {
+    margin-top: 40px;
+
+    input {
+      width: 100px !important;
+      margin-left: 10px !important;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      margin-bottom: 10px;
+
+      label {
+        white-space: normal;
+        margin-right: 10px;
+        flex-shrink: 0;
+        font-size: 16px;
+      }
+    }
+
+    .item-header {
+      font-weight: bold;
+
+      .title-hotel {
+        width: 100%
+      }
+    }
+  }
+
+  .checkboxes {
+    display: none;
+
+    &.show {
+      display: flex;
+    }
+
+    flex-direction: column;
+    margin-top: 20px;
+
+    .selected-hotels {
+      margin-top: 20px;
+
+      font-size: 16px;
+    }
+
+    .clear {
+      margin-top: 10px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: left;
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        font-size: 16px;
+
+        span {
+          display: block;
+        }
+      }
+
+      .add {
+        margin-right: 10px;
+        padding: 6px 20px;
+
+        .label-added {
+          display: none;
+        }
+
+        &.added {
+          background-color: #333333 !important;
+          border: none !important;
+
+          &:hover {
+            border: none;
+            background-color: #333333;
+          }
+
+          .label-add {
+            display: none;
+          }
+
+          .label-added {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+
+  .buttons {
+    padding-top: 20px
+  }
+}

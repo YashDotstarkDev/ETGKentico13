@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@using ETG.Core.Extensions
+@using ETG.Data.Extensions
+@using ETG.Web.Helpers
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/booking-thankyou.js")
+}
+
+@model ETG.Web.Models.Pages.ThankyouPaymentPageContentsViewModel
+@if (Model == null)
+{
+    return;
+}
+<div class="widget page-hero large-heading" data-widget="page-hero">
+    <img class="bg lazyload" data-src="@Model.HeroImage.Imgixify()">
+    <div class="flex">
+        <h1>Payment Confirmation</h1>
+        </div>
+    <div class="grad"></div>
+</div>
+<div>
+    <div class="wrapper">
+        <div class="message-container">
+        @Html.Raw(Model.ThankYouCopy)
+        </div>
+    </div>
+</div>

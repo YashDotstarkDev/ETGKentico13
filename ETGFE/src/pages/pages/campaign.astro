@@ -1,0 +1,102 @@
+---
+import Layout from "../../layouts/layout-main.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import NewHero from "../../components/NewHero.astro";
+import AnchorNavigation from "../../components/AnchorNavigation.astro";
+import FeaturedPackages from "../../components/TourTilesCollection.astro";
+import FeaturedCarousel_WhyWeLoveIt from "../../components/FeaturedCarousel_WhyWeLoveIt.astro";
+import TourTilesCollection_Three from "../../components/TourTilesCollection_Three.astro";
+import PackageAccordion from "../../components/PackageAccordion.astro";
+import CustomerReviews from "../../components/CustomerReviews.astro";
+import RegionTiles from "../../components/RegionTiles.astro";
+import InlineCta from "../../components/InlineCta.astro";
+import PackageEnquiry from "../../components/PackageEnquiry.astro";
+import BlogCarousel from "../../components/BlogCarousel.astro";
+import FeaturedTiles from "../../components/FeaturedTiles.astro";
+import CampaignStickyHeader from "../../components/CampaignStickyHeader.astro";
+import NewHero_Image from "../../components/NewHero_Image.astro";
+---
+
+<Layout>
+
+    <CampaignStickyHeader />
+
+    <!-- These are the section markers for the anchor nav -->
+    <!-- This one isn't linked in the nav but it exists so there's always a match -->
+    <div class="relative">
+        <div class="anchor-section top-[-200px] absolute" id="Hero"></div>
+    </div>
+
+    <Breadcrumbs />
+    <NewHero_Image />
+    <div class="spacer small"></div>
+    <AnchorNavigation />
+
+    <div class="spacer"></div>
+
+    <div class="relative">
+        <div class="anchor-section top-[-200px] absolute" id="Difference"></div>
+    </div>
+
+    <div class="wrapper">
+        <div class="max-w-4xl mx-auto w-full">
+            <div class="prose text-sm text-body max-w-none">
+                <p>Overview text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid, corporis, cupiditate dolorum esse eum id illum nemo neque pariatur perferendis provident quidem repudiandae sequi tempora tenetur unde velit veritatis.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+
+    <div class="relative">
+        <div class="anchor-section top-[-200px] absolute" id="Packages"></div>
+    </div>
+    <FeaturedPackages />
+
+    <div class="spacer"></div>
+
+    <FeaturedTiles />
+
+    <div class="spacer"></div>
+
+
+    <div class="relative">
+        <div class="anchor-section top-[-200px] absolute" id="Love"></div>
+    </div>
+    <FeaturedCarousel_WhyWeLoveIt />
+
+    <div class="spacer"></div>
+
+
+    <div class="relative">
+        <div class="anchor-section top-[-200px] absolute" id="Featured"></div>
+    </div>
+    <TourTilesCollection_Three />
+
+    <div class="spacer"></div>
+
+
+    <div class="relative">
+        <div class="anchor-section top-[-200px] absolute" id="Info"></div>
+    </div>
+    <div class="max-w-5xl mx-auto w-full">
+        <PackageAccordion />
+    </div>
+
+
+    <div class="spacer"></div>
+    <CustomerReviews />
+    <div class="spacer"></div>
+    <FeaturedCarousel_WhyWeLoveIt />
+    <div class="spacer"></div>
+    <TourTilesCollection_Three />
+    <div class="spacer"></div>
+    <RegionTiles />
+    <div class="spacer"></div>
+    <InlineCta />
+    <div class="spacer"></div>
+    <PackageEnquiry />
+    <div class="spacer"></div>
+    <BlogCarousel />
+</Layout>

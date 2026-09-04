@@ -1,0 +1,41 @@
+﻿@using ETG.Web.Models.InlineEditors.TextEditor
+@using ETG.Web.Models.Widgets.HtmlTextWidget
+
+@model ETG.Web.Models.Widgets.HtmlTextWidget.HtmlTextWidgetViewModel
+<div class="html-widget-container">
+@if (Context.Kentico().PageBuilder().EditMode)
+{
+    if (Model.HasSidePadding)
+    {
+        @Html.Raw("<div class=\"wrapper contained\">");
+    }
+
+    Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+    {
+        PropertyName = nameof(HtmlTextWidgetProperties.Text),
+        Text = Model.Text,
+        EnableFormatting = true
+    });
+
+
+    if (Model.HasSidePadding)
+    {
+        @Html.Raw("</div>");
+    }
+}
+else
+{
+    if (Model.HasSidePadding)
+    {
+        @Html.Raw("<div class=\"wrapper contained\">");
+    }
+
+
+    @Html.Raw(Model.Text);
+    if (Model.HasSidePadding)
+    {
+        @Html.Raw("</div>");
+    }
+
+}
+</div>

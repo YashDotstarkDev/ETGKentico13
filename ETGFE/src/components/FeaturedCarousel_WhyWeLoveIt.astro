@@ -1,0 +1,59 @@
+---
+import TilesCarousel from './TilesCarousel.vue'
+import FeaturedProductTile from "./FeaturedProductTile.astro";
+---
+
+<!--
+/////
+featured-carousel Start
+/////
+-->
+
+<div class="featured-carousel">
+    <div class="wrapper">
+        <h2 class="text-center text-black uppercase">Why we love it</h2>
+
+        <div class="-mx-4 mt-6">
+            <TilesCarousel client:only="vue">
+                <div class="relative px-6 lg:px-16">
+                    <div class="swiper isolate text-left text-sm font-semibold relative z-10">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <FeaturedProductTile />
+                            </div>
+                            <div class="swiper-slide">
+                                <FeaturedProductTile />
+                            </div>
+                            <div class="swiper-slide">
+                                <FeaturedProductTile />
+                            </div>
+                            <div class="swiper-slide">
+                                <FeaturedProductTile />
+                            </div>
+                            <div class="swiper-slide">
+                                <FeaturedProductTile />
+                            </div>
+                            <div class="swiper-slide">
+                                <FeaturedProductTile />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-prev cursor-pointer rounded-full w-[50px] h-[50px] bg-primary text-white hover:bg-body flex items-center justify-center text-lg transition-colors duration-300 absolute left-0 top-1/2 -mt-[25px] z-20">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="button-next cursor-pointer rounded-full w-[50px] h-[50px] bg-primary text-white hover:bg-body flex items-center justify-center text-lg transition-colors duration-300 absolute right-0 top-1/2 -mt-[25px] z-20">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </TilesCarousel>
+        </div>
+
+    </div>
+</div>
+
+<!--
+/////
+featured-carousel End
+/////
+-->

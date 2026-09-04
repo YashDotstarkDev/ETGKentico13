@@ -1,0 +1,19 @@
+﻿@using Castle.Core.Internal
+@{
+    string recaptchaSiteKey = ViewBag.RecaptchaSiteKey;
+    string action = ViewBag.FormAction;
+
+    if (recaptchaSiteKey == null)
+    {
+        if (TempData.ContainsKey("recaptchaKey") && TempData["recaptchaKey"] != null)
+        {
+            recaptchaSiteKey = TempData["recaptchaKey"].ToString();
+        }
+    }
+}
+@* <div class="field recaptcha"> *@
+@*     <div class="g-recaptcha" data-sitekey="@recaptchaSiteKey"></div> *@
+@*     <div class="prompt label" style="display:none">Please prove that your are not a robot.</div> *@
+@* </div> *@
+
+<div class="recaptcha" data-site-key="@recaptchaSiteKey" data-action="@action"></div>

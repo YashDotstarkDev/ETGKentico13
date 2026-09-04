@@ -1,0 +1,15 @@
+﻿@using ETG.Core.Extensions
+@model ETG.Web.Tour.Models.TourSummaryInfoViewModel
+
+<div class="print-logo">
+    <div class="wrapper">
+        <div class="logo-container">
+            <a href="https://www.entiretravel.com.au" style="display:inline-block" target="_blank">
+                <img src="@("/images/etg.png".Imgixify())" style="position: relative; width: auto" />
+            </a>
+            <div class="website">
+                <a href="@Model.Path" target="_blank" class="button primary ui">View Package</a>
+            </div>
+        </div>
+    </div>
+</div>

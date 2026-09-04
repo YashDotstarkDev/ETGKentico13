@@ -1,0 +1,356 @@
+// See https://github.com/twbs/rfs/tree/v9.0.3#configuration
+@use "base";
+@use "typography";
+@use "buttons";
+@use "forms";
+@use "swiper";
+@use "legacy-grid";
+@use "legacy-global";
+@use "colours" as colours;
+
+:root {
+  --swiper-scrollbar-drag-bg-color: #37C2C8;
+  --swiper-scrollbar-size: 6px;
+  --swiper-scrollbar-bg-color: #DBF5FF;
+}
+
+html, body {
+  font-size: 14px !important;
+}
+
+.prose {
+  --tw-prose-body: #444 !important;
+  --tw-prose-links: #10A4B1 !important;
+  --tw-prose-bullets: #929497 !important;
+}
+
+a svg {
+  display: inline-block;
+}
+
+.prose p:first-child {
+  margin-top: 0;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.prose {
+  ul {
+    padding-left: 20px !important;
+  }
+}
+
+body.overlay-active {
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(0px 0px 99.9% 99.9%);
+  clip-path: inset(0px 0px 99.9% 99.9%);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  border: 0;
+}
+
+.image-container {
+  .ls-blur-up-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 1000ms;
+  }
+
+  .ls-blur-up-img.ls-inview.ls-original-loaded {
+    opacity: 0;
+  }
+}
+
+.mobile-menu {
+
+  .overlay {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  ul.primary li {
+    @apply border-b-2 border-white/10 last:border-none flex flex-col;
+  }
+
+  ul.secondary li {
+    @apply border-b-2 border-black/10 flex flex-col;
+  }
+
+
+  .menu-item {
+    @apply flex min-w-full text-[16px] items-center justify-between py-3 text-left text-current hover:text-white hover:no-underline transition-all duration-300;
+
+    &.active, &:hover {
+      @apply bg-primary text-white px-4 -mx-4;
+    }
+  }
+  li.active > .submenu {
+    transform: none;
+  }
+
+  .back-button {
+    font-weight: bold;
+  }
+}
+
+.mobile-menu .overlay {
+  background-color: rgba(0,0,0, 0.5);
+}
+
+body.show-mobile-menu {
+  overflow: hidden;
+
+  .mobile-menu {
+    .overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.wp {
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+
+  @media(min-width: 1025px) {
+    padding-top: 70px !important;
+    padding-bottom: 70px !important;
+  }
+}
+
+[data-widget] {
+  opacity: 0;
+  transition: opacity 200ms;
+  transition-delay: 0.2s;
+
+  p {
+    margin: 10px 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h2, h3, h4 {
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.package-layout {
+
+  .main {
+    .side {
+      margin-top: 40px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      grid-area: sidebar;
+      width: 100%;
+    }
+
+    .top {
+      grid-area: top;
+    }
+
+    .bottom {
+      grid-area: bottom;
+    }
+
+    display: grid;
+    grid-template-areas:
+      "top"
+      "sidebar"
+      "bottom";
+
+    @media(min-width: 1024px) {
+      gap: 40px;
+      grid-template-columns: 1fr 320px;
+      grid-template-areas:
+        "top      sidebar"
+        "bottom   sidebar";
+    }
+
+    @media(min-width: 1220px) {
+      gap: 80px;
+    }
+  }
+}
+
+.html-widget-container {
+  @apply prose max-w-none;
+
+  .featured-carousel {
+    img {
+      margin: 0 !important;
+    }
+
+    button.prev, button.next {
+      display: none !important;
+    }
+  }
+}
+
+/*
+ This stuff is all in legacy-global.scss so I'm commenting it out here. It was in the develop branch for some reason.
+
+.iframe-container {
+  padding-top: 40px;
+
+  iframe {
+    width: 100%;
+    @media (--desktop) {
+      width: 1170px;
+    }
+  }
+}
+
+.message-container {
+  padding: 40px 0;
+}
+
+.no-margin-top {
+  margin-top: 0 !important
+}
+
+.section {
+  margin-top: 40px !important;
+}
+
+.generic-form {
+  .response-container {
+    color: #fff;
+    padding-top: 20px;
+  }
+
+  .popup-close-button-container {
+    margin-top: 20px;
+    display: none;
+  }
+}
+
+#enquireForm {
+  .response-container {
+    margin: 20px 0 !important;
+    padding: 0 !important;
+    color: #ff0000 !important;
+  }
+}
+
+.widget.new-featured-packages + .widget.subscribe-to-win-widget {
+  margin-top: 50px;
+}
+
+// Displayed on both 'payments' and 'booking thank you' pages.
+.other-options {
+  border: 1px solid #ededed;
+  padding: 20px;
+
+  .payment-option {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ededed;
+  }
+
+  .heading {
+    font-weight: bold;
+  }
+
+  .note {
+    background-color: #ededed;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 10px;
+  }
+}
+
+.ui.checkbox {
+  svg {
+    margin-left: 2px;
+    margin-right: 5px;
+  }
+
+  label {
+    a {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}
+
+.visually-hidden {
+  font-size: 0;
+  width: 1px;
+  height: 1px;
+  display: inline-block;
+  overflow: hidden;
+  position: absolute!important;
+  border: 0!important;
+  padding: 0!important;
+  margin: 0!important;
+  clip: rect(1px,1px,1px,1px);
+}
+
+ */
+
+body label.text-primary, body .ui.form .field > label.text-primary,
+body .subscribe-to-win-widget label.text-primary, body .subscribe-to-win-widget .ui.form .field > label.text-primary
+{
+  color: colours.$colourPrimary !important;
+}
+
+body label.font-bold {
+  font-weight: bold !important;
+}
+
+body.has-non-package-sticky-footer {
+  footer {
+    padding-bottom: 130px;
+
+    @media (min-width: 1024px) {
+      padding-bottom: 90px;
+    }
+  }
+}
+
+.experience-bar {
+  svg {
+    color: colours.$colourPrimary;
+
+    path {
+      fill: colours.$colourPrimary;
+    }
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

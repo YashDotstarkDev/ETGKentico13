@@ -1,0 +1,90 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.subscribe-to-win-modal {
+  max-width: 500px;
+  position: relative;
+  padding: 20px;
+  background-color: $primary !important;
+
+  h2,
+  .ui.form .field > label,
+  .disclaimer,
+  .ui.form .field .prompt.label,
+  .sub-title {
+    color: #FFF !important;
+  }
+
+  h2 {
+    margin-bottom: 0
+  }
+
+  .sub-title {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  a {
+    color: #FFF;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .ui.primary.button {
+    border: 2px solid #fff !important;
+    color: #fff !important
+  }
+
+  &.ui.modal > .close {
+    color: #fff !important
+  }
+
+  i.icon.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: left !important;
+
+    &::before {
+      content: ''
+    }
+  }
+
+  .field {
+    input {
+      margin-bottom: 5px !important;
+    }
+  }
+
+  .button-container {
+    text-align: center;
+  }
+
+  .label {
+    margin-bottom: 5px;
+  }
+
+
+  .disclaimer,
+  .bottom-checkbox {
+    font-size: 12px;
+    opacity: 0.5;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    color: #fff
+  }
+
+  .prompt {
+    margin-top: 5px;
+  }
+
+  select {
+    margin-bottom: 10px;
+  }
+
+}

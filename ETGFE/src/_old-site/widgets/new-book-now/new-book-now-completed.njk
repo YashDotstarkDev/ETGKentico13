@@ -1,0 +1,528 @@
+<div class="widget new-book-now cart-complete"
+     data-tourcode="222"
+     data-tourdays="8"
+     data-hasfreedomofchoice="false"
+     data-isonsalenow="false"
+     data-peaceofmind="true"
+     data-changeofmindthresholddays="5"
+     data-selecteddate="30/11/2022"
+     data-no-roomupgrades="false"
+>
+
+  <div class="endpoints"
+       data-cancel="https://3b6b0d9c-9843-4e0a-b266-c503178c376a.mock.pstmn.io/api/booking/getdeparturedates"
+       data-initial="https://3b6b0d9c-9843-4e0a-b266-c503178c376a.mock.pstmn.io/api/booking/getdeparturedates"
+       data-initial-type="GET"
+       data-booking-summary="/api/book-now-api/booking-summary.json"
+       data-booking-summary-type="GET"
+  ></div>
+
+  <!-- Booking cancellation confirmation modal -->
+  <div class="cancel-booking-modal ui modal">
+    <div class="inner-container">
+      <div>
+        <h2>Cancel booking</h2>
+        <p>Cancelling this booking will reset all data in the form.<br> Are you sure you want to cancel this booking?</p>
+      </div>
+
+      <div class="btn-container">
+        <button class="ui transparent button primary yes" type="button">Yes</button>
+        <button class="ui submit button primary no" type="button">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Package details panel -->
+  <div class="book-now-package-details">
+    <div class="top">
+      <div class="package-duration">8 nights</div>
+      <div class="package-inclusion-icons">
+        <span class="icon fal fa-bed"></span>
+        <span class="icon fal fa-utensils"></span>
+        <span class="icon fal fa-bus"></span>
+      </div>
+    </div>
+    <div class="middle">
+      <div class="package-price" data-currency="AUD" data-currency-symbol="$">
+        <div class="prices">
+          <div class="price-from">
+            From
+          </div>
+          <div class="price-actual">
+            <span class="price-currency">AUD</span>6,875
+          </div>
+        </div>
+        <div class="price-notes">
+          per person, twin share
+        </div>
+        <div class="buttons">
+          <a href="/pdf/12122" class="button ui white">Download PDF</a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="package-book-notes">
+        <div>
+          Travelling with kids? <a href="/travel-styles/active-holiday-packages" target="_blank">Read more&nbsp;
+          <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.6484 0.5L7.82812 0.523438C7.64062 0.523438 7.5 0.664062 7.5 0.851562V1.625C7.5 1.8125 7.64062 1.97656 7.82812 1.97656L9.5625 1.90625L9.60938 1.95312L3.07031 8.49219C3.02344 8.53906 2.97656 8.63281 2.97656 8.67969C2.97656 8.75 3.02344 8.84375 3.07031 8.89062L3.60938 9.42969C3.65625 9.47656 3.75 9.52344 3.82031 9.52344C3.86719 9.52344 3.96094 9.47656 4.00781 9.42969L10.5469 2.89062L10.5938 2.9375L10.5234 4.67188C10.5234 4.85938 10.6875 5 10.875 5H11.6484C11.8359 5 11.9766 4.85938 11.9766 4.67188L12 0.851562C12 0.664062 11.8359 0.5 11.6484 0.5ZM10.125 7.25H9.75C9.53906 7.25 9.375 7.4375 9.375 7.625V11.2344C9.375 11.3281 9.30469 11.375 9.23438 11.375H1.26562C1.17188 11.375 1.125 11.3281 1.125 11.2344V3.26562C1.125 3.19531 1.17188 3.125 1.26562 3.125H4.875C5.0625 3.125 5.25 2.96094 5.25 2.75V2.375C5.25 2.1875 5.0625 2 4.875 2H1.125C0.492188 2 0 2.51562 0 3.125V11.375C0 12.0078 0.492188 12.5 1.125 12.5H9.375C9.98438 12.5 10.5 12.0078 10.5 11.375V7.625C10.5 7.4375 10.3125 7.25 10.125 7.25Z" fill="#CA568E" />
+          </svg></a>
+        </div>
+        <div>
+          All services are subject to availability.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <h2>Book Now</h2>
+
+  <div class="book-now-starter js-start-buttons" style="display:none">
+    <button class="ui button primary js-start-steps">Pick your dates</button>
+    <span class="divider"></span>
+    <button class="ui button primary transparent js-start-agent">Travel agent <span style="white-space: nowrap">quote &amp; book</span></button>
+    <p>Visit our <a href="/agent-portal" style="white-space: nowrap">Agent Portal</a> for more info.</p>
+  </div>
+
+  <div class="travel-agent-form js-agent-form" style="display:none">
+    <div class="ui form" data-method="POST" data-endpoint="/api/booking/submittravelagentdetails" data-validate-inline="data-validate-inline" data-validate-on="submit">
+
+      <div class="field">
+        <label>Travel Agency - Trading Name</label>
+        <input type="text" name="agencyName" data-rules="empty" data-prompts="Please enter agency name" placeholder="Full name agency" class="agencyname"/>
+
+      </div>
+
+      <div class="field">
+        <label>Travel Agency - Postcode</label>
+        <input type="text" name="agencyPostcode" data-rules="empty" data-prompts="Please enter postcode" placeholder="Postcode of agency" class="agencypostcode"/>
+
+      </div>
+      <div class="field">
+        <label class="with-tooltip">
+          <div>Travel Agency - Phone Number</div>
+          <div class="ui tool-tip" data-html="<b>Australian Number</b><br><i>Area Code + Number</i><br>e.g. 0290943322<br><b>Australian Mobile</b><br><i>10 digits no spaces</i><br>e.g. 0430123123<br><b>International Number</b><br><i>Country Code + area code + number</i><br>e.g. +33148643543">
+            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z"
+                fill="#ffffff"/>
+            </svg>
+          </div>
+        </label>
+        <input type="text" name="agencyPhone" data-rules="phone" data-prompts="Please enter a valid phone number" placeholder="Phone number of agency" maxlength="14" class="agencyphone"/>
+      </div>
+
+      <div class="field">
+        <label>Travel Advisor - Full Name</label>
+        <input type="text" name="agentName" data-rules="empty" data-prompts="Please enter name" placeholder="Full name of consultant"/>
+      </div>
+
+      <div class="field">
+        <label>Travel Advisor - Email</label>
+        <input type="text" name="agentEmail" data-rules="empty,email" data-prompts="Please enter email" placeholder="Email of consultant"/>
+      </div>
+      <div class="action">
+        <input type="hidden" name="sessionId" value="vnagl5pjmbwa4uejxxzm5drh"/>
+        <input type="hidden" name="tourCode" value="12122"/>
+        <input type="hidden" name="skuId" value="422"/>
+        <a href="#" class="button ui primary outline fluid ta-client-quote-button" data-url="/booking/quote">Create client quote</a>
+        <a href="#" class="button ui primary fluid ta-book-now-button" data-url="/booking/checkout">Book now</a>
+        <a href="#" class="cancel">Cancel book now</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-steps js-form-steps" style="display: none;">
+
+    <div class="form-steps" style="display:block">
+      <div class="step  complete" data-step="date">
+        <div class="step-trigger">
+          <div class="label-container">
+            <div class="label">Choose your Start Date</div>
+          </div>
+          <div class="sub-label-container">
+            <div class="sub-label">Wednesday, 30 Nov 2022</div>
+            <a href="#" class="edit-step js-edit">Change</a>
+          </div>
+        </div>
+        <div class="step-content">
+          <div class="step-info">
+            <b>Package prices are per person twin share.</b>
+          </div>
+          <div class="ui form step-date" data-method="POST" data-endpoint="/api/booking/submitbookingdatenonagent"
+               data-endpoint-agent="/api/booking/submitbookingdateagent" data-endpoint-nonagent="/api/booking/submitbookingdatenonagent"
+               data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <input type="hidden" name="sessionId" value="vnagl5pjmbwa4uejxxzm5drh"/>
+            <input type="hidden" name="tourCode" value="12122"/>
+            <input type="hidden" name="skuId" value="422"/>
+            <div class="calendar-container">
+              <div class="field">
+                <div class="calendar"></div>
+                <input type="hidden" class="calendar-date" data-rules="checkHiddenInputVisible" name="departureDate" data-prompts="Please select a date" value="30/11/2022"/>
+              </div>
+            </div>
+            <div class="full-payment-message">
+              The date you have selected is less than 5 days. Full payment is required at time of booking*
+            </div>
+            <div class="submit-row">
+              <button type="button" class="ui button primary submit transparent">Next</button>
+              <a href="#" class="cancel">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step complete" data-step="travellers">
+        <div class="step-trigger">
+          <div class="label-container">
+            <div class="label">
+              Number of Travellers
+            </div>
+            <div class="ui tool-tip" data-content="For triple/quad or for bookings of groups larger than 9 people, please &lt;a href=&#39;/enquire/12122&#39; target=&#39;_blank&#39;&gt;contact our team&lt;/a&gt; to make a booking.">
+              <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z"
+                  fill="#ca568e"/>
+              </svg>
+            </div>
+          </div>
+          <div class="sub-label-container">
+            <div class="sub-label">($13,750)</div>
+            <a href="#" class="edit-step js-edit">Change</a>
+          </div>
+        </div>
+        <div class="step-content">
+          <div class="ui form" data-method="POST" data-endpoint="/api/booking/submittravellercount" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="validation-set">
+              <div class="field">
+                <input type="hidden" name="travellerValidator" data-rules="validateTraveller" data-prompts="Please select the number of rooms to book."/>
+                <div class="field field-double-room">
+                  <label>No. of twin/double rooms</label>
+
+                  <select class="double-room select-room-count" name="twinShareOptions">
+                    <option value=" ">None</option>
+                    <option selected value="1">
+                      1 (2 people)
+                    </option>
+                    <option value="2">
+                      2 (4 people)
+                    </option>
+                    <option value="3">
+                      3 (6 people)
+                    </option>
+                    <option value="4">
+                      4 (8 people)
+                    </option>
+                  </select>
+                  <div class="double-room-suboptions">
+                    <label>Room 1</label>
+                    <select class="room-type" name="twinRoomType">
+                      <option value=" ">None</option>
+                      <option selected value="Twin">Twin</option>
+                      <option value="Double">Double</option>
+                    </select>
+                  </div>
+                  <input name="selectedRoomTypes" type="hidden"/>
+                </div>
+                <div class="field field-single-room" style="display:none">
+                  <label>No. of single rooms (single supplement applies)</label>
+                  <select class="single-room select-room-count" name="singleRoomOptions">
+                  </select>
+                </div>
+              </div>
+              <div class="incomplete-rooms-type-label">Please select room types for each twin/double rooms</div>
+              <div class="max-guest-label">Maximum for online booking is 9 people</div>
+            </div>
+            <div class="submit-row">
+              <button type="button" class="ui button primary submit transparent">Next</button>
+              <a href="#" class="cancel">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step complete " data-step="roomOptions">
+        <div class="step-trigger">
+          <div class="label-container">
+            <div class="label">Room Upgrades</div>
+            <div class="ui tool-tip" data-content="For any special requirements, please use the comments section at the end of the booking process.">
+              <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z"
+                  fill="#ca568e"/>
+              </svg>
+            </div>
+          </div>
+          <div class="sub-label-container">
+            <div class="sub-label">($7,066)</div>
+            <a href="#" class="edit-step js-edit">Change</a>
+          </div>
+        </div>
+        <div class="step-content">
+          <div class="ui form" data-method="POST" data-endpoint="/api/booking/submitroomoptions" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="validation-set">
+              <div class="field">
+                <input type="hidden" name="travellerValidator"/>
+                <div class="title"><b>Hotel:</b>&nbsp;Four Seasons Resort Bora Bora</div>
+                <div class="field-container">
+                  <div class="field">
+                    <label>Room option 1</label>
+                    <select name="twinRoomOption1">
+                      <option value=" ">None</option>
+                      <option value="50d04d68-1d7b-4064-bdfc-e799b82355a7">
+                        1-Bedroom Mountain View Overwater Bungalow Suite (+$1,508pp)
+                      </option>
+                      <option selected value="6f59ccba-2e38-4d2c-8078-fb3919d624a0">
+                        1-Bedroom Mountain View Overwater Bungalow Suite &amp; Plunge Pool (+$3,533pp)
+                      </option>
+                      <option value="77da994b-e143-4660-ab47-d1021fc90bc8">
+                        1-Bedroom Otemanu Overwater Bungalow Suite &amp; Plunge Pool (+$9,479pp)
+                      </option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="submit-row">
+              <button type="button" class="ui button primary submit transparent">Next</button>
+              <a href="#" class="cancel">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step complete" data-step="freedomOfChoice">
+        <div class="step-trigger">
+          <div class="label-container">
+            <div class="label">Freedom of Choice</div>
+            <div class="ui tool-tip" data-content="This package includes Freedom of Choice days. Our per person price includes one tour on each Freedom of Choice day as per the details in the itinerary. If you select later, our team will be in contact.">
+              <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z"
+                  fill="#ca568e"/>
+              </svg>
+            </div>
+          </div>
+          <div class="sub-label-container">
+            <div class="sub-label"></div>
+            <a href="#" class="edit-step js-edit">Change</a>
+          </div>
+        </div>
+        <div class="step-content">
+          <div class="ui form" data-method="POST" data-endpoint="/api/booking/submitfreedomofchoice" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="field radio-buttons">
+              <input type="hidden" data-validate="checkboxGroup1" data-rules="checkboxCount[1]" data-prompts="Please select an option"/>
+              <div class="field">
+                <div class="ui radio checkbox selectnow">
+                  <input type="radio" class="show-dynamic-fields" name="freedomofchoice" value="selectnow"/>
+                  <label>Select Now</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox selectlater">
+                  <input type="radio" class="show-dynamic-fields" name="freedomofchoice" value="selectlater"/>
+                  <label>Select Later</label>
+                </div>
+              </div>
+            </div>
+            <div class="select-later-copy">
+              Freedom of Choice options need to be confirmed within the next 2 weeks.
+            </div>
+            <div class="multiple-room-copy">
+              As multiple rooms have been selected, our team will contact you to discuss the Freedom of Choice options.
+            </div>
+            <div class="option-set-container">
+
+            </div>
+
+            <div class="submit-row">
+              <button type="button" class="ui button primary submit transparent">Next</button>
+              <a href="#" class="cancel">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step complete hidden" data-step="optionalExtras">
+        <div class="step-trigger">
+          <div class="label-container">
+            <div class="label">Optional Extras</div>
+            <div class="ui tool-tip" data-content="Our team will contact you to discuss options for optional extras for multiple rooms. We will also confirm with you the suitable day for any selections.">
+              <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z"
+                  fill="#ca568e"/>
+              </svg>
+            </div>
+          </div>
+          <div class="sub-label-container">
+            <div class="sub-label"></div>
+            <a href="#" class="edit-step js-edit">Change</a>
+          </div>
+        </div>
+        <div class="step-content">
+          <div class="ui form" data-method="POST" data-endpoint="/api/booking/submitextraoptions" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="field">
+              <div class="option-set">
+              </div>
+            </div>
+            <div class="multiple-room-copy">
+              As multiple rooms have been selected, our team will contact you to discuss Optional Extras.
+            </div>
+            <div class="submit-row">
+              <button type="button" class="ui button primary submit transparent">Next</button>
+              <a href="#" class="cancel">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step complete" data-step="otherOptions">
+        <div class="step-trigger">
+          <div class="label-container">
+            <div class="label">Other Options</div>
+            <div class="ui tool-tip" data-content="Please select yes if you would like assistance with International Airfares or Travel Insurance. We strongly recommend Travel Insurance.">
+              <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z"
+                  fill="#ca568e"/>
+              </svg>
+            </div>
+          </div>
+          <div class="sub-label-container">
+            <div class="sub-label">Selected</div>
+            <a href="#" class="edit-step js-edit">Change</a>
+          </div>
+        </div>
+        <div class="step-content">
+          <div class="ui form" data-method="POST" data-endpoint="/api/booking/submitotheroptions" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="field">
+              <label><b>Travel Insurance</b> is strongly recommended. Do you require assistance?</label>
+              <div class="grouped fields">
+                <input type="hidden" data-validate="checkboxGroup2" data-rules="checkboxCount[1]" data-prompts="Please select yes or no"/>
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <input type="radio" name="requireInsuranceAssistance" value="true"/>
+                    <label>Yes</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <input type="radio" name="requireInsuranceAssistance" value="false" checked/>
+                    <label>No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="comment-yes">Great, no problem. Please complete the Book Now process. Our team will assist you later.</div>
+            </div>
+            <div class="submit-row">
+              <button type="button" class="ui button primary submit transparent">Next</button>
+              <a href="#" class="cancel">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="booking-summary js-booking-summary" style="display: none;">
+    <div class="booking-summary-section booking-summary-breakdown">
+      <h4>Booking Summary</h4>
+      <h5></h5>
+
+      <div class="item package">
+        <div class="item-name">
+          <div class="label"></div>
+          <div class="qty"></div>
+        </div>
+        <div class="price"></div>
+      </div>
+
+      <div class="item single-package">
+        <div class="item-name">
+          <div class="label"></div>
+          <div class="qty"></div>
+        </div>
+        <div class="price"></div>
+      </div>
+
+      <div class="item room-option">
+        <div class="item-name">
+          <div class="label">Room Upgrades</div>
+          <div class="room-list"></div>
+        </div>
+        <div class="price"></div>
+      </div>
+
+      <div class="item extras-option">
+        <div class="item-name">
+          <div class="label">Extras</div>
+          <div class="extras-list"></div>
+        </div>
+        <div class="price"></div>
+      </div>
+
+      <div class="item entire-flex">
+        <div class="item-name">
+          <div class="label"></div>
+          <div class="qty"></div>
+        </div>
+        <div class="price"></div>
+      </div>
+
+      <div class="item discount">
+        <div class="item-name">
+          <div class="label"></div>
+          <div class="qty"></div>
+        </div>
+        <div class="price"></div>
+      </div>
+
+      <div class="item total item-full">
+        <div class="inner">
+          <div class="total-label">Total</div>
+          <div class="total-price"></div>
+        </div>
+        <div class="terms">
+          <div class="full-payment-message">
+            The date you have selected is less than 5 days. Full payment is required at time of booking*
+          </div>
+          <div class="full-payment-additional-message"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-summary-section deposit-due">
+      <h4>Due Now</h4>
+
+      <div class="item deposit">
+        <div class="item-name">
+          <div class="label">Deposit</div>
+          <div class="qty"></div>
+        </div>
+        <div class="price"></div>
+      </div>
+
+      <div class="item deposit-entire-flex">
+        <div class="item-name">
+          <div class="label"></div>
+          <div class="qty"></div>
+        </div>
+        <div class="price"></div>
+      </div>
+
+      <div class="item item-deposit total">
+        <div class="inner">
+          <div class="total-label">Total Due Now</div>
+          <div class="total-deposit-price"></div>
+        </div>
+        <div class="terms"></div>
+      </div>
+    </div>
+
+    <div class="booking-summary-section">
+      <div class="action non-agent">
+        <a href="/booking/checkout" class="button ui white proceed-button">Proceed</a>
+        <a href="#" class="cancel">Cancel book now</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,169 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model ETG.Web.Tour.Models.TourPageViewModel
+
+@if (Model == null || Model.TourInfo == null || Model.TourInfo.TourSummaryInfo == null || Model.TourInfo.TourSummaryInfo.Images.IsNullOrEmpty())
+{
+    return;
+}
+
+@{
+    var heroImage = Model.TourInfo.TourSummaryInfo.HeroImage;
+    var image2 = Model.TourInfo.TourSummaryInfo.ImageAt(1);
+    var image3 = Model.TourInfo.TourSummaryInfo.ImageAt(2);
+}
+
+
+<div class="widget new-package-hero @(!Model.HasHeroBadge ? "no-hero-badges" : "")" data-widget="new-package-hero">
+    <div class="inner">
+        <div class="images">
+            <div class="image">
+                <img class="lazyload" data-sizes="auto" data-src="@heroImage.ImagePath.Imgixify()"/>
+                <div class="location">
+                    <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.375 5C6.375 6.05469 5.53125 6.875 4.5 6.875C3.44531 6.875 2.625 6.05469 2.625 5C2.625 3.96875 3.44531 3.125 4.5 3.125C5.53125 3.125 6.375 3.96875 6.375 5ZM4.5 4.25C4.07812 4.25 3.75 4.60156 3.75 5C3.75 5.42188 4.07812 5.75 4.5 5.75C4.89844 5.75 5.25 5.42188 5.25 5C5.25 4.60156 4.89844 4.25 4.5 4.25ZM9 5C9 7.0625 6.25781 10.6953 5.03906 12.2188C4.75781 12.5703 4.21875 12.5703 3.9375 12.2188C2.71875 10.6953 0 7.0625 0 5C0 2.51562 1.99219 0.5 4.5 0.5C6.98438 0.5 9 2.51562 9 5ZM4.5 1.625C2.625 1.625 1.125 3.14844 1.125 5C1.125 5.30469 1.21875 5.75 1.47656 6.35938C1.71094 6.92188 2.0625 7.57812 2.46094 8.23438C3.14062 9.3125 3.91406 10.3438 4.5 11.0938C5.0625 10.3438 5.83594 9.3125 6.51562 8.23438C6.91406 7.57812 7.26562 6.92188 7.5 6.35938C7.75781 5.75 7.875 5.30469 7.875 5C7.875 3.14844 6.35156 1.625 4.5 1.625Z" fill="white"/>
+                    </svg>
+                    @Html.Raw(heroImage.ImageCaption)
+                </div>
+            </div>
+            @if (image2 != null)
+            {
+                <div class="image">
+                    <img class="lazyload" data-sizes="auto" data-src="@image2.ImagePath.Imgixify()"/>
+                </div>
+            }
+            @if (image3 != null)
+            {
+                <div class="image">
+                    <img class="lazyload" data-sizes="auto" data-src="@image3.ImagePath.Imgixify()"/>
+                </div>
+            }
+        </div>
+
+        <div class="bottom">
+            <div class="badges">
+                @if (Model.TourInfo.TourSummaryInfo.HasPeaceOfMindGuarantee)
+                {
+                    <div class="badge">
+                        <div class="icon">
+                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.25 7.0625V5.96875C11.1172 4.52344 10.375 2.84375 10.1016 1.04688C10.0234 0.539062 9.35938 0.304688 9.04688 0.734375C8.1875 1.71094 7.5625 2.84375 7.13281 4.13281C8.46094 5.61719 10.2578 6.63281 12.25 7.0625ZM16.625 3C14.8672 3 13.5 4.40625 13.5 6.16406V8.46875C9.4375 8.23438 5.96094 5.73438 4.39844 2.14062C4.16406 1.67188 3.46094 1.63281 3.26562 2.10156C2.60156 3.46875 2.25 5.03125 2.25 6.63281C2.25 9.40625 3.57812 11.9844 5.57031 13.8984C6.07812 14.4062 6.58594 14.7969 7.09375 15.1875L1.46875 16.5938C1.03906 16.6719 0.84375 17.1797 1.07812 17.5312C1.78125 18.5859 3.46094 20.3828 7.05469 20.5C7.36719 20.5391 7.67969 20.4219 7.91406 20.2266L10.4922 18L13.5 18.0391C16.9375 18.0391 19.75 15.2266 19.75 11.7891V5.5L20.9609 3H16.625ZM16.625 6.78906C16.2734 6.78906 15.9609 6.47656 15.9609 6.16406C15.9609 5.8125 16.2734 5.53906 16.625 5.53906C16.9375 5.53906 17.2109 5.8125 17.2109 6.16406C17.25 6.47656 16.9375 6.78906 16.625 6.78906Z" fill="#929497"/>
+                            </svg>
+                        </div>
+                        <div class="text">Peace of Mind</div>
+                    </div>
+                }
+                @if (Model.TourInfo.TourSummaryInfo.TourHasFreedomOfChoice)
+                {
+                    <div class="badge">
+                        <div class="icon">
+                            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.125 0.75H7.94531C8.60938 0.75 9.23438 1.02344 9.70312 1.49219L16.5781 8.36719C17.5547 9.34375 17.5547 10.9453 16.5781 11.9219L11.3828 17.1172C10.4062 18.0938 8.80469 18.0938 7.82812 17.1172L0.953125 10.2422C0.484375 9.77344 0.25 9.14844 0.25 8.48438V2.625C0.25 1.60938 1.07031 0.75 2.125 0.75ZM4.625 6.375C5.28906 6.375 5.875 5.82812 5.875 5.125C5.875 4.46094 5.28906 3.875 4.625 3.875C3.92188 3.875 3.375 4.46094 3.375 5.125C3.375 5.82812 3.92188 6.375 4.625 6.375Z" fill="#929497"/>
+                            </svg>
+                        </div>
+                        <div class="text">Freedom of Choice</div>
+                    </div>
+                }
+                @if (Model.TourInfo.TourSummaryInfo.TourIsExclusive)
+                {
+                    <div class="badge">
+                        <div class="icon">
+                            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.2422 0.125H5.71484L11 6.61328L16.2422 0.125ZM22 7L17.3594 0.941406L12.418 7H22ZM4.59766 0.941406L0 7H9.53906L4.59766 0.941406ZM10.4844 19.1602C10.6133 19.332 10.7852 19.375 11 19.375C11.1719 19.375 11.3438 19.332 11.4727 19.1602L21.9141 8.375H0.0429688L10.4844 19.1602Z" fill="#929497"/>
+                            </svg>
+                        </div>
+                        <div class="text">Exclusive Packages</div>
+                    </div>
+                }
+                @if (Model.TourInfo.TourSummaryInfo.TourHasSafeTravel)
+                {
+                    <div class="badge">
+                        <div class="icon">
+                            <svg width="10" height="23" viewBox="0 0 10 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.95553 6.67116C6.92369 4.46295 5.55426 3.10609 3.40139 3.15265C1.27401 3.19921 -0.0444663 4.64253 0.000119689 6.8707C0.0447057 8.99244 1.54789 10.4823 3.57974 10.4225C5.65617 10.3626 6.98738 8.87937 6.94916 6.67116H6.95553Z" fill="#8CC53F"/>
+                                <path d="M0.930176 19.6079L1.53527 18.5437C3.08941 15.83 4.88559 13.2759 6.56712 10.642C8.31234 7.90835 8.49705 5.76665 7.18495 3.91095C5.87285 2.04195 4.25502 1.64953 0.981131 2.46763C0.974762 1.98209 0.974762 0.385791 0.974762 0.385791C0.968392 0.385791 1.42699 0.1663 2.38877 0.0665317C5.08941 -0.252728 7.33782 0.525468 8.87922 2.92657C10.4079 5.30771 10.2678 7.81523 9.08304 10.3094C8.87922 10.7418 8.5926 11.1342 8.33145 11.5399C5.99387 15.1715 3.30597 19.3618 0.968392 22.9934L0.930176 19.6012V19.6079Z" fill="#929497"/>
+                                <path d="M6.95553 6.67116C6.98738 8.87937 5.66254 10.3626 3.58611 10.4225C1.54789 10.4823 0.0447057 8.99244 0.000119717 6.8707C-0.0444663 4.64253 1.27401 3.19921 3.39502 3.15265C5.54789 3.10609 6.91732 4.46295 6.94916 6.67116H6.95553Z" fill="#929497"/>
+                            </svg>
+                        </div>
+                        <div class="text">Sustainable Travel</div>
+                    </div>
+                }
+            </div>
+            <div class="buttons">
+                <button class="button ui primary outline medium js-open-photo-modal">Show all photos</button>
+                <button class="button ui primary outline medium js-open-share-modal">Share</button>
+            </div>
+        </div>
+
+        <div class="share-modal ui modal">
+            <i class="close icon">
+                <span class="fal fa-times"></span>
+            </i>
+            <div class="links">
+                @Html.Partial("Partial/Common/_ShareLinks", Model.ShareLinks)
+            </div>
+        </div>
+
+        <div class="new-photo-modal">
+            @{ var headerImage = Model.TourInfo.TourSummaryInfo.Images.FirstOrDefault(); }
+            <!-- fixed header -->
+            <div class="header">
+                <div class="back-button">
+                    <svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.63281 12.4648L0.628906 7.24219C0.492188 7.07812 0.4375 6.91406 0.4375 6.75C0.4375 6.61328 0.492188 6.44922 0.601562 6.3125L5.60547 1.08984C5.85156 0.816406 6.28906 0.816406 6.53516 1.0625C6.80859 1.30859 6.80859 1.71875 6.5625 1.99219L1.99609 6.75L6.58984 11.5625C6.83594 11.8086 6.83594 12.2461 6.5625 12.4922C6.31641 12.7383 5.87891 12.7383 5.63281 12.4648Z" fill="#CA568E"/>
+                    </svg>
+                    <span class="label">Back</span>
+                </div>
+
+                <div class="title">@Model.TourInfo.TourSummaryInfo.Name</div>
+
+                <div class="thumbs-button">
+                    <svg class="thumbs" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.75 1.71875C0.75 1.11719 1.21484 0.625 1.84375 0.625H3.15625C3.75781 0.625 4.25 1.11719 4.25 1.71875V3.03125C4.25 3.66016 3.75781 4.125 3.15625 4.125H1.84375C1.21484 4.125 0.75 3.66016 0.75 3.03125V1.71875ZM0.75 6.09375C0.75 5.49219 1.21484 5 1.84375 5H3.15625C3.75781 5 4.25 5.49219 4.25 6.09375V7.40625C4.25 8.03516 3.75781 8.5 3.15625 8.5H1.84375C1.21484 8.5 0.75 8.03516 0.75 7.40625V6.09375ZM4.25 11.7812C4.25 12.4102 3.75781 12.875 3.15625 12.875H1.84375C1.21484 12.875 0.75 12.4102 0.75 11.7812V10.4688C0.75 9.86719 1.21484 9.375 1.84375 9.375H3.15625C3.75781 9.375 4.25 9.86719 4.25 10.4688V11.7812ZM5.125 1.71875C5.125 1.11719 5.58984 0.625 6.21875 0.625H7.53125C8.13281 0.625 8.625 1.11719 8.625 1.71875V3.03125C8.625 3.66016 8.13281 4.125 7.53125 4.125H6.21875C5.58984 4.125 5.125 3.66016 5.125 3.03125V1.71875ZM8.625 7.40625C8.625 8.03516 8.13281 8.5 7.53125 8.5H6.21875C5.58984 8.5 5.125 8.03516 5.125 7.40625V6.09375C5.125 5.49219 5.58984 5 6.21875 5H7.53125C8.13281 5 8.625 5.49219 8.625 6.09375V7.40625ZM5.125 10.4688C5.125 9.86719 5.58984 9.375 6.21875 9.375H7.53125C8.13281 9.375 8.625 9.86719 8.625 10.4688V11.7812C8.625 12.4102 8.13281 12.875 7.53125 12.875H6.21875C5.58984 12.875 5.125 12.4102 5.125 11.7812V10.4688ZM13 3.03125C13 3.66016 12.5078 4.125 11.9062 4.125H10.5938C9.96484 4.125 9.5 3.66016 9.5 3.03125V1.71875C9.5 1.11719 9.96484 0.625 10.5938 0.625H11.9062C12.5078 0.625 13 1.11719 13 1.71875V3.03125ZM9.5 6.09375C9.5 5.49219 9.96484 5 10.5938 5H11.9062C12.5078 5 13 5.49219 13 6.09375V7.40625C13 8.03516 12.5078 8.5 11.9062 8.5H10.5938C9.96484 8.5 9.5 8.03516 9.5 7.40625V6.09375ZM13 11.7812C13 12.4102 12.5078 12.875 11.9062 12.875H10.5938C9.96484 12.875 9.5 12.4102 9.5 11.7812V10.4688C9.5 9.86719 9.96484 9.375 10.5938 9.375H11.9062C12.5078 9.375 13 9.86719 13 10.4688V11.7812Z" fill="#CA568E"/>
+                    </svg>
+                    <svg class="fullsize" width="13" height="13" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.2.0 by fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M152 120c-26.51 0-48 21.49-48 48s21.49 48 48 48s48-21.49 48-48S178.5 120 152 120zM447.1 32h-384C28.65 32-.0091 60.65-.0091 96v320c0 35.35 28.65 64 63.1 64h384c35.35 0 64-28.65 64-64V96C511.1 60.65 483.3 32 447.1 32zM463.1 409.3l-136.8-185.9C323.8 218.8 318.1 216 312 216c-6.113 0-11.82 2.768-15.21 7.379l-106.6 144.1l-37.09-46.1c-3.441-4.279-8.934-6.809-14.77-6.809c-5.842 0-11.33 2.529-14.78 6.809l-75.52 93.81c0-.0293 0 .0293 0 0L47.99 96c0-8.822 7.178-16 16-16h384c8.822 0 16 7.178 16 16V409.3z" fill="#CA568E"/>
+                    </svg>
+
+                    <span class="label">Thumbnails</span>
+                </div>
+            </div>
+
+            <div class="thumbnail-overlay">
+
+                <div class="thumbnail-list">
+                    @{ int counter = 1; }
+                    @foreach (var image in Model.TourInfo.TourSummaryInfo.Images)
+                    {
+                        <div class="thumbnail" data-id="@counter">
+                            <img class="lazyload" data-src="@image.ImagePath.Imgixify()" alt="">
+                        </div>
+
+                        counter++;
+                    }
+                </div>
+            </div>
+            <!-- list of full size images, ids should match in thumbnail-overlay -->
+            <div class="photo-overlay">
+                <div class="photo-list">
+                    @{
+                        counter = 1;
+                    }
+                    @foreach (var image in Model.TourInfo.TourSummaryInfo.Images)
+                    {
+                        <div class="photo" data-id="@counter">
+                            <img src="@image.ImagePath.Imgixify()" alt="">
+                            <div class="location">
+                                <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.375 5C6.375 6.05469 5.53125 6.875 4.5 6.875C3.44531 6.875 2.625 6.05469 2.625 5C2.625 3.96875 3.44531 3.125 4.5 3.125C5.53125 3.125 6.375 3.96875 6.375 5ZM4.5 4.25C4.07812 4.25 3.75 4.60156 3.75 5C3.75 5.42188 4.07812 5.75 4.5 5.75C4.89844 5.75 5.25 5.42188 5.25 5C5.25 4.60156 4.89844 4.25 4.5 4.25ZM9 5C9 7.0625 6.25781 10.6953 5.03906 12.2188C4.75781 12.5703 4.21875 12.5703 3.9375 12.2188C2.71875 10.6953 0 7.0625 0 5C0 2.51562 1.99219 0.5 4.5 0.5C6.98438 0.5 9 2.51562 9 5ZM4.5 1.625C2.625 1.625 1.125 3.14844 1.125 5C1.125 5.30469 1.21875 5.75 1.47656 6.35938C1.71094 6.92188 2.0625 7.57812 2.46094 8.23438C3.14062 9.3125 3.91406 10.3438 4.5 11.0938C5.0625 10.3438 5.83594 9.3125 6.51562 8.23438C6.91406 7.57812 7.26562 6.92188 7.5 6.35938C7.75781 5.75 7.875 5.30469 7.875 5C7.875 3.14844 6.35156 1.625 4.5 1.625Z" fill="white"/>
+                                </svg>
+                                @image.ImageCaption
+                            </div>
+                        </div>
+                        counter++;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

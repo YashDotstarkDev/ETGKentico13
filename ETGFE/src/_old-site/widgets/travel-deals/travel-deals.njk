@@ -1,0 +1,144 @@
+<div class="widget travel-deals wp" data-indexname="Tour">
+  <div class="wrapper">
+    <div class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-endpoint="api/response-message.json" data-method="GET">
+      <div class="container">
+        <div class="field">
+          <label>By destination</label>
+          <div id="destination_dd"></div>
+{#          <select class="make-dropdown" name="destination">#}
+{#            <option value="">Optional</option>#}
+{#            <option value="1">Option</option>#}
+{#            <option value="2">Option</option>#}
+{#            <option value="3">Option</option>#}
+{#          </select>#}
+        </div>
+
+        <div class="field">
+          <label>By experience</label>
+          <div id="experience_dd"></div>
+
+          {#          <select class="make-dropdown" name="experience">#}
+{#            <option value="">Optional</option>#}
+{#            <option value="1">Option</option>#}
+{#            <option value="2">Option</option>#}
+{#            <option value="3">Option</option>#}
+{#          </select>#}
+        </div>
+
+        <div class="field">
+          <label>By duration</label>
+          <div id="duration_dd"></div>
+
+          {#          <select class="make-dropdown" name="duration">#}
+{#            <option value="">Optional</option>#}
+{#            <option value="1">Option</option>#}
+{#            <option value="2">Option</option>#}
+{#            <option value="3">Option</option>#}
+{#          </select>#}
+        </div>
+
+        <div class="field">
+          <label for="">Price range</label>
+          <div class="price-range">
+            <span class="from-value"></span> - <span class="to-value"></span>
+          </div>
+          <div id="price_range-slider" class="pricerangeslider"></div>
+        </div>
+
+{#        <div id="deals"></div>#}
+
+      </div>
+
+
+      <div class="response-container"></div>
+
+    </div>
+
+    <h4><span id="deal_stats"></span>&nbsp;deals found</h4>
+
+
+    <div class="controls">
+      <div class="sort">
+        Sort by:
+        <div id="deal_sort"></div>
+      </div>
+{#      <div class="ui simple dropdown">d#}
+{#        Sort by newest to oldest#}
+{#        <i class="dropdown icon"></i>#}
+{#        <div class="menu">#}
+{#          <a class="item" href="#1">Alphabetical</a>#}
+{#          <a class="item" href="#2">Price</a>#}
+{#        </div>#}
+{#      </div>#}
+
+      <div class="view">
+        View:
+        <div id="deal_view"></div>
+      </div>
+
+{#      <div class="ui simple dropdown">#}
+{#        View 30#}
+{#        <i class="dropdown icon"></i>#}
+{#        <div class="menu">#}
+{#          <a class="item" href="#1">View 10</a>#}
+{#          <a class="item" href="#2">View 20</a>#}
+{#        </div>#}
+{#      </div>#}
+
+    </div>
+
+    <div class="deals">
+      <div id="deal_hits"></div>
+{#      <div class="item">#}
+{#        <a href="#" class="inner">#}
+{#          <img class="lazyload" data-src="https://devotion-creative.imgix.net/etgp0001/images/homepage-hero.jpg?auto=format" alt="">#}
+{#          <div class="tint"></div>#}
+{#          <div class="title" data-mh="even-title">Save 20% on the maldives</div>#}
+
+{#          <div class="description">Save 20% on 7 nights in Ari Atoll ipsum dolor sit amet.</div>#}
+{#          <div class="button ui primary">View offer</div>#}
+{#        </a>#}
+{#      </div>#}
+{#      <div class="item">#}
+{#        <a href="#" class="inner">#}
+{#          <img class="lazyload" data-src="https://devotion-creative.imgix.net/etgp0001/images/homepage-hero.jpg?auto=format" alt="">#}
+{#          <div class="tint"></div>#}
+{#          <div class="title" data-mh="even-title">Save 20% on the maldives</div>#}
+
+{#          <div class="description">Save 20% on 7 nights in Ari Atoll ipsum dolor sit amet.</div>#}
+{#          <div class="button ui primary">View offer</div>#}
+{#        </a>#}
+{#      </div>#}
+{#      <div class="item">#}
+{#        <a href="#" class="inner">#}
+{#          <img class="lazyload" data-src="https://devotion-creative.imgix.net/etgp0001/images/homepage-hero.jpg?auto=format" alt="">#}
+{#          <div class="tint"></div>#}
+{#          <div class="title" data-mh="even-title">7 nights in tahiti</div>#}
+
+{#          <div class="description">Save 20% on 7 nights in Ari Atoll ipsum dolor sit amet.</div>#}
+{#          <div class="button ui primary">View offer</div>#}
+{#        </a>#}
+{#      </div>#}
+{#      <div class="item">#}
+{#        <a href="#" class="inner">#}
+{#          <img class="lazyload" data-src="https://devotion-creative.imgix.net/etgp0001/images/homepage-hero.jpg?auto=format" alt="">#}
+{#          <div class="tint"></div>#}
+{#          <div class="title" data-mh="even-title">Save 20% on the maldives</div>#}
+
+{#          <div class="description">Save 20% on 7 nights in Ari Atoll ipsum dolor sit amet.</div>#}
+{#          <div class="button ui primary">View offer</div>#}
+{#        </a>#}
+{#      </div>#}
+    </div>
+
+    <div id="deal_pagination"></div>
+{#    <div class="pagination">#}
+{#      <div class="controls ui form">#}
+{#        <a href="#"><span class="fas icon fa-chevron-left"></span>Previous</a>#}
+{#        <input type="text" value="1">#}
+{#        <span class="of">of 12</span>#}
+{#        <a href="#">Next<span class="fas icon fa-chevron-right"></span></a>#}
+{#      </div>#}
+{#    </div>#}
+  </div>
+</div>

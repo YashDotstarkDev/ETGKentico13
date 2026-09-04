@@ -1,0 +1,45 @@
+---
+import AnchorCarousel from './AnchorCarousel.vue'
+import AnchorNavigationController from './AnchorNavigationController.vue'
+---
+
+<!--
+/////
+anchor-navigation Start
+/////
+-->
+
+<div class="anchor-navigation sticky top-[99px] transition-all duration-500 z-[500]">
+    <div class="transition-all duration-500 [.stuck_&]:bg-gray-200 overflow-hidden">
+        <div class="wrapper">
+            <div class="max-w-4xl w-full mx-auto">
+                <div class="rounded-2xl bg-gray-200 px-6 overflow-hidden relative [.stuck_&]:overflow-visible">
+                    <div class="relative z-10">
+                        <AnchorCarousel client:only="vue" center-insufficient-slides={true}>
+                            <div class="swiper isolate text-left !overflow-visible text-sm font-semibold">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide !w-auto px-4"><button class="py-6" data-section="Overview"><span class="label py-1 border-b-2 border-transparent [.active_&]:border-primary hover:border-primary">Overview</span></button></div>
+                                    <div class="swiper-slide !w-auto px-4"><button class="py-6" data-section="Packages"><span class="label py-1 border-b-2 border-transparent [.active_&]:border-primary hover:border-primary">Popular Packages</span></button></div>
+                                    <div class="swiper-slide !w-auto px-4"><button class="py-6" data-section="Love"><span class="label py-1 border-b-2 border-transparent [.active_&]:border-primary hover:border-primary">Why we love it</span></button></div>
+                                    <div class="swiper-slide !w-auto px-4"><button class="py-6" data-section="Featured"><span class="label py-1 border-b-2 border-transparent [.active_&]:border-primary hover:border-primary">Featured</span></button></div>
+                                    <div class="swiper-slide !w-auto px-4"><button class="py-6" data-section="Info"><span class="label py-1 border-b-2 border-transparent [.active_&]:border-primary hover:border-primary">Helpful info</span></button></div>
+                                </div>
+                            </div>
+                        </AnchorCarousel>
+                    </div>
+
+                    <div class="absolute z-20 inset-y-0 left-0 w-12 bg-gradient-to-l from-gray-200/0 to-gray-200 pointer-events-none [.stuck_&]:hidden"></div>
+                    <div class="absolute z-20 inset-y-0 right-0 w-12 bg-gradient-to-r from-gray-200/0 to-gray-200 pointer-events-none [.stuck_&]:hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <AnchorNavigationController client:only="vue" />
+</div>
+
+<!--
+/////
+anchor-navigation End
+/////
+-->

@@ -1,0 +1,132 @@
+<div class="widget departures-pricing">
+  <div class="top">
+    <div class="nights">7 nights</div>
+    <div class="price" data-currency="EUR" data-currency-symbol="€">
+      from <span>EUR</span>
+      <a class="see-in-aud" href="#" data-content-template="AUD[price]. AUD pricing on website is indicative only. It is based on a foreign exchange rate of 1 [foreigncurrency] = [rate] AUD and is subject to currency fluctuations. Rates are quoted and paid in AUD at time of booking.">see aud</a>
+      <br>
+      per person
+    </div>
+  </div>
+
+  <div class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-endpoint="api/response-message.json" data-method="GET">
+
+    <!-- <input type="hidden" class="initial-date"> -->
+    <!-- <input type="hidden" class="initial-class"> -->
+    <!-- <input type="hidden" class="initial-city"> -->
+    <input class="hidden-price" id="Form_QuotedPrice" name="Form.QuotedPrice" type="hidden" value="">
+    <input class="hidden-currency" id="Form_PriceCurrency" name="Form.PriceCurrency" type="hidden" value="">
+    <input class="hidden-class" id="Form_DepartureClass" name="Form.DepartureClass" type="hidden" value="">
+    <input class="hidden-city" id="Form_DepartureCity" name="Form.DepartureCity" type="hidden" value="">
+    <div class="inner">
+      <div class="set">
+        <div class="field">
+          <label>Departure dates</label>
+          <div class="departure-dropdown">
+            <select name="date" class="select-date">
+              <option value="July 2020  Onwards">July 2020 Onwards</option>
+              <option value="Dec- Jun 2020 Economy Other Cities">Dec- Jun 2020 Economy Other Cities</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Class</label>
+          <div class="class-dropdown">
+            <select name="class" class="select-class">
+              <option value="">Please select</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Departure city (for flight) </label>
+          <div class="city-dropdown">
+            <select name="city" class="select-city">
+              <option value="">Select a Class first</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="set">
+        <label for="">Tour departs from</label>
+        <div class="value">Tropea</div>
+      </div>
+
+      <div class="set">
+        <label for="">Travel between</label>
+        <div class="value">Aug - Sept 2019, Jan - Feb 2020</div>
+      </div>
+    </div>
+
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Economy" data-city="Sydney" data-price="700" data-currency="" data-price-aud="435"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Premium Economy" data-city="Sydney" data-price="800" data-currency="" data-price-aud="497"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Business Class" data-city="Sydney" data-price="900" data-currency="" data-price-aud="560"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="First Class" data-city="Sydney" data-price="1000" data-currency="" data-price-aud="622"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Economy" data-city="Melbourne" data-price="700" data-currency="" data-price-aud="435"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Premium Economy" data-city="Melbourne" data-price="800" data-currency="" data-price-aud="497"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Business Class" data-city="Melbourne" data-price="900" data-currency="" data-price-aud="560"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="First Class" data-city="Melbourne" data-price="1000" data-currency="" data-price-aud="622"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Economy" data-city="Brisbane" data-price="850" data-currency="" data-price-aud="529"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Premium Economy" data-city="Brisbane" data-price="950" data-currency="" data-price-aud="591"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Business Class" data-city="Brisbane" data-price="1050" data-currency="" data-price-aud="653"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Economy" data-city="Perth" data-price="850" data-currency="" data-price-aud="529"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Premium Economy" data-city="Perth" data-price="950" data-currency="" data-price-aud="591"></div>
+    <div class="datapricing" data-date="July 2020  Onwards" data-class="Business Class" data-city="Perth" data-price="1050" data-currency="" data-price-aud="653"></div>
+    <div class="datapricing" data-date="Dec- Jun 2020 Economy Other Cities" data-class="Economy" data-city="Sydney" data-price="500" data-currency="EUR" data-price-aud="311"></div>
+    <div class="datapricing" data-date="Dec- Jun 2020 Economy Other Cities" data-class="Premium Economy" data-city="Sydney" data-price="600" data-currency="EUR" data-price-aud="373"></div>
+    <div class="datapricing" data-date="Dec- Jun 2020 Economy Other Cities" data-class="Business Class" data-city="Sydney" data-price="700" data-currency="EUR" data-price-aud="435"></div>
+    <div class="datapricing" data-date="Dec- Jun 2020 Economy Other Cities" data-class="Economy" data-city="Melbourne" data-price="500" data-currency="EUR" data-price-aud="311"></div>
+    <div class="datapricing" data-date="Dec- Jun 2020 Economy Other Cities" data-class="Premium Economy" data-city="Melbourne" data-price="600" data-currency="EUR" data-price-aud="373"></div>
+    <div class="datapricing" data-date="Dec- Jun 2020 Economy Other Cities" data-class="Business Class" data-city="Melbourne" data-price="700" data-currency="EUR" data-price-aud="435"></div>
+    <div class="datapricing" data-date="Dec- Jun 2020 Economy Other Cities" data-class="Economy" data-city="Brisbane" data-price="800" data-currency="EUR" data-price-aud="497"></div>
+    <div class="datapricing" data-date="Dec- Jun 2020 Economy Other Cities" data-class="Premium Economy" data-city="Brisbane" data-price="900" data-currency="EUR" data-price-aud="560"></div>
+    <div class="datapricing" data-date="Dec- Jun 2020 Economy Other Cities" data-class="Economy" data-city="Perth" data-price="800" data-currency="EUR" data-price-aud="497"></div>
+    <div class="datapricing" data-date="Dec- Jun 2020 Economy Other Cities" data-class="Premium Economy" data-city="Perth" data-price="900" data-currency="EUR" data-price-aud="560"></div>
+
+    <div class="response-container"></div>
+
+    <div class="submit-row">
+      <button class="ui button submit primary">Enquire now</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="widget departures-pricing no-flight">
+  <div class="top">
+    <div class="nights">7 nights</div>
+    <div class="price" data-currency="EUR" data-currency-symbol="€">
+      from <span data-price="500" data-aud-price="600">€500</span>
+      <a class="see-in-aud" href="#" data-content-template="AUD[price]. AUD pricing on website is indicative only. It is based on a foreign exchange rate of 1 [foreigncurrency] = [rate] AUD and is subject to currency fluctuations. Rates are quoted and paid in AUD at time of booking.">see aud</a>
+      <br>
+      per person, twin share
+    </div>
+  </div>
+
+  <div class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-endpoint="api/response-message.json" data-method="GET">
+
+    <input class="hidden-price" id="Form_QuotedPrice" name="Form.QuotedPrice" type="hidden" value="">
+    <div class="inner">
+      <div class="set">
+        <div class="field">
+          <div class="dropdown-date">
+            <select name="date" class="select-date">
+              <option value="All year price">All year price</option>
+              <option value="December price">December price</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="datapricing" data-date="All year price" data-price="500" data-price-aud="803"></div>
+      <div class="datapricing" data-date="December price" data-price="450" data-price-aud="722"></div>
+      <div class="response-container"></div>
+
+      <div class="submit-row">
+        <button class="ui button submit primary">Enquire now</button>
+      </div>
+    </div>
+  </div>
+</div>
+

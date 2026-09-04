@@ -1,0 +1,35 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Models.Widgets.SingleColumn
+@using ETG.Web.Models.InlineEditors.TextEditor
+@model ETG.Web.Models.Widgets.SingleColumn.SingleColumnViewModel
+<div class="single-column-richtext wp">
+    <div class="wrapper">
+            <p class="lead">@Model.LargeContent</p>
+            @if (Context.Kentico().PageBuilder().EditMode)
+            {
+                Html.RenderPartial("InlineEditors/_TextEditor", new TextEditorViewModel
+                {
+                    PropertyName = nameof(SingleColumnProperties.Content),
+                    Text = Model.Content,
+                    EnableFormatting = true
+                });
+            }
+            else
+            {
+                <p>@Html.Raw(Model.Content)</p>
+            }
+
+            
+            @if (!Model.CTALabel.IsNullOrEmpty() && !Model.CTAUrl.IsNullOrEmpty())
+            {
+                <div>
+                    <a href="@Model.CTAUrl" class="button ui primary transparent">@Model.CTALabel</a>
+                </div>
+            }
+        </div>
+</div>
+
+
+
+

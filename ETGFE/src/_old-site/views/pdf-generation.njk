@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" class="pdf-generation-template">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>ETG cut | {{ page_title }}</title>
+
+    <!-- NOTE not required
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     -->
+
+
+    <!-- Icomoon -->
+    <!-- production env
+    <link rel="preload" href="https://cdn.icomoon.io/39161/ETGP0001EntireTravelGroup/style.css?c3unwu" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.icomoon.io/39161/ETGP0001EntireTravelGroup/style.css?c3unwu"></noscript>
+    -->
+    <!-- development env -->
+    <link rel="preload" href="https://i.icomoon.io/public/df16b6706c/ETGP0001EntireTravelGroup/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://i.icomoon.io/public/df16b6706c/ETGP0001EntireTravelGroup/style.css"></noscript>
+    <!---->
+
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/d67a31d7e1.js" crossorigin="anonymous"></script>
+
+    <!-- Google fonts-->
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:400,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:400,900&display=swap"></noscript>
+
+    <link rel="stylesheet" href="/styles/pdf-generation.css">
+  </head>
+
+  <body>
+  {% block beforeArticle %}{% endblock %}
+
+  <article>
+    {% block article %}{% endblock %}
+  </article>
+
+  {% block afterArticle %}{% endblock %}
+
+  <!-- NOTE not required, all styling handled by `/styles/pdf-generation.css`.
+  <script src="/scripts/pdf-generation.js"></script>
+  -->
+  </body>
+</html>

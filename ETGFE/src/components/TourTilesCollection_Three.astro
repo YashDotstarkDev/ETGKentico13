@@ -1,0 +1,31 @@
+---
+
+import PackageTile from "./PackageTile.astro";---
+
+<!--
+/////
+tour-tiles-collection start
+/////
+-->
+
+<div class="tour-tiles-collection">
+    <div class="wrapper">
+        <h2 class="text-center uppercase text-black">Our featured packages</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-12 gap-x-6 gap-y-12">
+            <PackageTile />
+            <PackageTile />
+            <PackageTile />
+        </div>
+
+        <div class="cta mt-12 text-center">
+            <a href="#" class="btn btn-primary-outline">View all</a>
+        </div>
+    </div>
+</div>
+
+<!--
+/////
+tour-tiles-collection end
+/////
+-->

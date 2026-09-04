@@ -1,0 +1,9 @@
+﻿@using Castle.Core.Internal
+@model string
+
+@if (Model.IsNullOrEmpty())
+{
+    return;
+}
+<link href="@Model" rel="stylesheet">
+<noscript><link rel="stylesheet" href="@Model"></noscript>

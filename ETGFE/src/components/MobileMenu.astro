@@ -1,0 +1,142 @@
+---
+import MobileMenuBindings from '../components/MobileMenuBindings.vue'
+import MenuButton from '../components/MenuButton.vue'
+import MobileMenuPrimary from "../partials/MobileMenuPrimary.astro";
+import MobileMenuSubmenu from "../partials/MobileMenuSubmenu.astro";
+
+---
+
+<!--
+/////
+mobile menu Start
+/////
+-->
+
+<div class="mobile-menu fixed z-[10000] left-0 top-0 overflow-hidden">
+    <MobileMenuBindings client:only="vue"/>
+
+    <div class="overlay fixed z-[5000] inset-0 transition-all duration-500"></div>
+
+
+
+    <div class="menu fixed overflow-x-hidden overflow-y-scroll right-0 top-0 bottom-0 bg-gray-200 z-[7000] w-full max-w-[90%] md:max-w-[400px] transition-transform duration-500 translate-x-full [.show-mobile-menu_&]:translate-x-0">
+
+        <div class="relative h-[100px] bg-black flex items-center justify-center">
+            <a href="#" class="btn btn-primary">Enquire now</a>
+
+            <div class="menu-button absolute z-[3000] right-4 top-4 transition-all duration-300">
+                <MenuButton client:only="vue">
+                    <button type="button" class="text-[30px] text-white hover:text-primary transition-colors">
+                        <svg width="17" height="23" viewBox="0 0 17 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.3242 6.13672L10.168 11.293L15.2812 16.4062C15.7109 16.793 15.7109 17.4375 15.2812 17.8242C14.8945 18.2539 14.25 18.2539 13.8633 17.8242L8.70703 12.7109L3.59375 17.8242C3.20703 18.2539 2.5625 18.2539 2.17578 17.8242C1.74609 17.4375 1.74609 16.793 2.17578 16.3633L7.28906 11.25L2.17578 6.13672C1.74609 5.75 1.74609 5.10547 2.17578 4.67578C2.5625 4.28906 3.20703 4.28906 3.63672 4.67578L8.75 9.83203L13.8633 4.71875C14.25 4.28906 14.8945 4.28906 15.3242 4.71875C15.7109 5.10547 15.7109 5.75 15.3242 6.13672Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </MenuButton>
+            </div>
+        </div>
+
+        <ul class="bg-black primary px-4 text-white">
+            <li>
+                <button type="button" class="menu-item">
+                    Destinations
+
+                    <span class="arrow block w-5 shrink-0 text-current">
+                        <i class="fa-solid fa-chevron-right text-[13px]"></i>
+                    </span>
+                </button>
+
+                <!-- Submenu Container -->
+                <div class="submenu px-4 fixed bottom-0 top-[100px] right-0 z-[2000] w-full max-w-[400px] translate-x-full bg-black text-white transition-transform duration-500 overflow-x-hidden overflow-y-auto">
+
+                    <!-- Submenu items -->
+                    <ul>
+                        <!-- back button -->
+                        <li class="!-ml-4 !pl-4">
+                            <button type="button" class="back-button menu-item">
+                                <span class="flex items-center gap-2 w-full">
+                                    <span class="arrow block w-5 shrink-0 text-current">
+                                        <i class="fa-solid fa-chevron-left text-[13px]"></i>
+                                    </span>
+                                    <span class="text-center flex-1 text-[16px] pr-5">Destinations</span>
+                                </span>
+                            </button>
+                        </li>
+
+                        <MobileMenuPrimary label="Islands" />
+                        <MobileMenuPrimary label="Asia" />
+                        <MobileMenuPrimary label="Europe" />
+                        <MobileMenuPrimary label="North America" />
+                    </ul>
+                </div>
+            </li>
+
+
+            <li>
+                <button type="button" class="menu-item">
+                    Experiences
+                    <span class="arrow block w-5 shrink-0 text-current">
+                        <i class="fa-solid fa-chevron-right text-[13px]"></i>
+                    </span>
+                </button>
+                <MobileMenuSubmenu label="Experiences" />
+            </li>
+
+
+            <li>
+                <button type="button" class="menu-item">
+                    Group Journeys
+                    <span class="arrow block w-5 shrink-0 text-current">
+                        <i class="fa-solid fa-chevron-right text-[13px]"></i>
+                    </span>
+                </button>
+                <MobileMenuSubmenu label="Group Journeys" />
+            </li>
+
+            <li>
+                <button type="button" class="menu-item">
+                    Rail Journeys
+                    <span class="arrow block w-5 shrink-0 text-current">
+                        <i class="fa-solid fa-chevron-right text-[13px]"></i>
+                    </span>
+                </button>
+                <MobileMenuSubmenu label="Rail Journeys" />
+            </li>
+
+            <li>
+                <button type="button" class="menu-item">
+                    Cruise Journeys
+                    <span class="arrow block w-5 shrink-0 text-current">
+                        <i class="fa-solid fa-chevron-right text-[13px]"></i>
+                    </span>
+                </button>
+                <MobileMenuSubmenu label="Cruise Journeys" />
+            </li>
+
+            <li>
+                <button type="button" class="menu-item">
+                    Custom Itineraries
+                    <span class="arrow block w-5 shrink-0 text-current">
+                        <i class="fa-solid fa-chevron-right text-[13px]"></i>
+                    </span>
+                </button>
+                <MobileMenuSubmenu label="Custom Itineraries" />
+            </li>
+        </ul>
+
+        <ul class="secondary px-4">
+            <li>
+                <a href="#" class="menu-item">Agents</a>
+            </li>
+            <li>
+                <a href="#" class="menu-item">Brochures</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<!--
+/////
+mobile menu end
+/////
+-->

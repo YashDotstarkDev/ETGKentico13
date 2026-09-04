@@ -1,0 +1,84 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@using ETG.Data.Extensions
+@model ETG.Web.Tour.Models.TourViewModel
+
+@if (Model == null)
+{
+    return;
+}
+
+<div class="widget departures-pricing@(!Model.PricingHasFlights ? " no-flight" :"")" data-widget="departure-pricing">
+    @Html.Partial("Partial/Tour/_TourSideTopDetails", Model)
+    <form method="post" action="/enquire/@Model.TourSummaryInfo.TourCode" class="ui form">
+        <div class="inner">
+
+            @if (!Model.Pricings.IsNullOrEmpty())
+            {
+                if (Model.PricingHasFlights)
+                {
+                    <div class="set">
+                        <div class="field">
+                            <label>Departure dates</label>
+                            <div class="departure-dropdown">
+                                <select name="date" class="select-date">
+                                    @foreach (var pricing in Model.PricingDates)
+                                    {
+                                        <option value="@pricing.Value">@pricing.Text</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Class</label>
+                            <div class="class-dropdown">
+                                <select name="flightclass" class="select-class">
+                                    <option value="">Please select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Departure city (for flight) </label>
+                            <div class="city-dropdown">
+                                <select name="city" class="select-city">
+                                    <option value="">Please select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    foreach (var pricing in Model.Pricings)
+                    {
+                        foreach (var priceItem in pricing.PricingList)
+                        {
+                            <div class="datapricing" data-date="@pricing.TourDate" data-class="@priceItem.FlighClass" data-city="@priceItem.DepartureCity" data-price="@priceItem.Price" data-price-aud="@priceItem.PriceInAUD"></div>
+                        }
+                    }
+
+                }
+                else if (!Model.NoFlightPricings.IsNullOrEmpty() && Model.NoFlightPricings.Count > 1)
+                {
+                    <div class="set">
+                        <div class="field">
+                            <div class="dropdown-date">
+                                <select name="date" class="select-date">
+                                    @foreach (var pricing in Model.PricingDates)
+                                    {
+                                        <option value="@pricing.Value">@pricing.Text</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    foreach (var pricing in Model.Pricings)
+                    {
+                        <div class="datapricing" data-date="@pricing.TourDate" data-price="@pricing.OverridePrice" data-price-aud="@pricing.OverridePriceInAUD"></div>
+                    }
+                }
+            }
+        </div>
+        <div class="response-container"></div>
+        <div class="submit-row">
+            <button class="ui button submit primary" type="submit">Enquire now</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.nz-redirect-modal {
+  max-width: 600px;
+  position: relative;
+  padding: 60px;
+  background-color: #fff;
+
+  h2 {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+
+  .sub-title {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  i.icon.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: left !important;
+
+    &::before {
+      content: "";
+    }
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}

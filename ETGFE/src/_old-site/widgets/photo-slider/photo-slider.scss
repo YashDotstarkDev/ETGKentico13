@@ -1,0 +1,132 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.photo-slider {
+  .wrapper {
+    max-width: 1440px;
+  }
+
+  .slider {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+    border-radius: 10px;
+    backface-visibility: hidden; // fix border-radius not applying to image on hover animation
+    transform: translate3d(0, 0, 0); // fix border-radius not applying to image on hover animation
+
+    .item {
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+
+      video,
+      iframe {
+        transition: none;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        display: block;
+        object-fit: inherit;
+
+        input {
+          width: 100%;
+        }
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    .inner {
+      position: relative;
+      @util aspect-ratio(16:9);
+      img {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        font-family: "object-fit: cover";
+      }
+    }
+
+    .slick-list {
+      height: auto !important;
+      font-size: 0; /* Remove space below each slide */
+    }
+
+    .slick-arrow {
+      /*opacity: 0 !important;*/
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+      .slick-arrow {
+        opacity: 1;
+      }
+    }
+
+    .slick-arrow {
+      z-index: 10;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #fff;
+      border: 0 !important;
+      font-size: 28px;
+
+      /* Drop shadow for arrow icons */
+      svg {
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, .35));
+      }
+
+      &.slick-disabled {
+        opacity: 0 !important;
+      }
+
+      &.next {
+        right: 5px;
+      }
+
+      &.prev {
+        left: 5px;
+      }
+
+      @media(--portrait) {
+        font-size: 32px;
+
+        &.next {
+          right: 10px;
+        }
+
+        &.prev {
+          left: 10px;
+        }
+      }
+
+      @media(--desktop) {
+        font-size: 40px;
+
+        &.next {
+          right: 20px;
+        }
+
+        &.prev {
+          left: 20px;
+        }
+      }
+    }
+  }
+}
+

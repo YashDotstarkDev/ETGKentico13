@@ -1,0 +1,133 @@
+
+@import "colours.scss";
+
+@custom-media --mobileLarge (min-width: 375px);
+@custom-media --mobileLargeMax (max-width: 767px);
+@custom-media --portrait (min-width: 768px);
+@custom-media --portraitMax (max-width: 1023px);
+@custom-media --landscape (min-width: 1024px);
+@custom-media --desktop (min-width: 1025px);
+@custom-media --max (min-width: 1220px);
+
+$gridColumns: 1, 12, 20;
+$gridPadding: 0, 1, 2, 5, 10, 20, 30, 40, 60;
+$gridBreakpoints: 375, 600, 768, 1024, 1220;
+$spacerHeights: 10, 20, 30, 40, 50, 60;
+$wrapperWidths: 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000;
+
+$railway: 'Raleway', Arial, sans-serif;
+$lato: 'Lato', Arial, sans-serif;
+
+$header-height-mobile: 94px;
+$header-height-desktop: 94px;
+
+/* globals */
+$global-responsive-font-range: 375px 768px;
+$global-line-height-large: 1.8;
+$global-line-height-medium: 1.5;
+$global-line-height-small: 1.1;
+$global-font-family: 'Lato', Arial, sans-serif;
+$global-font-weight-normal: 400;
+$global-font-weight-bold: 900;
+$global-wrapper-width: 1240px;
+$global-font-color: #333;
+$global-font-size-small: 14px;
+$global-font-size-large: 14px;
+
+/* body */
+$body-background: #fff;
+$body-font-color: $global-font-color;
+$body-font-family: $global-font-family;
+$body-font-size-small: $global-font-size-small;
+$body-font-size-large: $global-font-size-large;
+$body-responsive-font-range: $global-responsive-font-range;
+$body-line-height: $global-line-height-large;
+$body-font-weight: $global-font-weight-normal;
+
+/* links */
+$link-font-family: $global-font-family;
+$link-colour: $primary;
+$link-text-decoration: none;
+$link-colour-hover: $primary;
+$link-text-decoration-hover: underline;
+
+/* headings */
+$headings-font-color: #000;
+$headings-font-family: 'Raleway', Arial, sans-serif;
+$headings-responsive-font-range: $global-responsive-font-range;
+$headings-line-height: $global-line-height-small;
+$headings-margin: 2.2rem 0 calc(1rem + 5px);
+$headings-font-weight: 700;
+
+$headings-h1-font-size-small: 30px;
+$headings-h1-font-size-large: 40px;
+
+$headings-h2-font-size-small: 26px;
+$headings-h2-font-size-large: 30px;
+
+$headings-h3-font-size-small: 20px;
+$headings-h3-font-size-large: 20px;
+
+$headings-h4-font-size-small: 18px;
+$headings-h4-font-size-large: 18px;
+
+$headings-h5-font-size-small: $body-font-size-small;
+$headings-h5-font-size-large: $body-font-size-large;
+
+/* paragraphs */
+$paragraph-margin: 0 0 1em;
+$paragraph-line-height: $body-line-height;
+
+/* font styles */
+$lead-font-size-small: 1.3rem;
+$lead-font-size-large: 1.4rem;
+$lead-line-height: $global-line-height-medium;
+$lead-responsive-font-range: $global-responsive-font-range;
+
+$impact-font-size-small: 1.6rem;
+$impact-font-size-large: 1.8rem;
+$impact-line-height: $global-line-height-medium;
+$impact-responsive-font-range: $global-responsive-font-range;
+
+/* highlighting */
+$highlight-background: #dedede;
+$highlight-foreground: #000;
+
+/* buttons */
+$button-font-weight: bold;
+$button-font-family: $body-font-family;
+$button-font-size-small: 12px;
+$button-font-size-large: 12px;
+$button-responsive-font-range: $body-responsive-font-range;
+$button-border-radius: 1000px;
+$button-text-transform: uppercase;
+$button-padding: 14px 30px;
+
+/* forms */
+/* labels */
+$form-label-margin: 0 0 0.5em;
+$form-label-line-height: $global-line-height-small;
+$form-label-font-weight: $global-font-weight-normal;
+$form-label-font-color: $body-font-color;
+$form-label-font-family: $body-font-family;
+$form-label-font-size-small: $body-font-size-small;
+$form-label-font-size-large: $body-font-size-large;
+$form-label-responsive-font-range: $body-responsive-font-range;
+
+/* fields */
+$form-field-margin:  0 0 1.5em;
+
+/* inputs */
+$form-input-border-color: rgba(#000, 0.2);
+$form-input-border-color-focus: $primary;
+$form-input-line-height: $global-line-height-small;
+$form-input-font-weight: $global-font-weight-normal;
+$form-input-font-color: $body-font-color;
+$form-input-font-family: $body-font-family;
+$form-input-font-size-small: $body-font-size-small;
+$form-input-font-size-large: $body-font-size-large;
+$form-input-responsive-font-range: $body-responsive-font-range;
+
+/* components */
+$package-sticky-footer-mobileMax: 1099px;
+$package-sticky-footer-desktop: 1100px;

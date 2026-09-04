@@ -1,0 +1,40 @@
+<div class="widget subscribe-to-win-modal ui modal" data-cookie="subscribetowin">
+  <i class="close icon"><span class="fal fa-times"></span></i>
+
+  <h2>Subscribe now to win a $500 Travel Voucher toward a Holiday Package</h2>
+  <p class="sub-title">Be the first to hear about our new Holiday Packages</p>
+  <div class="spacer-20"></div>
+  <div class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-endpoint="api/form-response.json" data-method="GET">
+
+    <div class="field">
+      <label>First name</label>
+      <input type="text" name="firstname" data-rules="regExp[/[aeiou]/]" data-prompts="Please enter a valid first name">
+    </div>
+
+    <div class="field">
+      <label>Last name</label>
+      <input type="text" name="lastname" data-rules="regExp[/[aeiou]/]" data-prompts="Please enter a valid last name">
+    </div>
+
+    <div class="field">
+      <label>Email address</label>
+      <input type="email" name="email" data-rules="empty,email" data-prompts="Please enter valid email"/>
+    </div>
+    <div class="field">
+      <label>Are you a travel agent?</label>
+      <select class="make-dropdown" name="agerage" data-rules="empty">
+        <option value="">Please select</option>
+        <option value="1">Yes</option>
+        <option value="2">No</option>
+      </select>
+    </div>
+    <div class="button-container">
+      <button class="ui primary submit button" type="button">Subscribe</button>
+    </div>
+<div class="button-container popup-close-button-container">
+            <a class="ui primary submit button close-popup">Close</a>
+        </div>
+    <div class="disclaimer">Read our <a href="#">Privacy Policy</a> and <a href="#">Terms and Conditions</a>.</div>
+    <div class="bottom-checkbox"><input type="checkbox" name="nevershow"> Never show me again</div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@using Castle.Core.Internal
+@using CMS.Core
+@using ETG.Booking.Pricing.Services
+@using ETG.Data.Tour
+
+@model (List<ETG.Web.Tour.Models.TourPackageUpgradeViewModel> Tiles, string Heading)
+
+@{
+    var currencyPricing = new CurrentCurrencyPricing(DependencyResolver.Current.GetService<ICurrencyService>());
+}
+@if (Model.Tiles.IsNullOrEmpty())
+{
+    return;
+}
+
+<div class="title">
+    <div class="heading">@Model.Heading</div>
+    <i class="dropdown icon"></i>
+</div>
+
+<div class="content accordion-content" @Html.Raw(ViewBag.IsPrint == null ? "" : "style=\"display:block;clear:both\"")>
+    <div class="inner-content">
+        <div class="icons-listing">
+            
+        @foreach (var tourUpgrade in Model.Tiles)
+        {
+            var tour = tourUpgrade.Tour;
+            var priceDisplay = "";
+                if (tour.FromPrice != null)
+                {
+                    if (!currencyPricing.CurrencyAppliesDiscounts || tour.Promotion == null)
+                    {
+                        priceDisplay = tour.FromPrice.GetDisplayPriceForCurrentCurrency();
+                    }
+                    else
+                    {
+                        priceDisplay = $"{tour.FromPrice.Currency}{currencyPricing.ConvertAUDToCurrentCurrency(tour.Promotion.GetDiscountedPrice(tour.FromPrice.LowestPrice)):#,###}";
+                    }
+                }
+                <div class="item">
+                    <span class="icon @(tourUpgrade.IconClass.IsNullOrEmpty() ? "fal-fa-bed" : tourUpgrade.IconClass)"></span>
+                    <p>@Html.Raw(tourUpgrade.UpgradeLabel.IsNullOrEmpty() ? "" : $"<strong>{tourUpgrade.UpgradeLabel}</strong>") <a href="@tour.Path" target="_blank">@tour.Name</a>
+                        @if (!priceDisplay.IsNullOrEmpty())
+                        {
+                            <strong>from @priceDisplay</strong> @($"{tour.PriceTypeLabel}.")
+                        }
+                        else
+                        {
+                            @Html.Raw(".")
+                        }
+                        </p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+---
+import Master from './_master.astro'
+
+const { cls } = Astro.props
+---
+<Master>
+  <div class="layout layout-minimal" class:list={cls}>
+    <slot />
+  </div>
+</Master>

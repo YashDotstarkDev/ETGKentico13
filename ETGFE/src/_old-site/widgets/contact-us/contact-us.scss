@@ -1,0 +1,29 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.contact-us {
+
+  .top {
+    background-color: #ededed;
+    padding: 40px 0;
+  }
+
+  .package-accordion {
+    .top {
+      background-color: transparent;
+      padding: 0;
+    }
+  }
+
+  h1 {
+    color: $primary;
+  }
+
+  .form {
+    margin-top: 40px;
+  }
+
+  .ui.divider {
+    margin: 50px 0;
+  }
+}

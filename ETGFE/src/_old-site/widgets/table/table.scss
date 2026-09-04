@@ -1,0 +1,32 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.table {
+
+  p {
+    text-align: center;
+  }
+
+  .table-container {
+    overflow-x: scroll;
+
+  }
+
+  table {
+    white-space: nowrap;
+
+    th {
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    td {
+      background-color: #ededed;
+      padding: 10px;
+      line-height: 1.3;
+    }
+  }
+}

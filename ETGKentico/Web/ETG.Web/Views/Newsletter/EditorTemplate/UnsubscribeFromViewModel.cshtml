@@ -1,0 +1,31 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model ETG.Web.Models.Forms.UnsubscribeFromViewModel
+
+@{
+    using (Html.BeginForm("UnsubscribeNewsletter", "Newsletter", FormMethod.Post))
+    {
+
+        @Html.AntiForgeryToken()
+        <div class="gr-12">
+            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+                <div class="field">
+                    <label>Reason</label>
+                    @Html.DropDownListFor(m => m.ReasonId, Model.Reasons, "Select the reason")
+                    @Html.ValidationMessageFor(m => m.ReasonId)
+                    @Html.HiddenFor(m => m.Email)
+                    @Html.HiddenFor(m => m.NewsletterGuid)
+                    @Html.HiddenFor(m => m.IssueGuid)
+                    @Html.HiddenFor(m => m.Hash)
+                    @Html.HiddenFor(m => m.UnsubscribeFromAll)
+                    @Html.HiddenFor(m => m.ReasonId)
+                </div>
+            </div>
+        </div>
+        @Html.Partial("Partial/Form/_Recaptcha")
+        <input type="submit" class="ui button submit primary" value="Unsubscribe" />
+        <a href="/unsubscription-canceled">
+            <input type="button" class="ui button submit" value="Cancel" />
+        </a>
+    }
+}

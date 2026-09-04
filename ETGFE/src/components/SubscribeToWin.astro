@@ -1,0 +1,37 @@
+---
+import SubscribeToWinForm from './SubscribeToWinForm.vue'
+---
+
+<!--
+/////
+subscribe-to-win Start
+/////
+-->
+
+<div class="subscribe-to-win bg-black text-white py-12 md:py-20">
+    <div class="wrapper">
+        <div class="max-w-3xl mx-auto flex flex-col gap-4 text-center">
+            <svg width="40" height="62" viewBox="0 0 40 62" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto">
+                <path d="M19.9448 27.2757C15.6516 27.2076 12.2585 23.8067 12.2585 19.5895C12.2585 15.4403 15.7208 12.0394 19.9448 11.9714C24.1689 12.0394 27.6312 15.3723 27.6312 19.5895C27.6312 23.8747 24.2381 27.2076 19.9448 27.2757ZM22.9917 0.272076C21.953 0.136038 20.9835 0.0680191 19.9448 0C19.9448 0 19.9448 0 19.8756 0C19.8756 0 19.8756 0 19.8063 0C18.7676 0.0680191 17.7982 0.136038 16.7595 0.272076C6.92655 1.63246 -0.829032 11.1551 0.0711692 20.9499C0.4174 24.4869 1.45609 27.7518 2.91026 30.9487C6.37257 38.8389 10.8736 46.253 15.6516 53.463C15.7901 53.599 15.8593 53.8031 15.9978 53.9391C17.0365 55.7757 18.4214 56.932 19.9448 57C19.9448 57 19.9448 57 20.0141 57C20.0141 57 20.0141 57 20.0833 57C21.6067 56.932 22.9917 55.7757 24.0304 53.9391C24.1689 53.8031 24.2381 53.6671 24.3766 53.463C29.0853 46.253 33.6556 38.8389 37.1179 30.9487C38.5028 27.7518 39.6108 24.4869 39.957 20.9499C40.6495 11.1551 32.8939 1.63246 22.9917 0.272076Z" fill="white"></path>
+                <path d="M25.7541 56C24.3333 58.3596 22.4153 59.7079 20.3552 59.9101C20.2131 59.9101 20.1421 59.9101 20 59.9101C20 59.9101 20 59.9101 19.929 59.9101C19.8579 59.9101 19.7158 59.9101 19.6448 59.9101C17.5847 59.7079 15.6667 58.3596 14.2459 56.0674C9.91257 56.6067 7 57.618 7 58.8989C7 60.6517 12.8251 62 20 62C27.1749 62 33 60.5843 33 58.8989C33 57.5506 30.0164 56.4719 25.7541 56Z" fill="#CA568E"></path>
+            </svg>
+
+            <h2 class="text-white uppercase">Subscribe now for your chance to win a $500 travel voucher</h2>
+            <div>Be the first to hear about our new Holiday Packages</div>
+
+            <div class="form py-4 text-left">
+                <SubscribeToWinForm client:only="vue" endpoint="/api/subscribe" />
+            </div>
+
+            <div class="terms text-xs">
+                Read our <a href="#" target="_blank" class="text-white underline hover:no-underline hover:text-primary">Privacy Policy</a> and <a href="#" target="_blank" class="text-white underline hover:no-underline hover:text-primary">Terms and Conditions</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+/////
+subscribe-to-win End
+/////
+-->

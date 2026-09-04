@@ -1,0 +1,233 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.featured-carousel {
+  overflow: hidden;
+
+  h2 {
+    text-align: left;
+  }
+
+  .copy {
+    max-width: 775px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+
+    @media(--landscape) {
+      font-size: 20px;
+    }
+  }
+
+  .item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    backface-visibility: hidden; // fix border-radius not applying to image on hover animation
+    transform: translate3d(0, 0, 0); // fix border-radius not applying to image on hover animation
+
+    &:hover,
+    &:focus {
+      .ui.button.primary {
+        background-color: #000;
+        border-color: #000;
+        color: #fff;
+      }
+    }
+  }
+
+  .content {
+    position: absolute;
+    z-index: 2;
+
+    height: 100%;
+    width: 100%;
+
+    left: 0;
+    top: 0;
+
+    background-color: rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    padding: 30px;
+
+    color: #FFF;
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .description {
+      margin-top: 10px;
+    }
+
+    .cta {
+      margin-top: 30px;
+    }
+  }
+
+  .image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      font-family: "object-fit: cover";
+      transition: transform 0.3s ease;
+    }
+  }
+
+  @media(--desktop) {
+    .item:hover {
+      .image img {
+        transform: scale(1.03);
+      }
+    }
+  }
+
+  .articles {
+    margin: 40px 0;
+    position: relative;
+
+    .swiper-container {
+      overflow: visible;
+      margin: 0 -10px;
+    }
+
+    &.end {
+      &:after {
+        opacity: 0;
+      }
+
+      .next {
+        opacity: 0;
+      }
+    }
+
+    &.beginning {
+      &:before {
+        opacity: 0;
+      }
+
+      .prev {
+        opacity: 0;
+      }
+    }
+
+    .prev,
+    .next {
+      touch-action: manipulation; /* disables additional non-standard gestures such as double-tap to zoom */
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      background-color: $primary;
+      position: absolute;
+      top: 200px;
+      margin-top: -20px;
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      color: #FFF;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #333;
+      }
+
+      svg {
+        display: block;
+
+        path {
+          fill: currentColor;
+        }
+      }
+    }
+
+    .prev {
+      left: 20px;
+    }
+
+    .next {
+      right: 20px;
+    }
+
+    &:before,
+    &:after {
+      z-index: 5;
+      position: absolute;
+      top: 0;
+      content: "";
+      width: 5.5%;
+      height: 100%;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    &:before {
+      left: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    &:after {
+      right: 0;
+      background: linear-gradient(270deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    @media(max-width: 767px) {
+      &:before,
+      &:after,
+      .prev,
+      .next {
+        display: none;
+      }
+    }
+
+    @media(min-width: 1440px) {
+      &:before,
+      &:after {
+        width: 10%;
+      }
+    }
+
+    .swiper-slide {
+      padding: 0 10px;
+      width: 90%;
+
+      @media(min-width: 768px) {
+        width: 45%;
+      }
+
+      @media(min-width: 1024px) {
+        width: 30%;
+      }
+
+      @media(min-width: 1200px) {
+        width: 25%;
+      }
+    }
+
+    .item {
+      display: block;
+      margin-bottom: 30px;
+      height: 400px;
+    }
+  }
+}

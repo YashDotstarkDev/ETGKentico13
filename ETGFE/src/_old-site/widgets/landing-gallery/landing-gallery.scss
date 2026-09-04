@@ -1,0 +1,78 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.landing-gallery {
+
+  .gallery-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .item {
+      display: block;
+      width: 33.333%;
+
+      .inner {
+        @util aspect-ratio(16:9);
+        position: relative;
+      }
+
+      img {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        font-family: "object-fit: cover";
+      }
+    }
+  }
+}
+
+.gallery-modal {
+  background-color: transparent !important;
+
+  &:hover {
+    .slick-arrow {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .caption {
+    color: #FFF;
+    margin-top: 10px;
+  }
+
+  .slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $primary;
+    border: 0 !important;
+    font-size: 20px;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+
+    @media(--portrait) {
+      font-size: 30px;
+    }
+
+    @media(--desktop) {
+      font-size: 50px;
+    }
+
+    &.next {
+      right: 10px;
+    }
+
+    &.prev {
+      left: 10px;
+    }
+  }
+}

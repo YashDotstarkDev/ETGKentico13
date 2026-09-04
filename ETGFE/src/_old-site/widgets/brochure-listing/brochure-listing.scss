@@ -1,0 +1,223 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.brochure-listing {
+
+  .ui.button.small {
+    padding: 4px 30px;
+  }
+
+  .top {
+    background-color: #EDEDED;
+    padding: 40px 0;
+  }
+
+  h1 {
+    font-size: 26px;
+
+    @media(--desktop) {
+      font-size: 30px;
+    }
+  }
+
+  .email-brochure {
+    text-align: center;
+    position: relative;
+    background-color: #fff;
+    border-radius: 1000px;
+    height: 50px;
+    width: 280px;
+    margin-top: 20px;
+
+    .generic-form {
+      height: 100%;
+    }
+
+    .submit {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      background-color: $primary;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 5px;
+      color: #FFF;
+      display: block;
+      border: none;
+      cursor: pointer;
+    }
+
+    .icon.mail {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 20px;
+    }
+
+    .label {
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: 12px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 100%;
+    }
+
+    .icon {
+
+    }
+  }
+
+  .order-brochure {
+    background-color: #fff;
+    padding: 30px;
+    text-align: center;
+    border-radius: 5px;
+
+    h4 {
+      font-family: $lato;
+    }
+
+    .button {
+      background-color: transparent;
+      color: #000;
+      border: 2px solid #E4E4E4;
+      padding: 5px 30px;
+      width: auto;
+    }
+  }
+
+  .bottom {
+    background-color: #fff;
+  }
+
+  .brochure-list {
+
+
+    @media(--portrait) {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      margin: 0 -10px;
+      flex-wrap: wrap;
+    }
+
+    .item {
+      display: flex;
+      flex-direction: row;
+      margin-top: 20px;
+
+      @media(--portrait) {
+        width: 50%;
+        padding: 0 10px;
+      }
+
+      .inner {
+        border-bottom: 1px solid #E4E4E4;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+      }
+
+      &.added {
+        .content .button {
+          &.toggle-add {
+            background-color: $primary !important;
+            color: #FFF !important;
+
+            @media(--desktop) {
+              &:hover {
+                background-color: #000 !important;
+                border: 2px solid #000 !important;
+              }
+            }
+
+            .remove {
+              display: inline-block;
+            }
+
+            .add {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .image {
+        flex-shrink: 0;
+        position: relative;
+        width: 125px;
+        align-self: flex-end;
+
+        @media(--portrait) {
+          width: 130px;
+        }
+
+        @media(--landscape) {
+          width: 125px;
+        }
+
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      .content {
+        padding: 20px;
+
+        @media(--portrait) {
+          padding: 23px 20px;
+        }
+
+        @media(--landscape) {
+          padding: 30px 20px;
+        }
+
+        .title {
+          font-size: 17px;
+          line-height: 1.2;
+          font-family: $railway;
+          text-transform: uppercase;
+          max-width: 300px;
+
+          @media(--portrait) {
+            font-size: 18px;
+          }
+
+          @media(--landscape) {
+            font-size: 23px;
+            line-height: 1;
+
+          }
+        }
+
+        .button {
+          margin-top: 10px;
+
+          &.toggle-add {
+            position: relative;
+            padding-left: 40px;
+            width: 180px;
+
+            .icon {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              left: 10px;
+            }
+
+            .remove {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.articles-section {
+
+  .copy {
+    max-width: 775px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+
+    @media(--landscape) {
+      font-size: 20px;
+    }
+  }
+
+  .view-all-cta {
+    margin-top: 40px;
+  }
+
+  .location {
+    display: block;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .title {
+    margin-top: 10px;
+    color: $primary;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .image {
+    position: relative;
+    @util aspect-ratio(16:9);
+
+    img {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      font-family: "object-fit: cover";
+    }
+  }
+
+  .articles {
+    margin-top: 30px;
+
+    @media(--portrait) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 30px -10px -30px;
+    }
+
+    @media(--landscape) {
+      margin-top: 60px;
+      margin-bottom: -40px;
+    }
+
+    .item {
+      display: block;
+      margin-bottom: 30px;
+
+      @media(--portrait) {
+        padding: 0 10px;
+        width: 50%;
+      }
+
+      @media(--landscape) {
+        width: 25%;
+        margin-bottom: 40px;
+      }
+
+      img {
+        transition: transform 0.3s ease;
+      }
+
+      @media(--desktop) {
+        &:hover {
+          span {
+            text-decoration: underline;
+          }
+
+          img {
+            transform: scale(1.03);
+          }
+        }
+      }
+    }
+  }
+}

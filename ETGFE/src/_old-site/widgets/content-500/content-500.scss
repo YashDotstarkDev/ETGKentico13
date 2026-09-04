@@ -1,0 +1,29 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.content-500 {
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .sub {
+    opacity: 0.5;
+    font-size: 11px;
+    margin-top: 20px;
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  .triangle {
+    color: $primary;
+    font-size: 30px;
+    font-weight: bold;
+
+    @media(--desktop) {
+      font-size: 50px;
+    }
+  }
+}

@@ -1,0 +1,106 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@model  ETG.Web.Tour.Models.TourPageViewModel
+
+@{
+    var itineraryList = Model.Itineraries.OrderBy(x => x.NodeOrder).ToList();
+    var tourInfo = Model.TourInfo.TourSummaryInfo;
+}
+
+@if (itineraryList.IsNullOrEmpty())
+{
+    return;
+}
+
+<div class="scroll-section" id="section_itinerary">
+    <div class="widget package-itinerary" data-widget="package-itinerary">
+        <div class="top">
+            @if (ViewBag.IsPrint == null)
+            {
+                <h2>Itinerary</h2>
+                <div class="expand">
+                    <a href="/pdf/@tourInfo.TourCode" class="button ui primary transparent" target="_blank">Download Itinerary</a>
+                    <a href="#" class="expander button ui primary transparent down">Expand All</a>
+                </div>
+            }
+            else
+            {
+                <h2>Itinerary</h2>
+            }
+        </div>
+        
+        <div class="ui styled fluid accordion">
+            @{
+                var index = 0;
+            }
+
+            @foreach (var itinerary in itineraryList)
+            {
+                <div class="title@(ViewBag.IsPrint == null ? "" : " active")">
+                    <h3 class="heading">
+                        <span class="day">@Html.Raw(itinerary.DayCaptionFormatted)</span>
+                        <span class="text">@Html.Raw(itinerary.TitleFormatted)</span>
+                    </h3>
+                    <i class="dropdown icon"></i>
+                </div>
+
+                <div class="content@(ViewBag.IsPrint == null ? "" : " active")">
+                    <div class="inner-content">
+                        @Html.Raw(itinerary.Details)
+
+                        @if (!itinerary.InclusionDisplay.IsNullOrEmpty())
+                        {
+                            <div class="inclusions">
+                                <div class="item">
+                                    <span class="icon fal fa-utensils"></span>
+                                    @itinerary.InclusionDisplay
+                                </div>
+                            </div>
+                        }
+
+                        @if (!itinerary.FreedomOfChoices.IsNullOrEmpty())
+                        {
+                            <p>
+                                <br/><strong>Freedom of Choice Options</strong>
+                            </p>
+
+                            for (var i = 0; i < itinerary.FreedomOfChoices.Count; i++)
+                            {
+                                var foc = itinerary.FreedomOfChoices[i];
+                                if (i > 0)
+                                {
+                                    <p>
+                                        <b>OR</b>
+                                    </p>
+                                }
+                                <ul>
+                                    <li>
+                                        <strong>@Html.Raw(foc.FreedomOfChoiceOptionName): </strong>@Html.Raw(foc.FreedomOfChoiceDescription)
+                                    </li>
+                                </ul>
+                            }
+                        }
+                        
+                        @if (!itinerary.Image.IsNullOrEmpty())
+                        {
+                            <div class="image">
+                                @Html.Partial("Partial/Common/_Image", new Tuple<string, string, bool>(itinerary.Image.Imgixify(), itinerary.Title, ViewBag.IsPrint == null))
+                                <div class="grad"></div>
+                                @if (!itinerary.ImageCaption.IsNullOrEmpty())
+                                {
+                                    <div class="caption">
+                                        @if (ViewBag.IsPrint == null)
+                                        {
+                                            <span class="icon icon-pin"></span>
+                                        }
+                                        @itinerary.ImageCaption
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

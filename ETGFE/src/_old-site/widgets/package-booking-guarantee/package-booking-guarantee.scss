@@ -1,0 +1,57 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-booking-guarantee {
+
+  .image {
+    width: 60px;
+    flex-shrink: 0;
+    margin-right: 10px;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .tick-list {
+    margin-top: 10px;
+    font-weight: bold;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      box: horizontal top left;
+      margin-top: 5px;
+
+      svg {
+        flex-shrink: 0;
+        margin-right: 7px;
+        margin-top: 6px;
+      }
+    }
+  }
+
+  .link {
+    margin-top: 10px;
+
+    a {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      svg {
+        flex-shrink: 0;
+        margin-left: 4px;
+      }
+    }
+  }
+}

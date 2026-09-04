@@ -1,0 +1,36 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@model ETG.Web.Tour.Models.DiscountAndOfferViewModel
+
+@if (Model == null)
+{
+    return;
+}
+
+@if (Model.ExpiryDate > DateTime.UtcNow.Date)
+{
+    <div class="widget discounts-offers" data-widget="discounts-offers">
+        <div class="title">@Html.Raw(Model.OfferText)</div>
+        <div class="counter-container">
+            <div class="timer js-discounts-offers-timer" data-end="@Model.ExpiryDateText">
+                <div class="timer-unit">
+                        <span data-timer-unit="days"></span>
+                        <div class="label">Days</div>
+                </div>
+                <div class="timer-unit">
+                    <span data-timer-unit="hours"></span>
+                    <div class="label">Hours</div>
+                </div>
+                <div class="timer-unit">
+                    <span data-timer-unit="minutes"></span>
+                    <div class="label">Mins</div>
+                </div>
+                <div class="timer-unit">
+                    <span data-timer-unit="seconds"></span>
+                    <div class="label">Secs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,23 @@
+@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@section HeadMeta {
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/primary-landing.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@Html.Kentico().EditableArea("Body")

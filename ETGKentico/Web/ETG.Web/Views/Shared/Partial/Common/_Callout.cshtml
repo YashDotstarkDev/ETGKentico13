@@ -1,0 +1,36 @@
+﻿@using Castle.Core.Internal
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Components.Web.Mvc.FormComponents
+@using ETG.Web.Models.Widgets.ThreeColumnCallouts
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+
+@model List<ETG.Data.TravelType.Models.TravelTypeDetailSummaryModel>
+<div class="sections">
+    @foreach (var detail in Model)
+    {
+        <div class="section">
+            <div class="image">
+                <div class="sizer">
+                    <img data-src="@detail.HeroImage.Imgixify(640, 400)" class="lazyload" data-sizes="auto"/>
+                </div>
+            </div>
+            @if (!detail.Heading.IsNullOrEmpty())
+            {
+                <div class="copy">
+                    <h3>@detail.Heading</h3>
+                    <p>@detail.Summary</p>
+                    @if (!detail.Path.IsNullOrEmpty())
+                    {
+                        <div class="space"></div>
+                        <div class="cta">
+                            <a href="@detail.Path" class="ui primary outline button">@detail.Heading</a>
+                        </div>
+                    }
+                </div>
+            }
+
+
+        </div>
+    }
+</div>

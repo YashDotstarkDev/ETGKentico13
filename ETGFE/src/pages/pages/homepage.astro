@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/layout-main.astro";
+import HomepageHero from "../../components/HomepageHero.astro";
+import ExperienceBar from "../../components/ExperienceBar.astro";
+import TourTilesCollection from "../../components/TourTilesCollection.astro";
+import NewCovered from "../../components/NewCovered.astro";
+import ExperienceCta from "../../components/ExperienceCta.astro";
+import CustomerReviews from "../../components/CustomerReviews.astro";
+import PackageAccordion from "../../components/PackageAccordion.astro";
+import BlogCarousel from "../../components/BlogCarousel.astro";
+import FeaturedCarousel from "../../components/FeaturedCarousel.astro";
+import NewFeaturedPackages from "../../components/NewFeaturedPackages.astro";
+import NonPackageStickyFooter from "../../components/NonPackageStickyFooter.astro";
+import ExperienceMatters from "../../components/ExperienceMatters.astro";
+import SubscribeToWinModal from "../../components/legacy/SubscribeToWinModal.astro";
+---
+
+<Layout>
+    <HomepageHero />
+    <ExperienceMatters />
+    <div class="spacer"></div>
+    <FeaturedCarousel />
+    <div class="spacer"></div>
+    <ExperienceBar />
+    <div class="spacer"></div>
+    <TourTilesCollection />
+    <div class="spacer"></div>
+    <NewCovered />
+    <div class="spacer"></div>
+    <ExperienceCta />
+    <div class="spacer"></div>
+    <NewFeaturedPackages />
+    <div class="spacer"></div>
+    <CustomerReviews />
+    <div class="spacer"></div>
+    <PackageAccordion />
+    <div class="spacer"></div>
+    <BlogCarousel />
+    <NonPackageStickyFooter />
+    <SubscribeToWinModal />
+</Layout>

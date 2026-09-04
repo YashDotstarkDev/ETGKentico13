@@ -1,0 +1,102 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.subscription-bar {
+  padding: 40px 0;
+  background-color: $primary;
+  color: #FFF;
+
+  html.pdf-generation-template & {
+    display: none;
+  }
+
+  p.lead {
+
+  }
+
+  .field {
+    margin-bottom: 0 !important;
+    margin-right: 20px !important;
+
+    &:first-child {
+      max-width: 375px;
+      width: 100%;
+      flex: 0 0 100%;
+    }
+  }
+
+  label {
+    font-size: 14px !important;
+    color: #FFF !important;
+    white-space: nowrap;
+  }
+
+  .inner {
+    max-width: 930px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    .field {
+      margin-top: 10px !important;
+
+      @media(--portrait) {
+        margin-top: 0 !important;
+      }
+    }
+
+    .submit {
+      margin-top: 20px;
+      width: 100%;
+
+      @media(--portrait) {
+        margin-top: 0;
+        width: auto;
+      }
+    }
+
+    .label {
+      font-size: 18px;
+      line-height: 1.2;
+      flex-shrink: 0;
+      margin-bottom: 20px;
+
+      @media(--portrait) {
+        width: 200px;
+        margin-bottom: 0;
+      }
+    }
+
+    .generic-form {
+      position: relative;
+
+      @media(--portrait) {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+        margin-left: 10px;
+      }
+    }
+
+    .full {
+      width: 100%;
+    }
+  }
+
+  .ui.form .field .prompt.label {
+
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+
+    @media(--portrait) {
+      margin-top: 5px;
+      margin-bottom: 0;
+      position: absolute;
+      border: none !important;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-optional-extras {
+  margin-top: 40px;
+
+  @media(--portrait) {
+    margin-top: 60px;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    @media(--portrait) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media(--landscape) {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .note {
+    max-width: 780px;
+    margin-top: 20px;
+  }
+
+  .disclaimer {
+    text-align: center;
+    padding: 40px 0 20px;
+    opacity: 0.5;
+    font-size: 12px;
+  }
+}

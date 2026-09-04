@@ -1,0 +1,18 @@
+import(/* webpackMode: "eager" */ './iconigraphical-content.scss');
+
+function IconigraphicalContent (el) {
+  const self = this;
+  self.el = $(el);
+
+  self.init = function () {
+    if(process.env.NODE_ENV === 'development') {
+      console.log('IconigraphicalContent init', self);
+    }
+    self.el.css('opacity', 1);
+  }
+}
+
+$('.widget.iconigraphical-content').each(function(i, el){
+  $(el).data('widget', new IconigraphicalContent(el));
+  $(el).data('widget').init();
+});

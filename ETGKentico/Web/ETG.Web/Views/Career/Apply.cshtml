@@ -1,0 +1,87 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@model ETG.Web.Career.Models.CareerApplyPageViewModel
+@if (Model == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page.Page)
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/contact-us.js")
+    <script src="https://www.google.com/recaptcha/api.js?render=@ViewBag.RecaptchaSiteKey"></script>
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+<div class="top">
+    <div class="wrapper">
+        <h1>Apply @(Model.Role != null && Model.Role.BasicInfo != null ? $"for {Model.Role.BasicInfo.Title}" : "") </h1>
+    </div>
+</div>
+
+<div class="wrapper wp">
+    <div class="article-layout">
+        <div class="main">
+            @Html.Raw(Model.Page.Content)
+            <div class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit">
+                @if (Model.Form != null && !Model.Form.ErrorMessage.IsNullOrEmpty())
+                {
+                    <div class="field">
+                        <div class="ui basic red pointing prompt label">
+                            @Html.Raw(Model.Form.ErrorMessage)
+                        </div>
+                    </div>
+                }
+                @using (Html.BeginForm("Submit", "Career", FormMethod.Post, new
+                {
+                    id = "applyForm",
+                    enctype = "multipart/form-data"
+                }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.EditorFor(m => m.Form)
+                    <input type="hidden" id="g_recaptcha_response" name="g_recaptcha_response"/>
+                    <div class="response-container"></div>
+
+                    <div class="submit-row">
+                        <input id="applybutton" type="submit" class="ui button submit primary" value="Submit"/>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="side">
+
+        </div>
+
+    </div>
+</div>
+<script>
+document.getElementById("applybutton").addEventListener("click", function(event){
+  event.preventDefault()
+   if (document.getElementsByClassName('recaptcha').length > 0)
+          {
+              grecaptcha.ready(function(){
+                  grecaptcha
+                            .execute(document.getElementsByClassName('recaptcha')[0].getAttribute('data-site-key'), {
+                              action: document.getElementsByClassName('recaptcha')[0].getAttribute('data-action')
+                            }) // Execute the recaptcha
+                            .then(function(token){
+                              document.getElementById('g_recaptcha_response').value = token;
+                              document.getElementById('applyForm').submit();
+                            })
+              })
+              
+          }
+   
+})
+</script>

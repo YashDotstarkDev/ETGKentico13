@@ -1,0 +1,50 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@model ETG.Web.Tour.Models.TourSummaryInfoViewModel
+
+@if (Model == null)
+{
+    return;
+}
+    <div class="favourite">
+        <div class="favourite-label">One of the team's favourites</div>
+        <a href="@Model.Path" class="panel">
+            <div class="col">
+                <img class="lazyload" data-src="@Model.HeroImage.ImagePath.Imgixify(490,270, true)" alt="@Model.Name">
+            </div>
+            <div class="col">
+                <div class="location">@Model.DepartureCity</div>
+                <div class="title">@Model.Name</div>
+                <div class="description">
+                    <p>@Model.Summary</p>
+                </div>
+                <div class="details">
+                    <div class="line">
+                        @(Model.NoOfNights + 1) days
+                        <span class="grey">|</span>
+                        @if (!Model.ExperienceIcons.IsNullOrEmpty())
+                        {
+                            foreach (var icon in Model.ExperienceIcons)
+                            {
+                                <span class="icon @icon.Value"></span>
+                            }
+                        }
+                        @if (!Model.TourTypeIcons.IsNullOrEmpty())
+                        {
+                            foreach (var icon in Model.TourTypeIcons)
+                            {
+                                <span class="icon @icon.Value"></span>
+                            }
+                        }
+                    </div>
+                    @if (Model.FromPrice != null && Model.FromPrice.LowestPrice > 0)
+                    {
+                        <div class="line">
+                            <span class="grey">From</span> @Model.FromPrice.GetDisplayPriceForCurrentCurrency() <span class="grey">@Model.PriceTypeLabel</span>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </a>
+    </div>

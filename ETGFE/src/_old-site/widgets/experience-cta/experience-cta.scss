@@ -1,0 +1,177 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.experience-cta {
+  position: relative;
+  padding: 0 20px;
+
+  @media(min-width: 768px) {
+    padding: 0 40px;
+  }
+
+  .inner {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    @media(--portrait) {
+      min-height: 470px;
+    }
+
+    @media(--landscape) {
+      min-height: 600px;
+    }
+  }
+
+  .bg {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    @media(--portrait) {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+      font-family: "object-fit: cover";
+    }
+  }
+
+  .overlay {
+    color: #FFF;
+    background-color: #000;
+    position: relative;
+    padding: 20px 20px 30px;
+
+    @media(--portrait) {
+      max-width: 510px;
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 20px 100px 20px 20px;
+
+      height: 100%;
+    }
+
+    @media(--landscape) {
+      max-width: 760px;
+      padding: 70px;
+      padding-right: 200px;
+
+    }
+
+
+    img {
+      display: block;
+      width: 100%;
+
+      &.desktop {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        height: 100%;
+        display: none;
+
+        @media(--portrait) {
+          display: block;
+        }
+      }
+
+      &.mobile {
+        position: absolute;
+        top: -22px;
+        left: 0;
+        right: 0;
+
+        @media(--portrait) {
+          display: none;
+        }
+      }
+    }
+
+    h2, p, a {
+      position: relative;
+    }
+
+    .button {
+      margin-top: 10px;
+
+      &:hover {
+        background-color: #FFF;
+        border-color: #FFF;
+        color: #333;
+      }
+    }
+
+    p {
+      line-height: 2;
+    }
+
+    h2 {
+      color: #FFF;
+      text-align: left;
+      font-size: 47px;
+      line-height: 1;
+      margin-top: 10px;
+
+      @media(--landscape) {
+        font-size: 60px;
+      }
+    }
+  }
+
+  .grad {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0.7;
+    z-index: 1;
+    height: 110px;
+
+    @media(--portrait) {
+      display: none;
+    }
+  }
+
+  .author {
+    text-transform: uppercase;
+    color: #ffffff;
+    font-size: 12px;
+    position: absolute;
+    z-index: 2;
+    top: 20px;
+    left: 20px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+
+    @media(--portrait) {
+      top: auto;
+      left: auto;
+      bottom: 30px;
+      right: 30px;
+    }
+
+    .icon {
+      margin-right: 10px;
+      font-size: 20px;
+    }
+  }
+
+  .tint {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    height: 126px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0.8;
+  }
+}

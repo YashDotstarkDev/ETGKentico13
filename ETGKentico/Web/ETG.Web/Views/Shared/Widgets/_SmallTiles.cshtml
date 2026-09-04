@@ -1,0 +1,36 @@
+﻿@using Castle.Core.Internal
+@using ETG.Web.Models.Widgets.FeaturedContentPanel
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+@model ETG.Web.Models.Widgets.SmallTilesWidget.SmallTilesWidgetViewModel
+@if (Model.Ctas.IsNullOrEmpty())
+{
+    return;
+}
+
+@if (!String.IsNullOrWhiteSpace(Model.SectionId))
+{
+    <div class="relative">
+        <div class="anchor-section top-[-200px] absolute" id="@Model.SectionId"></div>
+    </div>
+}
+<div class="region-tiles" id="@Model.SectionId">
+    <div class="wrapper">
+        <h2 class="text-black text-center uppercase">@Html.Raw(Model.Heading)</h2>
+        <div class="flex flex-wrap -mx-3 justify-center mt-8">
+            @foreach (var tile in Model.Ctas)
+            {
+                <div class="tile p-3 w-[175px]">
+                    <a href="@tile.Url" class="block hover:no-underline relative text-body group">
+                        <span class="block image-container w-full aspect-video relative rounded-md overflow-hidden isolate">
+                            <img data-lowsrc="@tile.ImagePath.ImgixifyLowRes()" data-src="@tile.ImagePath.Imgixify()" data-sizes="auto" class="lazyload absolute z-0 inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-300" alt="Hilton Moorea Lagoon Resort & Spa">
+                        </span>
+                        <span class="block mt-2">
+                            <span class="text-lg text-primary group-hover:text-body transition-colors duration-300 font-normal leading-tight">@Html.Raw(tile.Caption)</span>
+                        </span>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

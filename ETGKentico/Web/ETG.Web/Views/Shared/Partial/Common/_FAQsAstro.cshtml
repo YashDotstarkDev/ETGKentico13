@@ -1,0 +1,30 @@
+﻿@using Castle.Core.Internal
+@model List<ETG.Web.Models.Widgets.FAQWidget.FAQViewModel>
+
+@if (Model.IsNullOrEmpty())
+{
+    return;
+}
+
+<astro-island uid="1h6eF5" component-url="/scripts/FAQs.js" component-export="default" renderer-url="/scripts/client.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;FAQs&quot;,&quot;value&quot;:&quot;vue&quot;}" await-children>
+    <template data-astro-template>
+        <div class="border-b border-black/10 mt-8">
+            @foreach (var faq in Model)
+            {
+                <div class="item border-t border-black/10 transition-all duration-500 @(ViewBag.IsPrint == null ? "" : " active")">
+                    <div class="question hover:bg-gray-100 transition-all duration-300 pl-6 py-4 flex items-center justify-between cursor-pointer gap-8 text-lg md:text-xl">
+                        @Html.Raw(faq.Question)
+                        <div class="icon text-primary w-6 h-6 shrink-0 flex items-center justify-center mr-4 transition-transform duration-500 text-xl [.active_&]:rotate-180"> <i class="fas fa-chevron-down"></i> </div>
+                    </div>
+                    <div class="answer pl-6 prose font-normal text-body text-sm max-w-none pr-12 grid grid-rows-[0fr] [.active_&]:grid-rows-[1fr] transition-all duration-300">
+                        <div class="overflow-hidden isolate">
+                            <div class="pb-12 pt-4">
+                                @Html.Raw(faq.Answer.Replace("&nbsp;", " "))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </template>
+</astro-island>

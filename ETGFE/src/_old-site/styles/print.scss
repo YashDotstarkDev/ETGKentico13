@@ -1,0 +1,65 @@
+@import "./includes/settings.scss";
+
+@media print {
+
+  /* Show stuff */
+  .print-logo {
+    display: block;
+  }
+
+  /* Hide stuff */
+  header,
+  .new-photo-modal,
+  .share-modal,
+  .departures-pricing,
+  .package-brochure,
+  .header-spacer,
+  .counter-container,
+  .package-sticky-footer {
+    display: none !important;
+  }
+
+  /* Typography stuff */
+  h1 {
+    font-size: $headings-h1-font-size-small;
+  }
+
+  h2 {
+    font-size: $headings-h2-font-size-small;
+  }
+
+  h3,
+  .accordion-content h4 {
+    font-size: $headings-h3-font-size-small;
+  }
+
+  h4,
+  .accordion-content h5 {
+    font-size: $headings-h4-font-size-small;
+  }
+
+  h5 {
+    font-size: $headings-h5-font-size-small;
+  }
+
+  /* Accordions */
+  .ui.accordion,
+  .ui.accordion .accordion {
+
+    /* 'accordion-panel' wraps .title and .content */
+    .accordion-panel {
+      break-inside: avoid-page; /* Do not allow to break over printed pages*/
+    }
+
+    .title .dropdown.icon {
+      display: none !important; /* Hide accordion toggle icon */
+    }
+
+    .content,
+    .active.content {
+      display: block !important; /* Reveal all accordion content */
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

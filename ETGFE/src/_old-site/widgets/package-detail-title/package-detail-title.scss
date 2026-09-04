@@ -1,0 +1,28 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-detail-title {
+  margin-bottom: 35px;
+  break-inside: avoid; /* Do not allow to break over printed pages*/
+
+  .destination {
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+
+  .package-name {
+    margin: 0;
+    color: #CA568E;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+
+  .tour-code {
+    font-size: 12px;
+    font-weight: normal;
+    font-family: $lato;
+    white-space: nowrap;
+    color: #333;
+  }
+}

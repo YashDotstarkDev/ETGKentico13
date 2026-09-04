@@ -1,0 +1,114 @@
+
+.new-book-now .book-now-package-details {
+
+  .top {
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ededed;
+    background-color: #ededed;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    .package-duration {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      padding-right: 15px;
+      white-space: nowrap;
+    }
+
+    .package-inclusion-icons {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+
+      svg {
+        margin: 7px 0 7px 15px;
+
+        &:first-of-type {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .middle {
+    padding: 20px;
+    color: #fff;
+    background-color: #ca568e;
+  }
+
+  .package-price {
+    position: relative;
+
+    .price-from {
+      font-size: 14px;
+      line-height: 1.1;
+      letter-spacing: 0.5px;
+
+      .strike {
+        opacity: 0.5;
+        text-decoration: line-through;
+      }
+    }
+
+    .price-actual {
+      display: inline-flex;
+      align-items: flex-start;
+      font-size: 40px;
+      line-height: 1;
+      font-weight: bold;
+
+      .price-currency {
+        font-size: 12px;
+        font-weight: 900;
+        margin-top: 4px;
+      }
+    }
+
+    .prices {
+      padding-right: 82px;
+    }
+
+    .price-saving {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: auto;
+      color: $primary;
+      background-color: #fff;
+      border-radius: 99px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding: 0 10px;
+    }
+
+    .price-notes {
+      margin-top: 5px;
+      font-size: 12px;
+      line-height: 1.4;
+      letter-spacing: 0.5px;
+    }
+
+    .buttons {
+      .button {
+        margin-top: 20px;
+        width: 100%;
+      }
+    }
+  }
+
+  .bottom {
+    padding: 15px 20px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ededed;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}

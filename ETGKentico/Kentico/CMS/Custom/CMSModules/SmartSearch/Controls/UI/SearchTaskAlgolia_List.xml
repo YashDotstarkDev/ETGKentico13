@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grid>
+  <actions parameters="SearchTaskAlgoliaID">
+    <action name="#delete" caption="$general.delete$" fonticonclass="icon-bin" fonticonstyle="critical" confirmation="$general.confirmdelete$" />
+  </actions>
+  <columns>
+    <column source="SearchTaskAlgoliaType" externalsourcename="tasktype" caption="$smartsearch.task.tasktype$" wrap="false" />
+    <column source="SearchTaskAlgoliaObjectType" externalsourcename="#objecttypename" caption="$smartsearch.task.taskobjecttype$" wrap="false" />
+    <column source="SearchTaskAlgoliaAdditionalData" externalsourcename="SearchTaskAzureAdditionalData" caption="$smartsearch.task.additionaldata$" wrap="false" cssclass="main-column-100" />
+    <column source="SearchTaskAlgoliaCreated" caption="$smartsearch.task.taskcreated$" wrap="false" />
+    <column source="##ALL##" externalsourcename="result" caption="$smartsearch.task.taskresult$" wrap="false">
+      <tooltip source="SearchTaskAlgoliaErrorMessage" />
+    </column>
+  </columns>
+  <objecttype name="ETG.SearchTaskAlgolia" />
+  <options>
+    <key name="DisplayFilter" value="false" />
+    <key name="ShowSelection" value="false" />
+    <key name="SelectionColumn" value="SearchTaskAzureID" />
+  </options>
+</grid>

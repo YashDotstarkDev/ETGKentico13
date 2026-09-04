@@ -1,0 +1,59 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@model ETG.Web.Models.Pages.PageNotFoundPageViewModel
+@if (Model == null || Model == null)
+{
+    return;
+}
+
+@section HeadMeta {
+}
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/404.js")
+}
+<div class="widget page-404" data-widget="page-404">
+    <div class="wrapper contained">
+        <h2>Looks like you've lost your way</h2>
+        <p class="lead">Let us help get you back on track. Search a destination, experience or tour, or browse the content below for some inspiration</p>
+        @Html.Partial("Partial/Common/_SiteSearch", false)
+    </div>
+</div>
+<div class="wrapper page-404-widgets">
+
+    @if (Model.Tours != null || !Model.Tours.Tours.IsNullOrEmpty())
+    {
+        @Html.Partial("Partial/Tour/_TourListing", (Model.Tours, $"Packages", string.Empty))
+    }
+
+    @if (!Model.Articles.IsNullOrEmpty())
+    {
+        <div class="widget blog-carousel" data-widget="blog-carousel">
+            <div class="wrapper">
+                <h2>Read what we've written</h2>
+                @Html.Partial("Partial/Article/_RelatedArticles", Model.Articles)
+            </div>
+        </div>
+        <div class="widget view-all-cta" data-widget="view-all-cta">
+            <a href="/articles" class="ui button primary transparent">View all</a>
+        </div>
+    }
+</div>
+@if (false && Model.Contact != null)
+{
+    <div class="widget cta-panel" data-widget="cta-panel">
+        <img class="bg lazyload" data-src="@Model.Contact.PreferPhoneBackgroundImage.Imgixify()" alt="">
+        <div class="tint"></div>
+        <div class="wrapper">
+            <div class="content">
+                <h2>Prefer speaking on the phone?</h2>
+                @Html.Raw(Model.Contact.PreferPhoneDescription)
+                <a href="/destination-experts" class="button ui transparent primary">Our destination experts</a>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,31 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model ETG.Web.DestinationExpertTeam.Models.DestinationExpertTeamSummaryViewModel
+
+@if (Model == null )
+{
+    return;
+}
+<div class="widget phone-cta-panel" data-widget="phone-cta-panel">
+    @Html.Partial("Partial/Common/_ImageBackground", new Tuple<string, string, bool>(Model.HeroImage.Imgixify(), "", ViewBag.IsPrint == null))
+    <div class="tint"></div>
+    <div class="wrapper">
+        <div class="content">
+            <div class="col">
+                <h2>Prefer speaking on the phone?</h2>
+                @Html.Raw(Model.Description)
+
+                @if (!Model.HideCTAButton && ViewBag.IsPrint == null)
+                {
+                    <a href="@Model.Url" class="button ui transparent primary">Our @(Model.Name.IsNullOrEmpty() ? "" : Model.Name.ToLower() + " ")destination experts</a>
+                }
+            </div>
+
+            <div class="col">
+                <div class="heading">Our friendly team are ready to help!</div>
+                <div class="hours">@Model.RHSText</div>
+                <a href="tel:@Model.Phone.Replace(" ", "")"><span class="icon fas fa-phone"></span>@Model.Phone</a>
+            </div>
+        </div>
+    </div>
+</div>

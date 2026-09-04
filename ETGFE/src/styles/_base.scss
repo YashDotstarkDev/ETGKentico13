@@ -1,0 +1,73 @@
+astro-island,
+astro-slot,
+astro-static-slot {
+  display: contents;
+}
+
+html, body {
+  background-color: #fff;
+  color: #444;
+}
+
+body {
+  @apply font-body font-normal text-body;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  @apply w-full max-w-[1240px] mx-auto px-5 md:px-10;
+
+  .wrapper {
+    @apply px-0;
+  }
+}
+
+.padded {
+  @apply w-full px-5 md:px-10;
+
+  .padded {
+    @apply px-0;
+  }
+}
+
+.wrapper-large {
+  @apply w-full max-w-[1500px] mx-auto px-5 md:px-10;
+}
+
+.wrapper-small {
+  @apply w-full max-w-[1000px] mx-auto px-5 md:px-10;
+}
+
+picture {
+  display: block;
+}
+
+.show-mobile-menu .mobile-menu {
+  transform: none !important;
+}
+
+.spacer {
+  height: 70px;
+}
+.spacer.medium {
+  height: 70px;
+}
+.spacer.small {
+  height: 50px;
+}
+.spacer.tiny {
+  height: 20px;
+}
+
+.gm-style .gm-style-iw-c {
+  border-radius: 20px !important;
+
+  button {
+    right: 4px !important;
+    top: 4px !important;
+  }
+}
+
+.grecaptcha-badge {
+  visibility: hidden;
+}

@@ -1,0 +1,115 @@
+{
+  "bookingSummary": {
+    "bookNowDisclaimer": "* Upon receiving your refundable deposit, our team will confirm your booking with our suppliers and contact you shortly to finalise all arrangements.",
+    "isOnSaleNow": false,
+    "onSaleFullPaymentRequired": false,
+    "tourHasPeaceOfMind": true,
+    "tourName": "Tropical Getaway at Le Vasa Resort",
+    "tourCode": "11767",
+    "departureDate": "2022-10-20T00:00:00",
+    "paymentInstalmentDate": "2022-10-15T00:00:00",
+    "paymentBalanceDueDate": "2022-10-15T00:00:00",
+    "changeOfMindThresholdDays": 5,
+    "departureDateDisplay": "Thursday , 20 Oct 2022",
+    "currency": "$",
+    "packages": {
+      "itemLabel": "Package(s)",
+      "itemSubLabel": null,
+      "itemDate": "0001-01-01T00:00:00",
+      "unitPrice": 1960.0,
+      "count": 4,
+      "hideBreakdown": false,
+      "totalPrice": 7840.0,
+      "itemType": null,
+      "itemTypeId": 0
+    },
+    "selectedTwinShareRoomsType": [
+      "Twin",
+      "Double"
+    ],
+    "singlePackages": {
+      "itemLabel": "Single Package(s)",
+      "itemSubLabel": null,
+      "itemDate": "0001-01-01T00:00:00",
+      "unitPrice": 3320.0,
+      "count": 1,
+      "hideBreakdown": false,
+      "totalPrice": 3320.0,
+      "itemType": null,
+      "itemTypeId": 0
+    },
+    "roomOptions": [
+      {
+        "itemLabel": "Sunset Oceanfront Villa",
+        "itemSubLabel": null,
+        "itemDate": "0001-01-01T00:00:00",
+        "unitPrice": 713.0,
+        "count": 4,
+        "hideBreakdown": false,
+        "totalPrice": 2852.0,
+        "itemType": null,
+        "itemTypeId": 1
+      }
+    ],
+    "extraOptions": null,
+    "additionalServices": null,
+    "preNightsDetails": {
+        "numberOfNights": 1,
+        "dateFrom": "2023-09-21T00:00:00",
+        "dateTo": "2023-09-22T00:00:00",
+        "dateRangeDisplay": "21 - 22 Sep 2023"
+    },
+    "postNightsDetails": {
+        "numberOfNights": 4,
+        "dateFrom": "2023-09-28T00:00:00",
+        "dateTo": "2023-10-02T00:00:00",
+        "dateRangeDisplay": "28 Sep - 2 Oct 2023"
+    },
+    "twinPreNightBasePrice": 100.0,
+    "twinPostNightBasePrice": 100.0,
+    "singlePreNightBasePrice": 120.0,
+    "singlePostNightBasePrice": 120.0,
+    "totalPersons": 5,
+    "packagesBreakdownTotalPrice": 10802.0,
+    "packageUnitPrice": 5401.0,
+    "singlePackagesBreakdownTotalPrice": 240.0,
+    "singlePackageUnitPrice": 100,
+    "roomOptionsTotalPrice": 2852.0,
+    "extraOptionsTotalPrice": 0.0,
+    "promotion": {
+      "promotionID": 32,
+      "promotionName": "Samoa On Sale - Save $300 Per Couple",
+      "promotionPercentDiscount": 0.0,
+      "promotionDollarDiscount": 150,
+      "validFrom": "2022-09-15T00:00:00",
+      "validTo": "2022-10-31T00:00:00",
+      "validFromTo": "15 Sep 2022 - 31 Oct 2022",
+      "bookByText": "Book By 31 Oct 2022",
+      "expiryDateText": "Mon, 31 Oct 2022 00:00:00 GMT+11:00"
+    },
+    "due": {
+      "dueCopy": "<p>Under our Peace of Mind Booking Plan, the deposit is refundable up to 7 days from payment.</p>\r\n",
+      "depositPrice": {
+        "itemLabel": null,
+        "itemSubLabel": null,
+        "itemDate": "0001-01-01T00:00:00",
+        "unitPrice": 100.0,
+        "count": 5,
+        "hideBreakdown": false,
+        "totalPrice": 500.0,
+        "itemType": null,
+        "itemTypeId": 0
+      },
+      "totalDeposit": 500.0
+    },
+    "priceBeforeDiscount": 14012.0,
+    "discount": 750.0,
+    "totalPrice": 13262.0,
+    "totalNetPrice": 11936.0,
+    "agentDefinedPrice": 0.0,
+    "agentSellPrice": 13262.0,
+    "agentPriceDifference": 0.0
+  },
+  "success": true,
+  "message": ""
+}

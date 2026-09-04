@@ -1,0 +1,34 @@
+﻿@model ETG.Web.Models.Forms.NewsletterSubscriptionViewModel
+
+
+@if (Model.CompetitionForm != null && Model.CompetitionForm.ShowCompetitionPopup)
+{
+    
+    @Html.Partial("Partial/Form/_CompetitionForm", Model)
+}
+else
+{
+
+    <div class="widget subscription-bar" data-widget="subscription-bar">
+        <div id="subscriptionPanel" class="wrapper">
+            <div class="inner">
+                <div id="newsletterForm">
+                    @using (Ajax.BeginForm("NewsletterSubmit", "MasterPage", new AjaxOptions {UpdateTargetId = "subscriptionPanel"}, new {@class = "ui form generic-form", data_validate_inline = "data-validate-inline", data_validate_on = "submit"}))
+                    {
+                        <div class="label">Get deals, travel articles, and holiday inspiration</div>
+                        <div class="field full">
+                            @Html.TextBoxFor(m => m.Email, new {type = "email", data_rules = "empty,email", data_prompts = "Please enter valid email", placeholder = "Email address"})
+                        </div>
+                        <div class="field">
+                            <div class="ui checkbox">
+                                @Html.CheckBoxFor(m => m.IsAgent)
+                                <label>Are you a travel agent?</label>
+                            </div>
+                        </div>
+                        <button id="buttonSubscribe" class="ui transparent  submit button" type="button">Subscribe</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

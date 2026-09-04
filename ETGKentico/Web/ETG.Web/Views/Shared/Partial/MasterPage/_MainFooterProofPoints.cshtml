@@ -1,0 +1,25 @@
+﻿@using Castle.Core.Internal
+@model ETG.Web.Models.Common.ProofPointComponentViewModel
+
+
+@if (Model != null && !Model.ProofPoints.IsNullOrEmpty())
+{
+    <div class="spacer"></div>
+    <div class="experience-ticker my-8">
+        <div class="padded">
+            <div class="flex flex-col min-[1800px]:flex-row min-[1800px]:items-center min-[1800px]:justify-center">
+                <h4 class="text-black uppercase text-center">When experience matters</h4>
+                <div class="divider h-4 w-px mx-4 hidden min-[1800px]:block bg-black/10"></div>
+                <div class="items flex flex-wrap gap-x-6 gap-y-2 mt-6 justify-center mx-auto max-w-3xl 2xl:max-w-none min-[1800px]:m-0">
+                    @foreach (var proof in Model.ProofPoints)
+                    {
+                        <div class="item">
+                            <div class="label"><span class="icon @proof.IconClass"></span> @proof.Label</div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

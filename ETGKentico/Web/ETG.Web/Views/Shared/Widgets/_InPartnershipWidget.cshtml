@@ -1,0 +1,46 @@
+﻿@using Castle.Core.Internal
+@using ETG.Web.Models.Widgets.InPartnership
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+@model ComponentViewModel<InPartnershipProperties>
+
+<div class="widget partnership-with-updated" data-widget="partnership-with-updated">
+    @if (!Model.Properties.Heading.IsNullOrEmpty())
+            {
+                <div class="heading">
+                    @Model.Properties.Heading
+                </div>
+            }
+        <div class="images">
+            @if (!Model.Properties.Logo1Images.IsNullOrEmpty())
+            {
+                var imageViewModel = MediaFileHelper.GetImageMediaFile(Model.Properties.Logo1Images[0].FileGuid);
+                if (imageViewModel != null)
+                {
+                    <div class="image">
+                        <img class="lazyload" data-src="@imageViewModel.ImagePath.Imgixify(width: 100, height: 0, cropFit: false)" alt="">
+                    </div>
+                }
+            }
+            @if (!Model.Properties.Logo2Images.IsNullOrEmpty())
+            {
+                var imageViewModel = MediaFileHelper.GetImageMediaFile(Model.Properties.Logo2Images[0].FileGuid);
+                if (imageViewModel != null)
+                {
+                    <div class="image">
+                        <img class="lazyload" data-src="@imageViewModel.ImagePath.Imgixify(width: 100, height: 0, cropFit: false)" alt="">
+                    </div>
+                }
+            }
+            @if (!Model.Properties.Logo3Images.IsNullOrEmpty())
+            {
+                var imageViewModel = MediaFileHelper.GetImageMediaFile(Model.Properties.Logo3Images[0].FileGuid);
+                if (imageViewModel != null)
+                {
+                    <div class="image">
+                        <img class="lazyload" data-src="@imageViewModel.ImagePath.Imgixify(width: 100, height: 0, cropFit: false)" alt="">
+                    </div>
+                }
+            }
+        </div>
+</div>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grid>
+    <actions>
+        <action name="edit" caption="$General.Edit$" fonticonclass="icon-edit" fonticonstyle="allow" />
+        <action name="#delete" caption="$General.Delete$" fonticonclass="icon-bin" fonticonstyle="critical" confirmation="$General.ConfirmDelete$" />
+    </actions>
+    <columns>
+    <column source="RoleDestinationName" caption="Role" wrap="false" localize="true">
+    </column>
+		<column source="RoleDestinationDestinations" caption="Destinations" wrap="false" localize="true">
+            <filter type="text" size="200" />
+    </column>
+    
+    </columns>
+  <options>
+        <key name="DisplayFilter" value="true" />
+    </options>
+</grid>

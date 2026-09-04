@@ -1,0 +1,6 @@
+{
+    "success": true,
+    "message": "Message after submit",
+    "redirecturi" : "/redirecturl"
+  }
+  

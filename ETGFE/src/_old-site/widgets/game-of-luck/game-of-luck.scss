@@ -1,0 +1,36 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.game-of-luck {
+  max-width: 500px;
+  position: relative;
+  padding: 20px;
+
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .field {
+    input {
+      margin-bottom: 5px !important;
+    }
+  }
+
+  .button-container {
+    text-align: center;
+  }
+
+  .label {
+    margin-bottom: 5px;
+  }
+
+  .disclaimer {
+    font-size: 12px;
+    opacity: 0.5;
+    text-align: center;
+    margin-top: 40px;
+    line-height: 1.3;
+  }
+}

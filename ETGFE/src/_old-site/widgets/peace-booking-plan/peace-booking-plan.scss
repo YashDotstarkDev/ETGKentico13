@@ -1,0 +1,245 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.peace-booking-plan {
+  margin: 40px 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  min-height: 120px;
+  break-inside: avoid; /* Do not allow to break over printed pages*/
+
+  .box {
+    position: relative;
+    display: flex;
+    padding: 50px 20px 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 8px;
+
+    html.pdf-generation-template & {
+      align-items: center;
+      margin-left: 70px;
+      padding-top: 20px;
+      padding-left: 70px;
+    }
+
+    @media(--portrait), print {
+      align-items: center;
+      margin-left: 70px;
+      padding-top: 20px;
+      padding-left: 70px;
+    }
+  }
+
+  .badge {
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 100px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    html.pdf-generation-template & {
+      left: -70px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 140px;
+    }
+
+    @media(--portrait), print {
+      left: -70px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 140px;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    column-gap: 30px;
+    margin-top: 20px;
+
+    @media(max-width: 515px) {
+      align-items: center;
+    }
+
+    html.pdf-generation-template & {
+      align-items: center;
+      flex-direction: row;
+      margin-top: 0;
+      margin-left: 20px;
+    }
+
+    @media(--portrait), print {
+      align-items: center;
+      flex-direction: row;
+      margin-top: 0;
+      margin-left: 20px;
+    }
+
+    .list {
+      margin: 0 0 30px 0;
+      padding: 0;
+      list-style: none;
+      flex-grow: 1;
+      display: grid;
+      row-gap: 10px;
+      column-gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+      html.pdf-generation-template & {
+        margin-bottom: 0;
+
+        li {
+          grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        }
+      }
+
+      @media(--portrait), print {
+        margin-bottom: 0;
+
+        li {
+          grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        }
+      }
+
+      li {
+        display: flex;
+        font-size: 14px;
+        line-height: 1.4;
+
+        /* Circle tick icon */
+        &::before {
+          content: "";
+          flex-shrink: 0;
+          display: inline-block;
+          margin-right: 7px;
+          width: 16px;
+          height: calc(14px * 1.4);
+          background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M8%200C3.5625%200%200%203.59375%200%208C0%2012.4375%203.5625%2016%208%2016C12.4062%2016%2016%2012.4375%2016%208C16%203.59375%2012.4062%200%208%200ZM11.5938%206.625L7.59375%2010.625C7.4375%2010.8125%207.21875%2010.875%207%2010.875C6.75%2010.875%206.53125%2010.8125%206.375%2010.625L4.375%208.625C4.03125%208.28125%204.03125%207.75%204.375%207.40625C4.71875%207.0625%205.25%207.0625%205.59375%207.40625L7%208.78125L10.375%205.40625C10.7188%205.0625%2011.25%205.0625%2011.5938%205.40625C11.9375%205.75%2011.9375%206.28125%2011.5938%206.625Z%22%20fill%3D%22%23929497%22%2F%3E%3C%2Fsvg%3E%0A");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+        }
+      }
+    }
+
+    .cta {
+      text-align: center;
+
+      html.pdf-generation-template & {
+        display: none;
+      }
+
+      .button.ui {
+        white-space: nowrap;
+      }
+
+      .button.ui svg {
+        transform: translateY(1px);
+        margin-left: 6px;
+      }
+    }
+  }
+}
+
+.article-layout .side .peace-booking-plan {
+  margin: 70px 0;
+  min-height: 120px;
+
+  .box {
+    position: relative;
+    display: flex;
+    padding: 50px 20px 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 8px;
+
+    @media (min-width: 1024px) {
+      margin-left: 0;
+    }
+  }
+
+  .badge {
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 100px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    column-gap: 30px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+
+    @media(max-width: 515px) {
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      margin-left: 0;
+    }
+
+    .list {
+      margin: 0 0 30px 0;
+      padding: 0;
+      list-style: none;
+      flex-grow: 1;
+      display: grid;
+      row-gap: 10px;
+      column-gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+      li {
+        display: flex;
+        font-size: 14px;
+        line-height: 1.4;
+
+        /* Circle tick icon */
+        &::before {
+          content: "";
+          flex-shrink: 0;
+          display: inline-block;
+          margin-right: 7px;
+          width: 16px;
+          height: calc(14px * 1.4);
+          background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M8%200C3.5625%200%200%203.59375%200%208C0%2012.4375%203.5625%2016%208%2016C12.4062%2016%2016%2012.4375%2016%208C16%203.59375%2012.4062%200%208%200ZM11.5938%206.625L7.59375%2010.625C7.4375%2010.8125%207.21875%2010.875%207%2010.875C6.75%2010.875%206.53125%2010.8125%206.375%2010.625L4.375%208.625C4.03125%208.28125%204.03125%207.75%204.375%207.40625C4.71875%207.0625%205.25%207.0625%205.59375%207.40625L7%208.78125L10.375%205.40625C10.7188%205.0625%2011.25%205.0625%2011.5938%205.40625C11.9375%205.75%2011.9375%206.28125%2011.5938%206.625Z%22%20fill%3D%22%23929497%22%2F%3E%3C%2Fsvg%3E%0A");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+        }
+      }
+    }
+
+    .cta {
+      text-align: center;
+      width: 100%;
+
+      .button.ui {
+        white-space: nowrap;
+        display: block;
+        width: 100%;
+      }
+
+      .button.ui svg {
+        transform: translateY(1px);
+        margin-left: 6px;
+      }
+    }
+  }
+}

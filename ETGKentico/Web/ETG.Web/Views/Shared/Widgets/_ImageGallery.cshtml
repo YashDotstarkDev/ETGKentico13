@@ -1,0 +1,45 @@
+﻿@using Castle.Core.Internal
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Web.Mvc
+@using ETG.Web.Models.Widgets.IconsContent
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+@model List<ETG.Web.Models.Common.ImageViewModel>
+
+@if (Model.IsNullOrEmpty())
+{
+    return;
+}
+<div class="widget landing-gallery" data-widget="landing-gallery">
+    <div class="wrapper">
+        <div class="gallery-modal ui modal">
+            <i class="close icon"><span class="fal fa-times"></span></i>
+
+            <div class="images">
+                @foreach (var image in Model)
+                {
+                    
+                    <div class="item">
+                        <img class="lazyload" data-src="@image.ImagePath.Imgixify()">
+                        <div class="caption">
+                            @Html.Raw(image.ImageCaption)
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="gallery-items">
+        @foreach (var image in Model)
+        {
+            <div class="item">
+                <div class="inner">
+                    <img class="lazyload" data-src="@image.ImagePath.Imgixify()">
+                
+                </div>
+            </div>
+        }     
+        </div>
+    </div>
+</div>
+

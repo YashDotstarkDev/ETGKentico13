@@ -1,0 +1,42 @@
+﻿@using Castle.Core.Internal
+@using Kentico.PageBuilder.Web.Mvc
+@using ETG.Web.Models.Widgets.TwoSideBySideImage
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+@model ComponentViewModel<TwoSideBySideImageProperties>
+<div class="widget side-by-side-images@(Model.Properties.HasSidePadding ? " wrapper contained" : "")" data-widget="side-by-side-images">
+    <div class="inner">
+        <div class="item">
+            <div class="image">
+                @if (!Model.Properties.Image1.IsNullOrEmpty())
+                {
+                    var imageViewModel = MediaFileHelper.GetImageMediaFile(Model.Properties.Image1[0].FileGuid);
+                    if (imageViewModel != null)
+                    {
+                        <img class="lazyload" data-src="@imageViewModel.ImagePath.Imgixify()" alt="@Model.Properties.Caption1">
+
+                    }
+                }
+            </div>
+            <div class="caption">
+                @Model.Properties.Caption1
+            </div>
+        </div>
+        <div class="item">
+            <div class="image">
+                @if (!Model.Properties.Image2.IsNullOrEmpty())
+                {
+                    var imageViewModel = MediaFileHelper.GetImageMediaFile(Model.Properties.Image2[0].FileGuid);
+                    if (imageViewModel != null)
+                    {
+                        <img class="lazyload" data-src="@imageViewModel.ImagePath.Imgixify()" alt="@Model.Properties.Caption2">
+
+                    }
+                }
+            </div>
+            <div class="caption">
+                @Model.Properties.Caption2
+            </div>
+        </div>
+    </div>
+</div>

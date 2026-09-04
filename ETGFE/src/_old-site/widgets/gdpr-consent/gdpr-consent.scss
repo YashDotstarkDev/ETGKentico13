@@ -1,0 +1,44 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.gdpr-consent {
+  background-color: #000;
+  text-align: center;
+  padding: 30px 0;
+  color: #FFF;
+  transition: all 0.3s ease;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  transform: translateY(100%);
+
+  .wrapper {
+    max-width: 780px;
+  }
+
+  .links {
+    margin-top: 20px;
+  }
+
+  .button.transparent {
+    color: #FFF !important;
+  }
+
+  .ui.button.primary {
+    @media(--desktop) {
+      &:hover {
+        background-color: #F2F2F2 !important;
+        border: 2px solid #F2F2F2 !important;
+        color: #000 !important;
+      }
+    }
+  }
+}
+
+html.gdpr-visible {
+  .gdpr-consent {
+    transform: none;
+  }
+}

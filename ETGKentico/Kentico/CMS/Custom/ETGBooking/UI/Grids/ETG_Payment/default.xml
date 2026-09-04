@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grid>
+  <actions>
+    <action name="edit" caption="$General.Edit$" fonticonclass="icon-edit" fonticonstyle="allow" />
+    <action name="empty" contextmenu="~" />
+  </actions>
+  <massactions>
+    <massaction name="#delete" caption="$general.delete$" behavior="OpenModal" />
+  </massactions>
+  <columns>
+    <column source="PaymentID" caption="Payment ID" wrap="false" localize="true">
+      <filter type="text" size="200" />
+    </column>
+    <column source="PaymentFirstName" caption="First name" wrap="false" localize="true">
+    </column>
+    <column source="PaymentLastName" caption="Last name" wrap="false" localize="true">
+    </column>
+    <column source="PaymentEmail" caption="Email" wrap="false" localize="true">
+    </column>
+    <column source="PaymentContactNumber" caption="Contact number" wrap="false" localize="true">
+    </column>
+    <column source="PaymentInvoiceReference" caption="Invoice Booking Reference" wrap="false" localize="true">
+    </column>
+    <column source="PaymentAmount" caption="Amount" wrap="false" localize="true">
+    </column>
+  </columns>
+  <options>
+    <key name="DisplayFilter" value="true" />
+  </options>
+</grid>

@@ -1,0 +1,35 @@
+﻿@using Castle.Core.Internal
+@using ETG.Web.Models.Widgets.FeaturedContentPanel
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+@model ComponentViewModel<FeaturedContentPanelProperties>
+<div class="experience-cta">
+    <div class="padded">
+        <div class="inner relative rounded-3xl overflow-hidden isolate">
+            <div class="aspect-video image-container relative md:aspect-auto md:absolute md:inset-0 md:z-10">
+                @if (!Model.Properties.Images.IsNullOrEmpty())
+                {
+                    var imageViewModel = MediaFileHelper.GetImageMediaFile(Model.Properties.Images[0].FileGuid);
+                    if (imageViewModel != null)
+                    {
+                        <img data-src="@imageViewModel.ImagePath.Imgixify()" data-lowsrc="@imageViewModel.ImagePath.ImgixifyLowRes()" class="lazyload absolute inset-0 w-full h-full object-cover object-center" data-sizes="auto">
+                        <img data-src="@("/images/round.png".Imgixify())" class="lazyload block md:hidden absolute left-0 right-0 bottom-0">
+                    }
+                }
+
+            </div>
+            <div class="content bg-black p-6 text-white relative z-20 md:w-[65%] md:pr-[150px] md:bg-transparent md:p-8 lg:pl-12 lg:pt-12 lg:pb-12 max-w-[700px] xl:pl-20 xl:pt-20 xl:pb-20 xl:pr-[200px]">
+                <img data-src="@("/images/featured-content-panel-pattern.png".Imgixify())" class="lazyload hidden md:block absolute left-0 top-0 w-full h-full">
+                <div class="relative z-20 flex flex-col gap-6 xl:gap-6">
+                    <h2 class="uppercase text-4xl lg:text-5xl">@Model.Properties.Heading</h2>
+                    <div>@Html.Raw(Model.Properties.TextContent)</div>
+                    @if (!Model.Properties.Path.IsNullOrEmpty() && !Model.Properties.CTALabel.IsNullOrEmpty())
+                    {
+                        <div class="cta"> <a href="@Model.Properties.Path" class="btn btn-primary">@Model.Properties.CTALabel</a></div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

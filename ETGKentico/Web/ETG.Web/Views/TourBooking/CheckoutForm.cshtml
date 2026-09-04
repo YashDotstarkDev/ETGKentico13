@@ -1,0 +1,437 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Data.Extensions
+@using ETG.Data.Tour
+@using ETG.Web.Helpers
+@using ETG.Web.Models.Forms
+@model ETG.Web.Models.Forms.BookingCheckoutFormViewModel
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+
+@section AdditionalHeadScripts
+{
+    <link rel="stylesheet" href="@(Model.ETGSettings?.TravelpayCSSLink)" />
+    <style>
+        .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+            border: 1px solid #c5c5c5 !important;
+            background: #f6f6f6 !important;
+            color: #454545 !important;
+        }
+
+        .ui-button.ui-state-active:hover, .ui-button:active, .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active {
+            border: 1px solid #ca568e !important;
+            background: #ca568e !important;
+        }
+    </style>
+}
+
+@section AdditionalScripts {
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @Html.ScriptTag("/scripts/booking.js")
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="text/javascript" src="@(Model.ETGSettings?.TravelpayBS5JSLink)"></script>
+    <script type="text/javascript" src="@(Model.ETGSettings?.TravelpayJSLink)"></script>
+}
+
+@if (!Model.NewCurrencyCookie.IsNullOrEmpty())
+{
+    <div class="widget booking change-cookie" data-currency="@Model.NewCurrencyCookie" data-widget="change-bookie"></div>
+    return;
+}
+<div class="widget booking" data-payment-result-page="@Model.ETGSettings.ETGPaymentResultUrl" data-quote-successurl="/booking/quote-success" data-widget="booking">
+    @if (Model.IsAgent)
+    {
+        <div class="ui modal payment-options-modal">
+            <div class="inner-container">
+                <div>
+                    <h2>Other payment options</h2>
+                    <p>Would you like to book this website package and pay the deposit via <strong>Direct Deposit</strong>, <strong>MINT</strong>, <strong>TravelPay B2B</strong>, or <strong>Payment Gate</strong>?</p>
+                </div>
+
+                <div class="btn-container">
+                    <button class="ui button primary proceed" type="button">Proceed</button>
+                    <button class="ui button primary transparent cancel" type="button">cancel</button>
+                </div>
+            </div>
+        </div>
+
+    }
+
+    <div class="wrapper">
+        <h1>Book Now</h1>
+        <div class="ui form" data-method="POST" data-endpoint="/api/booking/createorder" data-endpoint-pay-later="/api/booking/createorderother" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="row">
+                <div class="col col-form">
+                    <h3>1. Passenger Details</h3>
+                    <div class="col-content">
+                        <div class="disclaimer">
+                            @if (Model.BookingSummary.TotalPersons == 2)
+                            {
+                                <p>Please complete the details for each passenger in the section below. <b>Please enter names as per passport.</b></p>
+                                <p>If the package includes flights or rail tickets, the date of birth for each passenger will be needed before we can book those services with our suppliers.</p>
+                            }
+                            else
+                            {
+                                @Html.Raw(Model.PageContents.CopyBelowCheckoutForm)
+                            }
+                        </div>
+                        <h4>Lead Passenger</h4>
+                        <div class="field">
+                            <label>Title</label>
+                            <select name="title" data-rules="empty" data-prompts="Please select title">
+                                <option value="">Select Title</option>
+                                <option>Dr</option>
+                                <option>Inf</option>
+                                <option>Master</option>
+                                <option>Miss</option>
+                                <option>Mr</option>
+                                <option>Mrs</option>
+                                <option>Ms</option>
+                                <option>Prof</option>
+                                <option>Rev</option>
+                                <option>Sir</option>
+                                <option>Sister</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>First Name</label>
+                            <input type="text" name="firstname" value="@(Model.CustomerForm?.FirstName)" data-rules="empty" data-prompts="Please enter first name" />
+                        </div>
+                        <div class="field">
+                            <label>Middle Name</label>
+                            <input type="text" name="middlename" />
+                        </div>
+                        <div class="field">
+                            <label>Last Name</label>
+                            <input type="text" name="lastname" value="@(Model.CustomerForm?.LastName)" data-rules="empty" data-prompts="Please enter last name" />
+                        </div>
+                        <div class="field">
+                            <label class="with-tooltip">
+                                <div>Date of Birth</div>
+                                <div class="ui tool-tip" data-html="If the package includes flights or rail tickets, the date of birth for each passenger will be needed before we can book those services with our suppliers.">
+                                    <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#333333" />
+                                    </svg>
+                                </div>
+                            </label>
+                            <input type="text" name="dob" class="datepicker" readonly />
+                        </div>
+                        <div class="field">
+                            <label class="with-tooltip">
+                                <div>Phone</div>
+                                <div class="ui tool-tip" data-html="<b>Australian Number</b><br><i>Area Code + Number</i><br>e.g. 0290943322<br><b>Australian Mobile</b><br><i>10 digits no spaces</i><br>e.g. 0430123123<br><b>International Number</b><br><i>Country Code + area code + number</i><br>e.g. +33148643543">
+                                    <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#333333" />
+                                    </svg>
+                                </div>
+                            </label>
+                            <input type="text" value="@(Model.CustomerForm?.MobilePhone)" name="phone" data-rules="phone" maxlength="14" data-prompts="Please enter a valid phone number" />
+                        </div>
+                        <div class="field">
+                            <label>Email</label>
+                            <input type="text" name="email" value="@(Model.CustomerForm?.Email)" data-rules="empty,email" data-prompts="Please enter valid email address" value="@Html.Raw(Model.CustomerForm?.Email)" />
+                        </div>
+                        @if (Model.BookingSummary.TotalPersons == 2)
+                        {
+                            <h4>Passenger 2</h4>
+                            <div class="field">
+                                <label>Title</label>
+                                <select name="passenger2title" data-rules="empty" data-prompts="Please select title">
+                                    <option value="">Select Title</option>
+                                    <option>Dr</option>
+                                    <option>Inf</option>
+                                    <option>Master</option>
+                                    <option>Miss</option>
+                                    <option>Mr</option>
+                                    <option>Mrs</option>
+                                    <option>Ms</option>
+                                    <option>Prof</option>
+                                    <option>Rev</option>
+                                    <option>Sir</option>
+                                    <option>Sister</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>First Name</label>
+                                <input type="text" name="passenger2firstname" data-rules="empty" data-prompts="Please enter first name" />
+                            </div>
+                            <div class="field">
+                                <label>Middle Name</label>
+                                <input type="text" name="passenger2middlename" />
+                            </div>
+                            <div class="field">
+                                <label>Last Name</label>
+                                <input type="text" name="passenger2lastname" data-rules="empty" data-prompts="Please enter last name" />
+                            </div>
+                            <div class="field">
+                                <label class="with-tooltip">
+                                    <div>Date of Birth</div>
+                                    <div class="ui tool-tip" data-html="If the package includes flights or rail tickets, the date of birth for each passenger will be needed before we can book those services with our suppliers.">
+                                        <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#333333" />
+                                        </svg>
+                                    </div>
+                                </label>
+                                <input type="text" name="passenger2dob" class="datepicker" readonly />
+                            </div>
+                        }
+
+                        <div class="field">
+                            <label>Comments for Entire Travel Group</label>
+                            <textarea name="comments"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <h3>2. Booking Process</h3>
+                    <div class="col-content">
+                        @Html.Raw(Model.PaymentTermsCopy)
+                    </div>
+                </div>
+                <div class="col">
+                    <h3>3. Pay Now</h3>
+                    <div class="col-content">
+                        @if (Model.BookingSummary.Promotion == null)
+                        {
+                            <div class="summary promo-code">
+                                <div class="heading">Have a promo code?</div>
+                                <div class="promo-form" data-endpoint="/api/promotion/apply-code" data-method="GET">
+                                    <input type="text">
+                                    <button type="button" class="ui primary button">Apply</button>
+                                </div>
+                                <div class="error"></div>
+                            </div>
+                        }
+                        @if (Model.BookingSummary != null)
+                        {
+                            <div class="summary">
+
+                                @if (Model.QuoteID > 0)
+                                {
+                                    <h5>Quote Number: @Model.QuoteID</h5>
+                                }
+
+                                <h4>@Html.Raw(Model.BookingSummary.TourName) (@Model.BookingSummary.TourCode)<br>Departing @Model.BookingSummary.DepartureDateDisplay</h4>
+                                @if (Model.BookingSummary.Packages != null && Model.BookingSummary.Packages.Count > 0)
+                                {
+                                    <div class="item">
+                                        <div class="item-name">
+                                            <div class="label">Package(s)</div>
+                                            <div class="qty">@Model.BookingSummary.Packages.Count @@ @Model.BookingSummary.GetPackageAdjustedUnitPrice(Model.BookingSummary.AgentPriceDifference).FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)pp</div>
+                                            <div>
+                                                @Html.Raw(Model.GetPrePostNightsPackageBreakdown(BookingCheckoutFormViewModel.RoomType.TWINDOUBLE))
+                                            </div>
+                                            @if (!Model.BookingSummary.SelectedTwinShareRoomsType.IsNullOrEmpty())
+                                            {
+                                                <div class="roomtypes-breakdown">
+                                                    @for (var i = 1; i <= Model.BookingSummary.SelectedTwinShareRoomsType.Count; i++)
+                                                    {
+                                                        <div>Room @i: @Model.BookingSummary.SelectedTwinShareRoomsType[i - 1]</div>
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="price">@Model.BookingSummary.GetPackageAdjustedTotalPrice(Model.BookingSummary.AgentPriceDifference).FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)</div>
+                                    </div>
+                                }
+
+                                @if (Model.BookingSummary.SinglePackages != null && Model.BookingSummary.SinglePackages.Count > 0)
+                                {
+                                    <div class="item">
+                                        <div class="item-name">
+                                            <div class="label">Single Package(s)</div>
+                                            @if (Model.BookingSummary.Packages != null && Model.BookingSummary.Packages.Count > 0)
+                                            {
+                                                <div class="qty">@Model.BookingSummary.SinglePackages.Count @@ @Model.BookingSummary.GetSinglePackageAdjustedUnitPrice(0).FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)pp</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="qty">@Model.BookingSummary.SinglePackages.Count @@ @Model.BookingSummary.GetSinglePackageAdjustedUnitPrice(Model.BookingSummary.AgentPriceDifference).FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)pp</div>
+                                            }
+                                            <div>
+                                                @Html.Raw(Model.GetPrePostNightsPackageBreakdown(BookingCheckoutFormViewModel.RoomType.SINGLE))
+                                            </div>
+                                        </div>
+                                        @if (Model.BookingSummary.Packages != null && Model.BookingSummary.Packages.Count > 0)
+                                        {
+                                            <div class="price">@Model.BookingSummary.GetSinglePackageAdjustedTotalPrice(0).FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="price">@Model.BookingSummary.GetSinglePackageAdjustedTotalPrice(Model.BookingSummary.AgentPriceDifference).FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)</div>
+                                        }
+                                    </div>
+                                }
+                                @if (!Model.BookingSummary.RoomOptions.IsNullOrEmpty() && !Model.BookingSummary.RoomOptions[0].ItemLabel.IsNullOrEmpty())
+                                {
+                                    <div class="item">
+                                        <div class="item-name">
+                                            <div class="label">Room Upgrades</div>
+                                            @foreach (var option in Model.BookingSummary.RoomOptions)
+                                            {
+                                                <div class="qty">@option.Count @option.ItemLabel @@ @option.UnitPriceWithPrePostNights.FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)pp</div>
+                                            }
+                                            @*<div>
+                                                    @Html.Raw(Model.GetPrePostNightsPackageBreakdown(BookingCheckoutFormViewModel.RoomType.ROOMUPGRADE))
+                                                </div>*@
+                                        </div>
+                                        <div class="price">@Model.BookingSummary.RoomOptionsTotalPrice.FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)</div>
+                                    </div>
+                                }
+                                @if (!Model.BookingSummary.ExtraOptions.IsNullOrEmpty())
+                                {
+                                    <div class="item">
+                                        <div class="item-name">
+                                            <div class="label">Extras</div>
+                                            @foreach (var option in Model.BookingSummary.ExtraOptions)
+                                            {
+                                                <div class="qty">@option.Count @option.ItemLabel @@ @option.UnitPrice.FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)pp</div>
+                                            }
+                                        </div>
+                                        <div class="price">@Model.BookingSummary.ExtraOptions.Select(a => a.TotalPrice).Sum().FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)</div>
+                                    </div>
+                                }
+                                @{
+                                    var additionalServicePrice = 0.0;
+                                }
+                                @if (!Model.BookingSummary.AdditionalServices.IsNullOrEmpty())
+                                {
+                                    <div class="item">
+                                        <div class="item-name">
+                                            <div class="label">Additional Services</div>
+                                            @foreach (var option in Model.BookingSummary.AdditionalServices)
+                                            {
+                                                <div class="qty">@option.Count @option.ItemLabel @@ @option.UnitPrice.FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)pp</div>
+                                            }
+                                        </div>
+                                        <div class="price">@Model.BookingSummary.AdditionalServices.Select(a => a.TotalPrice).Sum().FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)</div>
+                                    </div>
+                                }
+                                @if (Model.BookingSummary.Promotion != null)
+                                {
+                                    <div class="item">
+                                        <div class="item-name">
+                                            <div class="label">@Html.Raw(Model.BookingSummary.Promotion.PromotionName)</div>
+                                            <div class="qty">@Html.Raw(Model.BookingSummary.Promotion.BookByText)</div>
+                                        </div>
+                                        <div class="price">-@(Model.BookingSummary.Promotion.GetDiscount(Model.BookingSummary.GetPriceBeforeDiscount(Model.BookingSummary.CurrentCurrencyPricing), Model.BookingSummary.TotalPersons).FormatPrice(true, Model.CurrentCurrencyPricing.CurrentCurrencySymbol))</div>
+                                    </div>
+                                }
+                                <div class="item">
+
+                                    <div class="total-label">Total</div>
+                                    <div class="total-price">
+                                        @((Model.BookingSummary.AgentDefinedPrice > 0 ? Model.BookingSummary.AgentDefinedPrice : Model.BookingSummary.TotalPrice).FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrency))
+                                        @if (!Model.CurrentCurrencyPricing.CurrentCurrencyIsAUD && Model.BookingSummary.TotalPriceInAUD > 0)
+                                        {
+                                            <br />
+                                            <div class="price-aud">
+                                                (@((Model.BookingSummary.AgentDefinedPriceInAUD > 0 ? Model.BookingSummary.AgentDefinedPriceInAUD : Model.BookingSummary.TotalPriceInAUD).FormatPrice(false, "AUD")))
+                                            </div>
+                                        }
+                                    </div>
+
+                                    <input type="hidden" value="@Model.BookingSummary.TotalPrice" name="hidGrossPrice" />
+                                </div>
+                                @if (!Model.ErrorMessage.IsNullOrEmpty())
+                                {
+                                    @Html.Raw($"<div style=\"color:#9f3a38\">{Model.ErrorMessage}</div>")
+                                    ;
+                                }
+                            </div>
+
+                            if (Model.BookingSummary.Due != null)
+                            {
+                                <div class="deposit-summary deposit-due">
+                                    <h3>Due Now</h3>
+                                    <div class="item">
+                                        <div class="item-name">
+                                            <div class="label">Deposit</div>
+                                            <div class="qty">@Model.BookingSummary.Due.DepositPrice.Count @@ @Model.BookingSummary.Due.DepositPrice.UnitPrice.FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)pp</div>
+                                        </div>
+                                        <div class="price">@Model.BookingSummary.Due.DepositPrice.TotalPrice.FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrencySymbol)</div>
+                                    </div>
+
+                                    <div class="item">
+                                        <div class="total-label">Total Deposit Due Now</div>
+                                        <div class="total-price">
+                                            @Model.BookingSummary.Due.TotalDeposit.FormatPrice(false, Model.CurrentCurrencyPricing.CurrentCurrency)
+                                            @if (!Model.CurrentCurrencyPricing.CurrentCurrencyIsAUD)
+                                            {
+                                                <br />
+                                                <div class="price-aud">
+                                                    (@(Model.BookingSummary.Due.TotalDepositeInAUD.FormatPrice(false, "AUD")))
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="deposit-summary @(Model.BookingSummary.Due != null ? "nomargin-top" : "")">
+                                <div class="field">
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" name="subscribe" value="subscribe" />
+                                        <label>Subscribe to our newsletter for more travel inspiration</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" name="acceptterms" value="acceptterms" data-rules="checkboxCount[1]" data-prompts="Please accept Terms and Conditions" />
+                                        <label>I accept the <a href="/booking-conditions" target="_blank">Booking Conditions</a> &amp; <a href="https://travelpay.com.au/travelpay-public-webpay-terms-conditions" target="_blank">Payment Conditions</a></label>
+                                    </div>
+                                </div>
+                                <div class="image-container">
+                                    <img src="@("/images/cards-new.png".Imgixify())">
+                                    <div>All credit card payments will be processed in AUD</div>
+                                </div>
+                                <div class="response-container"></div>
+                                <div class="popup-warning bg-white/10 p-4 flex items-center gap-2 text-[11px] uppercase rounded my-6">
+                                    <svg class="shrink-0" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.5 15.375C5.80469 15.375 3.34375 13.9688 1.99609 11.625C0.648438 9.31055 0.648438 6.46875 1.99609 4.125C3.34375 1.81055 5.80469 0.375 8.5 0.375C11.166 0.375 13.627 1.81055 14.9746 4.125C16.3223 6.46875 16.3223 9.31055 14.9746 11.625C13.627 13.9688 11.166 15.375 8.5 15.375ZM8.5 4.125C8.08984 4.125 7.79688 4.44727 7.79688 4.82812V8.10938C7.79688 8.51953 8.08984 8.8125 8.5 8.8125C8.88086 8.8125 9.20312 8.51953 9.20312 8.10938V4.82812C9.20312 4.44727 8.88086 4.125 8.5 4.125ZM7.5625 10.6875C7.5625 11.2148 7.97266 11.625 8.5 11.625C8.99805 11.625 9.4375 11.2148 9.4375 10.6875C9.4375 10.1895 8.99805 9.75 8.5 9.75C7.97266 9.75 7.5625 10.1895 7.5625 10.6875Z" fill="white" />
+                                    </svg>
+                                    Please enable pop-ups in your browser before proceeding.
+                                </div>
+                                <div class="submit-row">
+                                    <input type="hidden" name="orderid" />
+                                    <input type="hidden" name="quoteid" value="@Model.QuoteID" />
+                                    @if (Model.BookingSummary.Due != null)
+                                    {
+                                        <button class="ui button submit primary needs-confirm" data-modal="confirm-agent-price">Pay Deposit Now</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="ui button submit primary needs-confirm" data-modal="confirm-agent-price">Pay Now</button>
+                                    }
+                                    @if (Model.IsAgent && Model.BookingSummary.Due != null)
+                                    {
+                                        <button class="ui button primary transparent submit-other">Other Payment Options</button>
+                                    }
+                                </div>
+                                @if (!Model.IsFromQuote)
+                                {
+                                    <div class="modify-booking">
+                                        <a href="@Model.TourUrl?u=1">Modify Booking</a>
+                                    </div>
+                                }
+                                @if (Model.BookingSummary.Due != null)
+                                {
+                                    <div class="terms">@Html.Raw(Model.DueNowCopy)</div>
+                                }
+                            </div>
+                        }
+                        @if (Model.HasPeaceOfMindGuarantee)
+                        {
+                            @Html.Partial("Partial/Tour/_TourPeaceOfMind", Model.PeaceOfMindCheckList)
+                        }
+                    </div>
+                </div>
+                @Html.Partial("Partial/TourBooking/_AgentPriceConfirmPopup")
+            </div>
+        </div>
+
+    </div>
+</div>

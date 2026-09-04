@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\ETG\\ETGSourceCodePackage1\\ETGSourceCodePackage\\ETGKentico\\Web\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{02D94BAC-2CC8-46BF-AE66-E868A855375C}|ETG.Web\\ETG.Web.csproj|d:\\projects\\etg\\etgsourcecodepackage1\\etgsourcecodepackage\\etgkentico\\web\\etg.web\\app_start\\pagebuildercomponentregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02D94BAC-2CC8-46BF-AE66-E868A855375C}|ETG.Web\\ETG.Web.csproj|solutionrelative:etg.web\\app_start\\pagebuildercomponentregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02D94BAC-2CC8-46BF-AE66-E868A855375C}|ETG.Web\\ETG.Web.csproj|d:\\projects\\etg\\etgsourcecodepackage1\\etgsourcecodepackage\\etgkentico\\web\\etg.web\\views\\shared\\_masterforlanding.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02D94BAC-2CC8-46BF-AE66-E868A855375C}|ETG.Web\\ETG.Web.csproj|solutionrelative:etg.web\\views\\shared\\_masterforlanding.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02D94BAC-2CC8-46BF-AE66-E868A855375C}|ETG.Web\\ETG.Web.csproj|d:\\projects\\etg\\etgsourcecodepackage1\\etgsourcecodepackage\\etgkentico\\web\\etg.web\\views\\shared\\pagetemplates\\_campaigntemplate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02D94BAC-2CC8-46BF-AE66-E868A855375C}|ETG.Web\\ETG.Web.csproj|solutionrelative:etg.web\\views\\shared\\pagetemplates\\_campaigntemplate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_MasterForLanding.cshtml",
+              "DocumentMoniker": "D:\\Projects\\ETG\\ETGSourceCodePackage1\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Web\\Views\\Shared\\_MasterForLanding.cshtml",
+              "RelativeDocumentMoniker": "ETG.Web\\Views\\Shared\\_MasterForLanding.cshtml",
+              "ToolTip": "D:\\Projects\\ETG\\ETGSourceCodePackage1\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Web\\Views\\Shared\\_MasterForLanding.cshtml",
+              "RelativeToolTip": "ETG.Web\\Views\\Shared\\_MasterForLanding.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-03T07:08:59.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_CampaignTemplate.cshtml",
+              "DocumentMoniker": "D:\\Projects\\ETG\\ETGSourceCodePackage1\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Web\\Views\\Shared\\PageTemplates\\_CampaignTemplate.cshtml",
+              "RelativeDocumentMoniker": "ETG.Web\\Views\\Shared\\PageTemplates\\_CampaignTemplate.cshtml",
+              "ToolTip": "D:\\Projects\\ETG\\ETGSourceCodePackage1\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Web\\Views\\Shared\\PageTemplates\\_CampaignTemplate.cshtml",
+              "RelativeToolTip": "ETG.Web\\Views\\Shared\\PageTemplates\\_CampaignTemplate.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-03T07:08:51.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PageBuilderComponentRegister.cs",
+              "DocumentMoniker": "D:\\Projects\\ETG\\ETGSourceCodePackage1\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Web\\App_Start\\PageBuilderComponentRegister.cs",
+              "RelativeDocumentMoniker": "ETG.Web\\App_Start\\PageBuilderComponentRegister.cs",
+              "ToolTip": "D:\\Projects\\ETG\\ETGSourceCodePackage1\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Web\\App_Start\\PageBuilderComponentRegister.cs",
+              "RelativeToolTip": "ETG.Web\\App_Start\\PageBuilderComponentRegister.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T07:03:24.826Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

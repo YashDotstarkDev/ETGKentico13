@@ -1,0 +1,33 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@model ETG.Web.Tour.Models.TourPageViewModel
+
+@if (Model.TourInfo.HasFreedomOfChoice == false || Model.FreedomOfChoiceDays.IsNullOrEmpty())
+{
+    return;
+}
+
+<div class="title" data-step="freedomOfChoice">
+    <div class="heading">Freedom of Choice</div>
+    <i class="dropdown icon"></i>
+</div>
+
+<div class="content freedom-of-choice" @Html.Raw(ViewBag.IsPrint == null ? "" : "style=\"display:block;clear:both\"")>
+    <div class="inner-content">
+        <div class="logo">
+            <img src="@("/images/PDF-freedom-of-choice.png".Imgixify())" />
+        </div>
+        <div class="copy">
+            <p>Our Freedom of Choice program offers flexibility, by allowing you to choose from different options on pre-selected days. </p>
+            <p>Our per person price includes one tour on each Freedom of Choice day, as follows:</p>
+            <ul>
+                @foreach (var day in Model.FreedomOfChoiceDays)
+                {
+                    <li>@Html.Raw($"One \"Freedom of Choice\" tour on {day.ToLower()}")</li>
+                }
+            </ul>
+            <p>Expand the itinerary below for more details.</p>
+            <p>Please note, if more than one room is selected during the booking process, our team will contact you afterwards to discuss options.</p>
+        </div>
+    </div>
+</div>

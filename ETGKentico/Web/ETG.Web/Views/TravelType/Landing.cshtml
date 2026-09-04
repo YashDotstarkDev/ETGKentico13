@@ -1,0 +1,75 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@model ETG.Web.TravelType.Models.TravelTypeLandingViewModel
+@if (Model == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/primary-landing.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+@Html.Partial("Partial/Common/_PageHero", Model.PageHero)
+<div class="widget new-destination-page" data-widget="new-destination-page">
+    @Html.Kentico().EditableArea("LandingUpper")
+
+    <div class="intro">
+        <div class="wrapper contained">
+            @if (!Model.Heading.IsNullOrEmpty())
+            {
+                <h1>@Model.Heading</h1>
+            }
+            @if (!Model.Intro.IsNullOrEmpty())
+            {
+                <div class="intro-text">
+                    @Model.Intro
+                </div>
+            }
+            @if (!Model.Summary.IsNullOrEmpty())
+            {
+                <p>@Model.Summary</p>
+            }
+        </div>
+    </div>
+
+    <div class="widget why-we-love-it" data-widget="why-we-love-it">
+        <div class="wrapper">
+            @if (!Model.ListHeading.IsNullOrEmpty())
+            {
+                <h2>@Model.ListHeading</h2>
+            }
+            @Html.Partial("Partial/Common/_Callout", Model.TravelTypeDetails)
+        </div>
+    </div>
+
+
+    @Html.Kentico().EditableArea("LandingBody")
+
+    @* @Html.Partial("Partial/Common/_PrimaryLandingListing", Model.Items) *@
+    @Html.Kentico().EditableArea("Bottom")
+</div>
+
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")

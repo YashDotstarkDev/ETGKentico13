@@ -1,0 +1,58 @@
+---
+import TilesCarousel from './TilesCarousel.vue'
+import RegionTile from "./RegionTile.astro";
+---
+
+<!--
+/////
+blog-carousel Start
+/////
+-->
+
+<div class="blog-carousel">
+    <div class="wrapper">
+        <h2 class="text-black text-center uppercase">Regions of [destination]</h2>
+
+        <div class="-mx-4 mt-6">
+            <TilesCarousel client:only="vue">
+                <div class="relative px-6 lg:px-16">
+                    <div class="swiper isolate text-left text-sm font-semibold relative z-10">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <RegionTile />
+                            </div>
+                            <div class="swiper-slide">
+                                <RegionTile />
+                            </div>
+                            <div class="swiper-slide">
+                                <RegionTile />
+                            </div>
+                            <div class="swiper-slide">
+                                <RegionTile />
+                            </div>
+                            <div class="swiper-slide">
+                                <RegionTile />
+                            </div>
+                            <div class="swiper-slide">
+                                <RegionTile />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-prev cursor-pointer rounded-full w-[50px] h-[50px] bg-primary text-white hover:bg-body flex items-center justify-center text-lg transition-colors duration-300 absolute left-0 top-[65px] z-20">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="button-next cursor-pointer rounded-full w-[50px] h-[50px] bg-primary text-white hover:bg-body flex items-center justify-center text-lg transition-colors duration-300 absolute right-0 top-[65px] z-20">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </TilesCarousel>
+        </div>
+    </div>
+</div>
+
+<!--
+/////
+blog-carousel End
+/////
+-->

@@ -1,0 +1,36 @@
+---
+const { label= "Primary menu item", icon = "fa-money-from-bracket" } = Astro.props;
+---
+
+<li>
+    <button class="menu-item">
+        <span class="flex items-start gap-3 w-full">
+            {label}
+        </span>
+        <i class="fa-solid fa-chevron-right text-[13px]"></i>
+    </button>
+
+    <!-- Submenu Container -->
+    <div class="submenu px-4 fixed bottom-0 top-[100px] right-0 z-[2000] w-full max-w-[400px] translate-x-full bg-black text-white transition-transform duration-500 overflow-x-hidden overflow-y-auto">
+
+        <!-- Submenu items -->
+        <ul>
+            <!-- back button -->
+            <li class="!-ml-4 !pl-4">
+                <button type="button" class="back-button menu-item">
+                                <span class="flex items-center gap-2 w-full">
+                                    <span class="arrow block w-5 shrink-0 text-current">
+                                        <i class="fa-solid fa-chevron-left text-[13px]"></i>
+                                    </span>
+                                    <span class="text-center flex-1 text-[16px] pr-5">{label}</span>
+                                </span>
+                </button>
+            </li>
+
+            <li><a href="#" class="menu-item">Another menu item</a></li>
+            <li><a href="#" class="menu-item">Another menu item</a></li>
+            <li><a href="#" class="menu-item">Another menu item</a></li>
+            <li><a href="#" class="menu-item">Another menu item</a></li>
+        </ul>
+    </div>
+</li>

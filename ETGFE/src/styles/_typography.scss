@@ -1,0 +1,128 @@
+html,
+body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* put stuff in a body class so it overrides any base tailwind styles */
+body {
+
+  a {
+    text-decoration: none;
+    text-underline-offset: 3px;
+    @apply text-primary;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  b,
+  strong {
+    font-weight: 700;
+  }
+
+  h1, .h1, .prose h1 {
+    text-wrap: balance;
+    @apply font-headings font-bold leading-tight md:leading-tight;
+
+    font-size: 30px;
+
+    @media (min-width: 1024px) {
+      font-size: 48px;
+    }
+
+
+    &.small {
+
+      font-size: 26px;
+
+      @media (min-width: 768px) {
+        font-size: 30px;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 36px;
+      }
+
+      @media (min-width: 1220px) {
+        font-size: 42px;
+      }
+    }
+  }
+
+  h2,
+  .h2, .prose h2 {
+    text-wrap: balance;
+    @apply font-headings font-bold leading-tight;
+    font-size: 24px;
+
+    @media (min-width: 1024px) {
+      font-size: 30px;
+    }
+  }
+
+  h3,
+  .h3, .prose h3 {
+    text-wrap: balance;
+    @apply font-headings font-bold leading-tight;
+    font-size: 20px;
+
+    @media (min-width: 1024px) {
+      font-size: 24px;
+    }
+  }
+
+  h4,
+  .h4, .prose h4 {
+    text-wrap: balance;
+    @apply font-headings font-bold leading-tight;
+    font-size: 17px;
+
+    @media (min-width: 1024px) {
+      font-size: 20px;
+    }
+  }
+
+  h5,
+  .h5, .prose h5 {
+    text-wrap: balance;
+    @apply font-headings font-bold leading-tight;
+    font-size: 16px;
+  }
+
+  .text-intro, .lead, .form-assembly-embed .wFormTitle {
+    @apply font-body leading-[1.5] font-semibold;
+    font-size: 18px;
+
+    @media (min-width: 1024px) {
+      font-size: 22px;
+    }
+  }
+
+  .prose {
+    font-size: 14px;
+
+    a {
+        @apply text-primary;
+      text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+          @apply text-primary;
+        }
+    }
+  }
+
+  .prose h1, .prose h2 {
+    color: #000;
+    text-transform: uppercase;
+  }
+
+  .prose h3, .prose h4, .prose h5 {
+    color: #000;
+  }
+}
+
+
+

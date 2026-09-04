@@ -1,0 +1,79 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@model ETG.Web.TravelDeals.Models.TravelDealsPageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page.Page)
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css" integrity="sha256-HB49n/BZjuqiCtQQf49OdZn63XuKFaxcIHWf0HNKte8=" crossorigin="anonymous">
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/travel-deals.js")
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+@if (Model.Page.PageHero != null)
+{
+    @Html.Partial("Partial/Common/_PageHero", Model.Page.PageHero)
+}
+
+<div class="widget travel-deals wp" data-indexname="@Model.TourIndexName" data-widget="travel-deals">
+    <div class="wrapper">
+        <div class="ui form generic-form">
+            <div class="container">
+                <div class="field">
+                    <label>By destination</label>
+                    <div id="destination_dd"></div>
+                </div>
+                <div class="field">
+                    <label>By experience</label>
+                    <div id="experience_dd"></div>
+                </div>
+                <div class="field">
+                    <label>By duration</label>
+                    <div id="duration_dd"></div>
+                </div>
+                <div class="field">
+                    <label for="">Per person price range</label>
+                    <div class="price-range">
+                        <span class="from-value"></span> - <span class="to-value"></span>
+                    </div>
+                    <div id="price_range-slider" class="pricerangeslider"></div>
+                </div>
+            </div>
+            <div class="response-container"></div>
+        </div>
+        <h4><span id="deal_stats"></span>&nbsp;deals found</h4>
+        <div class="controls">
+            <div class="sort">
+                Sort by:
+                <div id="deal_sort"></div>
+            </div>
+            <div class="view">
+                View:
+                <div id="deal_view"></div>
+            </div>
+
+        </div>
+        <div class="deals">
+            <div id="deal_hits"></div>
+        </div>
+        <div id="deal_pagination"></div>
+    </div>
+</div>
+
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")

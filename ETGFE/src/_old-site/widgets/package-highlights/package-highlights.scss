@@ -1,0 +1,37 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-highlights {
+  margin-top: 40px;
+  font-size: 16px;
+  line-height: 1.8;
+  break-inside: avoid; /* Do not allow to break over printed pages*/
+
+  p {
+    line-height: 1.8;
+  }
+
+  @media screen and (--desktop) {
+    font-size: 20px;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin-bottom: 7px;
+
+    p {
+      margin: 0;
+    }
+
+    .icon {
+      margin-right: 15px;
+      margin-top: 6px;
+
+      @media(min-width: 1024px) {
+        margin-top: 8px;
+      }
+    }
+  }
+}

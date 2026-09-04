@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grid>
+    <actions>
+        <action name="edit" caption="$General.Edit$" fonticonclass="icon-edit" fonticonstyle="allow" />
+        <action name="#delete" externalsourcename="delete" caption="$General.Delete$" fonticonclass="icon-bin" fonticonstyle="critical" confirmation="$General.ConfirmDelete$" />
+        <action name="empty" contextmenu="~" />
+    </actions>
+    <massactions>
+        <massaction name="#delete" caption="$general.delete$" behavior="OpenModal" />
+    </massactions>
+    <columns>
+        <column source="PromotionID" caption="Promotion ID" wrap="false" localize="true">
+            <filter type="text" size="200" />
+        </column>
+        <column source="PromotionName" caption="Name" wrap="false" localize="true">
+        </column>
+        <column source="PromotionPromoCode" caption="Promo Code" wrap="false" localize="true">
+        </column>
+        <column source="PromotionFromDate" caption="From Date" wrap="false" localize="true">
+        </column>
+        <column source="PromotionToDate" caption="To Date" wrap="false" localize="true">
+        </column>
+        <column source="PromotionPercentDiscount" caption="% Promo Value" wrap="false" localize="true">
+        </column>
+        <column source="PromotionDollarDiscount" caption="Dollar Discount Per Person" wrap="false" localize="true">
+        </column>
+    </columns>
+    <options>
+        <key name="DisplayFilter" value="true" />
+    </options>
+</grid>

@@ -1,0 +1,283 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@model ETG.Web.AgentPortal.Models.AgentPortalPageViewModel
+@if (Model == null || Model.Page == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page)
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/agent-portal.js")
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+@{
+    var selectedTab = Request.QueryString["tab"];
+
+    string IsActive(string tabName, bool isFirstTab)
+    {
+        if (selectedTab.IsNullOrEmpty() || selectedTab.ToLower() != tabName.ToLower())
+        {
+            if (isFirstTab)
+            {
+                if (selectedTab.IsNullOrEmpty() || NoActiveTab())
+                {
+                    return "class=\"active\"";
+                }
+            }
+
+            return string.Empty;
+
+        }
+
+        return "class=\"active\"";
+
+
+    }
+
+    bool NoActiveTab()
+    {
+        if (selectedTab.IsNullOrEmpty())
+        {
+            return true;
+        }
+
+        if ((Model.Page.AgentInstructionHeading.ToLower() == selectedTab.ToLower()) ||
+            (Model.Page.BookingOptionsHeading.ToLower() == selectedTab.ToLower()) ||
+            (Model.Page.ToolkitHeading.ToLower() == selectedTab.ToLower()) ||
+            (Model.Page.ToolkitHeading.ToLower() == selectedTab.ToLower()) ||
+            (Model.Page.IncentiveHeading.ToLower() == selectedTab.ToLower()) ||
+            (Model.Page.WebinarHeading.ToLower() == selectedTab.ToLower()))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    string IsDisplayBlock(string tabName, bool isFirstTab)
+    {
+        if (selectedTab.IsNullOrEmpty() || selectedTab.ToLower() != tabName.ToLower())
+        {
+            if (isFirstTab)
+            {
+                if (selectedTab.IsNullOrEmpty() || NoActiveTab())
+                {
+                    return "style=\"display:block\"";
+                }
+
+            }
+            return string.Empty;
+
+        }
+
+        return "style=\"display:block\"";
+    }
+}
+
+<div class="widget agent-portal" data-widget="agent-portal">
+    <div class="top">
+        <div class="mobile-nav">
+            <div class="close">
+                <span class="fal fa-times"></span>
+            </div>
+            <div class="inner">
+                <div class="heading">@Model.Page.MainHeading</div>
+                <div class="links">
+                    <a href="#" data-set="5" @Html.Raw(IsActive(Model.Page.BookingHeading, true))>@Model.Page.BookingHeading</a>
+                    @if (!Model.Page.AgentInstructionHeading.IsNullOrEmpty())
+                    {
+                        <a href="#" @Html.Raw(IsActive(Model.Page.AgentInstructionHeading, false)) data-set="7">@Model.Page.AgentInstructionHeading</a>
+
+                    }
+                    @if (Model.BookingOptionsEnabled)
+                    {
+                        <a href="#" data-set="6" @Html.Raw(IsActive(Model.Page.BookingOptionsHeading, false))>@Model.Page.BookingOptionsHeading</a>
+                    }
+
+                    <a href="#" data-set="8" @Html.Raw(IsActive(Model.Page.PaymentsHeading, false))>@Model.Page.PaymentsHeading</a>
+                    <a href="#" data-set="2" @Html.Raw(IsActive(Model.Page.ToolkitHeading, false))>@Model.Page.ToolkitHeading</a>
+                    <a href="#" data-set="3" @Html.Raw(IsActive(Model.Page.IncentiveHeading, false))>@Model.Page.IncentiveHeading</a>
+                    <a href="#" data-set="4" @Html.Raw(IsActive(Model.Page.WebinarHeading, false))>@Model.Page.WebinarHeading</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <h1>@Model.Page.MainHeading</h1>
+            @Html.Raw(Model.Page.MainDescription)
+            <div class="nav">
+                <a href="#" @Html.Raw(IsActive(Model.Page.BookingHeading, true)) data-set="5">@Model.Page.BookingHeading</a>
+                @if (!Model.Page.AgentInstructionHeading.IsNullOrEmpty())
+                {
+                    <a href="#" @Html.Raw(IsActive(Model.Page.AgentInstructionHeading, false)) data-set="7">@Model.Page.AgentInstructionHeading</a>
+
+                }
+                @if (Model.BookingOptionsEnabled)
+                {
+                    <a href="#" @Html.Raw(IsActive(Model.Page.BookingOptionsHeading, false)) data-set="6">@Model.Page.BookingOptionsHeading</a>
+                }
+
+                @*<a href="#" class="active" data-set="1">Brochures</a>*@
+
+                <a href="#" @Html.Raw(IsActive(Model.Page.PaymentsHeading, false)) data-set="8">@Model.Page.PaymentsHeading</a>
+                <a href="#" @Html.Raw(IsActive(Model.Page.ToolkitHeading, false)) data-set="2">@Model.Page.ToolkitHeading</a>
+                <a href="#" @Html.Raw(IsActive(Model.Page.IncentiveHeading, false)) data-set="3">@Model.Page.IncentiveHeading</a>
+                <a href="#" @Html.Raw(IsActive(Model.Page.WebinarHeading, false)) data-set="4">@Model.Page.WebinarHeading</a>
+            </div>
+        </div>
+
+        <div class="mobile-menu-trigger">
+            <div class="label">Showing</div>
+            <div class="nav-item">Toolkit</div>
+            <div class="icon fas fa-chevron-right"></div>
+        </div>
+    </div>
+
+    <div class="bottom wp">
+        <div class="wrapper">
+            @if (false && !Model.Brochures.IsNullOrEmpty())
+            {
+                <div class="brochure-list set" data-set="1">
+                    <div class="inner-container">
+                        @foreach (var brochure in Model.Brochures)
+                        {
+                            <div class="item" data-brochure="@brochure.BrochureNodeGuid">
+                                <div class="inner">
+                                    <div class="image">
+                                        <img class="lazyload" data-src="@brochure.CoverImage.Imgixify()" alt="@brochure.Name">
+                                    </div>
+                                    <div class="content">
+                                        <div class="title">@brochure.Name</div>
+                                        <a href="@brochure.BrochureLink" class="button primary ui transparent small" target="_blank">View online</a>
+                                        @if (!brochure.AgentPurchaseLink.IsNullOrEmpty())
+                                        {
+                                            <a href="@brochure.AgentPurchaseLink" class="button primary ui transparent small" target="_blank">Order</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div class="booking-tab-content set" data-set="5" @Html.Raw(IsDisplayBlock(Model.Page.BookingHeading, true))>
+                @Html.Raw(Model.Page.BookingDescription)
+            </div>
+
+            @if (!Model.Page.AgentInstructionHeading.IsNullOrEmpty())
+            {
+                <div class="booking-tab-content set" data-set="7" @Html.Raw(IsDisplayBlock(Model.Page.AgentInstructionHeading, false))>
+                    @Html.Raw(Model.Page.AgentInstructionDescription)
+                </div>
+
+            }
+            @if (Model.BookingOptionsEnabled)
+            {
+                <div class="booking-tab-content set" data-set="6" @Html.Raw(IsDisplayBlock(Model.Page.BookingOptionsHeading, false))>
+                    @Html.Raw(Model.Page.BookingOptionsDescription)
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.Page.PaymentsDescription))
+            {
+                <div class="payment-list set" data-set="8" @Html.Raw(IsDisplayBlock(Model.Page.PaymentsHeading, false))>
+                    @Html.Raw(Model.Page.PaymentsDescription)
+                </div>
+            }
+
+            @if (!Model.AgentToolkits.IsNullOrEmpty())
+            {
+                <div class="toolkit-list set" data-set="2" @Html.Raw(IsDisplayBlock(Model.Page.ToolkitHeading, false))>
+                    @Html.Raw(Model.Page.ToolkitDescription)
+                    <div class="container">
+                        @foreach (var toolkit in Model.AgentToolkits)
+                        {
+                            <a href="@toolkit.Url" class="item" target="_blank">
+                                <div class="image">
+                                    <img class="lazyload" data-src="@toolkit.Image.Imgixify()" alt="@toolkit.Name">
+                                </div>
+                                <span class="title" data-mh="even-title">@toolkit.Name</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+
+            @if (!Model.AgentWebinars.IsNullOrEmpty())
+            {
+                <div class="webinar-list set" data-set="4" @Html.Raw(IsDisplayBlock(Model.Page.WebinarHeading, false))>
+                    @Html.Raw(Model.Page.WebinarDescription)
+                    <div class="inner-container">
+                        @foreach (var webinar in Model.AgentWebinars)
+                        {
+                            if (!webinar.RecordingUrl.IsNullOrEmpty())
+                            {
+                                <a href="@webinar.RecordingUrl" class="item" target="_blank">
+                                    <div class="image">
+                                        <img class="lazyload" data-src="@webinar.Image.Imgixify()" alt="@webinar.Name">
+                                    </div>
+                                    <span class="title" data-mh="even-title">@webinar.Name</span>
+                                    <p data-mh="even-copy">@Html.Raw(webinar.Description)</p>
+                                </a>
+                            }
+                            else
+                            {
+                                <div class="item">
+                                    <div class="image">
+                                        <img class="lazyload" data-src="@webinar.Image.Imgixify()" alt="@webinar.Name">
+                                    </div>
+                                    <span class="title" data-mh="even-title">@webinar.Name</span>
+                                    <p data-mh="even-copy">@webinar.Description</p>
+                                    @if (webinar.ComingSoonDate != DateTime.MaxValue)
+                                    {
+                                        <p>Coming soon: @webinar.ComingSoonDate.ToString("dd MMM yyyy")</p>
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+
+            @if (!Model.AgentIncentives.IsNullOrEmpty())
+            {
+                <div class="incentive-list set" data-set="3" @Html.Raw(IsDisplayBlock(Model.Page.IncentiveHeading, false))>
+                    @Html.Raw(Model.Page.IncentiveDescription)
+                    <div class="inner-container">
+                        @foreach (var incentive in Model.AgentIncentives)
+                        {
+                            <a href="@incentive.Url" class="item" target="_blank">
+                                <span class="inner">
+                                    <span class="left">
+                                        <span class="image">
+                                            <img class="lazyload" data-src="@incentive.Image.Imgixify()" alt="@incentive.Name">
+                                            <span class="grad"></span>
+                                            <span class="title">@incentive.Name</span>
+                                        </span>
+                                    </span>
+                                    <span class="right">
+                                        <span class="location">@incentive.Destination</span>
+                                        <span class="copy">@Html.Raw(incentive.Description)</span>
+                                    </span>
+                                </span>
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

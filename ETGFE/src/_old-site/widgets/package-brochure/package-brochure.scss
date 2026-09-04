@@ -1,0 +1,49 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-brochure {
+  border-bottom: 1px solid #929497;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+
+  .image {
+    flex-shrink: 0;
+    position: relative;
+    width: 125px;
+    align-self: flex-end;
+
+    @media(--portrait) {
+      width: 95px;
+    }
+
+    @media(--landscape) {
+      width: 89px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .content {
+    padding: 30px 20px;
+
+    .title {
+      font-size: 18px;
+      line-height: 1.2;
+      font-family: $railway;
+      text-transform: uppercase;
+
+      @media(--landscape) {
+        font-size: 23px;
+        line-height: 1;
+      }
+    }
+
+    .button {
+      margin-top: 10px;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.experience-ticker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  @media(min-width: 1024px) {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .title {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: Raleway, Arial, sans-serif;
+    font-size: 18px;
+    flex-shrink: 0;
+
+    @media(min-width: 1024px) {
+      position: relative;
+      padding-left: 30px;
+      padding-right: 30px;
+      margin-right: 10px;
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background-color: #ededed;
+      }
+    }
+  }
+
+  .items {
+    margin-top: 10px;
+    column-count: 1;
+
+    @media(min-width: 480px) {
+      column-count: 2;
+    }
+
+    @media(min-width: 768px) {
+      column-count: 3;
+    }
+
+    @media(min-width: 1024px) {
+      column-count: auto;
+      margin-top: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .item {
+      width: auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .icon {
+        margin-right: 5px;
+      }
+    }
+  }
+}

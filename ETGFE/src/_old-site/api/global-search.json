@@ -1,0 +1,81 @@
+{
+  "all" : {
+    "title": "View all results",
+    "url": "#"
+  },
+  "results": {
+    "tours": {
+      "name": "Tours",
+      "results": [
+        {
+          "title": "Paris - Romance in Paris",
+          "url": "#tour1"
+        },
+        {
+          "title": "Cannes > Nice - Best of the French Riviera",
+          "url": "#tour2"
+        },
+        {
+          "title": "Paris - Romance in Paris",
+          "url": "#tour3"
+        },
+        {
+          "title": "Paris - Romance in Paris",
+          "url": "#tour4"
+        }
+      ],
+      "links":[
+        {
+          "title": "View all",
+          "url": "#viewall"
+        }
+      ]
+    },
+    "destinations": {
+      "name": "Destinations",
+      "results": [
+        {
+          "title": "France",
+          "url": "#tour1"
+        },
+        {
+          "title": "Avignon, France",
+          "url": "#tour2"
+        },
+        {
+          "title": "Bordeaux, France",
+          "url": "#tour3"
+        }
+      ],
+      "links":[
+        {
+          "title": "View all",
+          "url": "#viewall"
+        }
+      ]
+    },
+    "inspired": {
+      "name": "Get inspired",
+      "results": [
+        {
+          "title": "Dusce dapibus tellus ac France commodo tortor mauris",
+          "url": "#tour1"
+        },
+        {
+          "title": "Pondimentum France nibh ut fermentum massa justo sit",
+          "url": "#tour2"
+        },
+        {
+          "title": "Daecenas sed diam eget risus varius blandit sit amet",
+          "url": "#tour3"
+        }
+      ],
+      "links":[
+        {
+          "title": "View all",
+          "url": "#viewall"
+        }
+      ]
+    }
+  }
+}

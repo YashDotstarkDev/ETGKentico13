@@ -1,0 +1,167 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.explore-destinations {
+  /*
+  &.beginning {
+    .carousel {
+      &:before {
+        opacity: 0;
+      }
+    }
+  }
+
+  &.end {
+    .carousel {
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+  */
+
+  .carousel {
+    position: relative;
+    margin: 0 -20px;
+
+    @media(--landscape) {
+      margin: 0;
+    }
+
+    /*
+    &:before, &:after {
+      display: block;
+      position: absolute;
+      content: '';
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      z-index: 2;
+      user-select: none;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    &:before {
+      left: 0;
+      background: linear-gradient(270deg, rgba(#FFF, 0) 0%, rgba(#FFF, 1) 100%);
+    }
+
+    &:after {
+      right: 0;
+      background: linear-gradient(90deg, rgba(#FFF, 0) 0%, rgba(#FFF, 1) 100%);
+    }
+    */
+  }
+
+  .swiper-wrapper {
+    @media(--landscape) {
+      box: horizontal top wrap;
+      transfrom: none !important;
+    }
+  }
+
+  .swiper-slide {
+    width: 200px;
+
+    @media(--mobileLarge) {
+      width: 280px;
+    }
+
+    @media(--landscape) {
+      width: 25%;
+    }
+  }
+
+  .item {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+
+    @media(--portrait) {
+      width: auto;
+    }
+
+    @media(--desktop) {
+      &:hover {
+        .overlay {
+          opacity: 1;
+          visibility: visible;
+          bottom: 0;
+        }
+
+        .inner {
+          .title {
+            opacity: 0;
+          }
+        }
+      }
+    }
+
+    .gradient {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 130px;
+      background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+      opacity: 0.6;
+    }
+
+    .overlay {
+      bottom: -100%;
+      left: 0;
+      right: 0;
+      background-color: rgba(#000, 0.7);
+      position: absolute;
+      overflow: hidden;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      padding: 20px;
+      transition: all 0.3s ease;
+
+      .title {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        z-index: 1;
+      }
+
+      .copy {
+        color: #FFF;
+      }
+    }
+  }
+
+  .inner {
+    @util aspect-ratio(300:225);
+    position: relative;
+  }
+
+  .title {
+    opacity: 1;
+    font-size: 24px;
+    color: #FFF;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-family: $railway;
+    line-height: 1;
+
+    transition: opacity 0.3s ease;
+  }
+
+  img {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    font-family: "object-fit: cover";
+  }
+}

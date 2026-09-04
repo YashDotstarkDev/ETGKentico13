@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <scripts>
+    <script fileName="Hotfix_separated.sql" connectionStringName="CMSOMConnectionString" order="1" />
+    <script fileName="Hotfix_default.sql" connectionStringName="CMSConnectionString" order="2" />
+  </scripts>
+</settings>

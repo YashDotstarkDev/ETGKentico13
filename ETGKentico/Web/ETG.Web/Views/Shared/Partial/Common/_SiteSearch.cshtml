@@ -1,0 +1,14 @@
+﻿@model bool
+<div class="widget site-search@(Model ? " has-type-ahead" : "")" data-widget="site-search">
+    <div class="ui form search-form">
+        <div class="ui search" data-endpoint="/api/search/typeahead?keywords={query}" data-search-url="/search?query=">
+            <div class="field">
+                <input type="text" name="search" data-prompts="" placeholder="Destinations, Experiences, Travel Styles, Package Code" class="prompt"/>
+                <button class="ui primary submit button" type="button">Search</button>
+            </div>
+
+            <div class="response-container"></div>
+            <div class="ui error message"></div>
+        </div>
+    </div>
+</div>

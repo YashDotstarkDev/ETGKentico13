@@ -1,0 +1,360 @@
+---
+
+---
+<div class="widget booking" data-widget="booking">
+
+    <!-- HELP-2046 NOTE 'payment-options-modal' modal should only be included if travel agent booking -->
+    <div class="ui modal payment-options-modal">
+        <div class="inner-container">
+            <div>
+                <h2>Other payment options</h2>
+                <p>Would you like to book this website package and pay the deposit via <strong>Direct Deposit</strong>, <strong>MINT</strong>, <strong>TravelPay B2B</strong>, or <strong>Payment Gate</strong>?</p>
+            </div>
+
+            <div class="btn-container">
+                <button class="ui button primary proceed" type="button">Proceed</button>
+                <button class="ui button primary transparent cancel" type="button">cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <h1>Booking</h1>
+
+        <!-- HELP-2046 NOTE
+        `data-endpoint` is used for standard bookings to pay with credit card.
+        `data-endpoint-pay-later` is used if booking who will pay offline, such as if travel agent.
+        -->
+        <div class="ui form"
+             data-method="GET"
+             data-endpoint="api/book-now-api/create-order.json"
+             data-endpoint-pay-later="api//book-now-api/create-order-pay-later.json"
+             data-validate-inline="data-validate-inline"
+             data-validate-on="submit"
+        >
+            <div class="row">
+                <div class="col col-form">
+                    <h3>1. Lead Passenger Details</h3>
+
+                    <div class="col-content">
+                        <div class="field">
+                            <label>First name</label>
+                            <input type="text" name="firstname" data-rules="regExp[/[aeiou]/]" data-prompts="Please enter a valid first name"/>
+                        </div>
+
+                        <div class="field">
+                            <label>Last name</label>
+                            <input type="text" name="lastname" data-rules="regExp[/[aeiou]/]" data-prompts="Please enter a valid last name"/>
+                        </div>
+                        <div class="field">
+                            <label>Date of birth</label>
+                            <input type="text" name="dob" data-rules="empty" data-prompts="" class="datepicker" readonly />
+                        </div>
+                        <div class="field">
+                            <label class="with-tooltip">
+                                <div>Phone</div>
+                                <div class="ui tool-tip" data-html="Add users to your feed<br>Add users to your feed">
+                                    <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#333333"/>
+                                    </svg>
+                                </div>
+                            </label>
+                            <input type="text" name="phone" data-rules="phone" data-prompts=""/>
+                        </div>
+
+                        <div class="field">
+                            <label>Email</label>
+                            <input type="text" name="email" data-rules="empty,email" data-prompts=""/>
+                        </div>
+
+                        <div class="field">
+                            <label>State</label>
+                            <select class="make-dropdown" name="state">
+                                <option value="">Optional</option>
+                                <option value="1">Option</option>
+                                <option value="2">Option</option>
+                                <option value="3">Option</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label>Questions or comments</label>
+                            <textarea name="message" data-rules="empty,maxLengthVisible[500]" data-prompts="" placeholder="Optional" maxlength="500"></textarea>
+                        </div>
+                        <div class="disclaimer">
+                            <p>To start the booking process, only Lead Passenger details are required at this time. We will be in contact with you again to confirm the details of all travellers</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <h3>2. Payment Details</h3>
+                    <div class="col-content">
+                        <p class="sub">Maecenas sed diam eget risus varius blandit sit amet non magna. Nullam id dolor id nibh ultricies vehicula.</p>
+                        <!--
+                                  <div class="field">
+                                    <label>Credit Card Number</label>
+                                    <input type="number" name="ccnumber" data-rules="empty,minLengthVisible[13]" data-prompts="" placeholder="Please enter a valid credit card number"/>
+                                  </div>
+
+                                  <div class="field half">
+                                    <label>Expiry</label>
+                                    <input class="expiry" type="text" name="expiry" maxlength="5" data-rules="empty,exactLengthVisible[5]" data-prompts="" placeholder="MMYY"/>
+                                  </div>
+
+                                  <div class="field half">
+                                    <label>CCV</label>
+                                    <input type="number" name="ccv" data-rules="empty" data-prompts="" placeholder=""/>
+                                  </div>
+                        -->
+                        <h3>Payment Terms</h3>
+
+                        <b>Refundable Deposit</b>
+                        <ul>
+                            <li>$100 per person Deposit</li>
+                            <li>$100 per person Entire Flex Plan</li>
+                        </ul>
+
+                        <p><i>Cooling-off Period</i> - Deposit and Entire Flex Plan are fully refundable up to 7 days from payment.</p>
+
+                        <p>
+                            <b>Flexible Instalment</b>
+                            A further 20% of the Total is payable 14 days following receipt of your Deposit.
+                        </p>
+
+                        <p>
+                            <i>Flexibility Period</i> - With Entire Flex, change of mind is possible right up to 30 days before departure. Receive a Travel Credit that equals Total Paid (less Entire Flex amount). You will have up to 18 months to confirm and depart on another Peace of Mind package to any destination offered by Entire Travel Group.
+                        </p>
+
+                        <p>
+                            <b>Final Payment</b>
+                            30 days prior to Start Date.
+                        </p>
+
+                        <p>
+                            For more details visit <a href="#">Peace of Mind Booking Plan</a>
+                        </p>
+                    </div>
+
+
+                </div>
+                <div class="col">
+                    <h3>3. Book and Pay Now</h3>
+
+                    <div class="col-content">
+
+                        <div class="summary promo-code">
+                            <div class="heading">Have a promo code?</div>
+                            <div class="promo-form" data-endpoint="/api/book-now-api/apply-code-success.json" data-method="GET">
+                                <input type="text">
+                                <button type="button" class="ui primary button">Apply</button>
+                            </div>
+                            <div class="error">Error message</div>
+                        </div>
+
+
+                        <div class="summary">
+                            <h4>8 Days Calabria Classic (11608)<br>Departing Sat, 16 Apr 2021</h4>
+
+                            <div class="item">
+                                <div class="item-name">
+                                    <div class="label">Package(s)</div>
+                                    <div class="qty">2 @ #14,700</div>
+                                </div>
+                                <div class="price">$27,400</div>
+                            </div>
+
+                            <div class="item">
+                                <div class="item-name">
+                                    <div class="label">Solo Package(s)</div>
+                                    <div class="qty">1 @ #7,700</div>
+                                </div>
+                                <div class="price">$7,400</div>
+                            </div>
+
+                            <div class="item">
+                                <div class="item-name">
+                                    <div class="label">Room Options</div>
+                                    <div class="qty">1 Beach Bungalow @ $1000</div>
+                                    <div class="qty">1 Pool Bungalow @ $700</div>
+                                </div>
+                                <div class="price">$27,400</div>
+                            </div>
+
+                            <div class="item">
+                                <div class="item-name">
+                                    <div class="label">Entire Flex</div>
+                                    <div class="qty">1  @ $100pp</div>
+                                </div>
+                                <div class="price">$27,400</div>
+                            </div>
+
+                            <div class="item">
+                                <div class="total-label">Total</div>
+                                <div class="total-price">AUD $45,450</div>
+                                <input type="hidden" value="45450" name="hidGrossPrice" />
+                            </div>
+                        </div>
+                        <div class="summary your-price-container">
+                            <div class="item your-price field">
+                                <div class="total-label">Your Price</div>
+                                <div class="total-price">
+                                    <div class="display-price">
+                                        AUD $40,450
+                                    </div>
+                                    <div class="input-price">
+                                        AUD $ <input type="text" name="agentprice" maxlength="8" value="0" data-rules="numberVisible,notLessThanVisible[40450]" data-prompts="Price should not be less than net price" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="link-container">
+                                <a href="#" class="change-price ui primary small button">Change Agent Sell Price</a>
+                                <a href="#" class="cancel-price">Cancel</a>
+                            </div>
+                            <div class="item item-net-price">
+                                <div class="total-label">Net Price</div>
+                                <div class="total-price" data-net="40450">AUD $40,450</div>
+                            </div>
+                            <div class="item item-commission">
+                                <div class="total-label">Agent Commission</div>
+                                <div class="total-price">AUD $<span class="commission">1,000</span></div>
+                            </div>
+                        </div>
+                        <div class="deposit-summary deposit-due">
+                            <div class="item">
+                                <div class="item-name">
+                                    <div class="label">Deposit</div>
+                                    <div class="qty">5 @ #14,700</div>
+                                </div>
+                                <div class="price">$500</div>
+                            </div>
+                            <div class="item">
+                                <div class="item-name">
+                                    <div class="label">Entire Flex</div>
+                                    <div class="qty">5 @ $100pp</div>
+                                </div>
+                                <div class="price">$500</div>
+                            </div>
+                            <div class="item">
+                                <div class="total-label">Total Deposit Due Now</div>
+                                <div class="total-price">AUD $40,450</div>
+                            </div>
+                        </div>
+                        <div class="deposit-summary">
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="subscribe" value="subscribe"/>
+                                    <label>Subscribe to our newsletter and never miss a deal again.</label>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" name="acceptterms" value="acceptterms" data-rules="checkboxCount[1]"  data-prompts="Please accept Terms and Conditions" />
+                                    <label>I accept the <a href="#">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+
+                            <div class="image-container">
+                                <img src="/images/cards.png">
+                            </div>
+
+                            <div class="response-container"></div>
+
+                            <div class="popup-warning bg-white/10 p-4 flex items-center gap-2 text-[11px] uppercase rounded my-6">
+                                <svg class="shrink-0" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.5 15.375C5.80469 15.375 3.34375 13.9688 1.99609 11.625C0.648438 9.31055 0.648438 6.46875 1.99609 4.125C3.34375 1.81055 5.80469 0.375 8.5 0.375C11.166 0.375 13.627 1.81055 14.9746 4.125C16.3223 6.46875 16.3223 9.31055 14.9746 11.625C13.627 13.9688 11.166 15.375 8.5 15.375ZM8.5 4.125C8.08984 4.125 7.79688 4.44727 7.79688 4.82812V8.10938C7.79688 8.51953 8.08984 8.8125 8.5 8.8125C8.88086 8.8125 9.20312 8.51953 9.20312 8.10938V4.82812C9.20312 4.44727 8.88086 4.125 8.5 4.125ZM7.5625 10.6875C7.5625 11.2148 7.97266 11.625 8.5 11.625C8.99805 11.625 9.4375 11.2148 9.4375 10.6875C9.4375 10.1895 8.99805 9.75 8.5 9.75C7.97266 9.75 7.5625 10.1895 7.5625 10.6875Z" fill="white"/>
+                                </svg>
+                                Please enable pop-ups in your browser before proceeding.
+                            </div>
+
+                            <div class="submit-row">
+                                <!--<button class="ui button submit alt-endpoint needs-confirm" data-modal="confirm-agent-price">Create client quote</button>-->
+                                <button class="ui button submit primary needs-confirm">Pay Deposit Now by Credit Card</button>
+                                <!-- HELP-2046 NOTE 'Other Payment Options' button should only show if travel agent booking -->
+                                <button class="ui button primary transparent submit-other">Other Payment Options</button>
+                            </div>
+
+                            <div class="modify-booking">
+                                <a href="#">Modify Booking</a>
+                            </div>
+
+                            <div class="terms">*Under our Peace of Mind Booking Plan, the deposit is refundable up to 7 days from payment.</div>
+                        </div>
+                        <div class="widget feature-box no-margin-top" style="opacity: 1;">
+                            <div class="confidence">
+                                <div class="confidence-logo">
+                                    <img src="/images/badge-pease-of-mind-booking-plan@2x.png" alt="Peace Of Mind Logo">
+                                </div>
+                                Book with Confidence
+                            </div>
+                            <div class="tick-list">
+                                <ul>
+                                    <li>
+                                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.40625 12.75C6.71875 13.0625 7.25 13.0625 7.5625 12.75L16.75 3.5625C17.0625 3.25 17.0625 2.71875 16.75 2.40625L15.625 1.28125C15.3125 0.96875 14.8125 0.96875 14.5 1.28125L7 8.78125L3.46875 5.28125C3.15625 4.96875 2.65625 4.96875 2.34375 5.28125L1.21875 6.40625C0.90625 6.71875 0.90625 7.25 1.21875 7.5625L6.40625 12.75Z" fill="#CA568C"></path>
+                                        </svg>
+                                        ENTIRE Price Guarantee
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.40625 12.75C6.71875 13.0625 7.25 13.0625 7.5625 12.75L16.75 3.5625C17.0625 3.25 17.0625 2.71875 16.75 2.40625L15.625 1.28125C15.3125 0.96875 14.8125 0.96875 14.5 1.28125L7 8.78125L3.46875 5.28125C3.15625 4.96875 2.65625 4.96875 2.34375 5.28125L1.21875 6.40625C0.90625 6.71875 0.90625 7.25 1.21875 7.5625L6.40625 12.75Z" fill="#CA568C"></path>
+                                        </svg>
+                                        ENTIRE Cooling-off Period
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.40625 12.75C6.71875 13.0625 7.25 13.0625 7.5625 12.75L16.75 3.5625C17.0625 3.25 17.0625 2.71875 16.75 2.40625L15.625 1.28125C15.3125 0.96875 14.8125 0.96875 14.5 1.28125L7 8.78125L3.46875 5.28125C3.15625 4.96875 2.65625 4.96875 2.34375 5.28125L1.21875 6.40625C0.90625 6.71875 0.90625 7.25 1.21875 7.5625L6.40625 12.75Z" fill="#CA568C"></path>
+                                        </svg>
+                                        ENTIRE Change of Mind
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.40625 12.75C6.71875 13.0625 7.25 13.0625 7.5625 12.75L16.75 3.5625C17.0625 3.25 17.0625 2.71875 16.75 2.40625L15.625 1.28125C15.3125 0.96875 14.8125 0.96875 14.5 1.28125L7 8.78125L3.46875 5.28125C3.15625 4.96875 2.65625 4.96875 2.34375 5.28125L1.21875 6.40625C0.90625 6.71875 0.90625 7.25 1.21875 7.5625L6.40625 12.75Z" fill="#CA568C"></path>
+                                        </svg>
+                                        ENTIRE Refundable Bookings
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.40625 12.75C6.71875 13.0625 7.25 13.0625 7.5625 12.75L16.75 3.5625C17.0625 3.25 17.0625 2.71875 16.75 2.40625L15.625 1.28125C15.3125 0.96875 14.8125 0.96875 14.5 1.28125L7 8.78125L3.46875 5.28125C3.15625 4.96875 2.65625 4.96875 2.34375 5.28125L1.21875 6.40625C0.90625 6.71875 0.90625 7.25 1.21875 7.5625L6.40625 12.75Z" fill="#CA568C"></path>
+                                        </svg>
+                                        ENTIRE COVID-19 Terms
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.40625 12.75C6.71875 13.0625 7.25 13.0625 7.5625 12.75L16.75 3.5625C17.0625 3.25 17.0625 2.71875 16.75 2.40625L15.625 1.28125C15.3125 0.96875 14.8125 0.96875 14.5 1.28125L7 8.78125L3.46875 5.28125C3.15625 4.96875 2.65625 4.96875 2.34375 5.28125L1.21875 6.40625C0.90625 6.71875 0.90625 7.25 1.21875 7.5625L6.40625 12.75Z" fill="#CA568C"></path>
+                                        </svg>
+                                        ENTIRE On-ground Support
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="link">
+                                See
+                                <a href="/peace-of-mind" target="_blank">
+                                    Peace of Mind Booking Plan
+                                    <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.5898 0.75L9.13281 0.777344C8.91406 0.777344 8.75 0.941406 8.75 1.16016V2.0625C8.75 2.28125 8.91406 2.47266 9.13281 2.47266L11.1562 2.39062L11.2109 2.44531L3.58203 10.0742C3.52734 10.1289 3.47266 10.2109 3.47266 10.293C3.47266 10.4023 3.52734 10.4844 3.58203 10.5391L4.21094 11.168C4.26562 11.2227 4.34766 11.2773 4.45703 11.2773C4.53906 11.2773 4.62109 11.2227 4.67578 11.168L12.3047 3.53906L12.3594 3.59375L12.2773 5.61719C12.2773 5.83594 12.4688 6.02734 12.6875 6.02734V6H13.5898C13.8086 6 13.9727 5.83594 13.9727 5.61719L14 1.16016C14 0.941406 13.8086 0.75 13.5898 0.75ZM11.8125 8.625H11.375C11.1289 8.625 10.9375 8.84375 10.9375 9.0625V13.2734C10.9375 13.3828 10.8555 13.4375 10.7734 13.4375H1.47656C1.36719 13.4375 1.3125 13.3828 1.3125 13.2734V3.97656C1.3125 3.89453 1.36719 3.8125 1.47656 3.8125H5.6875C5.90625 3.8125 6.125 3.62109 6.125 3.375V2.9375C6.125 2.71875 5.90625 2.5 5.6875 2.5H1.3125C0.574219 2.5 0 3.10156 0 3.8125V13.4375C0 14.1758 0.574219 14.75 1.3125 14.75H10.9375C11.6484 14.75 12.25 14.1758 12.25 13.4375V9.0625C12.25 8.84375 12.0312 8.625 11.8125 8.625Z" fill="currentColor"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="confirm-agent-price ui">
+                <div class="inner-container">
+                    <div>
+                        <p>Do you want to proceed with your new price?</p>
+                    </div>
+
+                    <div class="btn-container">
+                        <button class="ui transparent button primary submit" type="button">Yes</button>
+                        <button class="ui button primary no" type="button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

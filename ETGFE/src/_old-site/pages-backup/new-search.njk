@@ -1,0 +1,27 @@
+{% set page_title = 'New search' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+
+{% endblock %}
+
+{% block beforeArticle %}
+{% include "src/widgets/new-header/new-header.njk" %}
+{% endblock %}
+
+{% block article %}
+{% include "src/widgets/new-search/new-search.njk" %}
+{% include "src/widgets/spacer/spacer.njk" %}
+{% endblock %}
+
+{% block afterArticle %}
+{% include "src/widgets/new-footer/new-footer.njk" %}
+
+{% endblock %}
+
+{% block scripts %}
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css"></noscript>
+
+  <script src="/scripts/new-search.js"></script>
+{% endblock %}

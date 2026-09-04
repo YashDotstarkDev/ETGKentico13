@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="show-gdpr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>ETG cut | {{ page_title }}</title>
+
+    <style>
+      .widget {
+        opacity: 0;
+      }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <!-- Icomoon -->
+    <!-- production env
+    <link rel="preload" href="https://cdn.icomoon.io/39161/ETGP0001EntireTravelGroup/style.css?c3unwu" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.icomoon.io/39161/ETGP0001EntireTravelGroup/style.css?c3unwu"></noscript>
+    -->
+    <!-- development env -->
+    <link rel="preload" href="https://i.icomoon.io/public/df16b6706c/ETGP0001EntireTravelGroup/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://i.icomoon.io/public/df16b6706c/ETGP0001EntireTravelGroup/style.css"></noscript>
+    <!---->
+
+
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:400,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:400,900&display=swap"></noscript>
+
+    <link rel="preload" href="/styles/global.css?v=20230207" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/styles/global.css?v=20230207"></noscript>
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css"></noscript>
+
+    <script src="https://kit.fontawesome.com/d67a31d7e1.js" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://adriano-au.avanser.com/tagmanager/8341-1.js"></script>
+
+    <!-- Google Maps
+    NOTE: Google Maps script is loaded by '@googlemaps/js-api-loader', so do not directly link
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBQSwFeJc6YO0wrcLPtvCu-9KSXXRMWReI"></script>
+    -->
+    <script>
+      // Expose maps api key to pass into config for '@googlemaps/js-api-loader'
+      const GOOGLE_MAPS_API_KEY = 'AIzaSyBQSwFeJc6YO0wrcLPtvCu-9KSXXRMWReI'
+    </script>
+    <!-- END Google maps -->
+
+    {# <script type="text/javascript" src="https://api.feefo.com/api/javascript/entire-travel" async></script> #}
+
+    <!-- Please inline this css file -->
+    {# <link rel="stylesheet" href="/styles/global.css"> #}
+
+    {# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css" integrity="sha256-HB49n/BZjuqiCtQQf49OdZn63XuKFaxcIHWf0HNKte8=" crossorigin="anonymous"> #}
+
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
+  </head>
+  <body class="pushable show-nz-redirect-modal" style="opacity: 0;">
+    {% block beforePusher %}{% endblock %}
+      <div class="pusher">
+        {% block beforeArticle %}
+        {% endblock %}
+        <article>
+          {% block article %}{% endblock %}
+        </article>
+        {% block afterArticle %}{% endblock %}
+      </div>
+    {% block afterPusher %}{% endblock %}
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lcxu_soAAAAAFgcneRkdy96e6Je_wkV0DdYZLNP"></script>
+
+    <script src="/scripts/runtime.js"></script>
+    <script src="/scripts/global.js"></script>
+    <script src="/scripts/widgets.js"></script>
+
+    {% block scripts %}{% endblock %}
+    <link rel="stylesheet" href="/styles/print.css">
+
+  </body>
+</html>

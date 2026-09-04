@@ -1,0 +1,16 @@
+---
+const { width = 1000, height = 1000 } = Astro.props;
+
+let colour = '';
+for (let i = 0; i < 6; i++) {
+    colour += Math.floor(Math.random() * 6);
+}
+
+function adjust(colour, amount) {
+    return colour.replace(/^#/, '').replace(/../g, colour => ('0'+Math.min(255, Math.max(0, parseInt(colour, 16) + amount)).toString(16)).substr(-2));
+}
+
+let textColour = adjust(colour, -10);
+---
+
+<img class="lazyload absolute left-0 top-0 w-full h-full object-cover" alt="Image description" data-src={`https://placehold.co/${width}x${height}/${colour}/${textColour}`} />

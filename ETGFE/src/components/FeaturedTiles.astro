@@ -1,0 +1,71 @@
+---
+import TilesCarousel from './TilesCarousel.vue'
+import FeaturedProductTile from "./FeaturedProductTile.astro";
+import FeaturedProductLink from "./FeaturedProductLink.astro";
+---
+
+<!--
+/////
+featured-tiles Start
+/////
+-->
+
+<div class="featured-tiles">
+    <div class="wrapper">
+        <h2 class="text-center text-black uppercase">Featured Tiles</h2>
+
+        <div class="-m-4 mt-6 flex flex-wrap justify-center">
+
+            <div class="tile p-4 w-full md:w-1/2 xl:w-1/4">
+                <FeaturedProductTile />
+            </div>
+
+            <div class="tile p-4 w-full md:w-1/2 xl:w-1/4">
+                <FeaturedProductTile />
+            </div>
+
+            <div class="tile p-4 w-full md:w-1/2 xl:w-1/4">
+                <FeaturedProductTile />
+            </div>
+
+            <div class="tile p-4 w-full md:w-1/2 xl:w-1/4">
+                <FeaturedProductTile />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="featured-tiles">
+    <div class="wrapper">
+        <h2 class="text-center text-black uppercase">Can also use links</h2>
+
+        <div class="-m-4 mt-6 flex flex-wrap justify-center">
+
+            <div class="tile p-4 w-full md:w-1/2 xl:w-1/4">
+                <FeaturedProductLink />
+            </div>
+
+            <div class="tile p-4 w-full md:w-1/2 xl:w-1/4">
+                <FeaturedProductLink />
+            </div>
+
+            <div class="tile p-4 w-full md:w-1/2 xl:w-1/4">
+                <FeaturedProductLink />
+            </div>
+
+            <div class="tile p-4 w-full md:w-1/2 xl:w-1/4">
+                <FeaturedProductLink />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--
+/////
+featured-tiles End
+/////
+-->

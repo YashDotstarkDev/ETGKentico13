@@ -1,0 +1,286 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dstes\\AppData\\Local\\Temp\\.vsdbgsrc\\bc0be5278041b8f1bff63e220951d9a47884f6d00bd2c131cff58437d5e0dd1d\\VirtualContextAuthenticationConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02D94BAC-2CC8-46BF-AE66-E868A855375C}|ETG.Web\\ETG.Web.csproj|d:\\projects\\etg\\shared by client\\etgsourcecodepackage\\etgkentico\\web\\etg.web\\connectionstrings.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{02D94BAC-2CC8-46BF-AE66-E868A855375C}|ETG.Web\\ETG.Web.csproj|solutionrelative:etg.web\\connectionstrings.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dstes\\AppData\\Local\\Temp\\.vsdbgsrc\\3464d647c4e12a4a6d87465c4678c2f7cd199064412308b2a1e929889b36cbc5\\SecurityTokenManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A8BDA24-BF6D-4588-832C-0CFF4D104E63}|ETG.Data\\ETG.Data.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\etg.data\\tour\\services\\itourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A8BDA24-BF6D-4588-832C-0CFF4D104E63}|ETG.Data\\ETG.Data.csproj|solutionrelative:etg.data\\tour\\services\\itourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dstes\\AppData\\Local\\Temp\\.vsdbgsrc\\37d900d757b3e480135942ae0ac0e277ef703834a1db95ce3e6ea5509b78447f\\Cache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69B4CFA4-E5AE-4DDC-BFA3-D56B6CA93E49}|Devotion.Cache.MVC\\Devotion.Cache.MVC.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\devotion.cache.mvc\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{69B4CFA4-E5AE-4DDC-BFA3-D56B6CA93E49}|Devotion.Cache.MVC\\Devotion.Cache.MVC.csproj|solutionrelative:devotion.cache.mvc\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02D94BAC-2CC8-46BF-AE66-E868A855375C}|ETG.Web\\ETG.Web.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\etg.web\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{02D94BAC-2CC8-46BF-AE66-E868A855375C}|ETG.Web\\ETG.Web.csproj|solutionrelative:etg.web\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A77928D-CCF6-4DC5-84A9-92C69A0D81BC}|ETG.Module\\ETG.Module.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\etg.module\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8A77928D-CCF6-4DC5-84A9-92C69A0D81BC}|ETG.Module\\ETG.Module.csproj|solutionrelative:etg.module\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{569280E0-0906-45A4-83E5-AC54B0797014}|ETG.Data.Tests\\ETG.Data.Tests.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\etg.data.tests\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{569280E0-0906-45A4-83E5-AC54B0797014}|ETG.Data.Tests\\ETG.Data.Tests.csproj|solutionrelative:etg.data.tests\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A8BDA24-BF6D-4588-832C-0CFF4D104E63}|ETG.Data\\ETG.Data.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\etg.data\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0A8BDA24-BF6D-4588-832C-0CFF4D104E63}|ETG.Data\\ETG.Data.csproj|solutionrelative:etg.data\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24592C8E-EADD-4786-87F3-6B4EF75A1369}|ETG.Core\\ETG.Core.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\etg.core\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{24592C8E-EADD-4786-87F3-6B4EF75A1369}|ETG.Core\\ETG.Core.csproj|solutionrelative:etg.core\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8DCFEA04-56CF-4043-AD28-8579AD7B2F47}|ETG.Booking.Test\\ETG.Booking.Test.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\etg.booking.test\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8DCFEA04-56CF-4043-AD28-8579AD7B2F47}|ETG.Booking.Test\\ETG.Booking.Test.csproj|solutionrelative:etg.booking.test\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0CF24E0F-ACE9-4ED2-A19F-6F7B7D1CE755}|ETG.Booking.Pricing\\ETG.Booking.Pricing.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\etg.booking.pricing\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0CF24E0F-ACE9-4ED2-A19F-6F7B7D1CE755}|ETG.Booking.Pricing\\ETG.Booking.Pricing.csproj|solutionrelative:etg.booking.pricing\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B08726C-88AF-4CE6-A6F3-7AEC07100A32}|Devotion.Kentico.Base\\Devotion.Kentico.Base.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\devotion.kentico.base\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7B08726C-88AF-4CE6-A6F3-7AEC07100A32}|Devotion.Kentico.Base\\Devotion.Kentico.Base.csproj|solutionrelative:devotion.kentico.base\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4862CE09-E1C6-4A14-A177-DFFA89ADF572}|Devotion.Data\\Devotion.Data.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\devotion.data\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4862CE09-E1C6-4A14-A177-DFFA89ADF572}|Devotion.Data\\Devotion.Data.csproj|solutionrelative:devotion.data\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1F033F0-A8DF-481B-96B2-BA78BF246219}|Devotion.Cache\\Devotion.Cache.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\devotion.cache\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E1F033F0-A8DF-481B-96B2-BA78BF246219}|Devotion.Cache\\Devotion.Cache.csproj|solutionrelative:devotion.cache\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{931F00AD-FE9F-4B81-8B76-7BEF8A31D378}|..\\Kentico\\ETG.Module.Booking\\ETG.Module.Booking.csproj|D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\kentico\\etg.module.booking\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "connectionStrings.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Web\\connectionStrings.config",
+              "RelativeDocumentMoniker": "ETG.Web\\connectionStrings.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Web\\connectionStrings.config",
+              "RelativeToolTip": "ETG.Web\\connectionStrings.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T07:12:57.185Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SecurityTokenManager.cs",
+              "DocumentMoniker": "C:\\Users\\dstes\\AppData\\Local\\Temp\\.vsdbgsrc\\3464d647c4e12a4a6d87465c4678c2f7cd199064412308b2a1e929889b36cbc5\\SecurityTokenManager.cs",
+              "ToolTip": "C:\\Users\\dstes\\AppData\\Local\\Temp\\.vsdbgsrc\\3464d647c4e12a4a6d87465c4678c2f7cd199064412308b2a1e929889b36cbc5\\SecurityTokenManager.cs [Read Only]",
+              "ViewState": "AgIAABEAAAAAAAAAAAAWwB0AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T06:48:50.241Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ITourService.cs",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Data\\Tour\\Services\\ITourService.cs",
+              "RelativeDocumentMoniker": "ETG.Data\\Tour\\Services\\ITourService.cs",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Data\\Tour\\Services\\ITourService.cs",
+              "RelativeToolTip": "ETG.Data\\Tour\\Services\\ITourService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T18:31:56.853Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Module\\packages.config",
+              "RelativeDocumentMoniker": "ETG.Module\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Module\\packages.config",
+              "RelativeToolTip": "ETG.Module\\packages.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAewAoAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:52:54.73Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Data.Tests\\packages.config",
+              "RelativeDocumentMoniker": "ETG.Data.Tests\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Data.Tests\\packages.config",
+              "RelativeToolTip": "ETG.Data.Tests\\packages.config",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAewAwAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:52:50.698Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Data\\packages.config",
+              "RelativeDocumentMoniker": "ETG.Data\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Data\\packages.config",
+              "RelativeToolTip": "ETG.Data\\packages.config",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAewA8AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:52:47.115Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Cache.cs",
+              "DocumentMoniker": "C:\\Users\\dstes\\AppData\\Local\\Temp\\.vsdbgsrc\\37d900d757b3e480135942ae0ac0e277ef703834a1db95ce3e6ea5509b78447f\\Cache.cs",
+              "ToolTip": "C:\\Users\\dstes\\AppData\\Local\\Temp\\.vsdbgsrc\\37d900d757b3e480135942ae0ac0e277ef703834a1db95ce3e6ea5509b78447f\\Cache.cs [Read Only]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T09:40:09.049Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VirtualContextAuthenticationConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\dstes\\AppData\\Local\\Temp\\.vsdbgsrc\\bc0be5278041b8f1bff63e220951d9a47884f6d00bd2c131cff58437d5e0dd1d\\VirtualContextAuthenticationConfiguration.cs",
+              "ToolTip": "C:\\Users\\dstes\\AppData\\Local\\Temp\\.vsdbgsrc\\bc0be5278041b8f1bff63e220951d9a47884f6d00bd2c131cff58437d5e0dd1d\\VirtualContextAuthenticationConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T09:59:55.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\Devotion.Cache.MVC\\packages.config",
+              "RelativeDocumentMoniker": "Devotion.Cache.MVC\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\Devotion.Cache.MVC\\packages.config",
+              "RelativeToolTip": "Devotion.Cache.MVC\\packages.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:50:40.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Core\\packages.config",
+              "RelativeDocumentMoniker": "ETG.Core\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Core\\packages.config",
+              "RelativeToolTip": "ETG.Core\\packages.config",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAewAwAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:52:45.576Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Booking.Test\\packages.config",
+              "RelativeDocumentMoniker": "ETG.Booking.Test\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Booking.Test\\packages.config",
+              "RelativeToolTip": "ETG.Booking.Test\\packages.config",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAewAwAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:52:41.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Web\\packages.config",
+              "RelativeDocumentMoniker": "ETG.Web\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Web\\packages.config",
+              "RelativeToolTip": "ETG.Web\\packages.config",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAewBgAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:50:46.391Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Booking.Pricing\\packages.config",
+              "RelativeDocumentMoniker": "ETG.Booking.Pricing\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\ETG.Booking.Pricing\\packages.config",
+              "RelativeToolTip": "ETG.Booking.Pricing\\packages.config",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAewAsAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:52:39.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\Devotion.Kentico.Base\\packages.config",
+              "RelativeDocumentMoniker": "Devotion.Kentico.Base\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\Devotion.Kentico.Base\\packages.config",
+              "RelativeToolTip": "Devotion.Kentico.Base\\packages.config",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAewAsAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:52:33.075Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\Devotion.Data\\packages.config",
+              "RelativeDocumentMoniker": "Devotion.Data\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\Devotion.Data\\packages.config",
+              "RelativeToolTip": "Devotion.Data\\packages.config",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAewAsAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:52:30.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\Devotion.Cache\\packages.config",
+              "RelativeDocumentMoniker": "Devotion.Cache\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Web\\Devotion.Cache\\packages.config",
+              "RelativeToolTip": "Devotion.Cache\\packages.config",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAewAwAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:52:21.216Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Kentico\\ETG.Module.Booking\\packages.config",
+              "RelativeDocumentMoniker": "..\\Kentico\\ETG.Module.Booking\\packages.config",
+              "ToolTip": "D:\\Projects\\ETG\\Shared By Client\\ETGSourceCodePackage\\ETGKentico\\Kentico\\ETG.Module.Booking\\packages.config",
+              "RelativeToolTip": "..\\Kentico\\ETG.Module.Booking\\packages.config",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAewA8AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-20T08:52:19.157Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+---
+
+---
+
+<script is:inline type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script is:inline type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script is:inline type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+<div class="widget new-search" data-index="TourPricing-Live" data-widget="new-search">
+
+    <div id="departureDates" style="height: 100px; overflow: auto;"></div>
+
+    <div class="wrapper top-stuff">
+        <h1>Explore our experiences</h1>
+        <div class="search-bar">
+            <div class="trigger destination">
+                <div class="label">Where</div>
+                <div class="value">
+                    <div id="destination">
+                        <div class="ui fluid search multiple dropdown">
+                            <input type="hidden" name="destination" />
+                            <div class="default text">Search by Destination</div>
+                            <div class="menu"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submenu where-submenu">
+                    <div class="columns">
+                        <div class="column">
+                            <div class="heading">Islands</div>
+                            <div class="items">
+                                <div class="item" data-value="Cook Islands">Cook Islands</div>
+                                <div class="item" data-value="Fiji">Fiji</div>
+                                <div class="item" data-value="New Zealand">New Zealand</div>
+                                <div class="item" data-value="Samoa">Samoa</div>
+                                <div class="item" data-value="Maldives">Maldives</div>
+                                <div class="item" data-value="New Caledonia">New Caledonia</div>
+                                <div class="item" data-value="Tahiti">Tahiti</div>
+                                <div class="item" data-value="Vanuatu">Vanuatu</div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="heading">Asia</div>
+                            <div class="items">
+                                <div class="item" data-value="Thailand">Thailand</div>
+                                <div class="item" data-value="Singapore">Singapore</div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="heading">Europe</div>
+                            <div class="items">
+                                <div class="item" data-value="Croatia">Croatia</div>
+                                <div class="item" data-value="France">France</div>
+                                <div class="item" data-value="Greece">Greece</div>
+                                <div class="item" data-value="Italy">Italy</div>
+                                <div class="item" data-value="Monaco">Monaco</div>
+                                <div class="item" data-value="Portugal">Portugal</div>
+                                <div class="item" data-value="Scandanavia">Scandanavia</div>
+                                <div class="item" data-value="Spain">Spain</div>
+                                <div class="item" data-value="Switzerland">Switzerland</div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="heading">North America</div>
+                            <div class="items">
+                                <div class="item" data-value="Canada">Canada</div>
+                                <div class="item" data-value="United States of America">USA</div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="heading">Africa</div>
+                            <div class="items">
+                                <div class="item" data-value="Africa">All of Africa</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="trigger keyword">
+                <div class="label">Keyword or Tour code</div>
+                <div id="searchbox" class="value default"></div>
+            </div>
+
+
+            <div class="trigger date">
+                <div class="label">Departure Date</div>
+                <div class="value default">Add Date</div>
+                <div class="submenu calendar-submenu">
+                    <div id="departureDate"></div>
+                    <div class="datepicker-buttons">
+                        <button class="date-range-button exact active" data-range="0">Exact Date</button>
+                        <button class="date-range-button range" data-range="1">
+                            <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.25 11H0.75C0.328125 11 0 11.3516 0 11.75C0 12.1719 0.328125 12.5 0.75 12.5H8.25C8.64844 12.5 9 12.1484 9 11.75C9 11.375 8.64844 11 8.25 11ZM1.125 5.375H3.75V8C3.75 8.39844 4.07812 8.72656 4.5 8.72656C4.89844 8.72656 5.25 8.375 5.25 8V5.375H7.875C8.27344 5.375 8.625 5.04688 8.625 4.625C8.625 4.22656 8.27344 3.875 7.875 3.875H5.25V1.25C5.25 0.851562 4.89844 0.5 4.5 0.5C4.07812 0.5 3.75 0.851562 3.75 1.27344V3.89844H1.125C0.703125 3.89844 0.375 4.22656 0.375 4.625C0.375 5.04688 0.703125 5.375 1.125 5.375Z" fill="currentColor"/>
+                            </svg>
+                            1 Day
+                        </button>
+                        <button class="date-range-button range" data-range="2">
+                            <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.25 11H0.75C0.328125 11 0 11.3516 0 11.75C0 12.1719 0.328125 12.5 0.75 12.5H8.25C8.64844 12.5 9 12.1484 9 11.75C9 11.375 8.64844 11 8.25 11ZM1.125 5.375H3.75V8C3.75 8.39844 4.07812 8.72656 4.5 8.72656C4.89844 8.72656 5.25 8.375 5.25 8V5.375H7.875C8.27344 5.375 8.625 5.04688 8.625 4.625C8.625 4.22656 8.27344 3.875 7.875 3.875H5.25V1.25C5.25 0.851562 4.89844 0.5 4.5 0.5C4.07812 0.5 3.75 0.851562 3.75 1.27344V3.89844H1.125C0.703125 3.89844 0.375 4.22656 0.375 4.625C0.375 5.04688 0.703125 5.375 1.125 5.375Z" fill="currentColor"/>
+                            </svg>
+                            2 Days
+                        </button>
+                        <button class="date-range-button range" data-range="3">
+                            <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.25 11H0.75C0.328125 11 0 11.3516 0 11.75C0 12.1719 0.328125 12.5 0.75 12.5H8.25C8.64844 12.5 9 12.1484 9 11.75C9 11.375 8.64844 11 8.25 11ZM1.125 5.375H3.75V8C3.75 8.39844 4.07812 8.72656 4.5 8.72656C4.89844 8.72656 5.25 8.375 5.25 8V5.375H7.875C8.27344 5.375 8.625 5.04688 8.625 4.625C8.625 4.22656 8.27344 3.875 7.875 3.875H5.25V1.25C5.25 0.851562 4.89844 0.5 4.5 0.5C4.07812 0.5 3.75 0.851562 3.75 1.27344V3.89844H1.125C0.703125 3.89844 0.375 4.22656 0.375 4.625C0.375 5.04688 0.703125 5.375 1.125 5.375Z" fill="currentColor"/>
+                            </svg>
+                            3 Days
+                        </button>
+                        <button class="date-range-button range" data-range="7">
+                            <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.25 11H0.75C0.328125 11 0 11.3516 0 11.75C0 12.1719 0.328125 12.5 0.75 12.5H8.25C8.64844 12.5 9 12.1484 9 11.75C9 11.375 8.64844 11 8.25 11ZM1.125 5.375H3.75V8C3.75 8.39844 4.07812 8.72656 4.5 8.72656C4.89844 8.72656 5.25 8.375 5.25 8V5.375H7.875C8.27344 5.375 8.625 5.04688 8.625 4.625C8.625 4.22656 8.27344 3.875 7.875 3.875H5.25V1.25C5.25 0.851562 4.89844 0.5 4.5 0.5C4.07812 0.5 3.75 0.851562 3.75 1.27344V3.89844H1.125C0.703125 3.89844 0.375 4.22656 0.375 4.625C0.375 5.04688 0.703125 5.375 1.125 5.375Z" fill="currentColor"/>
+                            </svg>
+                            7 Days
+                        </button>
+                        <button class="date-range-button flexible" data-range="0">I'm flexible</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="trigger start">
+                <div class="label">Start Location</div>
+                <div class="value default">Select a Start Location</div>
+
+                <div class="submenu start-submenu">
+                    <div class="items"></div>
+                </div>
+            </div>
+
+            <div class="trigger end">
+                <div class="label">End Location</div>
+                <div class="value default">Select an End Location</div>
+
+                <div class="submenu end-submenu">
+                    <div class="items"></div>
+                </div>
+            </div>
+
+            <div class="filter-button">
+                <div class="count">3</div>
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path d="M18.75 12.75h1.5a.75.75 0 000-1.5h-1.5a.75.75 0 000 1.5zM12 6a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 0112 6zM12 18a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 0112 18zM3.75 6.75h1.5a.75.75 0 100-1.5h-1.5a.75.75 0 000 1.5zM5.25 18.75h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5zM3 12a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 013 12zM9 3.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zM12.75 12a2.25 2.25 0 114.5 0 2.25 2.25 0 01-4.5 0zM9 15.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
+                    </svg>
+                </div>
+                <div class="label">Advanced filters</div>
+            </div>
+
+            <div class="filter-panel">
+                <div class="row">
+                    <div class="col">
+                        <div class="title">Experiences</div>
+                        <div class="checkbox-list" id="experiences"></div>
+                    </div>
+                    <div class="col">
+                        <div class="title">Travel Styles</div>
+                        <div class="checkbox-list" id="travelStyles"></div>
+                    </div>
+                    <div class="col">
+                        <div class="price">
+                            <div class="title">Price</div>
+                            <div class="price-range"><span class="from-value"></span> - <span class="to-value"></span></div>
+                            <div class="slider-container">
+                                <div id="priceSlider"></div>
+                            </div>
+                        </div>
+
+                        <div class="duration">
+                            <div class="title">Duration</div>
+                            <div class="duration-range"><span class="from-value"></span> - <span class="to-value"></span></div>
+                            <div class="slider-container">
+                                <div id="durationSlider"></div>
+                            </div>
+                        </div>
+
+                        <div class="options">
+                            <div class="title">Options</div>
+                            <div class="boxes">
+                                <div class="chk" id="bookNow"></div>
+                                <div class="chk" id="freedomOfChoice"></div>
+                                <div class="chk" id="peaceOfMind"></div>
+                                <div class="chk" id="safeTravels"></div>
+                                <div class="chk" id="onSale"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="wrapper bottom-stuff">
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div id="stats" class="value"></div>
+            </div>
+            <div class="stat-item">
+                <div class="label">Sort:</div>
+                <div id="sortBy" class="value"></div>
+            </div>
+            <div class="stat-item">
+                <div class="label">View:</div>
+                <div id="hitsPerPage" class="value"></div>
+            </div>
+
+        </div>
+
+        <div id="statsHits"></div>
+        <div id="hits"></div>
+
+        <div class="pagination">
+            <div id="pagination"></div>
+        </div>
+    </div>
+</div>

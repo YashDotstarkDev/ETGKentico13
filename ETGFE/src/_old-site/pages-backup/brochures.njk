@@ -1,0 +1,28 @@
+{% set page_title = 'Brochures' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+
+{% endblock %}
+
+{% block beforeArticle %}
+  {% include "src/widgets/header/header.njk" %}
+  {% include "src/widgets/header-spacer/header-spacer.njk" %}
+  {% include "src/widgets/breadcrumbs/breadcrumbs.njk" %}
+{% endblock %}
+
+{% block article %}
+  {% include "src/widgets/brochure-listing/brochure-listing.njk" %}
+  {% include "src/widgets/subscription-bar/subscription-bar.njk" %}
+  {% include "src/widgets/brochure-gate-popup/brochure-gate-popup.njk" %}
+{% endblock %}
+
+{% block afterArticle %}
+{% include "src/widgets/footer/footer.njk" %}
+{% include "src/widgets/footer-brands/footer-brands.njk" %}
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="/scripts/brochures.js"></script>
+{% endblock %}

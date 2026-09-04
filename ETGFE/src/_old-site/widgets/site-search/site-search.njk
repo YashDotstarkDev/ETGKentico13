@@ -1,0 +1,15 @@
+<div class="widget site-search has-type-ahead">
+  <div class="ui form search-form data-validate-inline="data-validate-inline" data-validate-on="submit" data-endpoint="api/response-message.json" data-method="GET">
+    <div class="ui search" data-endpoint="/api/global-search-noresults.json?query={query}" data-search-url="/search-results.html?keywords=">
+      <div class="field">
+        <input type="text" name="search" data-prompts="" placeholder="Packages, Destinations, Get Inspired" class="prompt"/>
+        <button class="ui primary submit button" type="button">Search</button>
+      </div>
+
+      <div class="response-container"></div>
+      <div class="ui error message"></div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,219 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+$review_text_line_clamp: 5;
+
+.customer-reviews {
+  margin: 0 auto;
+  text-align: center;
+
+  .jq-star {
+    cursor: default; /* Change cursor from pointer */
+  }
+
+  .average-ratings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0 35px;
+    line-height: 1; /* Fix size of star rating and info text */
+    opacity: 0;
+
+    &.is-loaded {
+      opacity: 1;
+      transition: opacity .35s;
+    }
+
+    .star-rating {
+      margin-bottom: 4px;
+    }
+
+    .rating-info {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+
+      .info + .info {
+        margin-left: 5px;
+        padding-left: 5px;
+        border-left: 1px solid #BDBDBD;
+      }
+    }
+  }
+
+  .rating-card {
+    margin: 0 10px; /* space between slides */
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #EDEDED;
+    border-radius: 10px;
+
+    .top {
+      margin-bottom: 10px;
+    }
+
+    .author {
+      display: flex;
+      grid-column-gap: 10px;
+      line-height: 1.2;
+
+      .thumb {
+        flex: none;
+        width: 32px;
+      }
+
+      .thumb img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 100px;
+      }
+    }
+
+    .review-text {
+      position: relative;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      font-size: 14px;
+      line-height: 1.8;
+      max-height: calc(calc(14px * 1.8) * calc($review_text_line_clamp + 1)); // lines of text
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+
+      &.truncate {
+        padding-bottom: calc(14px * 1.8);
+
+        .i-review-text {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          animation: text-initial-to-clamp 50ms linear 10ms forwards; // add slight delay to ensure things are ready
+        }
+
+        .read-more {
+          position: absolute;
+          bottom: 0;
+        }
+      }
+
+      &.truncate.show {
+        max-height: 100rem;
+        transition: max-height 50ms cubic-bezier(0.9, 0, 0.8, 0.2);
+
+        .i-review-text {
+          animation: text-clamp-to-initial 50ms linear 0ms forwards;
+        }
+      }
+
+      @keyframes text-clamp-to-initial {
+        from {
+          line-clamp: $review_text_line_clamp;
+          -webkit-line-clamp: $review_text_line_clamp;
+        }
+        to {
+          line-clamp: initial;
+          -webkit-line-clamp: initial;
+        }
+      }
+
+      @keyframes text-initial-to-clamp {
+        from {
+          line-clamp: initial;
+          -webkit-line-clamp: initial;
+        }
+        to {
+          line-clamp: $review_text_line_clamp;
+          -webkit-line-clamp: $review_text_line_clamp;
+        }
+      }
+    }
+  }
+
+  .ratings-list {
+    position: relative;
+
+    .loading {
+      color: #bbb;
+
+      svg {
+        @keyframes rotate {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        animation: rotate 2s linear infinite;
+      }
+    }
+
+    &.is-loaded {
+      .loading {
+        display: none;
+      }
+
+      .swiper-container {
+        opacity: 1;
+        transition: opacity .35s;
+      }
+    }
+
+    .swiper-container {
+      opacity: 0;
+      @media (--landscape) {
+        margin: 0 80px; /* room for next, prev arrows */
+      }
+    }
+
+    .prev,
+    .next {
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      background-color: $primary;
+      position: absolute;
+      top: 50%;
+      margin-top: -20px;
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      color: #FFF;
+      transition: all 0.3s ease;
+      @media(--portraitMax) {
+        display: none; // hide arrows
+      }
+
+      &:hover {
+        background-color: #333;
+      }
+
+      svg {
+        display: block;
+
+        path {
+          fill: currentColor;
+        }
+      }
+    }
+
+    .prev {
+      left: 20px;
+    }
+
+    .next {
+      right: 20px;
+    }
+
+    // hide arrows when reach either end of slides
+    &.end .next,
+    &.beginning .prev {
+      opacity: 0;
+    }
+  }
+}

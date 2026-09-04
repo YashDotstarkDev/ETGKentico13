@@ -1,0 +1,136 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.pay-now {
+  .top {
+    background-color: #ededed;
+    padding: 40px 0;
+  }
+
+  h3 {
+    font-weight: normal;
+    font-family: Lato, Arial, sans-serif;
+  }
+
+  h4 {
+    font-weight: bold;
+    font-family: Lato, Arial, sans-serif;
+  }
+
+  label.with-tooltip {
+    display: flex !important;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .tool-tip {
+      margin-left: 10px;
+    }
+  }
+
+  .payment-form {
+    border-top: 1px solid rgba(#000, 0.1);
+    padding-top: 20px;
+
+    .ui.checkbox {
+      @media(min-width: 1200px) {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .payment-input {
+    position: relative;
+
+    &:after {
+      content: '$';
+      display: block;
+      position: absolute;
+      left: 15px;
+      top: 6px;
+    }
+
+    input {
+      padding-left: 30px !important;
+    }
+  }
+
+  .row {
+    @media(min-width: 1024px) {
+      box: horizontal;
+      margin-left: -10px;
+      margin-right: -10px;
+
+      .field {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  .row.right {
+    @media(min-width: 1024px) {
+      box: horizontal right;
+      .field {
+        width: 50%;
+      }
+    }
+  }
+
+  .column {
+    flex: 1;
+  }
+
+  .form-heading {
+    box: horizontal middle space-between;
+    margin-bottom: 20px;
+
+    .cards {
+      width: 100%;
+      max-width: 189px;
+      margin-left: 30px;
+    }
+
+    h4 {
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .other-options {
+    border: 1px solid #ededed;
+    padding: 20px;
+
+    .payment-option {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #ededed;
+    }
+
+    .heading {
+      font-weight: bold;
+    }
+
+    .note {
+      background-color: #ededed;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 10px;
+    }
+  }
+
+  .ui.checkbox {
+    svg {
+      margin-left: 2px;
+      margin-right: 5px;
+    }
+
+    label {
+      a {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+  }
+}

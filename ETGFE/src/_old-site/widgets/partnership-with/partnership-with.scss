@@ -1,0 +1,53 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.partnership-with {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #E4E4E4;
+  max-width: 410px;
+  margin: 0 auto;
+
+  &.large {
+    max-width: 600px;
+
+    .images {
+      flex-wrap: wrap;
+
+      .item {
+        width: 160px;
+        margin: 10px;
+        @media(--portrait) {
+          width: 160px;
+        }
+      }
+    }
+  }
+
+  .title {
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+
+  .images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    .item {
+      width: 100px;
+      flex-shrink: 0;
+      margin-right: 10px;
+      @media(--portrait) {
+        width: 110px;
+        margin: 0 10px;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}

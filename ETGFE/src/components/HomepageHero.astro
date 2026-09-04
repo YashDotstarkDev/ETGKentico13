@@ -1,0 +1,44 @@
+---
+import HomepageHeroSearch from './HomepageHeroSearch.vue'
+---
+
+<!--
+/////
+homepage-hero start
+/////
+-->
+
+<h1 class="visually-hidden">Holiday Packages and Deals</h1>
+
+<div class="homepage-hero z-10">
+    <div class="padded">
+        <div class="inner relative h-[420px] flex items-center justify-center">
+            <div class="absolute inset-0 rounded-3xl overflow-hidden image-container bg-black">
+                <img
+                        data-lowsrc="https://entiretravel.imgix.net/getmedia/0b87fdea-ba3c-47ec-9a12-c7ea3f82a13f/ETG_WEBSITE_APR_New-Carousel_1920x420px-REDUCED_TH_HiltonMoorea.jpg?auto=format&w=3"
+                        data-src="https://entiretravel.imgix.net/getmedia/0b87fdea-ba3c-47ec-9a12-c7ea3f82a13f/ETG_WEBSITE_APR_New-Carousel_1920x420px-REDUCED_TH_HiltonMoorea.jpg?auto=format&w={width}&h=420&fit=crop"
+                        data-sizes="auto"
+                        class="lazyload absolute z-0 inset-0 w-full h-full object-cover opacity-80"
+                        alt="Hilton Moorea Lagoon Resort & Spa"
+                />
+                <div class="gradient-overlay absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/50 to-black/0 opacity-80 z-10"></div>
+            </div>
+
+
+            <div class="location absolute z-20 inset-x-0 bottom-12 text-white text-xs items-center justify-center gap-2 flex px-6 text-left 2xl:left-auto 2xl:bottom-6">
+                <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+                    <path d="M6.375 5C6.375 6.05469 5.53125 6.875 4.5 6.875C3.44531 6.875 2.625 6.05469 2.625 5C2.625 3.96875 3.44531 3.125 4.5 3.125C5.53125 3.125 6.375 3.96875 6.375 5ZM4.5 4.25C4.07812 4.25 3.75 4.60156 3.75 5C3.75 5.42188 4.07812 5.75 4.5 5.75C4.89844 5.75 5.25 5.42188 5.25 5C5.25 4.60156 4.89844 4.25 4.5 4.25ZM9 5C9 7.0625 6.25781 10.6953 5.03906 12.2188C4.75781 12.5703 4.21875 12.5703 3.9375 12.2188C2.71875 10.6953 0 7.0625 0 5C0 2.51562 1.99219 0.5 4.5 0.5C6.98438 0.5 9 2.51562 9 5ZM4.5 1.625C2.625 1.625 1.125 3.14844 1.125 5C1.125 5.30469 1.21875 5.75 1.47656 6.35938C1.71094 6.92188 2.0625 7.57812 2.46094 8.23438C3.14062 9.3125 3.91406 10.3438 4.5 11.0938C5.0625 10.3438 5.83594 9.3125 6.51562 8.23438C6.91406 7.57812 7.26562 6.92188 7.5 6.35938C7.75781 5.75 7.875 5.30469 7.875 5C7.875 3.14844 6.35156 1.625 4.5 1.625Z" fill="white"></path>
+                </svg>
+                London England | Credit: Jonothan Doe
+            </div>
+
+            <HomepageHeroSearch client:only="vue" appId="SK049MNMX7" apiKey="79d4022f9d2199e9dcc43221a5171c43" indexName="TourPricing-Live" searchUrl="https://www.entiretravel.com.au/search?from=homepage" />
+        </div>
+    </div>
+</div>
+
+<!--
+/////
+homepage-hero end
+/////
+-->

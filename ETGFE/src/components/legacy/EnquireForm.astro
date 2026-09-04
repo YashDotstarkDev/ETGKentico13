@@ -1,0 +1,126 @@
+<div class="widget enquire-form" data-widget="enquire-form">
+    <div class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-endpoint="api/response-message.json" data-method="GET">
+      <div class="gr-10">
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>First name</label>
+            <input type="text" name="firstname" data-rules="regExp[/[aeiou]/]" data-prompts="Please enter a valid first name"/>
+          </div>
+        </div>
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Last name</label>
+            <input type="text" name="lastname" data-rules="regExp[/[aeiou]/]" data-prompts="Please enter a valid last name"/>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div class="gr-10">
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Email</label>
+            <!--HELP-2145 Custom data rule added
+              data-rules="emailDependOnRadio[name|value]
+                name = dependent radio input name
+                value = dependent radio input value
+            -->
+            <input type="text" name="email" data-rules="emailDependOnRadio[contact|1]" data-prompts=""/>
+            <!-- Was <input type="text" name="email" data-rules="empty,email" data-prompts=""/> -->
+          </div>
+        </div>
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Phone</label>
+            <!--HELP-2145 Custom data rule added
+              data-rules="phoneDependOnRadio[name|value]
+                name = dependent radio input name
+                value = dependent radio input value
+            -->
+            <input type="text" name="phone" data-rules="phoneDependOnRadio[contact|2]" data-prompts=""/>
+            <!-- Was <input type="text" name="phone" data-rules="numberVisible" data-prompts=""/> -->
+          </div>
+        </div>
+      </div>
+  
+      <div class="gr-10">
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Preferred contact method</label>
+            <div class="grouped fields">
+              <input type="hidden" data-validate="checkboxGroup1" data-rules="checkboxCount[1]" data-prompts="You must select at least one"/>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="contact" value="1" checked/>
+                  <label>Email</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="contact" value="2"/>
+                  <label>Phone</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Preferred tour type</label>
+            <select class="make-dropdown" name="date">
+              <option value="">Optional</option>
+              <option value="1">Option</option>
+              <option value="2">Option</option>
+              <option value="3">Option</option>
+            </select>
+          </div>
+        </div>
+      </div>
+  
+      <div class="gr-10">
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Preferred destination</label>
+            <select class="make-dropdown" name="destination">
+              <option value="">Optional</option>
+              <option value="1">Option</option>
+              <option value="2">Option</option>
+              <option value="3">Option</option>
+            </select>
+          </div>
+        </div>
+        <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+          <div class="field">
+            <label>Preferred experience</label>
+            <select class="make-dropdown" name="experience">
+              <option value="">Optional</option>
+              <option value="1">Option</option>
+              <option value="2">Option</option>
+              <option value="3">Option</option>
+            </select>
+          </div>
+        </div>
+      </div>
+  
+      <div class="field">
+        <label>Questions or comments</label>
+        <textarea name="message" data-rules="empty" data-prompts="" placeholder="Optional"></textarea>
+      </div>
+  
+      <div class="field">
+        <div class="ui checkbox">
+          <input type="checkbox" name="subscribe" value="subscribe"/>
+          <label>Subscribe to our newsletter for special deals.</label>
+        </div>
+      </div>
+  
+      <div class="response-container"></div>
+  
+      <div class="recaptcha" data-site-key="6Lcxu_soAAAAAFgcneRkdy96e6Je_wkV0DdYZLNP" data-action="enquire"></div>
+  
+      <div class="submit-row">
+        <button class="ui button submit primary">Submit</button>
+      </div>
+    </div>
+  </div>
+  

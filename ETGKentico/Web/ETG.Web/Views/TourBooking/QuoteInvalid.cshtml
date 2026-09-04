@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Data.Extensions
+@using ETG.Web.Helpers
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/booking-thankyou.js")
+}
+
+@model ETG.Web.Models.TourBooking.QuoteInvalidViewModel
+@if (Model == null)
+{
+    return;
+}
+@if (!Model.HeroImage.IsNullOrEmpty())
+{
+    <div class="widget page-hero large-heading hero-checked" data-widget="page-hero">
+        <img class="bg lazyload" data-src="@Model.HeroImage.Imgixify()" alt="@Model.TourName">
+        <div class="flex">
+            <h1>
+                @Html.Raw(Model.TourName)
+            </h1>
+            <div class="code">(@Model.TourCode)</div>
+        </div>
+        <div class="grad"></div>
+    </div>
+}
+<div>
+    <div class="wrapper">
+        <div class="message-container">
+            @if (Model?.Quote != null)
+            {
+                <p><b>Website Client Quote:</b> @Model.Quote.BookingQuoteID<br/>
+                    <b>Quote Date &amp; Time:</b> @Model.Quote.BookingQuoteCreated.ToString("dddd, dd MMM yyyy hh:mm tt")<br/>
+                    @if (Model.Customer != null)
+                    {
+                        <b>Lead Passenger Name:</b>
+                        @Model.Customer.CustomerFirstName@Html.Raw("&nbsp;")@Model.Customer.CustomerLastName
+                    }
+                </p>
+                @Html.Raw(Model.Message)
+            }
+            else
+            {
+                <p>Invalid page</p>
+            }
+        </div>
+    </div>
+</div>

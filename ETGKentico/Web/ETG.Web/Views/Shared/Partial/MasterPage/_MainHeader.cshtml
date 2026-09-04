@@ -1,0 +1,234 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Constants;
+@model ETG.Web.Models.Layout.HeaderViewModel
+
+@if (Model == null)
+{
+    return;
+}
+
+@Html.Partial("Partial/Masterpage/_gdpr", Model.GDPRConsent)
+<header class="sticky top-0 z-[1000] bg-white">
+    <div class="main px-6 md:px-12 flex items-center justify-between h-[100px]">
+        <div class="flex items-center justify-start gap-4">
+            <a href="/" class="block w-[120px]">
+                @Html.Partial("Partial/Masterpage/_BrandLogo")
+            </a>
+            <nav class="hidden lg:flex select-none xl:ml-4">
+                <div class="main-nav-dropdown relative group hidden md:block" tabindex="0">
+                    <div class="trigger flex items-center gap-2 cursor-pointer px-4 py-4 hover:bg-[#ededed] transition-colors duration-300 rounded-md group-focus-within:bg-[#ededed] group-focus-within:rounded-b-none">
+                        Explore
+                        <svg width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.8125 1.49219L6.58984 6.49609C6.42578 6.63281 6.26172 6.6875 6.125 6.6875C5.96094 6.6875 5.79688 6.63281 5.66016 6.52344L0.410156 1.49219C0.136719 1.24609 0.136719 0.808594 0.382812 0.5625C0.628906 0.289062 1.06641 0.289062 1.3125 0.535156L6.125 5.12891L10.9102 0.535156C11.1562 0.289062 11.5938 0.289062 11.8398 0.5625C12.0859 0.808594 12.0859 1.24609 11.8125 1.49219Z" fill="#CA568E"></path>
+                        </svg>
+                    </div>
+                    <div class="absolute flex flex-col min-w-full top-full left-0 py-2 whitespace-nowrap rounded-md rounded-tl-none bg-[#ededed] opacity-0 invisible pointer-events-none group-focus-within:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto transition-all duration-300">
+                        @foreach (var mainLink in Model.MainLinks)
+                        {
+                            if (mainLink.Link.LinkGroupType == GlobalConstants.LINK_GROUP_NORMAL)
+                            {
+                                <a href="@mainLink.Link.Path" class="flex items-center gap-2 cursor-pointer px-4 py-4 hover:bg-[#ededed] transition-colors duration-300 rounded-md text-body hover:no-underline">
+                                    @mainLink.Link.Label
+                                </a>
+                            }
+                            else
+                            {
+
+                                <div class="group/sub" tabindex="0">
+                                    <div class="trigger flex items-center gap-2 justify-between cursor-pointer px-4 py-3 transition-colors duration-300 group-focus-within/sub:bg-[#dedede]">
+                                        @mainLink.Link.Label
+                                        <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M2.08984 1.0625L7.09375 6.28516C7.20312 6.42188 7.28516 6.58594 7.28516 6.75C7.28516 6.91406 7.20312 7.07812 7.09375 7.1875L2.08984 12.4102C1.84375 12.6836 1.40625 12.6836 1.16016 12.4375C0.886719 12.1914 0.886719 11.7812 1.13281 11.5078L5.72656 6.72266L1.13281 1.96484C0.886719 1.71875 0.886719 1.28125 1.16016 1.03516C1.40625 0.789062 1.84375 0.789062 2.08984 1.0625Z" fill="#CA568E"></path>
+                                        </svg>
+                                    </div>
+                                    @if (!mainLink.MenuGroups.IsNullOrEmpty())
+                                    {
+                                        <div class="absolute flex flex-col min-h-full left-full top-2 w-[650px] xl:w-[800px] whitespace-nowrap rounded-md rounded-tl-none bg-[#dedede] p-8 opacity-0 invisible pointer-events-none group-focus-within/sub:opacity-100 group-focus-within/sub:visible group-focus-within/sub:pointer-events-auto transition-all duration-300">
+                                            @if (mainLink.Link.LinkGroupType == GlobalConstants.LINK_GROUP_GROUPED)
+                                            {
+                                                <div class="grid grid-cols-4">
+                                                    @foreach (var menuGroup in mainLink.MenuGroups)
+                                                    {
+                                                        <div>
+                                                            <a href="@menuGroup.Link.Path" class="font-bold uppercase text-black hover:text-primary hover:no-underline">@menuGroup.Link.Label</a>
+                                                            @if (!menuGroup.ChildLinks.IsNullOrEmpty())
+                                                            {
+                                                                <div class="items flex flex-col gap-2 mt-2 items-start">
+                                                                    @foreach (var menu in menuGroup.ChildLinks)
+                                                                    {
+                                                                        <a href="@menu.Path" class="text-primary hover:text-body hover:no-underline">@menu.Label</a>
+                                                                    }
+                                                                </div>
+                                                            }
+
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (mainLink.Link.LinkGroupType == GlobalConstants.LINK_GROUP_EXPERIENCE)
+                                            {
+                                                <div class="experience-links text-xs uppercase font-bold grid grid-cols-4 xl:grid-cols-5 gap-8">
+                                                    @foreach (var menuGroup in mainLink.MenuGroups)
+                                                    {
+                                                        foreach (var menu in menuGroup.ChildLinks)
+                                                        {
+                                                            <a href="@menu.Path" class="flex flex-col gap-2 items-center hover:no-underline text-body hover:text-primary transition-colors duration-300">
+                                                                @Html.Raw(menu.SVGIcon)
+                                                                @menu.Label
+                                                            </a>
+                                                        }
+                                                    }
+                                                </div>
+                                            }
+                                            else
+                                            {
+
+                                            }
+
+                                            @if (mainLink.Link != null && !mainLink.Link.CommonLinkUrl.IsNullOrEmpty() && !mainLink.Link.CommonLinkCaption.IsNullOrEmpty())
+                                            {
+                                                <div class="cta mt-6"> <a href="@mainLink.Link.CommonLinkUrl" class="btn btn-primary-outline">@mainLink.Link.CommonLinkCaption</a> </div>
+                                            }
+                                        </div>
+
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <a href="/articles" class="flex items-center gap-2 cursor-pointer px-4 py-4 hover:bg-[#ededed] transition-colors duration-300 rounded-md text-body hover:no-underline">
+                    Be Inspired
+                </a> <a href="@Model.OnSaleNowUrl" class="flex items-center gap-2 cursor-pointer px-4 py-4 hover:bg-[#ededed] transition-colors duration-300 rounded-md text-body hover:no-underline">
+                    On Sale Now
+                </a>
+            </nav>
+        </div>
+        <div class="flex items-center justify-end">
+            <a href="/agents" class="hidden md:flex items-center justify-start gap-2 text-body hover:text-primary hover:no-underline mr-6">
+                Agents
+            </a>
+            <a href="/brochures" class="hidden md:flex items-center justify-start gap-2 text-body hover:text-primary hover:no-underline mr-6">
+                Brochures
+            </a>
+            <a href="/contact-us" class="hidden md:flex items-center justify-start gap-2 text-body hover:text-primary hover:no-underline mr-3">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.9727 11.332L13.3164 14.0938C13.2344 14.5039 12.9062 14.7773 12.4961 14.7773C5.60547 14.75 0 9.14453 0 2.25391C0 1.84375 0.246094 1.51562 0.65625 1.43359L3.41797 0.777344C3.80078 0.695312 4.21094 0.914062 4.375 1.26953L5.66016 4.25C5.79688 4.60547 5.71484 5.01562 5.41406 5.23438L3.9375 6.4375C4.86719 8.32422 6.39844 9.85547 8.3125 10.7852L9.51562 9.30859C9.73438 9.03516 10.1445 8.92578 10.5 9.0625L13.4805 10.3477C13.8359 10.5391 14.0547 10.9492 13.9727 11.332Z" fill="#CA568E"></path>
+                </svg>
+                <span>Contact Us</span>
+            </a>
+            @if (!Model.Currencies.IsNullOrEmpty())
+            {
+                <astro-island uid="1XNLON" component-url="/scripts/CurrencyDropdownController.js" component-export="default" renderer-url="/scripts/client.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;CurrencyDropdownController&quot;,&quot;value&quot;:&quot;vue&quot;}"></astro-island>
+                <div class="currency-dropdown relative group hidden md:block" tabindex="0">
+                    <div class="trigger flex items-center gap-2 cursor-pointer px-4 py-4 hover:bg-[#ededed] transition-colors duration-300 rounded-md group-focus-within:bg-[#ededed]">
+                        @Model.CurrentCurrency
+                        <svg width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.8125 1.49219L6.58984 6.49609C6.42578 6.63281 6.26172 6.6875 6.125 6.6875C5.96094 6.6875 5.79688 6.63281 5.66016 6.52344L0.410156 1.49219C0.136719 1.24609 0.136719 0.808594 0.382812 0.5625C0.628906 0.289062 1.06641 0.289062 1.3125 0.535156L6.125 5.12891L10.9102 0.535156C11.1562 0.289062 11.5938 0.289062 11.8398 0.5625C12.0859 0.808594 12.0859 1.24609 11.8125 1.49219Z" fill="#CA568E"></path>
+                        </svg>
+                    </div>
+                    <div class="absolute flex flex-col min-w-full top-full left-0 -mt-3 whitespace-nowrap rounded-md bg-[#ededed] p-4 opacity-0 invisible pointer-events-none group-focus-within:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto transition-all duration-300">
+                        @foreach (var currency in Model.Currencies)
+                        {
+                            <a href="#" class="text-body hover:text-primary hover:no-underline py-2" data-currency="@currency">@currency</a>
+                        }
+                    </div>
+                </div>
+                <div class="conversion" data-currency="@Model.CurrentCurrency" data-symbol="@Model.CurrentCurrencySymbol" data-rate="@Model.ConversionRate" data-discount="@Model.CurrencyApplyDiscounts"></div>
+            }
+            <a href="/contact-us" class="md:hidden flex items-center justify-center w-10 h-10">
+                <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.9727 11.332L13.3164 14.0938C13.2344 14.5039 12.9062 14.7773 12.4961 14.7773C5.60547 14.75 0 9.14453 0 2.25391C0 1.84375 0.246094 1.51562 0.65625 1.43359L3.41797 0.777344C3.80078 0.695312 4.21094 0.914062 4.375 1.26953L5.66016 4.25C5.79688 4.60547 5.71484 5.01562 5.41406 5.23438L3.9375 6.4375C4.86719 8.32422 6.39844 9.85547 8.3125 10.7852L9.51562 9.30859C9.73438 9.03516 10.1445 8.92578 10.5 9.0625L13.4805 10.3477C13.8359 10.5391 14.0547 10.9492 13.9727 11.332Z" fill="currentColor"></path>
+                </svg>
+            </a>
+            <a href="/search" class="lg:hidden flex items-center justify-center w-10 h-10">
+                <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.6717 13.4907L11.3904 10.2095C12.1287 9.11572 12.5115 7.74854 12.3201 6.27197C11.9646 3.75635 9.91387 1.73291 7.42559 1.40479C3.70684 0.939941 0.562305 4.08447 1.02715 7.80322C1.35527 10.2915 3.37871 12.3423 5.89434 12.6978C7.3709 12.8892 8.73809 12.5063 9.85918 11.7681L13.1131 15.0493C13.5506 15.4595 14.2342 15.4595 14.6717 15.0493C15.0818 14.6118 15.0818 13.9282 14.6717 13.4907ZM3.15996 7.0376C3.15996 5.12354 4.71856 3.5376 6.65996 3.5376C8.57402 3.5376 10.16 5.12354 10.16 7.0376C10.16 8.979 8.57402 10.5376 6.65996 10.5376C4.71856 10.5376 3.15996 8.979 3.15996 7.0376Z" fill="currentColor"></path>
+                </svg>
+            </a>
+            <astro-island uid="1fNe5" component-url="/scripts/MenuButton.js" component-export="default" renderer-url="/scripts/client.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;MenuButton&quot;,&quot;value&quot;:&quot;vue&quot;}" await-children>
+                <template data-astro-template>
+                    <button class="lg:hidden text-primary text-[20px] flex items-center justify-center w-10 h-10"> <i class="icon fas fa-bars"></i> </button>
+                </template>
+            </astro-island>
+            <a href="/search" class="rounded-full w-10 h-10 bg-primary hidden lg:flex items-center justify-center ml-3 hover:no-underline hover:bg-body">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.6717 13.4907L11.3904 10.2095C12.1287 9.11572 12.5115 7.74854 12.3201 6.27197C11.9646 3.75635 9.91387 1.73291 7.42559 1.40479C3.70684 0.939941 0.562305 4.08447 1.02715 7.80322C1.35527 10.2915 3.37871 12.3423 5.89434 12.6978C7.3709 12.8892 8.73809 12.5063 9.85918 11.7681L13.1131 15.0493C13.5506 15.4595 14.2342 15.4595 14.6717 15.0493C15.0818 14.6118 15.0818 13.9282 14.6717 13.4907ZM3.15996 7.0376C3.15996 5.12354 4.71856 3.5376 6.65996 3.5376C8.57402 3.5376 10.16 5.12354 10.16 7.0376C10.16 8.979 8.57402 10.5376 6.65996 10.5376C4.71856 10.5376 3.15996 8.979 3.15996 7.0376Z" fill="white"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</header>
+<div class="mobile-menu fixed z-[10000] left-0 top-0 overflow-hidden">
+    <astro-island uid="1SeimF" component-url="/scripts/MobileMenuBindings.js" component-export="default" renderer-url="/scripts/client.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;MobileMenuBindings&quot;,&quot;value&quot;:&quot;vue&quot;}"></astro-island>
+    <div class="overlay fixed z-[5000] inset-0 transition-all duration-500"></div>
+    <div class="menu fixed overflow-x-hidden overflow-y-scroll right-0 top-0 bottom-0 bg-gray-200 z-[7000] w-full max-w-[90%] md:max-w-[400px] transition-transform duration-500 translate-x-full [.show-mobile-menu_&]:translate-x-0">
+        <div class="relative h-[100px] bg-black flex items-center justify-center">
+            <a href="/enquire" class="btn btn-primary">Enquire now</a>
+            <div class="menu-button absolute z-[3000] right-4 top-4 transition-all duration-300">
+                <astro-island uid="1fNe5" component-url="/scripts/MenuButton.js" component-export="default" renderer-url="/scripts/client.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;MenuButton&quot;,&quot;value&quot;:&quot;vue&quot;}" await-children>
+                    <template data-astro-template>
+                        <button type="button" class="text-[30px] text-white hover:text-primary transition-colors">
+                            <svg width="17" height="23" viewBox="0 0 17 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15.3242 6.13672L10.168 11.293L15.2812 16.4062C15.7109 16.793 15.7109 17.4375 15.2812 17.8242C14.8945 18.2539 14.25 18.2539 13.8633 17.8242L8.70703 12.7109L3.59375 17.8242C3.20703 18.2539 2.5625 18.2539 2.17578 17.8242C1.74609 17.4375 1.74609 16.793 2.17578 16.3633L7.28906 11.25L2.17578 6.13672C1.74609 5.75 1.74609 5.10547 2.17578 4.67578C2.5625 4.28906 3.20703 4.28906 3.63672 4.67578L8.75 9.83203L13.8633 4.71875C14.25 4.28906 14.8945 4.28906 15.3242 4.71875C15.7109 5.10547 15.7109 5.75 15.3242 6.13672Z" fill="currentColor"></path>
+                            </svg>
+                        </button>
+                    </template>
+                </astro-island>
+            </div>
+        </div>
+        <ul class="bg-black primary px-4 text-white">
+            @foreach (var mainLink in Model.MainLinks)
+            {
+                if (mainLink.Link.LinkGroupType == GlobalConstants.LINK_GROUP_NORMAL)
+                {
+                    <li href="@mainLink.Link.Path" class="menu-item">@mainLink.Link.Label</li>
+                }
+                else
+                {
+
+                    <li>
+
+                        <button type="button" class="menu-item">
+                            @mainLink.Link.Label
+                            <span class="arrow block w-5 shrink-0 text-current"> <i class="fa-solid fa-chevron-right text-[13px]"></i> </span>
+                        </button> <!-- Submenu Container -->
+                        @if (!mainLink.MenuGroups.IsNullOrEmpty())
+                        {
+                            <div class="submenu px-4 fixed bottom-0 top-[100px] right-0 z-[2000] w-full max-w-[400px] translate-x-full bg-black text-white transition-transform duration-500 overflow-x-hidden overflow-y-auto">
+                                <!-- Submenu items -->
+                                <ul>
+                                    <!-- back button -->
+                                    <li class="!-ml-4 !pl-4"> <button type="button" class="back-button menu-item"> <span class="flex items-center gap-2 w-full"> <span class="arrow block w-5 shrink-0 text-current"> <i class="fa-solid fa-chevron-left text-[13px]"></i></span><span class="text-center flex-1 text-[16px] pr-5">@mainLink.Link.Label</span> </span> </button> </li>
+                                    @foreach (var menuGroup in mainLink.MenuGroups)
+                                    {
+                                        <li>
+                                            @if (!menuGroup.ChildLinks.IsNullOrEmpty())
+                                            {
+
+                                                <!-- back button -->
+                                                if (menuGroup.Link != null)
+                                                {
+                                                <li class="!-ml-4 !pl-4"> <button type="button" class="back-button menu-item"> <span class="flex items-center gap-2 w-full"> <span class="arrow block w-5 shrink-0 text-current"> <i class="fa-solid fa-chevron-left text-[13px]"></i> </span> <span class="text-center flex-1 text-[16px] pr-5">@menuGroup.Link.Label</span> </span> </button> </li>
+                                            }
+                                            foreach (var menu in menuGroup.ChildLinks)
+                                            {
+                                                <li><a href="@menu.Path" class="menu-item">@menu.Label</a></li>
+                                            }
+                                        }
+                                </li>
+                            }
+                                </ul>
+                            </div>
+
+                        }
+                        </li>
+                    }
+                }
+            </ul>
+            <ul class="secondary px-4">
+                <li> <a href="/agents" class="menu-item">Agents</a> </li>
+                <li> <a href="/brochures" class="menu-item">Brochures</a> </li>
+            </ul>
+        </div>
+        </div> 

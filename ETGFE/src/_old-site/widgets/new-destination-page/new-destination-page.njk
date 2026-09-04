@@ -1,0 +1,146 @@
+<div class="widget new-destination-page">
+  <div class="intro">
+    <div class="wrapper contained">
+      <h1>Use a h1 here if there's none in the hero</h1>
+      <h2>Otherwise use a h2 - both are styled the same</h2>
+      <div class="intro-text">
+        333 islands make up the archipelago of Fiji, which is situated within the South Pacific Ocean. Think palm-lined beaches, crystal clear waters and rugged landscapes combined with some of the friendliest people in the world and you get Fiji!
+      </div>
+    </div>
+  </div>
+
+  <div class="widget package-jump-menu">
+    <div class="menu-select">
+      <select>
+        <option value="#section_overview">Overview</option>
+        <option value="#section_packages">Popular Packages</option>
+        <option value="#section_why">Why we love it</option>
+        <option value="#section_featured">Featured</option>
+        <option value="#section_info">Helpful info</option>
+        <option value="#section_weather">Weather</option>
+      </select>
+    </div>
+    <div class="menu-links">
+      <a href="#section_overview">Overview</a>
+      <a href="#section_packages">Popular Packages</a>
+      <a href="#section_why">Why we love it</a>
+      <a href="#section_featured">Featured</a>
+      <a href="#section_info">Helpful info</a>
+      <a href="#section_weather">Weather</a>
+    </div>
+  </div>
+
+  <div class="scroll-section" id="section_overview">
+    <div class="overview">
+      <div class="wrapper contained">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum deleniti, doloribus fuga harum illo illum incidunt labore pariatur perspiciatis porro quidem reiciendis soluta, vero vitae? Corporis eos odit pariatur!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto cumque eum laboriosam qui sunt, vel vero voluptatum? Beatae debitis, dolore earum explicabo inventore, ipsa laboriosam non praesentium suscipit tempore ullam.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-section" id="section_packages">
+    <div class="widget tour-tiles-collection">
+      <div class="wrapper">
+        <div class="top">
+          <h2>Other Featured beach experiences</h2>
+        </div>
+
+        {% include "src/widgets/tour-tiles/tour-tiles.njk" %}
+
+        <div class="bottom">
+          <a href="#page" class="button ui primary transparent">View all</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include "src/widgets/partnership-with-updated/partnership-with-updated.njk" %}
+
+  {% include "src/widgets/spacer/spacer.njk" %}
+
+  <div class="scroll-section" id="section_why">
+    {% include "src/widgets/why-we-love-it/why-we-love-it.njk" %}
+  </div>
+
+  {% include "src/widgets/spacer/spacer.njk" %}
+
+  <div class="scroll-section" id="section_featured">
+    {% include "src/widgets/featured-carousel/featured-carousel.njk" %}
+  </div>
+
+  <div class="scroll-section" id="section_info">
+    <div class="wrapper contained">
+      <div class="widget package-accordion">
+        <div class="top">
+          <h2>Helpful info</h2>
+          <!-- OPTIONAL
+          <div class="expand">
+            <a href="#" class="expander button ui primary transparent down">Expand All</a>
+          </div> -->
+          <!-- END OPTIONAL -->
+        </div>
+
+        <div class="ui styled fluid accordion faqs-accordion">
+
+          <!-- Accordion panel -->
+          <div class="title">
+            <div class="heading">Question 1</div>
+            <i class="dropdown icon"></i>
+          </div>
+          <div class="content">
+            <div class="inner-content">
+              <p>Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Curabitur
+                blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac
+                consectetur ac, vestibulum at eros.
+              </p>
+            </div>
+          </div>
+          <!-- END Accordion panel -->
+
+          <!-- Accordion panel -->
+          <div class="title">
+            <div class="heading">Question 2</div>
+            <i class="dropdown icon"></i>
+          </div>
+          <div class="content">
+            <div class="inner-content">
+              <p>Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Curabitur
+                blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac
+                consectetur ac, vestibulum at eros.
+              </p>
+            </div>
+          </div>
+          <!-- END Accordion panel -->
+
+          <!-- Accordion panel -->
+          <div class="title">
+            <div class="heading">Question 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi aperiam,
+              atque blanditiis consequunturritatis.
+            </div>
+            <i class="dropdown icon"></i>
+          </div>
+          <div class="content">
+            <div class="inner-content">
+              <p>Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Curabitur
+                blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac
+                consectetur ac, vestibulum at eros.
+              </p>
+            </div>
+          </div>
+          <!-- END Accordion panel -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include "src/widgets/spacer/spacer.njk" %}
+
+  <div class="scroll-section" id="section_weather">
+    Weather widget
+  </div>
+</div>

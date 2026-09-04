@@ -1,0 +1,24 @@
+{
+  "hotels": [
+    {
+      "id":1,
+      "title": "Legendary camp Africa",
+      "location": "Africa"
+    },
+    {
+      "id":2,
+      "title": "The Australian getaway",
+      "location": "Australia"
+    },
+    {
+      "id":3,
+      "title": "The Pier",
+      "location": "America"
+    },
+    {
+      "id":4,
+      "title": "Hotel Austria",
+      "location": "Austria"
+    }
+  ]
+}

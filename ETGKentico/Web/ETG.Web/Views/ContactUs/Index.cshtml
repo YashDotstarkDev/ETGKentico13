@@ -1,0 +1,85 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@model ETG.Web.Models.Forms.ContactUsPageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model?.Page == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page.Page)
+}
+
+@section AdditionalHeadScripts
+{
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/contact-us.js")
+    <script src="https://www.google.com/recaptcha/api.js?render=@ViewBag.RecaptchaSiteKey"></script>
+    <!-- Calendly badge widget begin -->
+    <link href=https://assets.calendly.com/assets/external/widget.css rel="stylesheet">
+    <script src=https://assets.calendly.com/assets/external/widget.js type="text/javascript" async></script>
+    <!-- Calendly badge widget end -->
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+<div data-widget="contact-us" class="widget contact-us">
+    <div class="bottom wp">
+        <div class="wrapper">
+            <div class="article-layout">
+                <div class="main">
+                    @if (@Model.Page.PageHero != null)
+                    {
+                        <h1>@Model.Page.PageHero.Heading</h1>
+                    }
+                    @Html.Raw(Model.Page.Content)
+                    <div id="contactUsForm" class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-method="POST" data-endpoint="@Url.Action("Submit", "ContactUs")">
+                        <div class="response-container"></div>
+                        @if (Model.Form != null && !Model.Form.ErrorMessage.IsNullOrEmpty())
+                        {
+                            <div class="field">
+                                <div class="ui basic red pointing prompt label">
+                                    @Html.Raw(Model.Form.ErrorMessage)
+                                </div>
+                            </div>
+                        }
+
+
+                        @Html.AntiForgeryToken()
+                        @Html.EditorFor(m => m.Form)
+                        <div class="response-container"></div>
+
+                        <div class="submit-row">
+                            <button class="ui button submit primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="side">
+                    @Html.Action("GetEnquireSidebar", "GenericEnquireSidebar")
+                </div>
+                <div class="bottom">
+                    @Html.Kentico().EditableArea("editableBottom")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

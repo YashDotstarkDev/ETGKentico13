@@ -1,0 +1,142 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@model ETG.Web.Article.Models.ArticlePageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model?.Article == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Article)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+
+    @* @if (!Model.JsonSchema.IsNullOrEmpty()) *@
+    @* { *@
+    @*     <script type="application/ld+json"> *@
+    @*         @(Html.Raw(Model.JsonSchema)) *@
+    @*     </script> *@
+    @* } *@
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/article-detail.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+<script type="application/ld+json">
+{
+    "@@context": "http://schema.org",
+    "@@type": "Article",
+    "headline": "@(Model.Article.Title)",
+    "url": "https://www.entiretravel.com.au/@(Request.RawUrl.TrimStart('/'))",
+    "description": "@(Model.Article.PageDescription))",
+    "image": "@(Model.Article.HeroImage.Imgixify())",
+    "datePublished": "@(Model.Article.PublishDate.ToString("yyyy-MM-dd"))",
+    "dateModified": "@(Model.Article.ModifiedDate.ToString("yyyy-MM-dd"))",
+    "mainEntityOfPage": {
+        "@@type": "WebPage",
+        "@@id": "https://www.entiretravel.com.au/@(Request.RawUrl.TrimStart('/'))"
+    },
+    "author": {
+        "@@type":"Person",
+        "name":"Entire Travel Group"
+    },
+    "publisher": {
+        "@@type": "Organization",
+        "name": "Entire Travel Group Pty Ltd",
+        "logo": {
+            "@@type": "ImageObject",
+            "url":"https://www.entiretravel.com.au/icons/apple-touch-icon.png"
+        }
+    }
+}
+</script>
+
+<div class="widget article-hero" data-widget="article-hero">
+    <h1>
+        <span>@Model.Article.Title</span>
+    </h1>
+    <div class="image">
+        <img class="lazyload" data-src="@Model.Article.HeroImage.Imgixify()" alt="@Model.Article.HeroImageAltText">
+    </div>
+</div>
+
+<div class="wrapper wp">
+    <div class="article-layout article">
+        <div class="main  prose max-w-none">
+            <p>
+                Posted by @Model.Article.AuthorName on @Model.Article.DisplayPublishDate
+                @if (!Model.Article.Categories.IsNullOrEmpty())
+                {
+                    @Html.Raw(", in ")
+                    ;
+                    for (var i = 0; i < Model.Article.Categories.Count; i++)
+                    {
+                        var category = Model.Article.Categories[i];
+                        if (i > 0)
+                        {
+                            if (i == Model.Article.Categories.Count - 1)
+                            {
+                                @Html.Raw(" and ")
+                                ;
+                            }
+                            else
+                            {
+                                @Html.Raw(", ")
+                                ;
+                            }
+                        }
+                        <a href="/articles?category=@(category.Value)">@category.Value</a>
+                    }
+                }
+            </p>
+            @Html.Kentico().EditableArea("ArticleBody")
+        </div>
+
+        <div class="side">
+            @if (!Model.RelatedArticles.IsNullOrEmpty())
+            {
+                <div class="widget keep-reading" data-widget="keep-reading">
+                    <h3>Keep reading</h3>
+                    @foreach (var article in Model.RelatedArticles)
+                    {
+                        <a href="@article.Url.ToLower()">
+                            <span class="image">
+                                <img class="lazyload" data-src="@article.HeroImage.Imgixify()" alt="@article.Title">
+                            </span>
+                            <span class="location">@article.CategoriesText</span>
+                            <span class="title">@article.Title</span>
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@Html.Kentico().EditableArea("BelowArticle")
+@if (Model.FeatureTours != null && !Model.FeatureTours.Tours.IsNullOrEmpty())
+{
+    @Html.Partial("Partial/Tour/_TourListing", (Model.FeatureTours, $"Some popular packages from {Model.Article.DestinationsText}", string.Empty))
+
+}
+
+@Html.Kentico().EditableArea("Bottom")
+
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")

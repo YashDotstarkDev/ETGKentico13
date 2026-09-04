@@ -1,0 +1,30 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.tour-enquire-main {
+  display: flex;
+  flex-direction: column;
+
+  @media (--portrait) {
+    display: block;
+  }
+
+  .package-detail-bar {
+    order: 2;
+  }
+
+  form {
+    order: 1;
+  }
+
+  .package-intro {
+    display: none;
+    @media (--portrait) {
+      display: block;
+    }
+  }
+}
+
+.enquire-form {
+  margin-top: 40px;
+}

@@ -1,0 +1,273 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-sticky-footer {
+  z-index: 500;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -100%;
+  transition: bottom 1s ease;
+
+  .reviews {
+    padding-right: 30px;
+    display: none;
+    @media(min-width: $package-sticky-footer-desktop) {
+      display: flex;
+    }
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    padding-right: 30px;
+  }
+
+  &.scrolled {
+    bottom: 0;
+  }
+
+  .button.ta-trigger {
+    @media(max-width: $package-sticky-footer-mobileMax) {
+      display: none;
+    }
+  }
+
+  .tag {
+    z-index: 9;
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    margin-right: 15px;
+    padding: 6px 20px;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 900;
+    color: #fff;
+    background-color: #333;
+    border-top-right-radius: 8px;
+
+    @media(max-width: $package-sticky-footer-mobileMax) {
+      .title {
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #929497;
+      }
+    }
+
+    @media(min-width: $package-sticky-footer-desktop) {
+      flex-direction: row;
+      align-items: center;
+
+      .title {
+        padding-right: 15px;
+        margin-right: 10px;
+        border-right: 1px solid #929497;
+      }
+    }
+
+    .counter-container {
+      display: flex;
+
+      .timer {
+        display: flex;
+        position: relative;
+        white-space: nowrap;
+
+        .timer-unit {
+          position: relative;
+          width: 25px;
+          text-align: center;
+
+          + .timer-unit::before {
+            content: ":";
+            position: absolute;
+            left: 0;
+            transform: translateX(-50%);
+            color: #929497;
+          }
+
+          [data-timer-unit] {
+            white-space: nowrap;
+            color: #ca568e;
+
+            /* each digit */
+            > span {
+              display: inline-block;
+              margin: 0 1px;
+            }
+          }
+        }
+      }
+
+      .counter-label {
+        margin-left: 5px;
+        font-weight: normal;
+        color: #929497;
+      }
+    }
+  }
+
+  .bar {
+    position: relative;
+    padding: 15px 20px;
+    background-color: #fff;
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.11);
+
+    @media(min-width: $package-sticky-footer-desktop) {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &.expand-sticky {
+      .right {
+        .buttons {
+          height: 58px;
+        }
+      }
+
+      .expand-sticky-trigger {
+        .icon {
+          &.down {
+            display: block;
+          }
+
+          &.up {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .expand-sticky-trigger {
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+
+    @media(min-width: $package-sticky-footer-desktop) {
+      display: none;
+    }
+
+    .icon {
+      color: $primary;
+      font-size: 20px;
+
+      &.down {
+        display: none;
+      }
+    }
+  }
+
+  .prices {
+    padding-left: 10px;
+    white-space: nowrap;
+    text-align: right;
+
+    .price-from {
+      .strike {
+        opacity: 0.5;
+        text-decoration: line-through;
+      }
+    }
+
+    .price-actual {
+      .price-value {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 1;
+
+        @media(min-width: $package-sticky-footer-desktop) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+
+    @media(min-width: $package-sticky-footer-desktop) {
+      align-items: center;
+      height: auto;
+      overflow: visible;
+    }
+
+    .ui.button {
+      padding: 5px 15px;
+
+      @media(min-width: 480px) {
+        padding: 13px 30px;
+      }
+    }
+  }
+
+  .left {
+    flex: 1;
+    min-width: 0; /* allow text overflow ellipse, https://css-tricks.com/flexbox-truncated-text/ */
+
+    .package-name {
+      padding-right: 30px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 20px;
+      font-weight: 600;
+
+      @media(min-width: $package-sticky-footer-desktop) {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .right {
+
+    @media(min-width: $package-sticky-footer-desktop) {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      min-width: 460px;
+    }
+
+    @media(min-width: $package-sticky-footer-desktop) {
+      padding-right: 100px;
+    }
+
+    .prices {
+      margin-right: 10px;
+
+      @media(max-width: $package-sticky-footer-mobileMax) {
+        display: none;
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media(min-width: $package-sticky-footer-desktop) {
+      display: block;
+      margin-top: -5px;
+    }
+
+    .prices {
+      @media(min-width: $package-sticky-footer-desktop) {
+        display: none;
+      }
+    }
+  }
+}
+

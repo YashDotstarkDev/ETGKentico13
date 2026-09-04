@@ -1,0 +1,52 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model ETG.Web.Models.Common.PageHeroViewModel
+
+@if (Model == null)
+{
+    return;
+}
+<div class="widget package-hero" data-widget="package-hero">
+   
+    @if (!Model.GalleryImages.IsNullOrEmpty())
+    {
+        <div class="carousel">
+            @foreach (var image in Model.GalleryImages)
+            {
+                <div class="item">
+                    <div class="image" style="background-image: url('@image.ImagePath.Imgixify()');")></div>
+                    <div class="author"><span class="icon icon-pin"></span>@image.ImageCaption</div>
+                    <div class="grad-top"></div>
+                    <div class="grad"></div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        @Html.Partial("Partial/Common/_Image", new Tuple<string, string, bool>(Model.HeroImage.Imgixify(), @Model.HeroImageAltText, ViewBag.IsPrint == null))
+    }
+    <div class="grad"></div>
+    <div class="sub-container">
+        @if (ViewBag.IsPrint == null)
+        {
+            <div class="actions">
+                @if (Model.ShareLinks != null)
+                {
+                    <a href="#" class="button ui white share-button"><span class="icon fas fa-share"></span>Share</a>
+                }
+            </div>
+        }
+    </div>
+    @if (ViewBag.IsPrint == null && Model.ShareLinks != null)
+    {
+        <div class="share-modal ui modal">
+            <i class="close icon"><span class="fal fa-times"></span></i>
+
+            <div class="links">
+                @Html.Partial("Partial/Common/_ShareLinks", Model.ShareLinks)
+            </div>
+        </div>
+    }
+
+</div>

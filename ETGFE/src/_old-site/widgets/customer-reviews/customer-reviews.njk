@@ -1,0 +1,48 @@
+<div class="widget customer-reviews"
+     data-endpoint="/api/customer-reviews.json"
+     data-endpoint-method="GET"
+>
+  <div class="wrapper">
+    <h2>What our customers say</h2>
+
+    <div class="average-ratings">
+      <div class="star-rating">
+        <span class="stars" data-rating="0"></span>
+      </div>
+
+      <div class="rating-info">
+        <div class="info">
+          <strong class="average-rating">5.0</strong> Stars
+        </div>
+        <div class="info">
+          <strong class="total-reviews">0</strong> reviews
+        </div>
+      </div>
+    </div>
+
+    <div class="ratings-list">
+      <div class="loading">
+        <i class="fa-2xl fa-light fa-dharmachakra"></i>
+        <div class="text">Loading reviews.</div>
+      </div>
+
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <!-- populated with script -->
+        </div>
+      </div>
+
+      <button type="button" class="prev">
+        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.75008 0.685057C6.99617 0.685057 7.21492 0.767089 7.37899 0.931151C7.73445 1.25928 7.73445 1.8335 7.37899 2.16162L2.75789 6.81006L7.37898 11.4312C7.73445 11.7593 7.73445 12.3335 7.37898 12.6616C7.05086 13.0171 6.47664 13.0171 6.14852 12.6616L0.898516 7.41162C0.543047 7.08349 0.543047 6.50928 0.898516 6.18115L6.14852 0.931151C6.31258 0.767089 6.53133 0.685057 6.75008 0.685057Z" fill="#CA568E"/>
+        </svg>
+      </button>
+
+      <button type="button" class="next">
+        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.24992 13.3149C1.00383 13.3149 0.785079 13.2329 0.621017 13.0688C0.265548 12.7407 0.265548 12.1665 0.621017 11.8384L5.24211 7.18994L0.621017 2.56885C0.265548 2.24072 0.265548 1.6665 0.621017 1.33838C0.949142 0.98291 1.52336 0.98291 1.85149 1.33838L7.10149 6.58838C7.45695 6.9165 7.45695 7.49072 7.10149 7.81885L1.85149 13.0688C1.68742 13.2329 1.46867 13.3149 1.24992 13.3149Z" fill="#CA568E"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

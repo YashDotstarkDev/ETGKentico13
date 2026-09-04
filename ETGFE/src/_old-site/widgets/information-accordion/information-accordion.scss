@@ -1,0 +1,175 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.information-accordion {
+
+  h3 {
+    font-family: $lato;
+    margin-bottom: 0;
+  }
+
+  .heading {
+    color: $primary;
+    font-weight: 500;
+  }
+
+  .ui.accordion .title .dropdown.icon,
+  .ui.accordion .accordion .title .dropdown.icon {
+    font-family: 'icomoon';
+    color: $primary;
+    font-size: 20px;
+  }
+
+  .ui.accordion .active.title .dropdown.icon,
+  .ui.accordion .accordion .active.title .dropdown.icon {
+    transform: rotate(180deg);
+  }
+
+  .ui.accordion .title .dropdown.icon:before,
+  .ui.accordion .accordion .title .dropdown.icon:before {
+    content: "\e900";
+    color: $primary;
+  }
+
+  .ui.accordion .content {
+    padding: 20px !important;
+  }
+
+  .accordion {
+    font-family: $lato !important;
+    width: 100% !important;
+
+    .title {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      font-family: $lato !important;
+      color: #000 !important;
+
+      .icon {
+        margin-left: auto !important;
+      }
+    }
+
+    .grad {
+      background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+      height: 60px;
+      opacity: 0.4;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .caption {
+
+    }
+
+    .image {
+      @util aspect-ratio(16:9);
+      position: relative;
+      margin-top: 20px;
+
+      img {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        font-family: "object-fit: cover";
+      }
+
+    }
+
+    .caption {
+      color: #FFF;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      text-transform: uppercase;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      font-weight: bold;
+
+      .icon {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+    }
+
+    .inclusions {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .item {
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+
+        .icon {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .day {
+      font-weight: 900;
+      width: 80px;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    @media(--landscape) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .expander {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+
+    @media(--desktop) {
+      &:hover {
+        color: $primary;
+        text-decoration: underline;
+      }
+    }
+
+    .icon {
+      margin-left: 5px;
+      color: $primary;
+    }
+
+    .up {
+      display: none;
+    }
+
+    &.expanded {
+      .down {
+        display: none;
+      }
+
+      .up {
+        display: block;
+      }
+    }
+  }
+}

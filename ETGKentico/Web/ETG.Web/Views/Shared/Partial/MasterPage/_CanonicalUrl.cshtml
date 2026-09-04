@@ -1,0 +1,25 @@
+﻿@using Kentico.Content.Web.Mvc.Routing
+@{
+    string canonicalUrl = Url.RequestContext.HttpContext.Request.Url.GetLeftPart(UriPartial.Path);
+    @*
+    // Attempts to get the main URL of the displayed page
+    string pageMainUrl = Url.Kentico().PageMainUrl();
+    
+    // Checks whether an alternative URL rewrite occurred for the displayed page
+    if (!String.IsNullOrEmpty(pageMainUrl))
+    {
+        // Sets the canonical URL to the displayed page's main URL in absolute form,
+        // using the current request's scheme and authority
+        string requestAuthority = Url.RequestContext.HttpContext.Request.Url.GetLeftPart(UriPartial.Authority);
+        canonicalUrl = requestAuthority + Url.Content(pageMainUrl);
+    }
+    // If an alternative URL rewrite did not occur, the page main URL is empty
+    else
+    {
+        // Sets the canonical URL to the current request's URI (without the fragment or query string parameters)
+        canonicalUrl = Url.RequestContext.HttpContext.Request.Url.GetLeftPart(UriPartial.Path);
+    }*@
+}
+
+@* Renders a canonical link element *@
+<link rel="canonical" href="@canonicalUrl" />

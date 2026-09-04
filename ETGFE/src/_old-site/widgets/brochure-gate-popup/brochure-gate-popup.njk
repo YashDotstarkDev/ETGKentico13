@@ -1,0 +1,20 @@
+<div class="widget brochure-gate-popup ui modal">
+  <i class="close icon"><span class="fal fa-times"></span></i>
+
+  <h2>Signup to view brochure</h2>
+
+  <div class="ui form gate-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-endpoint-url="api/view-brochure.json" data-method="POST">
+
+    <div class="field">
+      <label>Name</label>
+      <input type="text" name="name" data-rules="empty" data-prompts="Please enter name"/>
+    </div>
+
+    <div class="field">
+      <label>Email</label>
+      <input type="email" name="email" data-rules="empty,email" data-prompts="Please enter valid email"/>
+    </div>
+
+    <button class="ui transparent submit button primary" type="button">Submit</button>
+  </div>
+</div>

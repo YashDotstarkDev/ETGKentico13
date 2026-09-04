@@ -1,0 +1,15 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model ETG.Web.Models.Common.ShareLinksViewModel
+
+@if (Model == null)
+{
+    return;
+}
+<input type="text" class="url-holder" value="@(Request.IsSecureConnection ?  "https://" : "http://")@Request.Url.Host@Request.Url.PathAndQuery">
+<a href="@Model.FacebookShareUrl" target="_blank" class="button ui facebook"><span class="icon fab fa-facebook"></span>Facebook</a>
+@*<a href="@Model.InstagramShareUrl" target="_blank" class="button ui instagram"><span class="icon fab fa-instagram"></span>Instagram</a>*@
+<a href="@Model.LinkedInShareUrl" target="_blank" class="button ui linkedin"><span class="icon fab fa-linkedin"></span>Linkedin</a>
+<a href="@Model.TwitterShareUrl" target="_blank" class="button ui twitter"><span class="icon fab fa-twitter"></span>Twitter</a>
+<a href="@Model.PinterestShareUrl" target="_blank" class="button ui pinterest"><span class="icon fab fa-pinterest"></span>Pinterest</a>
+<a href="#" class="button ui copy-link" data-content="Link copied!"><span class="icon icon-chain"></span>Copy Link</a>

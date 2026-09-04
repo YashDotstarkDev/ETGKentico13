@@ -1,0 +1,83 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@model (bool, List<ETG.Web.Tour.Models.TourItineraryViewModel>)
+
+@{
+    var isPrint = Model.Item1;
+    var itineraryList = Model.Item2;
+}
+@if (itineraryList.IsNullOrEmpty())
+{
+    return;
+}
+<div class="widget package-itinerary" style="clear: both" data-widget="package-itinerary">
+    <div class="ui styled accordion">
+        @for (var i = 0; i < itineraryList.Count; i++)
+        {
+            var itinerary = itineraryList[i];
+
+            if (i == 0)
+            {
+                <div class="top">
+                    <h3>Itinerary</h3>
+                </div>
+            }
+            <div>
+                <div class="title@(ViewBag.IsPrint == null ? "" : " active")">
+                    <div class="day">@itinerary.DayCaption</div>
+                    <div class="heading">@itinerary.Title</div>
+                </div>
+                <div class="content@(ViewBag.IsPrint == null ? "" : " active")">
+                    <div class="inner-content">
+                        @Html.Raw(itinerary.Details)
+
+                        @if (!itinerary.InclusionDisplay.IsNullOrEmpty())
+                        {
+                            <div class="inclusions">
+                                <div class="item">
+                                    <span class="icon fas fa-utensils"></span>
+                                    @itinerary.InclusionDisplay
+                                </div>
+                            </div>
+                        }
+                        @if (!itinerary.FreedomOfChoices.IsNullOrEmpty())
+                        {
+                            <p>
+                                <br/><strong>Freedom of Choice Options</strong>
+                            </p>
+
+                            for (var j = 0; j < itinerary.FreedomOfChoices.Count; j++)
+                            {
+                                var foc = itinerary.FreedomOfChoices[j];
+                                if (j > 0)
+                                {
+                                    <p>
+                                        <b>OR</b>
+                                    </p>
+                                }
+                                <ul>
+                                    <li>
+                                        <strong>@Html.Raw(foc.FreedomOfChoiceOptionName): </strong>@Html.Raw(foc.FreedomOfChoiceDescription)
+                                    </li>
+                                </ul>
+                            }
+                        }
+                        @if (!itinerary.Image.IsNullOrEmpty())
+                        {
+                            <div class="image">
+                                @Html.Partial("Partial/Common/_Image", new Tuple<string, string, bool>(itinerary.Image.Imgixify(), itinerary.Title, ViewBag.IsPrint == null))
+                                <div class="grad"></div>
+                                @if (!itinerary.ImageCaption.IsNullOrEmpty())
+                                {
+                                    <div class="caption">
+                                        <span class="icon icon-pin"></span>@itinerary.ImageCaption
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

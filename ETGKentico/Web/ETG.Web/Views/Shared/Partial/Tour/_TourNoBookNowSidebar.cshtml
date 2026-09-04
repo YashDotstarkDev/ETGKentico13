@@ -1,0 +1,103 @@
+﻿@using Castle.Core.Internal
+@using CMS.Core
+@using ETG.Booking.Pricing.Services
+@using ETG.Data.Extensions
+@using ETG.Data.Helpers
+@using ETG.Data.Tour
+@using ETG.Module.Booking.Constants
+@using ETG.Module.Booking.Models
+@using ETG.Web.Extensions
+@model ETG.Web.Tour.Models.TourViewModel
+@{
+    var currencyPricing = new CurrentCurrencyPricing(DependencyResolver.Current.GetService<ICurrencyService>());
+
+    if (Model.TourSummaryInfo == null)
+    {
+        return;
+    }
+
+}
+
+<div class="widget new-book-now" data-widget="new-book-now">
+
+    <div class="book-now-package-details">
+        <div class="top">
+            <div class="package-duration">@(Model.TourSummaryInfo.NoOfNights + 1) days</div>
+            @if (!Model.TourSummaryInfo.PriceInclusionIcons.IsNullOrEmpty())
+            {
+                <div class="package-inclusion-icons">
+                    @foreach (var icon in Model.TourSummaryInfo.PriceInclusionIcons)
+                    {
+                        <span class="icon @icon.IconClass"></span>
+                    }
+                </div>
+            }
+
+        </div>
+        <div class="middle">
+            <div class="package-price" data-currency="AUD" data-currency-symbol="$">
+                @if (Model.TourSummaryInfo.FromPrice != null)
+                {
+                    <div class="prices">
+                        <div class="price-from">
+                            From
+                            @if (currencyPricing.CurrencyAppliesDiscounts && Model.TourSummaryInfo.Promotion != null)
+                            {
+                                <span class="strike">
+                                    <span class="price-currency">@Model.TourSummaryInfo.FromPrice.Currency</span>@Model.TourSummaryInfo.FromPrice.GetDisplayedPriceNoCurrencyForCurrentCurrency()
+                                </span>
+                            }
+                        </div>
+                        <div class="price-actual">
+                            <span class="price-currency">@Model.TourSummaryInfo.FromPrice.Currency</span>
+                            @if (!currencyPricing.CurrencyAppliesDiscounts || Model.TourSummaryInfo.Promotion == null)
+                            {
+                                @Model.TourSummaryInfo.FromPrice.GetDisplayedPriceNoCurrencyForCurrentCurrency()
+                            }
+                            else
+                            {
+                                @currencyPricing.ConvertAUDToCurrentCurrency(Model.TourSummaryInfo.Promotion.GetDiscountedPrice(Model.TourSummaryInfo.FromPrice.LowestPrice)).ToString("#,###")
+                            }
+
+                        </div>
+                    </div>
+                }
+                @if (currencyPricing.CurrencyAppliesDiscounts && Model.TourSummaryInfo.Promotion != null)
+                {
+                    <div class="price-saving">
+                        Save <span class="price-currency-symbol">$</span>@currencyPricing.ConvertAUDToCurrentCurrency(Model.TourSummaryInfo.Promotion.GetDiscount(Model.TourSummaryInfo.FromPrice.LowestPrice, 1))<span>pp</span>
+                    </div>
+                }
+                <div class="price-notes">
+                    @Model.TourSummaryInfo.PriceTypeLabel
+                </div>
+                <div class="buttons">
+                    <a href="/pdf/@Model.TourSummaryInfo.TourCode" class="button ui white" target="_blank">Download PDF</a>
+                    <span class="divider"></span>
+                    <a href="/enquire/@Model.TourSummaryInfo.TourCode" target="_blank" class="ui button white transparent">
+                                    <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.1562 0.59375L1.28125 6.85156C0.859375 7.08594 0.90625 7.69531 1.32812 7.85938L3.83594 8.91406L10.5625 2.98438C10.6797 2.86719 10.8672 3.03125 10.75 3.17188L5.125 10.0391V11.9375C5.125 12.5 5.78125 12.7109 6.10938 12.3125L7.60938 10.4844L10.5156 11.7266C10.8438 11.8672 11.2422 11.6562 11.2891 11.2812L12.9766 1.15625C13.0703 0.6875 12.5547 0.359375 12.1562 0.59375Z" fill="currentColor"></path>
+                                    </svg>
+                                    Make an enquiry
+                                </a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="package-book-notes">
+                <div>
+                    Travelling with kids?
+                    <a href="/experiences/family" target="_blank">
+                        Read more&nbsp;
+                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.6484 0.5L7.82812 0.523438C7.64062 0.523438 7.5 0.664062 7.5 0.851562V1.625C7.5 1.8125 7.64062 1.97656 7.82812 1.97656L9.5625 1.90625L9.60938 1.95312L3.07031 8.49219C3.02344 8.53906 2.97656 8.63281 2.97656 8.67969C2.97656 8.75 3.02344 8.84375 3.07031 8.89062L3.60938 9.42969C3.65625 9.47656 3.75 9.52344 3.82031 9.52344C3.86719 9.52344 3.96094 9.47656 4.00781 9.42969L10.5469 2.89062L10.5938 2.9375L10.5234 4.67188C10.5234 4.85938 10.6875 5 10.875 5H11.6484C11.8359 5 11.9766 4.85938 11.9766 4.67188L12 0.851562C12 0.664062 11.8359 0.5 11.6484 0.5ZM10.125 7.25H9.75C9.53906 7.25 9.375 7.4375 9.375 7.625V11.2344C9.375 11.3281 9.30469 11.375 9.23438 11.375H1.26562C1.17188 11.375 1.125 11.3281 1.125 11.2344V3.26562C1.125 3.19531 1.17188 3.125 1.26562 3.125H4.875C5.0625 3.125 5.25 2.96094 5.25 2.75V2.375C5.25 2.1875 5.0625 2 4.875 2H1.125C0.492188 2 0 2.51562 0 3.125V11.375C0 12.0078 0.492188 12.5 1.125 12.5H9.375C9.98438 12.5 10.5 12.0078 10.5 11.375V7.625C10.5 7.4375 10.3125 7.25 10.125 7.25Z" fill="#CA568E"/>
+                        </svg>
+                    </a>
+                </div>
+                <div>
+                    All services are subject to availability.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

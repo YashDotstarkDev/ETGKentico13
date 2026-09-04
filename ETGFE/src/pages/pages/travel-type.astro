@@ -1,0 +1,46 @@
+---
+import Layout from "../../layouts/layout-main.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import NewHero_Experience from "../../components/NewHero_Experience.astro";
+import Video from "../../components/Video.astro";
+import NewFeaturedPackages from "../../components/NewFeaturedPackages.astro";
+import WhyWeLoveIt from "../../components/WhyWeLoveIt.astro";
+import CustomerReviews from "../../components/CustomerReviews.astro";
+import PackageAccordion from "../../components/PackageAccordion.astro";
+import PhotoSlider from "../../components/PhotoSlider.astro";
+---
+
+<Layout>
+
+    <Breadcrumbs />
+    <NewHero_Experience />
+
+    <div class="spacer small"></div>
+
+    <Video />
+    <div class="spacer"></div>
+    <NewFeaturedPackages />
+    <div class="spacer"></div>
+    <PhotoSlider />
+    <div class="spacer"></div>
+    <WhyWeLoveIt />
+    <div class="spacer"></div>
+
+    <div class="w-full max-w-4xl mx-auto prose text-body">
+        <h2>Html text area</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid amet autem cumque, dolore doloribus labore minima modi, natus officiis quia quibusdam quidem reiciendis sit sunt? Consequatur nostrum odit sed?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores facilis nesciunt perspiciatis quaerat suscipit. Alias aliquid dolore dolorem, enim, et fugiat id incidunt magnam molestias nulla reprehenderit sapiente unde ut.</p>
+        <h3>H3 Heading</h3>
+        <ul>
+            <li>Item 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa deleniti, dignissimos dolorem dolores eius, enim error eum expedita fugiat fugit in nemo nesciunt nobis nostrum, pariatur ratione reiciendis ullam.</li>
+            <li>Item 2 Lorem ipsum.</li>
+            <li>Item 3 Lorem <a href="#">ipsum dolor</a> sit amet, consectetur.</li>
+        </ul>
+    </div>
+
+    <div class="spacer"></div>
+    <CustomerReviews />
+    <div class="spacer"></div>
+    <PackageAccordion />
+
+</Layout>

@@ -1,0 +1,18 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.region-map {
+  .map-container {
+    .map-canvas {
+      height: 280px;
+
+      @media(--portrait) {
+        height: 370px;
+      }
+
+      @media(--desktop) {
+        height: 450px;
+      }
+    }
+  }
+}

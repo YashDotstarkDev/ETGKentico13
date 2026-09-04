@@ -1,0 +1,16 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.faqs-page {
+  h1 {
+    color: $primary;
+  }
+
+  .form {
+    margin-top: 40px;
+  }
+
+  .ui.divider {
+    margin: 50px 0;
+  }
+}

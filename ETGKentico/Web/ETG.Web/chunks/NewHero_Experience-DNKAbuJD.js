@@ -1,0 +1,26 @@
+import { c as createComponent, m as maybeRenderHead, a as renderComponent, r as renderTemplate } from './astro/server-BySIDU-D.js';
+import 'kleur/colors';
+import 'html-escaper';
+/* empty css                             */
+
+const $$NewHeroExperience = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`<!--
+/////
+new-hero Start
+/////
+-->${maybeRenderHead()}<div class="new-hero"> <div class="wrapper-large"> <div class="outer-container relative"> <div class="image-container overflow-hidden relative rounded-3xl aspect-video md:aspect-auto md:h-[420px] flex items-center justify-center p-6"> <img data-lowsrc="https://entiretravel.imgix.net/getmedia/0b87fdea-ba3c-47ec-9a12-c7ea3f82a13f/ETG_WEBSITE_APR_New-Carousel_1920x420px-REDUCED_TH_HiltonMoorea.jpg?auto=format&w=3" data-src="https://entiretravel.imgix.net/getmedia/0b87fdea-ba3c-47ec-9a12-c7ea3f82a13f/ETG_WEBSITE_APR_New-Carousel_1920x420px-REDUCED_TH_HiltonMoorea.jpg?auto=format&w={width}&h=420&fit=crop" data-sizes="auto" class="lazyload absolute z-0 inset-0 w-full h-full object-cover opacity-80" alt="Hilton Moorea Lagoon Resort & Spa"> <!-- Optional overlay - add this instead of using class background-darker--> <div class="overlay absolute z-10 inset-0 bg-black/25"></div> <div class="location absolute z-20 top-4 left-4 text-white text-xs items-center justify-start gap-2 flex text-left"> <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0"> <path d="M6.375 5C6.375 6.05469 5.53125 6.875 4.5 6.875C3.44531 6.875 2.625 6.05469 2.625 5C2.625 3.96875 3.44531 3.125 4.5 3.125C5.53125 3.125 6.375 3.96875 6.375 5ZM4.5 4.25C4.07812 4.25 3.75 4.60156 3.75 5C3.75 5.42188 4.07812 5.75 4.5 5.75C4.89844 5.75 5.25 5.42188 5.25 5C5.25 4.60156 4.89844 4.25 4.5 4.25ZM9 5C9 7.0625 6.25781 10.6953 5.03906 12.2188C4.75781 12.5703 4.21875 12.5703 3.9375 12.2188C2.71875 10.6953 0 7.0625 0 5C0 2.51562 1.99219 0.5 4.5 0.5C6.98438 0.5 9 2.51562 9 5ZM4.5 1.625C2.625 1.625 1.125 3.14844 1.125 5C1.125 5.30469 1.21875 5.75 1.47656 6.35938C1.71094 6.92188 2.0625 7.57812 2.46094 8.23438C3.14062 9.3125 3.91406 10.3438 4.5 11.0938C5.0625 10.3438 5.83594 9.3125 6.51562 8.23438C6.91406 7.57812 7.26562 6.92188 7.5 6.35938C7.75781 5.75 7.875 5.30469 7.875 5C7.875 3.14844 6.35156 1.625 4.5 1.625Z" fill="white"></path> </svg>
+London England | Credit: Jonothan Doe
+</div> <div class="foreground relative z-20 text-white"> <!-- OPTIONAL title --> <div class="title font-headings font-bold uppercase text-center text-balance leading-tight"> <!-- Either wrap text in <h1> element for semantic html
+                        <h1>optional short Campaign title</h1>
+                        --> <!-- ...or as just text, if you already have <h1> on the page -->
+Non-semantic title example text
+</div> </div> </div> <div class="share-container absolute right-8 bottom-0 translate-y-1/2 z-20"> ${renderComponent($$result, "ShareButton", null, { "client:only": "vue", "url": "https://url.to.share", "title": "Title to share", "text": "Text to share", "client:component-hydration": "only", "client:component-path": "C:/Projects/ETG/Source/etg-astro/src/components/ShareButton.vue", "client:component-export": "default" })} </div> <div class="experience-icon absolute bottom-[-25px] md:bottom-[-50px] w-[50px] h-[50px] md:w-[100px] md:h-[100px] left-8 md:left-1/2 md:-translate-x-1/2 z-20 bg-white flex items-center justify-center rounded-full"> <svg width="42" height="32" viewBox="0 0 42 32" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M33.3047 5.67188L22.0547 0.984375C21.7031 0.867188 21.3516 0.75 21 0.75C20.5898 0.75 20.2383 0.867188 19.8867 0.984375L8.63672 5.67188C7.58203 6.14062 6.9375 7.13672 6.9375 8.25C6.9375 23.3672 18.0117 30.75 20.9414 30.75C23.8711 30.75 35.0625 23.4844 35.0625 8.25C35.0625 7.13672 34.3594 6.14062 33.3047 5.67188ZM33.1289 8.30859C33.1289 21.4922 23.4023 28.875 21 28.875C18.4805 28.875 8.8125 21.4336 8.8125 8.25C8.8125 7.89844 8.98828 7.54688 9.33984 7.42969L20.5898 2.74219C20.707 2.68359 20.8242 2.625 21 2.625C21.1172 2.625 21.2344 2.68359 21.3516 2.74219L32.6016 7.42969C33.1289 7.66406 33.1289 8.13281 33.1289 8.30859ZM28.5 11.0625H21.9375V6.375C21.9375 5.90625 21.4688 5.4375 21 5.4375C20.4727 5.4375 20.0625 5.90625 20.0625 6.375V11.0625H13.5C12.9727 11.0625 12.5625 11.5312 12.5625 12C12.5625 12.5273 12.9727 12.9375 13.5 12.9375H20.0625V25.125C20.0625 25.6523 20.4727 26.0625 21 26.0625C21.4688 26.0625 21.9375 25.6523 21.9375 25.125V12.9375H28.5C28.9688 12.9375 29.4375 12.5273 29.4375 12C29.4375 11.5312 28.9688 11.0625 28.5 11.0625Z" fill="#929497"></path> </svg> </div> </div> <div class="w-full max-w-4xl mx-auto mt-12 md:mt-20"> <div class="mt-12 uppercase text-primary"> <h1>Use a h1 here if there's none in the hero</h1> <h2 class="h1">Otherwise use a h2 - both are styled the same</h2> </div> <div class="mt-8 text-intro">
+Optional intro text Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet aperiam consectetur, cum deleniti dicta earum ex expedita laboriosam, laborum minus, nesciunt nobis? Neque nisi officiis quisquam recusandae ullam.
+</div> </div> </div> </div>  <!--
+/////
+new-hero End
+/////
+-->`;
+}, "C:/Projects/ETG/Source/etg-astro/src/components/NewHero_Experience.astro", void 0);
+
+export { $$NewHeroExperience as $ };

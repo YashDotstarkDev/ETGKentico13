@@ -1,0 +1,41 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.site-search {
+
+  // TODO check selector is correct and relevant
+  .ui.loading.loading.loading.loading.loading.loading.button {
+    position: absolute !important;
+  }
+
+  .ui.search > .results {
+    width: 100% !important;
+  }
+
+  .field {
+    position: relative;
+
+    input {
+      border-radius: 1000px !important;
+      padding: 15px 20px !important;
+      height: 50px;
+    }
+
+    .button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 1px;
+      padding: 0 10px !important;
+      height: 40px;
+      color: #FFF !important;
+
+      @media (--portrait) {
+        padding: 0 40px !important;
+      }
+    }
+  }
+}
+
+
+

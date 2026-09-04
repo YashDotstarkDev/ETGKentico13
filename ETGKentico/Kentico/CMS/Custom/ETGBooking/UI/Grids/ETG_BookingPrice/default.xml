@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grid>
+  <actions>
+    <action name="edit" caption="$General.Edit$" fonticonclass="icon-edit" fonticonstyle="allow" />
+    <action name="#delete" externalsourcename="delete" caption="$General.Delete$" fonticonclass="icon-bin" fonticonstyle="critical" confirmation="$General.ConfirmDelete$" />
+    <action name="empty" contextmenu="~" />
+  </actions>
+  <massactions>
+    <massaction name="#delete" caption="$general.delete$" behavior="OpenModal" />
+  </massactions>
+  <columns>
+    <column source="BookingPriceTourCode" caption="Package code" wrap="false" localize="true">
+      <filter type="text" size="200" />
+    </column>
+    <column source="BookingPriceStartDate" caption="Start date" wrap="false" localize="true">
+    </column>
+    <column source="BookingPriceEndDate" caption="End date" wrap="false" localize="true">
+    </column>
+	<column source="BookingPriceTwinSharePrice" caption="Twin share per person price" wrap="false" localize="true">
+    </column>
+    <column source="BookingPriceSingleSupplementalCost" caption="Single supplemental cost" wrap="false" localize="true">
+    </column>
+	<column source="BalanceDueDays" caption="Balance due days" wrap="false" localize="true">
+    </column>
+	<column source="SecondInstalmentDays" caption="Second instalment days" wrap="false" localize="true">
+    </column>
+	<column source="SecondInstalmentPercent" caption="Second instalment percent" wrap="false" localize="true">
+    </column>
+    <column source="BookingPricePreNightTwinPrice" caption="Twin share per person price" wrap="false" localize="true">
+    </column>	
+    <column source="BookingPricePostNightTwinPrice" caption="Twin share per person price" wrap="false" localize="true">
+    </column>	
+    <column source="BookingPricePreNightSinglePrice" caption="Twin share per person price" wrap="false" localize="true">
+    </column>	
+    <column source="BookingPricePostNightSinglePrice" caption="Twin share per person price" wrap="false" localize="true">
+    </column>
+  </columns>
+  <options>
+    <key name="DisplayFilter" value="true" />
+  </options>
+</grid>

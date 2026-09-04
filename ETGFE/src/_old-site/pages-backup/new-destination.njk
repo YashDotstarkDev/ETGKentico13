@@ -1,0 +1,59 @@
+{% set page_title = 'New destination' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+
+{% endblock %}
+
+{% block beforeArticle %}
+{% include "src/widgets/new-header/new-header.njk" %}
+{% endblock %}
+
+{% block article %}
+{% include "src/widgets/breadcrumbs/breadcrumbs.njk" %}
+{% include "src/widgets/new-hero/new-hero.njk" %}
+
+{% include "src/widgets/new-destination-page/new-destination-page.njk" %}
+
+
+
+{% include "src/widgets/spacer/spacer.njk" %}
+{% include "src/widgets/package-enquiry/package-enquiry.njk" %}
+
+{% include "src/widgets/spacer/spacer.njk" %}
+
+<div class="widget blog-carousel left-heading">
+  <div class="wrapper">
+    <h2>Read what we've written on Fiji</h2>
+  </div>
+
+  {% include "src/widgets/blog-carousel/__slider.njk" %}
+
+  <div class="cta">
+    <a href="#" class="ui button primary transparent">View all</a>
+  </div>
+</div>
+
+
+{% include "src/widgets/spacer/spacer.njk" %}
+{% include "src/widgets/customer-reviews/customer-reviews.njk" %}
+
+
+
+{% include "src/widgets/spacer/spacer.njk" %}
+
+
+
+{% include "src/widgets/experience-ticker/experience-ticker.njk" %}
+
+{% include "src/widgets/subscribe-to-win-widget/subscribe-to-win-widget.njk" %}
+{% endblock %}
+
+{% block afterArticle %}
+{% include "src/widgets/new-footer/new-footer.njk" %}
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="/scripts/new-destination.js"></script>
+{% endblock %}

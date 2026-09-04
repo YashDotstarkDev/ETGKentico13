@@ -1,0 +1,28 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model List<ETG.Web.Models.Common.PrimaryLandingItemViewModel>
+
+@if (Model.IsNullOrEmpty())
+{
+    return;
+}
+
+<div class="widget callouts" data-widget="callouts">
+    <div class="wrapper">
+        <div class="callout-container">
+            @foreach (var item in Model)
+            {
+                <a href="@item.Path.ToLower()" class="item">
+                    <div class="image">
+                        <img class="lazyload" data-src="@item.Image.Imgixify(380,214, true)" alt="@item.Heading">
+                    </div>
+                    <div class="content">
+                        <div class="title">@item.Heading</div>
+                        <p data-mh="even-copy">@item.Summary</p>
+                    </div>
+                </a>
+
+            }
+        </div>
+    </div>
+</div>

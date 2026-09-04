@@ -1,0 +1,104 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model ETG.Web.Tour.Models.TourPageViewModel
+
+@if (Model == null || Model.TourInfo == null || Model.TourInfo.TourSummaryInfo == null)
+{
+    return;
+}
+@{
+    var primaryImage = Model.TourInfo.TourSummaryInfo.Images.FirstOrDefault();
+}
+<div class="widget package-hero" data-widget="package-hero">
+    @if (Model.TourInfo.HasPeaceOfMindGuarantee && !Model.PeaceOfMindUrl.IsNullOrEmpty())
+    {
+        <a href="@Model.PeaceOfMindUrl" class="banner" style="z-index:2;">
+            <div class="inner">
+                <div class="logo">
+                    <img class="lazyload  ls-is-cached  desktop" src="@("/images/pdf-pom.png?v=1".Imgixify())" alt="">
+                    <img class="lazyload mobile" src="@("/images/pdf-pom.png?v=1".Imgixify())" alt="">
+                </div>
+                <div class="copy">Peace of mind booking plan</div>
+                <svg class="svg-inline--fa fa-arrow-circle-right fa-w-16 icon" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="arrow-circle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm-28.9 143.6l75.5 72.4H120c-13.3 0-24 10.7-24 24v16c0 13.3 10.7 24 24 24h182.6l-75.5 72.4c-9.7 9.3-9.9 24.8-.4 34.3l11 10.9c9.4 9.4 24.6 9.4 33.9 0L404.3 273c9.4-9.4 9.4-24.6 0-33.9L271.6 106.3c-9.4-9.4-24.6-9.4-33.9 0l-11 10.9c-9.5 9.6-9.3 25.1.4 34.4z"></path></svg><!-- <span class="fa fa-arrow-circle-right icon"></span> -->
+            </div>
+        </a>
+    }
+    @if (primaryImage != null)
+    {
+        @Html.Partial("Partial/Common/_Image", new Tuple<string, string, bool>(primaryImage.ImagePath.Imgixify(), primaryImage.ImageAltText, ViewBag.IsPrint == null))    
+    }
+    
+<div class="flex" style="display: block; z-index: 2; bottom: 30px;">
+    <h1>
+        @Model.TourInfo.TourSummaryInfo.Name
+    </h1>
+    <div class="code">(@Model.TourInfo.TourSummaryInfo.TourCode)</div>
+    @if (!primaryImage.ImageCaption.IsNullOrEmpty())
+    {
+        <div class="author">
+            @if (ViewBag.IsPrint == null)
+            {
+                <span class="icon icon-pin"></span>
+            }
+            @Html.Raw(primaryImage.ImageCaption)
+        </div>
+    }
+</div>
+    <div class="grad"></div>
+
+    <div class="sub-container">
+        @if (ViewBag.IsPrint == null)
+        {
+            <div class="actions">
+                @if (Model.ShareLinks != null)
+                {
+                    <a href="#" class="button ui white share-button"><span class="icon fas fa-share"></span>Share</a>
+                }
+                @if (!Model.TourInfo.TourSummaryInfo.Images.IsNullOrEmpty())
+                {
+                    <a href="#" class="button ui white photo-button"><span class="icon fas fa-images"></span>Photos</a>
+                }
+            </div>
+        }
+    </div>
+
+    @if (ViewBag.IsPrint == null && Model.ShareLinks != null)
+    {
+        <div class="share-modal ui modal">
+            <i class="close icon"><span class="fal fa-times"></span></i>
+
+            <div class="links">
+                @Html.Partial("Partial/Common/_ShareLinks", Model.ShareLinks)
+            </div>
+        </div>
+    }
+    @if (ViewBag.IsPrint == null && !Model.TourInfo.TourSummaryInfo.Images.IsNullOrEmpty())
+    {
+
+        <div class="photo-modal ui modal">
+            <i class="close icon"><span class="fal fa-times"></span></i>
+            <div class="widget photo-gallery">
+                <div class="main-carousel">
+                    @foreach (var image in Model.TourInfo.TourSummaryInfo.Images)
+                    {
+                        <div class="item">
+                            <div class="inner">
+                                <img class="lazyload" data-src="@image.ImagePath.Imgixify()" alt="@image.ImageAltText">
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="thumbnail-carousel">
+                    @foreach (var image in Model.TourInfo.TourSummaryInfo.Images)
+                    {
+                        <div class="item">
+                            <div class="inner">
+                                <img class="lazyload" data-src="@image.ImagePath.Imgixify()" alt="@image.ImageAltText">
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

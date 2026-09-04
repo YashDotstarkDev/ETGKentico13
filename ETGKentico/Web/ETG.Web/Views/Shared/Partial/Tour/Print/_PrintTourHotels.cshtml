@@ -1,0 +1,29 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@model List<ETG.Web.Tour.Models.HotelViewModel>
+
+@if (Model.IsNullOrEmpty())
+{
+    return;
+}
+    <h3>Hotel options</h3>
+    <div class="hotels" style="display: block;">
+        <div class="gr-10">
+
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                if (i > 0 && i % 3 == 0)
+                {
+                    @Html.Raw("</div><div class=\"gr-10\" style=\"padding-top:20px\">")
+                }
+                var hotel = Model[i];
+                <div class="gc-4-12 gc-768-4-12 gc-1024-4-12">
+                    <div class="image">
+                        <img src="@hotel.Images.FirstOrDefault().Key.Imgixify()" alt="">
+                    </div>
+                    <div class="name">@hotel.Name</div>
+                    @Html.Raw(hotel.Detail)
+                </div>
+            }
+        </div>
+    </div>

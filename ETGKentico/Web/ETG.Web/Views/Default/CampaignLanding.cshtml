@@ -1,0 +1,74 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@model ETG.Web.Models.PageTypes.PageItemViewModel
+
+@{
+    Layout = "~/Views/Shared/_MasterForLanding.cshtml";
+}
+
+@if (Model == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/landing-page.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+<div class="widget landing-hero" data-widget="landing-hero">
+    <img class="bg lazyload" data-src="@Model.PageHero.HeroImage.Imgixify()" />
+    <div class="tint"></div>
+    <a href="/" class="brand">
+        @Html.Partial("Partial/Masterpage/_BrandLogo")
+    </a>
+
+    @if (Model.PageHero != null)
+    {
+        <div class="design">
+            <img class="lazyload" data-src="@("/images/landing-design.png".Imgixify())" />
+        </div>
+        <h1>@Html.Raw(Model.PageHero.Heading)</h1>
+
+        <div class="sub-container">
+            <div class="actions">
+                @if (!Model.PageHero.HideShareButton && Model.PageHero.ShareLinks != null)
+                {
+                    <a href="#" class="button ui white share-button"><span class="icon fas fa-share"></span>Share</a>
+                }
+            </div>
+            @if (!Model.PageHero.HeroCaption.IsNullOrEmpty())
+            {
+                <div class="author"><span class="icon icon-pin"></span>@Model.PageHero.HeroCaption</div>
+            }
+        </div>
+    }
+
+    @if (!Model.PageHero.HideShareButton && Model.PageHero.ShareLinks != null)
+    {
+        <div class="share-modal ui modal">
+            <i class="close icon"><span class="fal fa-times"></span></i>
+
+            <div class="links">
+                @Html.Partial("Partial/Common/_ShareLinks", Model.PageHero.ShareLinks)
+            </div>
+        </div>
+    }
+</div>
+
+@Html.Kentico().EditableArea("Content")
+
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")

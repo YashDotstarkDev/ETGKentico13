@@ -1,0 +1,210 @@
+{% set page_title = 'New travel type detail' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+
+{% endblock %}
+
+{% block beforeArticle %}
+{% include "src/widgets/new-header/new-header.njk" %}
+{% endblock %}
+
+{% block article %}
+{% include "src/widgets/breadcrumbs/breadcrumbs.njk" %}
+
+
+<div class="widget new-hero">
+
+  <div class="share-modal ui modal">
+    <i class="close"><span class="fal fa-times"></span></i>
+    <input type="text" class="url-holder" value="http://www.entireurl.com">
+
+    <div class="links">
+      <a href="#" class="button ui facebook"><span class="icon fab fa-facebook"></span>Facebook</a>
+      <a href="#" class="button ui instagram"><span class="icon fab fa-instagram"></span>Instagram</a>
+      <a href="#" class="button ui linkedin"><span class="icon fab fa-linkedin"></span>Linkedin</a>
+      <a href="#" class="button ui twitter"><span class="icon fab fa-twitter"></span>Twitter</a>
+      <a href="#" class="button ui pinterest"><span class="icon fab fa-pinterest"></span>Pinterest</a>
+      <a href="#" class="button ui copy-link" data-content="Link copied!"><span class="icon icon-chain"></span>Copy Link</a>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <div class="image">
+      <div class="background">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img class="lazyload"
+                   data-sizes="auto"
+                   data-srcset="
+                    https://picsum.photos/id/13/1920/1000?w=375&h=1000&fit=crop&auto=format 375w,
+                    https://picsum.photos/id/13/1920/1000?w=600&h=1000&fit=crop&auto=format 600w,
+                    https://picsum.photos/id/13/1920/1000?w=768&h=1000&fit=crop&auto=format 768w,
+                    https://picsum.photos/id/13/1920/1000?w=1024&h=1000&fit=crop&auto=format 1024w,
+                    https://picsum.photos/id/13/1920/1000?w=1920&h=1000&fit=crop&auto=format 1920w
+                 "
+                   alt=""
+              >
+              <div class="location">
+                <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.375 5C6.375 6.05469 5.53125 6.875 4.5 6.875C3.44531 6.875 2.625 6.05469 2.625 5C2.625 3.96875 3.44531 3.125 4.5 3.125C5.53125 3.125 6.375 3.96875 6.375 5ZM4.5 4.25C4.07812 4.25 3.75 4.60156 3.75 5C3.75 5.42188 4.07812 5.75 4.5 5.75C4.89844 5.75 5.25 5.42188 5.25 5C5.25 4.60156 4.89844 4.25 4.5 4.25ZM9 5C9 7.0625 6.25781 10.6953 5.03906 12.2188C4.75781 12.5703 4.21875 12.5703 3.9375 12.2188C2.71875 10.6953 0 7.0625 0 5C0 2.51562 1.99219 0.5 4.5 0.5C6.98438 0.5 9 2.51562 9 5ZM4.5 1.625C2.625 1.625 1.125 3.14844 1.125 5C1.125 5.30469 1.21875 5.75 1.47656 6.35938C1.71094 6.92188 2.0625 7.57812 2.46094 8.23438C3.14062 9.3125 3.91406 10.3438 4.5 11.0938C5.0625 10.3438 5.83594 9.3125 6.51562 8.23438C6.91406 7.57812 7.26562 6.92188 7.5 6.35938C7.75781 5.75 7.875 5.30469 7.875 5C7.875 3.14844 6.35156 1.625 4.5 1.625Z" fill="white"/>
+                </svg>
+                Bonn Bonn North Rhine–Westphalia Germany | Credit: Jane Smith
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <img class="lazyload"
+                   data-sizes="auto"
+                   data-srcset="
+                    https://picsum.photos/id/33/1920/1000?w=375&h=1000&fit=crop&auto=format 375w,
+                    https://picsum.photos/id/33/1920/1000?w=600&h=1000&fit=crop&auto=format 600w,
+                    https://picsum.photos/id/33/1920/1000?w=768&h=1000&fit=crop&auto=format 768w,
+                    https://picsum.photos/id/33/1920/1000?w=1024&h=1000&fit=crop&auto=format 1024w,
+                    https://picsum.photos/id/33/1920/1000?w=1920&h=1000&fit=crop&auto=format 1920w
+                 "
+                   alt=""
+              >
+              <div class="location">
+                <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.375 5C6.375 6.05469 5.53125 6.875 4.5 6.875C3.44531 6.875 2.625 6.05469 2.625 5C2.625 3.96875 3.44531 3.125 4.5 3.125C5.53125 3.125 6.375 3.96875 6.375 5ZM4.5 4.25C4.07812 4.25 3.75 4.60156 3.75 5C3.75 5.42188 4.07812 5.75 4.5 5.75C4.89844 5.75 5.25 5.42188 5.25 5C5.25 4.60156 4.89844 4.25 4.5 4.25ZM9 5C9 7.0625 6.25781 10.6953 5.03906 12.2188C4.75781 12.5703 4.21875 12.5703 3.9375 12.2188C2.71875 10.6953 0 7.0625 0 5C0 2.51562 1.99219 0.5 4.5 0.5C6.98438 0.5 9 2.51562 9 5ZM4.5 1.625C2.625 1.625 1.125 3.14844 1.125 5C1.125 5.30469 1.21875 5.75 1.47656 6.35938C1.71094 6.92188 2.0625 7.57812 2.46094 8.23438C3.14062 9.3125 3.91406 10.3438 4.5 11.0938C5.0625 10.3438 5.83594 9.3125 6.51562 8.23438C6.91406 7.57812 7.26562 6.92188 7.5 6.35938C7.75781 5.75 7.875 5.30469 7.875 5C7.875 3.14844 6.35156 1.625 4.5 1.625Z" fill="white"/>
+                </svg>
+                London England United Kingdom | Credit: Jonothan Doe
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <img class="lazyload"
+                   data-sizes="auto"
+                   data-srcset="
+                    https://picsum.photos/id/63/1920/1000?w=375&h=1000&fit=crop&auto=format 375w,
+                    https://picsum.photos/id/63/1920/1000?w=600&h=1000&fit=crop&auto=format 600w,
+                    https://picsum.photos/id/63/1920/1000?w=768&h=1000&fit=crop&auto=format 768w,
+                    https://picsum.photos/id/63/1920/1000?w=1024&h=1000&fit=crop&auto=format 1024w,
+                    https://picsum.photos/id/63/1920/1000?w=1920&h=1000&fit=crop&auto=format 1920w
+                 "
+                   alt=""
+              >
+              <div class="location">
+                <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.375 5C6.375 6.05469 5.53125 6.875 4.5 6.875C3.44531 6.875 2.625 6.05469 2.625 5C2.625 3.96875 3.44531 3.125 4.5 3.125C5.53125 3.125 6.375 3.96875 6.375 5ZM4.5 4.25C4.07812 4.25 3.75 4.60156 3.75 5C3.75 5.42188 4.07812 5.75 4.5 5.75C4.89844 5.75 5.25 5.42188 5.25 5C5.25 4.60156 4.89844 4.25 4.5 4.25ZM9 5C9 7.0625 6.25781 10.6953 5.03906 12.2188C4.75781 12.5703 4.21875 12.5703 3.9375 12.2188C2.71875 10.6953 0 7.0625 0 5C0 2.51562 1.99219 0.5 4.5 0.5C6.98438 0.5 9 2.51562 9 5ZM4.5 1.625C2.625 1.625 1.125 3.14844 1.125 5C1.125 5.30469 1.21875 5.75 1.47656 6.35938C1.71094 6.92188 2.0625 7.57812 2.46094 8.23438C3.14062 9.3125 3.91406 10.3438 4.5 11.0938C5.0625 10.3438 5.83594 9.3125 6.51562 8.23438C6.91406 7.57812 7.26562 6.92188 7.5 6.35938C7.75781 5.75 7.875 5.30469 7.875 5C7.875 3.14844 6.35156 1.625 4.5 1.625Z" fill="white"/>
+                </svg>
+                Buenos Aires Buenos Aires Argentina | Credit: Firstname Lastname
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="share">
+      <button type="button" class="button ui primary outline medium js-open-share-modal">
+        <svg width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.7891 4.82031L7.66406 8.35938C7.3125 8.66406 6.75 8.40625 6.75 7.9375V5.89844C3.09375 5.94531 1.54688 6.83594 2.60156 10.2344C2.71875 10.6094 2.25 10.9141 1.94531 10.6797C0.914062 9.92969 0 8.5 0 7.07031C0 3.50781 2.97656 2.73438 6.75 2.6875V0.835938C6.75 0.34375 7.3125 0.0859375 7.66406 0.390625L11.7891 3.92969C12.0469 4.1875 12.0469 4.58594 11.7891 4.82031Z" fill="currentColor"/>
+        </svg>
+        Share
+      </button>
+    </div>
+
+    <div class="experience-icon">
+      <i class="fa-light fa-umbrella-beach"></i>
+    </div>
+  </div>
+</div>
+
+<div class="widget new-destination-page">
+
+  <div class="intro">
+    <div class="wrapper contained">
+      <h1>Beach holiday &amp; travel packages</h1>
+
+      <div class="intro-text">
+        333 islands make up the archipelago of Fiji, which is situated within the South Pacific Ocean. Think palm-lined beaches, crystal clear waters and rugged landscapes combined with some of the friendliest people in the world and you get Fiji!
+      </div>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum deleniti, doloribus fuga harum illo illum incidunt labore pariatur perspiciatis porro quidem reiciendis soluta, vero vitae? Corporis eos odit pariatur!</p>
+    </div>
+  </div>
+
+  {% include "src/widgets/video/video.njk" %}
+
+  <div class="widget tour-tiles-collection">
+    <div class="wrapper">
+      <div class="top">
+        <h2>Featured barge cruising experiences</h2>
+      </div>
+
+      {% include "src/widgets/tour-tiles/tour-tiles.njk" %}
+
+      <div class="bottom">
+        <a href="#page" class="button ui primary transparent">View all</a>
+      </div>
+    </div>
+  </div>
+
+  {% include "src/widgets/photo-slider/photo-slider.njk" %}
+
+  {% include "src/widgets/spacer/spacer.njk" %}
+
+  {% include "src/widgets/why-we-love-it/why-we-love-it.njk" %}
+  {% include "src/widgets/why-we-love-it/why-we-love-it--single.njk" %}
+  {% include "src/widgets/why-we-love-it/why-we-love-it--flipped.njk" %}
+
+  <div class="widget tour-tiles-collection">
+    <div class="wrapper">
+      <div class="top">
+        <h2>Other barge cruising experiences</h2>
+      </div>
+
+      {% include "src/widgets/tour-tiles/tour-tiles.njk" %}
+
+      <div class="bottom">
+        <a href="#page" class="button ui primary transparent">View all</a>
+      </div>
+    </div>
+  </div>
+
+  {% include "src/widgets/theme-carousel/theme-carousel.njk" %}
+
+
+</div>
+
+{% include "src/widgets/spacer/spacer.njk" %}
+{% include "src/widgets/package-enquiry/package-enquiry.njk" %}
+
+{% include "src/widgets/spacer/spacer.njk" %}
+
+<div class="widget blog-carousel left-heading">
+  <div class="wrapper">
+    <h2>Read what we've written on Fiji</h2>
+  </div>
+
+  {% include "src/widgets/blog-carousel/__slider.njk" %}
+
+  <div class="cta">
+    <a href="#" class="ui button primary transparent">View all</a>
+  </div>
+</div>
+
+
+{% include "src/widgets/spacer/spacer.njk" %}
+{% include "src/widgets/customer-reviews/customer-reviews.njk" %}
+
+
+
+{% include "src/widgets/spacer/spacer.njk" %}
+
+
+
+{% include "src/widgets/experience-ticker/experience-ticker.njk" %}
+
+{% include "src/widgets/subscribe-to-win-widget/subscribe-to-win-widget.njk" %}
+{% endblock %}
+
+{% block afterArticle %}
+{% include "src/widgets/new-footer/new-footer.njk" %}
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="/scripts/new-destination.js"></script>
+{% endblock %}

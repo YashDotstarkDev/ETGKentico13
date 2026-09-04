@@ -1,0 +1,14 @@
+@if (ViewBag.ShowEmailTo != null && ViewBag.ShowEmailTo)
+{
+    <a href="mailto:info@entiretravel.com.au" class="ui primary outline button fluid">Send an email</a>
+}
+
+<a href="#" class="ui primary transparent button calendry-button" data-link="https://calendly.com/entiretravelgroup/30mins?month=2023-04">
+    Schedule a meeting
+</a>
+@if (ViewBag.HideFaqsButton == null)
+{
+    <a href="#" class="ui primary transparent button scrollto" data-scrollto="faqZone">
+        FAQs
+    </a>
+}

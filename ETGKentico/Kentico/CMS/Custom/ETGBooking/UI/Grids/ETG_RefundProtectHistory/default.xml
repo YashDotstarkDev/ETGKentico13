@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grid>
+  <actions>
+    <action externalsourcename="edit" name="edit" caption="$General.Edit$" fonticonclass="icon-edit" fonticonstyle="allow" />
+    <action name="empty" contextmenu="~" />
+  </actions>
+  <columns>
+    <column externalsourcename="orderid" source="OrderID" caption="Booking Reference" wrap="false" localize="true">
+    </column>
+    <column source="EventDate" caption="Event Date" wrap="false" localize="true">
+    </column>
+    <column source="TransactionDate" caption="Transaction Date" wrap="false" localize="true">
+    </column>
+    <column externalsourcename="#money" source="Value" caption="Value" wrap="false" localize="true">
+    </column>
+    <column externalsourcename="iseditable" source="IsEditable" caption="Status" wrap="false" localize="true">
+    </column>
+  </columns>
+  <options>
+    <key name="DisplayFilter" value="true" />
+    <key name="AllowSorting" value="false" />
+  </options>
+</grid>

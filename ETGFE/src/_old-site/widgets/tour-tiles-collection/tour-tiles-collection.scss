@@ -1,0 +1,29 @@
+@import '../../styles/includes/settings.scss';
+@import '../../styles/includes/colours.scss';
+
+.tour-tiles-collection {
+  overflow: hidden;
+
+  .wrapper > .top {
+    display: flex;
+    margin-bottom: 20px;
+
+    @media(--landscape) {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .wrapper > .bottom {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    .ui.button {
+      min-width: 160px;
+    }
+  }
+}

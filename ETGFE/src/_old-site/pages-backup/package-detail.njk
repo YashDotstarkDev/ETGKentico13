@@ -1,0 +1,122 @@
+{% set page_title = 'Package detail' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+  {# WAS ALREADY HIDDEN {% include "src/widgets/gdpr-consent/gdpr-consent.njk" %} #}
+{% endblock %}
+
+{% block beforeArticle %}
+  {% include "src/widgets/new-header/new-header.njk" %}
+  {% include "src/widgets/breadcrumbs/breadcrumbs.njk" %}
+{% endblock %}
+
+{% block article %}
+  <!-- NOTE Fake "facebook chat" button for cut only.
+    Used as placeholder for handing button layouts for package page sticky footer.
+    On live site, it loaded via plugin script.
+  -->
+  <div id="fb-root" class=" fb_reset">
+    <div class="fb_dialog fb_dialog_advanced">
+      <div class="fb_dialog_content" style="
+        background: none;
+        border-radius: 60px;
+        bottom: 24px;
+        display: block;
+        height: 44px;
+        margin: 0px 12px;
+        overflow: visible;
+        padding: 0px;
+        position: fixed;
+        right: 12px;
+        top: auto;
+        width: 96px;
+        z-index: 2147483644;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px 0px;
+      ">
+        <div class="ui button" style="margin: 0; width: 96px;">Chat</div>
+      </div>
+    </div>
+  </div>
+  <!-- END NOTE Fake "facebook chat" button for cut only -->
+
+  {% include "src/widgets/new-package-hero/new-package-hero.njk" %}
+  {% include "src/widgets/brochure-gate-popup/brochure-gate-popup.njk" %}
+
+  <div class="wrapper">
+    <div class="package-layout">
+      <div class="main">
+        <div class="top">
+          {% include "src/widgets/package-detail-title/package-detail-title.njk" %}
+          {% include "src/widgets/package-detail-bar/package-detail-bar.njk" %}
+          {% include "src/widgets/package-intro/package-intro.njk" %}
+          {% include "src/widgets/package-highlights/package-highlights.njk" %}
+        </div>
+
+        <div class="side">
+          {% include "src/widgets/discounts-offers/discounts-offers.njk" %}
+          {% include "src/widgets/new-book-now/new-book-now.njk" %}
+          {% include "src/widgets/partnership-with-new/partnership-with-new.njk" %}
+        </div>
+
+        <div class="bottom">
+          <!-- TODO Create sections jump-to navbar -->
+          {% include "src/widgets/package-jump-menu/package-jump-menu.njk" %}
+
+          <!-- "Overview" -->
+          <div class="scroll-section" id="section_overview">
+            {% include "src/widgets/package-overview/package-overview.njk" %}
+            {% include "src/widgets/peace-booking-plan/peace-booking-plan.njk" %}
+          </div>
+          <!-- "Inclusions" -->
+          <div class="scroll-section" id="section_inclusions">
+            {% include "src/widgets/package-inclusions/package-inclusions.njk" %}
+          </div>
+          <!-- "Itinerary" -->
+          <div class="scroll-section" id="section_itinerary">
+            {% include "src/widgets/package-itinerary/package-itinerary.njk" %}
+          </div>
+          <!-- "Accommodation" -->
+          <div class="scroll-section" id="section_accommodation">
+            {% include "src/widgets/package-hotels/package-hotels.njk" %}
+          </div>
+          <!-- "Optional Extras" -->
+          <!-- TODO Update optional extras content design to accordion -->
+          <div class="scroll-section" id="section_optional-extras">
+            {% include "src/widgets/package-optional-extras/package-optional-extras.njk" %}
+          </div>
+          <!-- "Additional Information" -->
+          <div class="scroll-section" id="section_additional-information">
+            {% include "src/widgets/package-additional-information/package-additional-information.njk" %}
+          </div>
+          <!--  "FAQs" -->
+          <div class="scroll-section" id="section_faqs">
+            {% include "src/widgets/faqs/faqs.njk" %}
+          </div>
+          <!-- END Sections -->
+
+          {% include "src/widgets/package-sticky-footer/package-sticky-footer.njk" %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# NEW REMOVED {% include "src/widgets/region-map/region-map.njk" %} #}
+  {# NEW REMOVED {% include "src/widgets/phone-cta-panel/phone-cta-panel.njk" %} #}
+
+  {% include "src/widgets/spacer/spacer.njk" %}
+
+  {% include "src/widgets/package-enquiry/package-enquiry.njk" %}
+  {% include "src/widgets/tour-tiles-slider/tour-tiles-slider.njk" %}
+
+  {% include "src/widgets/experience-ticker/experience-ticker.njk" %}
+
+  {% include "src/widgets/subscribe-to-win-widget/subscribe-to-win-widget.njk" %}
+{% endblock %}
+
+{% block afterArticle %}
+  {% include "src/widgets/new-footer/new-footer.njk" %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="scripts/package-detail.js"></script>
+{% endblock %}

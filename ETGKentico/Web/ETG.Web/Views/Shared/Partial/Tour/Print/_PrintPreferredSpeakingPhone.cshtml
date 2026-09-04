@@ -1,0 +1,29 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model ETG.Web.DestinationExpertTeam.Models.DestinationExpertTeamSummaryViewModel
+
+@if (Model == null )
+{
+    return;
+}
+    <div class="widget phone-cta-panel" style="padding-left:20px;padding-right:20px;"  data-widget="phone-cta-panel" >
+        <img class="bg" src="@Model.HeroImage.Imgixify()" alt="@Model.HeroImageAltText">
+        <div class="tint"></div>
+        <div class="wrapper">
+            <div class="content">
+                <div class="gr-10">
+                    <div class="gc-8-12 gc-768-8-12 gc-1024-8-12">
+                        <h2>Prefer speaking on the phone?</h2>
+                        @Html.Raw(Model.Description)
+                    </div>
+                    <div class="gc-4-12 gc-768-4-12 gc-1024-4-12">
+                        <div class="col">
+                            <div class="heading">Our @Model.Name Destination Experts are ready to help!</div>
+                            <div class="hours">@Model.RHSText</div>
+                            <a href="tel:@Model.Phone.Replace(" ", "")"><span class="icon fas fa-phone"></span>@Model.Phone</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

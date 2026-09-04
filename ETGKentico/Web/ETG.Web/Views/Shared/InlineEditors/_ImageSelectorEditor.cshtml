@@ -1,0 +1,17 @@
+﻿@using ETG.Web.Models.InlineEditors.ImageUploaderEditor
+@model ETG.Web.Models.InlineEditors.ImageUploaderEditor.ImageUploaderEditorViewModel
+
+
+@using (Html.Kentico().BeginInlineEditor("image-selector", Model.PropertyName,
+    new
+    {
+        @class = "image-uploader-editor",
+        data_url = Model.GetDataUrl(),
+        data_file_type = Model.ImageType == ImageTypeEnum.MediaFile ? "media" : "attachment"
+    }))
+{
+    <div>
+        <button id="select-btn" type="button">Select Image</button>
+    </div>
+
+}

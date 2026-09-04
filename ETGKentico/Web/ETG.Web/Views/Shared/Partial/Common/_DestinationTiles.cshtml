@@ -1,0 +1,36 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model ETG.Web.Models.Common.DestinationComponentViewModel
+
+@if (Model == null || Model.Destinations.IsNullOrEmpty())
+{
+    return;
+}
+<div class="widget explore-destinations wp" data-widget="explore-destinations">
+    <div class="wrapper">
+        <h2>@Model.Title</h2>
+        <div class="carousel">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @foreach (var tile in Model.Destinations)
+                    {
+                        <div class="swiper-slide">
+                            <a href="@tile.Path.ToLower()" class="item">
+                                <div class="inner">
+                                    <img class="lazyload" data-src="@tile.HeroImage.Imgixify(300,250, true)" alt="@tile.Heading">
+                                    <div class="gradient"></div>
+                                    <div class="title">@tile.Name</div>
+                                </div>
+                                <div class="overlay">
+                                    <div class="title">@tile.Name</div>
+                                    <div class="copy">@tile.Summary</div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

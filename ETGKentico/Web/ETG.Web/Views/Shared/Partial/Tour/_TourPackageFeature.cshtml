@@ -1,0 +1,97 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@using ETG.Data.Extensions
+@model ETG.Web.Tour.Models.TourViewModel
+
+@if (Model == null)
+{
+    return;
+}
+
+<div class="widget feature-box" data-widget="feature-box">
+    <div class="heading">Package Features</div>
+    <div class="feature-accordion">
+        <div class="item">
+            <div class="header">
+                <img src="@("/images/feature-box-pin.png".Imgixify())" alt="pin">
+                <div class="text">@Model.TourSummaryInfo.TourTypesText</div>
+                <div class="arrow">
+                    <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.35156 6.45312C5.5625 6.66406 5.91406 6.66406 6.125 6.45312L10.6953 1.90625C10.9062 1.67188 10.9062 1.32031 10.6953 1.10938L10.1562 0.570312C9.94531 0.359375 9.59375 0.359375 9.35938 0.570312L5.75 4.17969L2.11719 0.570312C1.88281 0.359375 1.53125 0.359375 1.32031 0.570312L0.78125 1.10938C0.570312 1.32031 0.570312 1.67188 0.78125 1.90625L5.35156 6.45312Z" fill="#CA568E" />
+                    </svg>
+                </div>
+            </div>
+            <div class="content">
+                @Html.Raw(Model.TourTypeDescription)
+                </div>
+        </div>
+        @if (Model.HasFreedomOfChoice)
+        {
+            <div class="item">
+                <div class="header">
+                    <img src="@("/images/feature-box-foc.png".Imgixify())" alt="pin">
+                    <div class="text">Freedom of Choice</div>
+                    <div class="arrow">
+                        <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.35156 6.45312C5.5625 6.66406 5.91406 6.66406 6.125 6.45312L10.6953 1.90625C10.9062 1.67188 10.9062 1.32031 10.6953 1.10938L10.1562 0.570312C9.94531 0.359375 9.59375 0.359375 9.35938 0.570312L5.75 4.17969L2.11719 0.570312C1.88281 0.359375 1.53125 0.359375 1.32031 0.570312L0.78125 1.10938C0.570312 1.32031 0.570312 1.67188 0.78125 1.90625L5.35156 6.45312Z" fill="#CA568E" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="content">
+                    @Html.Raw(Model.FreedomOfChoiceDescription)
+                    <div class="link">
+                        See
+                        <a href="/freedom-of-choice" target="_blank">
+                            Freedom of Choice
+                            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.5898 0.75L9.13281 0.777344C8.91406 0.777344 8.75 0.941406 8.75 1.16016V2.0625C8.75 2.28125 8.91406 2.47266 9.13281 2.47266L11.1562 2.39062L11.2109 2.44531L3.58203 10.0742C3.52734 10.1289 3.47266 10.2109 3.47266 10.293C3.47266 10.4023 3.52734 10.4844 3.58203 10.5391L4.21094 11.168C4.26562 11.2227 4.34766 11.2773 4.45703 11.2773C4.53906 11.2773 4.62109 11.2227 4.67578 11.168L12.3047 3.53906L12.3594 3.59375L12.2773 5.61719C12.2773 5.83594 12.4688 6.02734 12.6875 6.02734V6H13.5898C13.8086 6 13.9727 5.83594 13.9727 5.61719L14 1.16016C14 0.941406 13.8086 0.75 13.5898 0.75ZM11.8125 8.625H11.375C11.1289 8.625 10.9375 8.84375 10.9375 9.0625V13.2734C10.9375 13.3828 10.8555 13.4375 10.7734 13.4375H1.47656C1.36719 13.4375 1.3125 13.3828 1.3125 13.2734V3.97656C1.3125 3.89453 1.36719 3.8125 1.47656 3.8125H5.6875C5.90625 3.8125 6.125 3.62109 6.125 3.375V2.9375C6.125 2.71875 5.90625 2.5 5.6875 2.5H1.3125C0.574219 2.5 0 3.10156 0 3.8125V13.4375C0 14.1758 0.574219 14.75 1.3125 14.75H10.9375C11.6484 14.75 12.25 14.1758 12.25 13.4375V9.0625C12.25 8.84375 12.0312 8.625 11.8125 8.625Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (Model.HasSafeTravel)
+        {
+            <div class="item">
+                <div class="header">
+                    <img src="@("/images/feature-box-st.png".Imgixify())" alt="pin">
+                    <div class="text">Sustainable Travel</div>
+                    <div class="arrow">
+                        <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.35156 6.45312C5.5625 6.66406 5.91406 6.66406 6.125 6.45312L10.6953 1.90625C10.9062 1.67188 10.9062 1.32031 10.6953 1.10938L10.1562 0.570312C9.94531 0.359375 9.59375 0.359375 9.35938 0.570312L5.75 4.17969L2.11719 0.570312C1.88281 0.359375 1.53125 0.359375 1.32031 0.570312L0.78125 1.10938C0.570312 1.32031 0.570312 1.67188 0.78125 1.90625L5.35156 6.45312Z" fill="#CA568E" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="content">
+                    @Html.Raw(Model.SafeTravelDescription)
+                    <div class="link">
+                        <a href="/safe-travels-stamp-by-world-travel-and-tourism" target="_blank">
+                            See sustainable travel
+                            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.5898 0.75L9.13281 0.777344C8.91406 0.777344 8.75 0.941406 8.75 1.16016V2.0625C8.75 2.28125 8.91406 2.47266 9.13281 2.47266L11.1562 2.39062L11.2109 2.44531L3.58203 10.0742C3.52734 10.1289 3.47266 10.2109 3.47266 10.293C3.47266 10.4023 3.52734 10.4844 3.58203 10.5391L4.21094 11.168C4.26562 11.2227 4.34766 11.2773 4.45703 11.2773C4.53906 11.2773 4.62109 11.2227 4.67578 11.168L12.3047 3.53906L12.3594 3.59375L12.2773 5.61719C12.2773 5.83594 12.4688 6.02734 12.6875 6.02734V6H13.5898C13.8086 6 13.9727 5.83594 13.9727 5.61719L14 1.16016C14 0.941406 13.8086 0.75 13.5898 0.75ZM11.8125 8.625H11.375C11.1289 8.625 10.9375 8.84375 10.9375 9.0625V13.2734C10.9375 13.3828 10.8555 13.4375 10.7734 13.4375H1.47656C1.36719 13.4375 1.3125 13.3828 1.3125 13.2734V3.97656C1.3125 3.89453 1.36719 3.8125 1.47656 3.8125H5.6875C5.90625 3.8125 6.125 3.62109 6.125 3.375V2.9375C6.125 2.71875 5.90625 2.5 5.6875 2.5H1.3125C0.574219 2.5 0 3.10156 0 3.8125V13.4375C0 14.1758 0.574219 14.75 1.3125 14.75H10.9375C11.6484 14.75 12.25 14.1758 12.25 13.4375V9.0625C12.25 8.84375 12.0312 8.625 11.8125 8.625Z" fill="currentColor" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (Model.TourSummaryInfo.TourIsExclusive)
+        {
+            <div class="item">
+                <div class="header">
+                    <img src="@("/images/feature-box-ep.png".Imgixify())" alt="pin">
+                    <div class="text">Exclusive Package</div>
+                    <div class="arrow">
+                        <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.35156 6.45312C5.5625 6.66406 5.91406 6.66406 6.125 6.45312L10.6953 1.90625C10.9062 1.67188 10.9062 1.32031 10.6953 1.10938L10.1562 0.570312C9.94531 0.359375 9.59375 0.359375 9.35938 0.570312L5.75 4.17969L2.11719 0.570312C1.88281 0.359375 1.53125 0.359375 1.32031 0.570312L0.78125 1.10938C0.570312 1.32031 0.570312 1.67188 0.78125 1.90625L5.35156 6.45312Z" fill="#CA568E" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="content">
+                    @Html.Raw(Model.ExclusivePackageDescription)
+                </div>
+            </div>
+        }
+    </div>
+</div>

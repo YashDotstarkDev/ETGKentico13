@@ -1,0 +1,45 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.breadcrumbs {
+  position: relative;
+  height: 65px;
+
+  .wrapper {
+    max-width: 1530px; /* Aligns breadcrumbs with edge of hero widget */
+    padding: 20px !important;
+    z-index: 999;
+    transition: top 0.2s ease, height 0.2s ease, background-color 0.2s ease, opacity 1s ease !important;
+    background-color: #fff;
+
+    @media(min-width: 768px) {
+      padding-left: 40px !important;
+      padding-right: 40px !important;
+    }
+  }
+
+  .links {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+
+    a.item {
+      @media(--desktop) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .item {
+      margin: 0 5px;
+      display: inline;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}

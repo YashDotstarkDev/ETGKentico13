@@ -1,0 +1,21 @@
+---
+import Master from './_master.astro'
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import MobileMenu from "../components/MobileMenu.astro";
+import ExperienceTicker from "../components/ExperienceTicker.astro";
+import SubscribeToWin from "../components/SubscribeToWin.astro";
+import SubscribeToWinWidget from "../components/legacy/SubscribeToWinWidget.astro";
+
+const { cls } = Astro.props
+---
+<Master>
+  <div class="layout layout-main relative" class:list={cls}>
+    <Header />
+    <MobileMenu />
+    <slot />
+    <div class="spacer"></div>
+    <SubscribeToWinWidget />
+    <Footer />
+  </div>
+</Master>

@@ -1,0 +1,88 @@
+@import "settings.scss";
+
+.wrapper {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: $global-wrapper-width;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 40px;
+  }
+}
+
+*
+{
+  box-sizing:border-box;
+}
+
+.lead {
+  font-size: $lead-font-size-small;
+  font-size: responsive $lead-font-size-small $lead-font-size-large;
+  font-range: $lead-responsive-font-range;
+  line-height: $lead-line-height;
+}
+
+.impact {
+  font-size: $impact-font-size-small;
+  font-size: responsive $impact-font-size-small $impact-font-size-large;
+  font-range: $impact-responsive-font-range;
+  line-height: $impact-line-height;
+}
+
+.chevron-button {
+
+  position: relative;
+  padding-left: 3em !important;
+  padding-right: 3em !important;
+
+  &:hover {
+    .icon {
+      right:10px;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: auto !important;
+    margin: 0 !important;
+    transition: right 0.3s ease !important;
+    opacity: 1 !important;
+    font-size: 1.2em;
+  }
+}
+
+.ls-blur-up-img {
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.ls-blur-up-img.ls-inview.ls-original-loaded {
+  opacity: 0;
+}
+
+.responsive-image, .ratio-image {
+  position: relative;
+
+  img {
+    position: relative;
+    display: block;
+    width: 100%;
+    z-index: 1;
+  }
+
+  img.ls-blur-up-img {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}

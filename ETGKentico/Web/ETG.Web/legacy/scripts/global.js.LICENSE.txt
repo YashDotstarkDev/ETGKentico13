@@ -1,0 +1,17 @@
+/*!
+ * # Semantic UI 2.4.2 - Transition
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*!
+* Clamp.js 0.5.1
+*
+* Copyright 2011-2013, Joseph Schmitt http://joe.sh
+* Released under the WTFPL license
+* http://sam.zoy.org/wtfpl/
+*/

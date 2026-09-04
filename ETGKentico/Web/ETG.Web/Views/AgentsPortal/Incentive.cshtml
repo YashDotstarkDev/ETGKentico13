@@ -1,0 +1,36 @@
+﻿@using ETG.Web.Helpers
+
+@model ETG.Web.AgentPortal.Models.AgentIncentivePageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/primary-landing.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+@Html.Partial("Partial/Common/_PageHero", Model.Hero)
+
+@Html.Kentico().EditableArea("Content")

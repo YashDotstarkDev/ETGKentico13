@@ -1,0 +1,77 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.related-articles {
+
+  .view-all-cta {
+    margin-top: 40px;
+  }
+
+  .location {
+    display: block;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .title {
+    margin-top: 10px;
+    color: $primary;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .image {
+    position: relative;
+    @util aspect-ratio(16:9);
+
+    img {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      font-family: "object-fit: cover";
+    }
+  }
+
+  .articles {
+
+    @media(--portrait) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0 -10px;
+    }
+
+    .item {
+      display: block;
+      margin-bottom: 20px;
+
+      @media(--portrait) {
+        padding: 0 10px;
+        width: 33.333%;
+      }
+
+      img {
+        transition: transform 0.3s ease;
+      }
+
+      @media(--desktop) {
+        &:hover {
+          span {
+            text-decoration: underline;
+          }
+
+          img {
+            transform: scale(1.03);
+          }
+        }
+      }
+    }
+  }
+}

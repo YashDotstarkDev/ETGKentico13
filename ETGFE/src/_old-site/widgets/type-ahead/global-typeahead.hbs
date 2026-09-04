@@ -1,0 +1,57 @@
+<div class="global-typeahead">
+  {{#if results.tours}}
+    <div class="set inspired-set">
+      <div class="heading">{{results.tours.name}}</div>
+
+      <div class="links" data-mh="even-links">
+      {{#if results.tours.results}}
+        {{#each results.tours.results}}
+          <a href="{{url}}"><span class="icon icon-chevron-right1"></span><span class="truncate">{{title}}</span></a>
+        {{/each}}
+      {{else}}
+          No results
+      {{/if}}
+      </div>
+
+      {{#each results.tours.links}}
+        <div class="view-all"><a href="{{url}}">{{title}}</a></div>
+      {{/each}}
+    </div>
+  {{/if}}
+  {{#if results.destinations}}
+  <div class="set destination-set">
+    <div class="heading">{{results.destinations.name}}</div>
+    <div class="links" data-mh="even-links">
+  {{#if results.destinations.results}}
+      {{#each results.destinations.results}}
+        <a href="{{url}}"><span class="icon icon-chevron-right1"></span><span class="truncate">{{title}}</span></a>
+      {{/each}}
+  {{else}}
+    No results
+  {{/if}}
+    </div>
+    {{#each results.destinations.links}}
+      <div class="view-all"><a href="{{url}}">{{title}}</a></div>
+    {{/each}}
+  </div>
+  {{/if}}
+  {{#if results.inspired}}
+  <div class="set inspired-set">
+    <div class="heading">{{results.inspired.name}}</div>
+    <div class="links" data-mh="even-links">
+      {{#if results.inspired.results}}
+
+      {{#each results.inspired.results}}
+        <a href="{{url}}"><span class="icon icon-chevron-right1"></span><span class="truncate">{{title}}</span></a>
+    {{/each}}
+  {{else}}
+      No results
+  {{/if}}
+    </div>
+    {{#each results.inspired.links}}
+      <div class="view-all"><a href="{{url}}">{{title}}</a></div>
+    {{/each}}
+  </div>
+  {{/if}}
+
+</div>

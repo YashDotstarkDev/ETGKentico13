@@ -1,0 +1,72 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@{
+
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@model ETG.Web.Career.Models.CareerRoleViewModel
+@if (Model == null || Model.BasicInfo == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model)
+}
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/career-description.js" )
+}
+<div class="widget career-description" data-widget="career-description">
+    <div class="top">
+        <div class="wrapper">
+            <h1>@Model.BasicInfo.Title</h1>
+            <div class="details">
+                @Model.BasicInfo.Location, @Model.State <span>|</span> @Model.BasicInfo.PositionType
+            </div>
+        </div>
+    </div>
+    <div class="wrapper wp">
+        <div class="article-layout">
+            <div class="main">
+                @Html.Raw(Model.Description)
+                @if (!Model.SummaryOfPosition.IsNullOrEmpty())
+                {
+                    <h3> Summary of position</h3>
+                    @Html.Raw(Model.SummaryOfPosition)
+                }
+                @if (!Model.DutiesAndResponsibilities.IsNullOrEmpty())
+                {
+                    <h3>Duties and Responsibilities</h3>
+                    @Html.Raw(Model.DutiesAndResponsibilities)
+                }
+            </div>
+            <div class="side">
+                <div class="widget stats-side" data-widget="stats-side">
+                    @if (!Model.Address.IsNullOrEmpty())
+                    {
+                        <div class="set">
+                            <div class="label">Location</div>
+                            <div class="value">@Html.Raw(Model.Address.Replace("\n", "<br>"))</div>
+                        </div>
+                    }
+                    @if (!Model.BasicInfo.PositionType.IsNullOrEmpty())
+                    {
+                        <div class="set">
+                            <div class="label">Position</div>
+                            <div class="value"> @Model.BasicInfo.PositionType</div>
+                        </div>
+                    }
+                    <a href="/Careers/@Model.PageAlias/Apply" class="button ui primary">Apply</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="widget breadcrumbs" data-widget="breadcrumbs">
+    <div class="wrapper">
+        <div class="links">
+            <a href="/" class="item">Home</a> / <a href="/careers" class="item">Careers</a> / @Model.BasicInfo.Title
+        </div>
+    </div>
+</div>

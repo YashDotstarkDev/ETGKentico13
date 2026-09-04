@@ -1,0 +1,63 @@
+{
+  "bookingSummary": {
+    "bookNowDisclaimer": "booknow.disclaimer.fullpayment",
+    "isOnSaleNow": false,
+    "onSaleFullPaymentRequired": false,
+    "tourHasPeaceOfMind": true,
+    "tourName": "Chill out in Paradise",
+    "tourCode": "11751",
+    "departureDate": "2022-04-27T00:00:00",
+    "paymentInstalmentDate": "2022-03-22T00:00:00",
+    "paymentBalanceDueDate": "2022-03-15T00:00:00",
+    "changeOfMindThresholdDays": 43,
+    "departureDateDisplay": "Wednesday , 27 Apr 2022",
+    "currency": "$",
+    "packages": {
+      "itemLabel": "Package(s)",
+      "itemSubLabel": null,
+      "itemDate": "0001-01-01T00:00:00",
+      "unitPrice": 2133.0,
+      "count": 2,
+      "hideBreakdown": false,
+      "totalPrice": 4266.0,
+      "itemType": null,
+      "itemTypeId": 0
+    },
+    "selectedTwinShareRoomsType": [
+      "Twin"
+    ],
+    "singlePackages": {
+      "itemLabel": "Single Package(s)",
+      "itemSubLabel": null,
+      "itemDate": "0001-01-01T00:00:00",
+      "unitPrice": 3000.0,
+      "count": 0,
+      "hideBreakdown": false,
+      "totalPrice": 0.0,
+      "itemType": null,
+      "itemTypeId": 0
+    },
+    "roomOptions": [
+      {
+        "itemLabel": "LàNina",
+        "itemSubLabel": null,
+        "itemDate": "0001-01-01T00:00:00",
+        "unitPrice": 333.0,
+        "count": 2,
+        "hideBreakdown": false,
+        "totalPrice": 666.0,
+        "itemType": null,
+        "itemTypeId": 1
+      }
+    ],
+    "extraOptions": null,
+    "additionalServices": null,
+    "totalPersons": 2,
+    "roomOptionsTotalPrice": 666.0,
+    "extraOptionsTotalPrice": 0.0,
+    "due": null,
+    "totalPrice": 4932.0
+  },
+  "success": true,
+  "message": ""
+}

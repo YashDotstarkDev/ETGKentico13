@@ -1,0 +1,57 @@
+---
+import Lazysizes from "../components/base/Lazysizes.vue";
+import LegacyWidgets from "../components/LegacyWidgets.vue";
+import Scripts from "./Scripts.astro";
+
+const { cls } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+<!-- Fonts and icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:400,700,800,900|Raleway:400,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,800,900|Raleway:400,900&display=swap"></noscript>
+
+    <Scripts />
+
+
+    <!-- Favicon and meta theme -->
+    <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Aurora Expeditions" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!--
+    //////////////////////////
+    All the below stylesheets can be replaced with /assets/bundle.css
+    The page.js script should be included if we want to prefetch links on hover. Use data-astro-prefetch to enable this on links eg: <a href="/about" data-astro-prefetch>
+    //////////////////////////
+    -->
+</head>
+<body class="tracking-wider leading-relaxed">
+<!--
+//////////////////////////
+The inline styles here can be removed - they are included in bundle.css
+The <script> with astro stuff can be removed, it should be included with <script src="/scripts/astro.js"></script>
+//////////////////////////
+-->
+
+<Lazysizes client:only="vue" />
+<LegacyWidgets client:only="vue" />
+
+<slot></slot>
+
+<style lang="scss" is:global>
+  @use "../styles/global.scss";
+</style>
+</body>
+</html>

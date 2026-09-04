@@ -1,0 +1,283 @@
+---
+import Layout from "../../layouts/layout-main.astro";
+---
+
+<Layout>
+  <div
+    class="widget partnership-with-updated"
+    data-widget="partnership-with-updated"
+  >
+    <div class="heading">In partnership with</div>
+    <div class="images">
+      <div class="image">
+        <img data-src="https://placehold.co/188x98" class="lazyload" />
+      </div>
+      <div class="image">
+        <img data-src="https://placehold.co/131x250" class="lazyload" />
+      </div>
+      <div class="image">
+        <img data-src="https://placehold.co/188x125" class="lazyload" />
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+        
+
+  <div class="widget enquire-form" data-widget="enquire-form">
+        <div
+          id="enquireForm"
+          class="ui form generic-form"
+          data-validate-inline="data-validate-inline"
+          data-validate-on="submit"
+          data-method="POST"
+          data-endpoint="/_child-action-only/Enquire/Submit"
+        >
+          <input
+            name="__RequestVerificationToken"
+            type="hidden"
+            value="Lr9Z73mPNgmrFTbb3smXpEuux4wmAcZMJWRkz4uQq9XlDEMuINwUeQvdFXcSfVjCZxQU3yhNQlshqjoJpT3DOvsDTw-_Azp8gWaMjz57ws81"
+          />
+          <input
+            id="Form_Reason"
+            name="Form.Reason"
+            style="display:none"
+            type="text"
+            value=""
+          />
+          <div class="gr-10">
+            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+              <div class="field">
+                <label>First name</label>
+                <input
+                  data-prompts="Please enter a valid first name"
+                  data-rules="regExp[/[aeiou]/]"
+                  id="Form_FirstName"
+                  name="Form.FirstName"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+              <div class="field">
+                <label>Last name</label>
+                <input
+                  data-prompts="Please enter a valid last name"
+                  data-rules="regExp[/[aeiou]/]"
+                  id="Form_LastName"
+                  name="Form.LastName"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="gr-10">
+            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+              <div class="field">
+                <label>Email</label>
+                <input
+                  data-prompts=""
+                  data-rules="emailDependOnRadio[Form.PreferredContactType|Email]"
+                  id="Form_Email"
+                  name="Form.Email"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+              <div class="field">
+                <label>Phone</label>
+                <input
+                  data-prompts="Please enter only numbers in this field."
+                  data-rules="phoneDependOnRadio[Form.PreferredContactType|Phone]"
+                  id="Form_Phone"
+                  name="Form.Phone"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="gr-10">
+            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+              <div class="field">
+                <label>Preferred contact method</label>
+                <div class="grouped fields">
+                  <input
+                    type="hidden"
+                    data-validate="checkboxGroup1"
+                    data-rules="checkboxCount[1]"
+                    data-prompts="You must select at least one"
+                  />
+                  <div class="field">
+                    <div class="ui radio checkbox">
+                      <input
+                        checked="checked"
+                        id="Form_PreferredContactType"
+                        name="Form.PreferredContactType"
+                        type="radio"
+                        value="Email"
+                      />
+                      <label>Email</label>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <div class="ui radio checkbox">
+                      <input
+                        id="Form_PreferredContactType"
+                        name="Form.PreferredContactType"
+                        type="radio"
+                        value="Phone"
+                      />
+                      <label>Phone</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+              <div class="field">
+                <label>Preferred tour type</label>
+                <select
+                  class="make-dropdown"
+                  id="Form_PreferredTourType"
+                  name="Form.PreferredTourType"
+                  ><option value="">Please select</option>
+                  <option value="Small group tours">Small group tours</option>
+                  <option value="Escorted group tours">Escorted group tours</option>
+                  <option value="Private tours">Private tours</option>
+                  <option value="Independent tours">Independent tours</option>
+                  <option value="Packaged tours">Packaged tours</option>
+                  <option value="Day tours">Day tours</option>
+                  <option value="Rail Journeys">Rail Journeys</option>
+                  <option value="Cruise Journeys">Cruise Journeys</option>
+                  <option value="Group Journeys">Group Journeys</option>
+                </select>
+              </div>
+            </div>
+          </div>
+    
+          <div class="gr-10">
+            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+              <div class="field">
+                <label>Preferred destination</label>
+                <select
+                  class="make-dropdown"
+                  id="Form_PreferredDestination"
+                  name="Form.PreferredDestination"
+                  ><option value="">Select destination</option>
+                  <option value="Alaska">Alaska</option>
+                  <option value="Austria">Austria</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Cook Islands">Cook Islands</option>
+                  <option value="Croatia">Croatia</option>
+                  <option value="Fiji">Fiji</option>
+                  <option value="France">France</option>
+                  <option value="Greece">Greece</option>
+                  <option value="Ireland and Northern Ireland"
+                    >Ireland and Northern Ireland</option
+                  >
+                  <option value="Italy">Italy</option>
+                  <option value="Malaysia">Malaysia</option>
+                  <option value="Maldives">Maldives</option>
+                  <option value="Monaco">Monaco</option>
+                  <option value="New Caledonia">New Caledonia</option>
+                  <option value="Palau">Palau</option>
+                  <option value="Philippines">Philippines</option>
+                  <option value="Portugal">Portugal</option>
+                  <option value="Samoa">Samoa</option>
+                  <option value="Scandinavia and Iceland"
+                    >Scandinavia and Iceland</option
+                  >
+                  <option value="Singapore">Singapore</option>
+                  <option value="Spain">Spain</option>
+                  <option value="Sri Lanka">Sri Lanka</option>
+                  <option value="Switzerland">Switzerland</option>
+                  <option selected="selected" value="Tahiti">Tahiti</option>
+                  <option value="Thailand">Thailand</option>
+                  <option value="United States of America"
+                    >United States of America</option
+                  >
+                  <option value="Vanuatu">Vanuatu</option>
+                </select>
+              </div>
+            </div>
+            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+              <div class="field">
+                <label>Select experience (optional)</label>
+                <select
+                  class="make-dropdown"
+                  id="Form_PreferredExperience"
+                  name="Form.PreferredExperience"
+                  ><option value="">Select experience</option>
+                  <option value="Battlefields ">Battlefields </option>
+                  <option value="Beach">Beach</option>
+                  <option value="City Stays">City Stays</option>
+                  <option value="Cruising">Cruising</option>
+                  <option value="Cultural">Cultural</option>
+                  <option value="Cycling">Cycling</option>
+                  <option value="Escorted">Escorted</option>
+                  <option value="Family">Family</option>
+                  <option value="Food & Wine">Food &amp; Wine</option>
+                  <option value="Honeymoon">Honeymoon</option>
+                  <option value="Indigenous ">Indigenous </option>
+                  <option value="Luxury">Luxury</option>
+                  <option value="Overwater ">Overwater </option>
+                  <option value="Rail">Rail</option>
+                  <option value="Self-Drive">Self-Drive</option>
+                  <option value="Walk & Hike">Walk &amp; Hike</option>
+                  <option value="Wellness">Wellness</option>
+                  <option value="Wildlife">Wildlife</option>
+                  <option value="Winter">Winter</option>
+                </select>
+              </div>
+            </div>
+          </div>
+    
+          <div class="field">
+            <label>Questions or comments</label>
+            <textarea
+              cols="20"
+              id="Form_Message"
+              name="Form.Message"
+              placeholder="optional"
+              rows="2"
+            >
+            </textarea>
+          </div>
+    
+          <div
+            class="recaptcha"
+            data-site-key="6LenFbspAAAAAAzM_JS7WxvWh1UMhW1uoigRYMax"
+            data-action="enquire"
+          >
+          </div>
+          <div class="field">
+            <div class="ui checkbox">
+              <input
+                data-val="true"
+                data-val-required="The SubscribeToNewsletter field is required."
+                id="Form_SubscribeToNewsletter"
+                name="Form.SubscribeToNewsletter"
+                type="checkbox"
+                value="true"
+              /><input
+                name="Form.SubscribeToNewsletter"
+                type="hidden"
+                value="false"
+              />
+              <label>Subscribe to our newsletter for special deals.</label>
+            </div>
+          </div>
+    
+          <div class="response-container"></div>
+          <div class="submit-row">
+            <button class="ui button submit primary">Submit</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</Layout>

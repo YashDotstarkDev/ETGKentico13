@@ -1,0 +1,63 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.svg-map {
+  padding-bottom: 40px;
+
+  h3 {
+    font-family: Lato, Arial, sans-serif;
+  }
+
+  .map {
+    margin-top: 20px;
+
+    @media(--portrait) {
+      box: horizontal top reverse;
+    }
+
+    svg {
+      display: none;
+      width: 100%;
+
+      @media(--portrait) {
+        display: block;
+      }
+    }
+
+    position: relative;
+
+    g#Regions {
+      g {
+        cursor: pointer;
+
+        &:hover, &.active {
+          path,
+          polygon {
+            fill: $purple;
+          }
+        }
+      }
+    }
+
+    .list {
+      @media(--portrait) {
+        margin-right: 20px;
+      }
+
+      .region {
+        padding: 10px 14px;
+        display: block;
+        border-top: 1px solid rgba(34, 36, 38, .15);
+
+        &:hover, &.active {
+          background-color: $purple;
+          color: #FFF;
+        }
+
+        @media(--portrait) {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}

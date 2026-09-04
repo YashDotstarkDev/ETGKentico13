@@ -1,0 +1,52 @@
+{% set page_title = 'Homepage' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+
+{% endblock %}
+
+{% block beforeArticle %}
+  {% include "src/widgets/header/header.njk" %}
+{% endblock %}
+
+{% block article %}
+  {#{% include "src/widgets/gdpr-consent/gdpr-consent.njk" %}#}
+
+{#  {% include "src/widgets/game-of-luck/game-of-luck.njk" %}#}
+  {% include "src/widgets/nz-redirect-modal/nz-redirect-modal.njk" %}
+  {% include "src/widgets/subscribe-to-win-modal/subscribe-to-win-modal.njk" %}
+  {% include "src/widgets/homepage-hero-al-search/homepage-hero-al-search.njk" %}
+{#  {% include "src/widgets/homepage-hero/homepage-hero.njk" %}#}
+  {% include "src/widgets/featured-tiles/featured-tiles.njk" %}
+  <div class="widget page-hero large-heading" style="opacity: 1;">
+    <img class="bg lazyloaded" data-src="http://etgbooking.uat.madewithdevotion.com.au/getmedia/5da5d5be-c419-4f4b-b52d-7929ee4f12a7/Cook-Islands-Hero.png?width=1500&amp;height=450&amp;ext=.png" alt="Aitutaki, Cook Islands" src="http://etgbooking.uat.madewithdevotion.com.au/getmedia/5da5d5be-c419-4f4b-b52d-7929ee4f12a7/Cook-Islands-Hero.png?width=1500&amp;height=450&amp;ext=.png">
+    <div class="flex">
+      <h1>
+        Chill out in Paradise.
+      </h1>
+      <div class="code">(11751)</div>
+    </div>
+    <div class="grad"></div>
+  </div>
+  {% include "src/widgets/experience-cta/experience-cta.njk" %}
+  {% include "src/widgets/faqs/faqs.njk" %}
+  {% include "src/widgets/products/products.njk" %}
+  {% include "src/widgets/destination-expert/destination-expert.njk" %}
+  {% include "src/widgets/explore-destinations/explore-destinations.njk" %}
+  {% include "src/widgets/articles-section/articles-section.njk" %}
+  {% include "src/widgets/testimonial/testimonial.njk" %}
+  {% include "src/widgets/subscription-bar/subscription-bar.njk" %}
+{#  {% include "src/widgets/feefo/feefo.njk" %}#}
+  {% include "src/widgets/subscribe-to-win-widget/subscribe-to-win-widget.njk" %}
+
+
+{% endblock %}
+
+{% block afterArticle %}
+  {% include "src/widgets/footer/footer.njk" %}
+  {% include "src/widgets/footer-brands/footer-brands.njk" %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="/scripts/homepage.js"></script>
+{% endblock %}

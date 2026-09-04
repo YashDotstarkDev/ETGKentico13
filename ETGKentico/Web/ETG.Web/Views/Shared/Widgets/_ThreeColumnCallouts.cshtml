@@ -1,0 +1,91 @@
+﻿@using Castle.Core.Internal
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Components.Web.Mvc.FormComponents
+@using ETG.Web.Models.Widgets.ThreeColumnCallouts
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+
+@model ComponentViewModel<ThreeColumnCalloutsProperties>
+<div class="widget why-we-love-it scroll-section" id="@Model.Properties.SectionIdName" data-widget="why-we-love-it">
+    <div class="wrapper">
+        @if (!Model.Properties.Heading.IsNullOrEmpty())
+        {
+            <h2>@Model.Properties.Heading</h2>
+        }
+
+        <div class="sections @(Model.Properties.StartFromRight ? "flip" : "")">
+            @{
+                var url = "";
+                var heading = "";
+                var description = "";
+                IList<MediaFilesSelectorItem> images = null;
+
+                for (var i = 1; i <= 3; i++)
+                {
+                    url = "";
+                    heading = "";
+                    description = "";
+                    images = null;
+
+                    switch (i)
+                    {
+                        case 1:
+                            url = Model.Properties.Callout1Url;
+                            heading = Model.Properties.Callout1Heading;
+                            description = Model.Properties.Callout1Description;
+                            images = Model.Properties.Callout1Images;
+                            break;
+                        case 2:
+                            url = Model.Properties.Callout2Url;
+                            heading = Model.Properties.Callout2Heading;
+                            description = Model.Properties.Callout2Description;
+                            images = Model.Properties.Callout2Images;
+                            break;
+                        case 3:
+                            url = Model.Properties.Callout3Url;
+                            heading = Model.Properties.Callout3Heading;
+                            description = Model.Properties.Callout3Description;
+                            images = Model.Properties.Callout3Images;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (!images.IsNullOrEmpty())
+                    {
+                        var imageViewModel = MediaFileHelper.GetImageMediaFile(images[0].FileGuid);
+
+                        if (imageViewModel == null || imageViewModel.ImagePath.IsNullOrEmpty())
+                        {
+                            continue;
+                        }
+
+                        <div class="section">
+                            <div class="image">
+                                <div class="sizer">
+                                    <img data-src="@imageViewModel.ImagePath.Imgixify(640, 400)" class="lazyload" data-sizes="auto"/>
+                                </div>
+                            </div>
+                            @if (!heading.IsNullOrEmpty())
+                            {
+                                <div class="copy">
+                                    <h3>@heading</h3>
+                                    <p>@description</p>
+                                    @if (!url.IsNullOrEmpty())
+                                    {
+                                        <div class="space"></div>
+                                        <div class="cta">
+                                            <a href="@url" class="ui primary outline button">@heading</a>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>

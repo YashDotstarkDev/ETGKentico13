@@ -1,0 +1,172 @@
+﻿@using Castle.Core.Internal
+@using CMS.Core
+@using ETG.Booking.Pricing.Services
+@using ETG.Core.Extensions;
+@using ETG.Data.Tour
+@using ETG.Web.Tour.Models
+@model (List<ETG.Web.Tour.Models.TourSummaryInfoViewModel> Tiles, string Heading)
+@{
+    var currencyPricing = new CurrentCurrencyPricing(DependencyResolver.Current.GetService<ICurrencyService>());
+}
+@if (Model.Tiles.IsNullOrEmpty())
+{
+    return;
+}
+
+<div class="title">
+    <div class="heading">@Model.Heading</div>
+    <i class="dropdown icon"></i>
+</div>
+
+<div class="content package-upgrades" @Html.Raw(ViewBag.IsPrint == null ? "" : "style=\"display:block;clear:both\"")>
+    <div class="inner-content">
+        <div class="tour-tiles">
+            
+        @foreach (var tour in Model.Tiles)
+            {
+                <div class="tour">
+                    <div class="inner">
+                        @if (currencyPricing.CurrencyAppliesDiscounts && tour.Promotion != null)
+                        {
+                            <div class="promotion">@Html.Raw(tour.Promotion.PromotionName)</div>
+                        }else if (tour.Discount != null && tour.Discount.DisplayAsLabel && !string.IsNullOrWhiteSpace(tour.Discount.DisplayLabel))
+                        {
+                            <div class="promotion">@Html.Raw(tour.Discount.DisplayLabel)</div>
+                        }
+                 
+                        <div class="image">
+                            <div class="carousel">
+                                <div class="swiper">
+                                    <div class="swiper-wrapper">
+                                        @foreach (var image in tour.Images)
+                                        {
+                                            <div class="swiper-slide"><img class="lazyload" data-sizes="auto" data-src="@image.ImagePath.Imgixify()"/></div>
+                                        }
+                                    </div>
+                                </div>
+                                <button type="button" class="prev">
+                                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M6.75008 0.685057C6.99617 0.685057 7.21492 0.767089 7.37899 0.931151C7.73445 1.25928 7.73445 1.8335 7.37899 2.16162L2.75789 6.81006L7.37898 11.4312C7.73445 11.7593 7.73445 12.3335 7.37898 12.6616C7.05086 13.0171 6.47664 13.0171 6.14852 12.6616L0.898516 7.41162C0.543047 7.08349 0.543047 6.50928 0.898516 6.18115L6.14852 0.931151C6.31258 0.767089 6.53133 0.685057 6.75008 0.685057Z" fill="#CA568E" />
+                                    </svg>
+                                </button>
+                                <button type="button" class="next">
+                                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M1.24992 13.3149C1.00383 13.3149 0.785079 13.2329 0.621017 13.0688C0.265548 12.7407 0.265548 12.1665 0.621017 11.8384L5.24211 7.18994L0.621017 2.56885C0.265548 2.24072 0.265548 1.6665 0.621017 1.33838C0.949142 0.98291 1.52336 0.98291 1.85149 1.33838L7.10149 6.58838C7.45695 6.9165 7.45695 7.49072 7.10149 7.81885L1.85149 13.0688C1.68742 13.2329 1.46867 13.3149 1.24992 13.3149Z" fill="#CA568E" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+        
+                        <a class="copy" href="@tour.Path">
+                            <div class="badges">
+                              @if (tour.HasPeaceOfMindGuarantee)
+                              {
+                                  <div class="badge peaceOfMind">
+                                      <div class="icon">
+                                          <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M12.25 7.0625V5.96875C11.1172 4.52344 10.375 2.84375 10.1016 1.04688C10.0234 0.539062 9.35938 0.304688 9.04688 0.734375C8.1875 1.71094 7.5625 2.84375 7.13281 4.13281C8.46094 5.61719 10.2578 6.63281 12.25 7.0625ZM16.625 3C14.8672 3 13.5 4.40625 13.5 6.16406V8.46875C9.4375 8.23438 5.96094 5.73438 4.39844 2.14062C4.16406 1.67188 3.46094 1.63281 3.26562 2.10156C2.60156 3.46875 2.25 5.03125 2.25 6.63281C2.25 9.40625 3.57812 11.9844 5.57031 13.8984C6.07812 14.4062 6.58594 14.7969 7.09375 15.1875L1.46875 16.5938C1.03906 16.6719 0.84375 17.1797 1.07812 17.5312C1.78125 18.5859 3.46094 20.3828 7.05469 20.5C7.36719 20.5391 7.67969 20.4219 7.91406 20.2266L10.4922 18L13.5 18.0391C16.9375 18.0391 19.75 15.2266 19.75 11.7891V5.5L20.9609 3H16.625ZM16.625 6.78906C16.2734 6.78906 15.9609 6.47656 15.9609 6.16406C15.9609 5.8125 16.2734 5.53906 16.625 5.53906C16.9375 5.53906 17.2109 5.8125 17.2109 6.16406C17.25 6.47656 16.9375 6.78906 16.625 6.78906Z" fill="#929497"/>
+                                          </svg>
+                                      </div>
+                                      <div class="text">Peace of Mind</div>
+                                  </div>
+                              }
+                              @if (tour.TourHasFreedomOfChoice)
+                              {
+                                  <div class="badge">
+                                      <div class="icon">
+                                          <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M2.125 0.75H7.94531C8.60938 0.75 9.23438 1.02344 9.70312 1.49219L16.5781 8.36719C17.5547 9.34375 17.5547 10.9453 16.5781 11.9219L11.3828 17.1172C10.4062 18.0938 8.80469 18.0938 7.82812 17.1172L0.953125 10.2422C0.484375 9.77344 0.25 9.14844 0.25 8.48438V2.625C0.25 1.60938 1.07031 0.75 2.125 0.75ZM4.625 6.375C5.28906 6.375 5.875 5.82812 5.875 5.125C5.875 4.46094 5.28906 3.875 4.625 3.875C3.92188 3.875 3.375 4.46094 3.375 5.125C3.375 5.82812 3.92188 6.375 4.625 6.375Z" fill="#929497"/>
+                                          </svg>
+                                      </div>
+                                      <div class="text">Freedom of Choice</div>
+                                  </div>
+                                  
+                              }
+                              @if (tour.TourIsExclusive)
+                              {
+                                  <div class="badge">
+                                      <div class="icon">
+                                          <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M16.2422 0.125H5.71484L11 6.61328L16.2422 0.125ZM22 7L17.3594 0.941406L12.418 7H22ZM4.59766 0.941406L0 7H9.53906L4.59766 0.941406ZM10.4844 19.1602C10.6133 19.332 10.7852 19.375 11 19.375C11.1719 19.375 11.3438 19.332 11.4727 19.1602L21.9141 8.375H0.0429688L10.4844 19.1602Z" fill="#929497"/>
+                                          </svg>
+                                      </div>
+                                      <div class="text">Exclusive Packages</div>
+                                  </div>
+                              }
+                              @if (tour.TourHasSafeTravel)
+                              {
+                              <div class="badge">
+                                  <div class="icon">
+                                      <svg width="10" height="23" viewBox="0 0 10 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M6.95553 6.67116C6.92369 4.46295 5.55426 3.10609 3.40139 3.15265C1.27401 3.19921 -0.0444663 4.64253 0.000119689 6.8707C0.0447057 8.99244 1.54789 10.4823 3.57974 10.4225C5.65617 10.3626 6.98738 8.87937 6.94916 6.67116H6.95553Z" fill="#8CC53F"/>
+                                          <path d="M0.930176 19.6079L1.53527 18.5437C3.08941 15.83 4.88559 13.2759 6.56712 10.642C8.31234 7.90835 8.49705 5.76665 7.18495 3.91095C5.87285 2.04195 4.25502 1.64953 0.981131 2.46763C0.974762 1.98209 0.974762 0.385791 0.974762 0.385791C0.968392 0.385791 1.42699 0.1663 2.38877 0.0665317C5.08941 -0.252728 7.33782 0.525468 8.87922 2.92657C10.4079 5.30771 10.2678 7.81523 9.08304 10.3094C8.87922 10.7418 8.5926 11.1342 8.33145 11.5399C5.99387 15.1715 3.30597 19.3618 0.968392 22.9934L0.930176 19.6012V19.6079Z" fill="#929497"/>
+                                          <path d="M6.95553 6.67116C6.98738 8.87937 5.66254 10.3626 3.58611 10.4225C1.54789 10.4823 0.0447057 8.99244 0.000119717 6.8707C-0.0444663 4.64253 1.27401 3.19921 3.39502 3.15265C5.54789 3.10609 6.91732 4.46295 6.94916 6.67116H6.95553Z" fill="#929497"/>
+                                      </svg>
+                                  </div>
+                                  <div class="text">Sustainable Travel</div>
+                              </div>
+                                  
+                              }
+                          </div>
+        
+                            <div class="destination">@tour.DisplayedCountryNames</div>
+                            <div class="title">@tour.Name</div>
+                            @if (string.IsNullOrWhiteSpace(tour.TourTravelEnds) || tour.TourDepartsFromInAustralia.Equals(tour.TourTravelEnds, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                              <div class="cities">Starts and ends in <span>@(tour.TourDepartsFromInAustralia)</span></div>
+                            }
+                            else
+                            {
+                              <div class="cities"><span>@tour.TourDepartsFromInAustralia</span> to <span>@tour.TourTravelEnds</span></div>
+                            }
+                            <div class="description">@Html.Raw(tour.Summary)</div>
+                       
+                        <div class="bottom">
+                            <div class="stats">
+                                <div class="duration">@(tour.NoOfNights + 1) days</div>
+                                @if (!tour.PriceInclusionIcons.IsNullOrEmpty())
+                                {
+                                    <div class="inclusions">
+                                        @foreach (var icon in tour.PriceInclusionIcons)
+                                        {
+                                            <div class="inclusion">
+                                                    @Html.Raw(icon.SVGCode)
+                                                    <div class="text">@icon.Name</div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                @if (currencyPricing.CurrencyAppliesDiscounts && tour.Promotion != null)
+                                {
+                                    <div class="save">Save @($"{currencyPricing.CurrentCurrencySymbol}{currencyPricing.ConvertAUDToCurrentCurrency(tour.Promotion.GetDiscount(tour.FromPrice.LowestPrice, 1))}")</div>
+                                
+                                }
+                            </div>
+                            @if (tour.FromPrice != null)
+                            {
+                                <div class="price">
+                                    <div class="from">From
+                                        @if (currencyPricing.CurrencyAppliesDiscounts && tour.Promotion != null)
+                                        {
+                                            <span>@tour.FromPrice.GetDisplayPriceForCurrentCurrency()</span>
+                                        }
+                                    </div>
+                                    @if (!currencyPricing.CurrencyAppliesDiscounts || tour.Promotion == null)
+                                    {
+                                        <div class="price-value"><span>@tour.FromPrice.Currency</span>@tour.FromPrice.GetDisplayedPriceNoCurrencyForCurrentCurrency()</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="price-value"><span>@tour.FromPrice.Currency</span> @currencyPricing.ConvertAUDToCurrentCurrency(tour.Promotion.GetDiscountedPrice(tour.FromPrice.LowestPrice)).ToString("#,###")</div>
+                                    }
+                                    <div class="per">@tour.PriceTypeLabelFormatted</div>
+                                </div>
+                            }
+                        </div> 
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

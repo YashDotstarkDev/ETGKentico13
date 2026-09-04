@@ -1,0 +1,65 @@
+@layer components {
+  .form-item, .form-assembly-embed input[type="text"], .form-assembly-embed input[type="email"], .form-assembly-embed select, .form-assembly-embed textarea {
+    @apply min-h-[48px] px-3 w-full min-w-0 rounded border border-[#D2D2D2] ring-0 focus:ring-0 focus:outline-0 focus:outline-none text-body text-base;
+  }
+  .form-item-search {
+    @apply min-h-[48px] pl-1 pr-3 w-full min-w-0 border-b border-[#D2D2D2] ring-0 focus:ring-0 focus:outline-0 focus:outline-none text-body rounded-none disabled:bg-white disabled:opacity-50;
+  }
+  input[type="checkbox"] {
+    @apply h-6 w-6 rounded border-body ring-0 focus:ring-0 accent-primary;
+  }
+  select.form-item, select.form-item-search, .form-assembly-embed select {
+    @apply appearance-none bg-select-arrow bg-white bg-no-repeat bg-[right_15px_center] pr-10;
+  }
+  textarea.form-item, .form-assembly-embed textarea {
+    @apply min-h-[100px] py-2;
+  }
+
+  .form-assembly-embed textarea {
+    padding: 0.5rem !important;
+  }
+
+  .checkbox {
+    input[type="radio"] {
+      @apply h-5 w-5 rounded border-body ring-0 focus:ring-0 accent-primary;
+    }
+  }
+
+  select:disabled,
+  input:disabled,
+  textarea:disabled {
+    @apply cursor-not-allowed bg-gray-100 text-gray-400 opacity-100;
+  }
+
+
+  /* formbuilder */
+  .formbuilder {
+    @apply @container;
+    .form-control {
+      @apply min-h-[48px] px-3 w-full min-w-0 rounded border border-[#D2D2D2] ring-0 focus:ring-0 focus:outline-0 text-primary;
+    }
+    select.form-control {
+      @apply appearance-none bg-select-arrow bg-white bg-no-repeat bg-[right_15px_center] pr-10;
+    }
+    textarea.form-control {
+      @apply min-h-[100px] py-2;
+    }
+
+
+    .ktc-default-section {
+      @apply pb-4 grid grid-cols-1 gap-6 @md:grid-cols-2;
+    }
+
+    .form-field {
+      @apply w-full;
+    }
+
+    .form-field:has(textarea) {
+      @apply @md:col-span-2
+    }
+  }
+
+  .autocomplete .autocomplete-input {
+    @apply min-h-[48px] bg-white pr-3 w-full min-w-0 rounded border border-[#D2D2D2] ring-0 focus:ring-0 focus:outline-0 text-body;
+  }
+}

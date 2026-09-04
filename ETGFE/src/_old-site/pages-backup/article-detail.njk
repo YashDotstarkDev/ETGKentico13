@@ -1,0 +1,84 @@
+{% set page_title = 'Article detail' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+
+{% endblock %}
+
+{% block beforeArticle %}
+  {# {% include "src/widgets/header/header.njk" %}
+  {% include "src/widgets/header-spacer/header-spacer.njk" %} #}
+  {% include "src/widgets/new-header/new-header.njk" %}
+  {% include "src/widgets/breadcrumbs/breadcrumbs.njk" %}
+
+{% endblock %}
+
+{% block article %}
+  {% include "src/widgets/article-hero/article-hero.njk" %}
+  <div class="wrapper wp">
+    <div class="article-layout article">
+      <div class="main">
+        <p>Posted by Firstname Lastname on 2 Jul 2019, in <a href="#">Europe</a> and <a href="#">Listicles</a></p>
+        <p class="lead">Italy is not just a country with beautiful views from every direction; it’s also a country with a delicious and diverse cuisine.</p>
+
+        <p>Throughout the world, the <a href="#">Italian cuisine</a> is one of the most recognisable  and replicated. From the humble pasta to cured meat, your palate  will be treated to a <a href="#">delicious journey</a> through all Italy has to offer.</p>
+
+        <p>Though one visit is not enough to eat every good dish, starting with the local favourites is a good way to go.</p>
+
+        <h2>1. pizza</h2>
+
+        <iframe src="https://cdn.flipsnack.com/widget/v2/widget.html?hash=f7p0r5sak" width="100%" height="480" seamless="seamless" scrolling="no" frameBorder="0" allowFullScreen></iframe>
+
+        <p>Almost synonymous to the word ‘Italian,’ the pizza pie is one of the most beloved foods all over the world. Though it’s been interpreted by many, the original pizza can be found in the southern city of Naples. Made with fresh tomato sauce, and topped with mozzarella cheese, fresh basil, tomatoes, and olive oil, the Margherita is of course the classic Napoli pizza.</p>
+        {% include "src/widgets/full-width-image/full-width-image.njk" %}
+
+        <h2>2. Pasta carbonara</h2>
+
+        <p>Yet another classic, the spaghetti carbonara is a simple but delectable dish originating from capital of Italy – Rome. Others often make the mistake of using cream for the sauce, but the authentic carbonara is made with pasta, eggs, pancetta or guanciale (pork cheeks), Romano, and black pepper.</p>
+
+        {% include "src/widgets/side-by-side-images/side-by-side-images.njk" %}
+
+        <h2>3. Gelato</h2>
+        <p>You say, ‘ice cream,’ the Italians say, ‘gelato.’ This beloved dessert is softer than ice cream but rich in flavour. It has a high density because of its higher proportion of milk, and it’s churned slowly. Having far less fat than your average ice cream, you can have a scoop after each meal without the guilt. Grab a cone when you visit Florence, Rome, or Venice.</p>
+        {% include "src/widgets/video/video.njk" %}
+
+        <p>From a poor man’s dish to a hearty meal, lasagna has made a name for itself as a comfort food for some homes. The flat pasta is handmade and layered with: </p>
+
+        <ul class="bullet">
+          <li>ragù, a meat-based sauce,</li>
+          <li>and Béchamel sauce in between,</li>
+          <li>then topped with Parmigiana or mozzarella or both.</li>
+        </ul>
+
+        <p>Though there’s no final consensus as to where it specifically originated from, Emilia-Romagna remains the best contender for the most authentic version of a lasagna dish.</p>
+
+        <div class="quote">
+          <div class="copy">Nullam suscipit volutpat lectus, non vestibulum tellus faucibus vitae. Donec id risus eget justo commodo viverra. Proin sed varius purus. Cras id orci dolor. Suspendisse iaculis dignissim magna quis consectetur. </div>
+          <div class="author">F. Smith, Porto Discovery Package</div>
+          <div class="speech">
+            <img class="lazyload" data-src="https://devotion-creative.imgix.net/etgp0001/images/quote-marks.png?auto=format" alt="">
+          </div>
+        </div>
+
+      </div>
+      <div class="side">
+        {% include "src/widgets/keep-reading/keep-reading.njk" %}
+      </div>
+    </div>
+  </div>
+  {% include "src/widgets/experience-cta/experience-cta.njk" %}
+  {% include "src/widgets/products/products.njk" %}
+  {% include "src/widgets/cta-panel/cta-panel.njk" %}
+  {% include "src/widgets/subscription-bar/subscription-bar.njk" %}
+{% endblock %}
+
+{% block afterArticle %}
+{# {% include "src/widgets/footer/footer.njk" %}
+{% include "src/widgets/footer-brands/footer-brands.njk" %} #}
+{% include "src/widgets/new-footer/new-footer.njk" %}
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="/scripts/article-detail.js"></script>
+{% endblock %}

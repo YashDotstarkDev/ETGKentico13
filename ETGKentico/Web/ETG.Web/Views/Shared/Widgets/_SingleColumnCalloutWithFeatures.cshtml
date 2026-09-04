@@ -1,0 +1,47 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions;
+@using ETG.Web.Models.Widgets.SingleColumnCalloutWithFeatures;
+
+@model SingleColumnCalloutWithFeaturesViewModel
+<div class="widget why-we-love-it" data-widget="why-we-love-it">
+    <div class="wrapper">
+        @if (!Model.Heading.IsNullOrEmpty())
+        {
+            <h2>@Model.Heading</h2>
+        }
+
+        <div class="section features-section">
+            @if (!Model.ImagePath.IsNullOrEmpty())
+            {
+                <div class="image">
+                    <div class="sizer">
+                        <img data-src="@Model.ImagePath.Imgixify()" class="lazyload" data-sizes="auto"/>
+                    </div>
+                </div>
+            }
+
+            <div class="copy">
+                <!-- Rich text must be wrapped in <div> -->
+                <div>
+                    <h3>@Model.CalloutHeading</h3>
+                    <p>@Model.Description</p>
+                </div>
+                @if (!Model.Features.IsNullOrEmpty())
+                {
+                    <!-- Optional .featured-list -->
+                    <div class="features-list">
+                        <strong>Features</strong>
+
+                        <ul>
+                            @foreach (string feature in Model.Features)
+                            {
+                                <li>@feature.Trim()</li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

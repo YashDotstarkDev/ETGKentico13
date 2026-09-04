@@ -1,0 +1,21 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.page-404 {
+  background-color: #ededed;
+  text-align: center;
+  padding: 45px 0;
+
+  .site-search {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.page-404-widgets {
+  padding-bottom: 30px !important;
+
+  @media(--landscape) {
+    padding-bottom: 70px !important;
+  }
+}

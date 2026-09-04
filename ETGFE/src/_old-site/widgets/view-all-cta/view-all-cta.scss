@@ -1,0 +1,10 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.view-all-cta {
+  text-align: center;
+
+  .button {
+    display: inline-block;
+  }
+}

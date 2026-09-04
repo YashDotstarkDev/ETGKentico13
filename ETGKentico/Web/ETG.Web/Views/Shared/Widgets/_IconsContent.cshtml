@@ -1,0 +1,66 @@
+﻿@using Castle.Core.Internal
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Web.Mvc
+@using ETG.Web.Models.Widgets.IconsContent
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+@model ComponentViewModel<IconsContentProperties>
+<div class="widget iconigraphical-content wp" data-widget="iconigraphical-content">
+    <div class="wrapper">
+        @if (!Model.Properties.Heading.IsNullOrEmpty())
+        {
+
+            <h2>@Model.Properties.Heading</h2>
+        }
+
+    <div class="content-container">
+        @{
+            var iconClass = "";
+            var title = "";
+            var description = "";
+        }
+        @for (var i = 1; i <= 4; i++)
+        {
+            iconClass = "";
+            title = "";
+            description = "";
+
+            switch (i)
+            {
+                case 1:
+                    iconClass = Model.Properties.Stat1Icon;
+                    title = Model.Properties.Stat1Title;
+                    description = Model.Properties.Stat1Description;
+                    break;
+                case 2:
+                    iconClass = Model.Properties.Stat2Icon;
+                    title = Model.Properties.Stat2Title;
+                    description = Model.Properties.Stat2Description;
+                    break;
+                case 3:
+                    iconClass = Model.Properties.Stat3Icon;
+                    title = Model.Properties.Stat3Title;
+                    description = Model.Properties.Stat3Description;
+                    break;
+                case 4:
+                    iconClass = Model.Properties.Stat4Icon;
+                    title = Model.Properties.Stat4Title;
+                    description = Model.Properties.Stat4Description;
+                    break;
+            }
+            if (!iconClass.IsNullOrEmpty() && !title.IsNullOrEmpty() && !description.IsNullOrEmpty())
+            {
+
+                <div class="item">
+                    <div class="pin-container">
+                        <div class="icon fas fa-plane-departure"></div>
+                        <img class="lazyload" data-src="@("/images/pin-bg.png".Imgixify())" alt="">
+                    </div>
+                    <div class="title">@title</div>
+                    <div class="description">@description</div>
+                </div>
+            }
+        }
+    </div>
+    </div>
+</div>

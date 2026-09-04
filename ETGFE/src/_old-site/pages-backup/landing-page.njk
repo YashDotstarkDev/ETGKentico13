@@ -1,0 +1,44 @@
+{% set page_title = 'Landing page' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+
+{% endblock %}
+
+{% block beforeArticle %}
+
+{% endblock %}
+
+{% block article %}
+  {% include "src/widgets/landing-hero/landing-hero.njk" %}
+ {% include "src/widgets/landing-sticky-footer/landing-sticky-footer.njk" %}
+  <div class="wp">
+    <div class="wrapper">
+      {% include "src/widgets/partnership-with/partnership-with.njk" %}
+      {% include "src/widgets/single-column-richtext/single-column-richtext.njk" %}
+      {% include "src/widgets/products/products.njk" %}
+    </div>
+    {% include "src/widgets/experience-cta/experience-cta.njk" %}
+    {% include "src/widgets/faqs/faqs.njk" %}
+    {% include "src/widgets/subscribe-to-win-widget/subscribe-to-win-widget.njk" %}
+    <div class="wrapper">
+      {% include "src/widgets/video/video.njk" %}
+      {% include "src/widgets/static-video/static-video.njk" %}
+
+      {% include "src/widgets/full-width-image/full-width-image.njk" %}
+      {% include "src/widgets/side-by-side-images/side-by-side-images.njk" %}
+      {% include "src/widgets/landing-gallery/landing-gallery.njk" %}
+      {% include "src/widgets/table/table.njk" %}
+      {% include "src/widgets/form/form.njk" %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block afterArticle %}
+  {% include "src/widgets/subscription-bar/subscription-bar.njk" %}
+  {% include "src/widgets/footer/footer.njk" %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="/scripts/landing-page.js"></script>
+{% endblock %}

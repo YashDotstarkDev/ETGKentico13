@@ -1,0 +1,66 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@model ETG.Web.Models.Forms.UnsubscribePageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model?.Page == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page.Page)
+}
+
+@section AdditionalHeadScripts
+{
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/contact-us.js")
+    <script src="https://www.google.com/recaptcha/api.js?render=@ViewBag.RecaptchaSiteKey"></script>
+    <!-- Calendly badge widget begin -->
+    <link href=https://assets.calendly.com/assets/external/widget.css rel="stylesheet">
+    <script src=https://assets.calendly.com/assets/external/widget.js type="text/javascript" async></script>
+    <!-- Calendly badge widget end -->
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+<div class="">
+    <div class="bottom wp">
+        <div class="wrapper">
+            <div class="article-layout">
+                <div class="main">
+                    @if (@Model.Page.PageHero != null)
+                    {
+                        <h1>@Model.Page.PageHero.Heading</h1>
+                    }
+                    @Html.Raw(Model.Page.Content)
+                <div id="UnsubscribeForm" class="ui form generic-form">
+                    <div class="response-container"></div>
+
+                    @Html.Partial("EditorTemplate/UnsubscribeFromViewModel", Model.Form)
+
+                    <div class="response-container"></div>
+
+                </div>
+                </div>
+                <div class="bottom">
+                    @Html.Kentico().EditableArea("editableBottom")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

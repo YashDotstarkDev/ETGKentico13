@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/layout-main.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import NewHero_Experience from "../../components/NewHero_Experience.astro";
+import NewFeaturedPackages from "../../components/NewFeaturedPackages.astro";
+import PackageAccordion from "../../components/PackageAccordion.astro";
+import PackageEnquiry from "../../components/PackageEnquiry.astro";
+import CustomerReviews from "../../components/CustomerReviews.astro";
+---
+
+<Layout>
+
+    <Breadcrumbs />
+    <NewHero_Experience />
+
+    <div class="wrapper">
+        <div class="w-full max-w-4xl mx-auto mt-12 md:mt-20">
+            rich text html content
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <NewFeaturedPackages />
+    <div class="spacer"></div>
+    <PackageAccordion />
+    <div class="spacer"></div>
+    <PackageEnquiry />
+    <div class="spacer"></div>
+    <CustomerReviews />
+
+</Layout>

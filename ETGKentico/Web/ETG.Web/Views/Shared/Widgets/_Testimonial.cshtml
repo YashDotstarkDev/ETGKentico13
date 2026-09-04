@@ -1,0 +1,50 @@
+﻿@using Castle.Core.Internal
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Web.Mvc
+@using ETG.Web.Models.Widgets.Testimonial
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+@model ComponentViewModel<TestimonialProperties>
+<div class="widget testimonial" data-widget="testimonial">
+    <div class="bg">
+        @if (!Model.Properties.Images.IsNullOrEmpty())
+        {
+            var imageViewModel = MediaFileHelper.GetImageMediaFile(Model.Properties.Images[0].FileGuid);
+            if (imageViewModel != null)
+            {
+                <img class="bg lazyload" data-src="@imageViewModel.ImagePath.Imgixify()" alt="@Model.Properties.Heading">
+
+            }
+        }
+    </div>
+    <div class="tint"></div>
+    <img class="quote-66 lazyload" data-src="@("/images/66.png".Imgixify())" alt="">
+    <img class="quote-99 lazyload" data-src="@("/images/99.png".Imgixify())" alt="">
+
+    <div class="content">
+        <div class="wrapper">
+            <div class="row">
+                <div class="col">
+                    <div class="title">@Model.Properties.Heading</div>
+                    <div class="date">@Model.Properties.Date</div>
+
+                </div>
+                <div class="col">
+                    <div class="quote">
+                        @Model.Properties.TextContent
+                    </div>
+                    @if (!Model.Properties.Source.IsNullOrEmpty() || !Model.Properties.SourceLocation.IsNullOrEmpty())
+                    {
+
+                        <div class="author">@Html.Raw(Model.Properties.Source + ", " +  Model.Properties.SourceLocation).ToString().Trim(new char[] {' ',','})</div>
+                    }
+                </div>
+            </div>
+
+            @if (!Model.Properties.Path.IsNullOrEmpty() && !Model.Properties.CTALabel.IsNullOrEmpty())
+            {
+                <a href="@Model.Properties.Path" class="ui transparent white outline button">@Model.Properties.CTALabel</a>
+            }
+        </div>
+    </div>
+</div>

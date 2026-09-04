@@ -1,0 +1,223 @@
+﻿@using System.Activities.Statements
+@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@{
+    Layout = "~/Views/Shared/_MasterPrint.cshtml";
+}
+
+@model ETG.Web.Tour.Models.TourPageViewModel
+
+@if (Model == null || Model.TourInfo == null || Model.TourInfo.TourSummaryInfo == null)
+{
+    return;
+}
+
+@Html.Partial("Partial/Tour/Print/_PrintLogo", Model.TourInfo.TourSummaryInfo)
+
+<article>
+    <div class="wrapper">
+    
+        @Html.Partial("Partial/Tour/Print/_PrintTourHeroImage", Model)
+        
+        <div class="widget package-detail-title">
+            <div class="destination">@Model.TourInfo.TourSummaryInfo.PrimaryCountryName</div>
+            <h1 class="package-name">
+                @Html.Raw(Model.TourInfo.TourSummaryInfo.Name) <span class="tour-code">(Tour code: @Model.TourInfo.TourSummaryInfo.TourCode)</span>
+            </h1>
+        </div>
+        
+        @Html.Partial("Partial/Tour/_TourPackageBar", Model.TourInfo)
+
+        <div class="article-layout">
+            <div class="main">
+                
+                @Html.Partial("Partial/Tour/_TourTopBasicDetails", Model.TourInfo.TourSummaryInfo)
+
+                @if (!Model.Highlights.IsNullOrEmpty())
+                {
+                    <div class="widget package-highlights avoid-break">
+                        <h3>Highlights</h3>
+                        <div>
+                            <ul>
+                                @foreach (var highlight in Model.Highlights)
+                                {
+                                    <li>
+                                        @Html.Raw(highlight.Value)
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+
+                @if (!Model.Bonuses.IsNullOrEmpty())
+                {
+                    <div class="widget package-highlights avoid-break">
+                        <h3>Entire Bonus</h3>
+                        <div class="highlight-container">
+                            @foreach (var highligh in Model.Bonuses)
+                            {
+                                <div class="item">
+                                    <span class="icon @highligh.Name"></span>
+                                    @Html.Raw(highligh.Value)
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+
+                @if (!Model.TourInfo.Details.IsNullOrEmpty())
+                {
+                    <div class="article-layout">
+                        <div class="package-section">
+                            <div class="widget" style="opacity: 1">
+                                <div class="copy">
+                                    <div class="inner-copy">
+                                        @Html.Raw(Model.TourInfo.Details)
+                                        @if (!Model.TourInfo.MapImage.IsNullOrEmpty())
+                                        {
+                                            <img src="@Model.TourInfo.MapImage.Imgixify()"/>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.TourInfo.HasPeaceOfMindGuarantee && Model.TourInfo.BookNowEnabled)
+                {
+                    <div class="widget peace-booking-plan">
+                        <img src="/images/BookWithConfidence.png"/>
+                    </div>
+                }
+
+                <div class="widget package-inclusions">
+                    @if (!Model.Inclusions.IsNullOrEmpty() || Model.TourInfo.HasFreedomOfChoice)
+                    {
+                        <div class="top">
+                            <h2>Inclusions</h2>
+                        </div>
+
+                        <div>
+                            @if (!Model.Inclusions.IsNullOrEmpty())
+                            {
+                                <ul>
+                                    @foreach (var inclusion in Model.Inclusions)
+                                    {
+                                        <li>
+                                            @inclusion.Value
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            @if (Model.TourInfo.HasFreedomOfChoice)
+                            {
+                                <div class="item">
+                                    <span class="icon fas fa-tag"></span>
+                                    Freedom of Choice Days
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    @if (Model.TourInfo.HasFreedomOfChoice && !Model.FreedomOfChoiceDays.IsNullOrEmpty())
+                    {
+                        <div class="widget package-accordion">
+                            <div class="ui styled fluid accordion">
+                                <div class="accordion-panel">
+                                    @Html.Partial("Partial/Tour/_TourFreedomOfChoiceAccordion", Model)
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+                @Html.Partial("Partial/Tour/_TourItinerary", Model)
+                
+                @Html.Partial("Partial/Tour/_TourOptionalextras", Model)
+                
+                @Html.Partial("Partial/Tour/_TourHotels", Model)
+                
+                @if (
+                    (Model.Destination !=null && !Model.Destination.OfficialLanguages.IsNullOrEmpty()) 
+                    || (Model.Destination !=null && !Model.Destination.Currency.IsNullOrEmpty())
+                    || !Model.TourInfo.ImportantNote.IsNullOrEmpty()
+                    || !Model.TourInfo.Exclusions.IsNullOrEmpty()
+                )
+                {
+                    <div class="widget package-additional-information">
+                        <div class="top">
+                            <h2>Additional information</h2>
+                        </div>
+                        
+                        @if (Model.Destination !=null)
+                        {
+                            <div class="widget package-detail-bar">
+                                @if (!Model.Destination.OfficialLanguages.IsNullOrEmpty())
+                                {
+                                    <div class="item">
+                                        <div class="label">Official language</div>
+                                        <div class="value">@Model.Destination.OfficialLanguages</div>
+                                    </div>
+                                }
+                                @if (!Model.Destination.Currency.IsNullOrEmpty())
+                                {
+                                    <div class="item">
+                                        <div class="label">Local currency</div>
+                                        <div class="value">@Model.Destination.Currency</div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        <div>
+                            @Html.Raw(Model.TourInfo.ImportantNote)
+                            
+                            <div class="disclaimer">
+                                @Html.Raw(Model.TourInfo.Smallprints)
+                            </div>
+                            
+                            @if (!Model.TourInfo.Exclusions.IsNullOrEmpty())
+                            {
+                                <h3>Excluded</h3>
+                                @Html.Raw(Model.TourInfo.Exclusions)
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            
+             @if (!Model.InPartnershipImages.IsNullOrEmpty())
+             {
+                 <div class="side">
+
+                     <div class="widget partnership-with-new">
+                         <h2>In partnership</h2>
+
+                         <div class="images">
+                             @foreach (var partner in Model.InPartnershipImages)
+                             {
+                                 if (partner.Url.IsNullOrEmpty())
+                                 {
+                                     <div class="item">
+                                         <img src="@partner.ImagePath.Imgixify()" alt="@partner.ImageAltText">
+                                     </div>
+                                 }
+                                 else
+                                 {
+                                     <a href="@partner.Url" class="item" target="_blank">
+                                         <img src="@partner.ImagePath.Imgixify()" alt="@partner.ImageAltText">
+                                     </a>
+                                 }
+                             }
+                         </div>
+                     </div>
+                     
+                 </div>
+             }
+        </div>
+    </div>
+</article>

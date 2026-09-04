@@ -1,0 +1,82 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.article-hero {
+  margin: 0 auto;
+  position: relative;
+  box: vertical middle left;
+  max-width: 1440px;
+  padding: 160px 20px 20px;
+
+  @media(--desktop) {
+    min-height: 630px;
+  }
+
+  @media (min-width: 1020px) {
+    padding: 40px;
+  }
+
+  h1 {
+    text-align: left;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0;
+    margin-left: -4px;
+
+    @media(--portrait) {
+      margin-left: 0;
+    }
+
+    @media (min-width: 1020px) {
+      width: 600px;
+    }
+
+    span {
+      background-color: #fff;
+      line-height: 1;
+      display: inline;
+      white-space: pre-wrap;
+      box-shadow: -16px 0 0 #fff;
+      padding: 0 3px;
+
+      font-size: 34px;
+      font-size: responsive 34px 70px;
+      font-range: 500px 1220px;
+    }
+  }
+
+  .button-container {
+    padding: 10px;
+    background-color: #fff;
+    display: inline-block;
+  }
+
+  .image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 35%;
+    width: 100%;
+
+    @media (min-width: 1020px) {
+      bottom: 0;
+      width: 80%;
+    }
+
+    @media(--desktop) {
+
+    }
+
+    img {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-position: center center;
+      object-fit: cover;
+      font-family: "object-fit: cover";
+    }
+  }
+}

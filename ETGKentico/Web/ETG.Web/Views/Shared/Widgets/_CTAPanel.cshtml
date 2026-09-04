@@ -1,0 +1,29 @@
+﻿@using Castle.Core.Internal
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Web.Mvc
+@using ETG.Web.Models.Widgets.CTAPanel
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+@model ComponentViewModel<CTAPanelProperties>
+    <div class="widget cta-panel" data-widget="cta-panel">
+        @if (!Model.Properties.Images.IsNullOrEmpty())
+        {
+            var imageViewModel = MediaFileHelper.GetImageMediaFile(Model.Properties.Images[0].FileGuid);
+            if (imageViewModel != null)
+            {
+                <img class="bg lazyload" data-src="@imageViewModel.ImagePath.Imgixify()" alt="@Model.Properties.Heading">
+
+            }
+        }
+        <div class="tint"></div>
+        <div class="wrapper">
+            <div class="content">
+                <h2>@Model.Properties.Heading</h2>
+                <p>@Model.Properties.TextContent</p>
+                @if (!Model.Properties.Path.IsNullOrEmpty() && !Model.Properties.CTALabel.IsNullOrEmpty())
+                {
+                    <a href="@Model.Properties.Path" class="button ui transparent primary">@Model.Properties.CTALabel</a>
+                }
+            </div>
+        </div>
+    </div>

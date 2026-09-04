@@ -1,0 +1,476 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.agent-portal {
+
+  &.show-mobile-subnav {
+    .mobile-nav {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .mobile-menu-trigger {
+    padding: 15px 20px;
+    background-color: rgba(#333, 0.2);
+    position: relative;
+
+    @media(--portrait) {
+      display: none;
+    }
+
+    .label {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .nav-item {
+      line-height: 1.1;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px;
+      color: $primary;
+    }
+  }
+
+  .mobile-nav {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #d6d6d6;
+    padding-top: 80px;
+    transition: all 0.3s ease;
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 20px;
+    }
+
+    .heading {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 900;
+      padding-left: 20px;
+      padding-bottom: 20px;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+
+      a {
+        display: block;
+        padding: 7px 20px;
+        font-size: 20px;
+
+        &.active {
+          background-color: #cdcdcd;
+        }
+      }
+    }
+  }
+
+  h1 {
+    font-size: 34px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    @media(--desktop) {
+      font-size: 30px;
+    }
+  }
+
+  .top {
+    padding-top: 40px;
+    background-color: #ededed;
+  }
+
+  .nav {
+    display: none;
+
+    @media(--portrait) {
+      display: flex;
+      flex-direction: row;
+    }
+
+    a {
+      min-height: 45px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      padding: 10px 20px;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      text-transform: uppercase;
+      font-size: 12px;
+      line-height: 1.4;
+      font-weight: 900;
+      text-align: center;
+
+      &.active {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+
+  p {
+    max-width: 760px;
+  }
+
+  .bottom {
+    .set {
+      display: none;
+    }
+  }
+
+  .brochure-list {
+
+    .inner-container {
+      @media(--portrait) {
+        display: flex;
+        flex-direction: row;
+        margin: 0 -10px;
+        flex-wrap: wrap;
+      }
+    }
+
+    .item {
+      display: flex;
+      flex-direction: row;
+      margin-top: 20px;
+
+      @media(--portrait) {
+        width: 50%;
+        padding: 0 10px;
+      }
+
+      .inner {
+        border-bottom: 1px solid #E4E4E4;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+      }
+
+      &.added {
+        .content .button {
+          &.toggle-add {
+            background-color: $primary;
+            color: #FFF;
+
+            .remove {
+              display: inline-block;
+            }
+
+            .add {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .image {
+        flex-shrink: 0;
+        position: relative;
+        width: 125px;
+        align-self: flex-end;
+
+        @media(--portrait) {
+          width: 130px;
+        }
+
+        @media(--landscape) {
+          width: 200px;
+        }
+
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      .content {
+        padding: 20px;
+        align-self: flex-end;
+
+        @media(--portrait) {
+          padding: 23px 20px;
+        }
+
+        @media(--landscape) {
+          padding: 30px 20px;
+        }
+
+        .title {
+          font-size: 17px;
+          line-height: 1.2;
+          font-family: $railway;
+          text-transform: uppercase;
+          max-width: 300px;
+          margin-bottom: 10px;
+
+          @media(--portrait) {
+            font-size: 18px;
+          }
+
+          @media(--landscape) {
+            font-size: 23px;
+            line-height: 1;
+          }
+        }
+
+        .button {
+          margin-top: 10px;
+
+          &.toggle-add {
+            position: relative;
+
+            .icon {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              left: 10px;
+            }
+
+            .remove {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .toolkit-list {
+    .container {
+      @media(--portrait) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+      }
+
+      .item {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+
+        @media(--portrait) {
+          width: 33.333%;
+          padding: 0 10px;
+        }
+
+        .button-container {
+          display: block;
+          margin-top: 10px;
+        }
+
+        .title {
+          color: #CA568E;
+          font-size: 20px;
+        }
+
+        .image {
+          position: relative;
+          margin-bottom: 10px;
+          @util aspect-ratio(16:9);
+
+          img {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            font-family: "object-fit: cover";
+          }
+        }
+      }
+    }
+
+    p {
+      max-width: 760px;
+    }
+  }
+
+  .webinar-list {
+    .inner-container {
+      @media(--portrait) {
+        display: flex;
+        flex-direction: row;
+        margin: 0 -10px;
+        flex-wrap: wrap;
+      }
+    }
+
+    .item {
+      display: block;
+      margin-top: 20px;
+
+      @media(--portrait) {
+        width: 50%;
+        padding: 0 10px;
+      }
+
+      @media(--landscape) {
+        width: 33.333%;
+      }
+    }
+
+    p {
+      color: #000;
+    }
+
+    .title {
+      margin-bottom: 10px;
+    }
+
+    .image {
+      position: relative;
+      margin-bottom: 10px;
+      @util aspect-ratio(16:9);
+
+      img {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        font-family: "object-fit: cover";
+      }
+    }
+
+    .title {
+      color: #CA568E;
+      font-size: 20px;
+    }
+  }
+
+  .incentive-list {
+    .inner-container {
+      @media(--portrait) {
+        display: flex;
+        flex-direction: row;
+        margin: 0 -10px;
+        flex-wrap: wrap;
+      }
+    }
+
+    .item {
+      margin-bottom: 20px;
+      display: block;
+
+      @media(--portrait) {
+        width: 50%;
+        padding: 0 10px;
+      }
+
+      @media(--landscape) {
+        height: 160px;
+      }
+
+      .inner {
+        @media(--landscape) {
+          height: 100%;
+          display: flex;
+          flex-direction: row;
+        }
+      }
+
+      .left {
+        display: block;
+
+        @media(--landscape) {
+          width: 50%;
+          flex-shrink: 0;
+        }
+
+        .image {
+          @util aspect-ratio(16:9);
+          position: relative;
+          display: block;
+
+          @media(--landscape) {
+            height: 100%;
+          }
+
+          .grad {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0.7;
+            height: 80px;
+          }
+
+          .title {
+            font-size: 24px;
+            color: #FFF;
+            text-transform: uppercase;
+            font-weight: 900;
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+          }
+
+          img {
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            font-family: "object-fit: cover";
+          }
+        }
+      }
+
+      .right {
+        display: block;
+        margin-top: 10px;
+
+        @media(--landscape) {
+          margin-top: 0;
+          flex-shrink: 0;
+          width: 50%;
+          padding-left: 20px;
+        }
+
+        .location {
+          font-size: 12px;
+          font-weight: 900;
+          color: #000;
+          display: block;
+          margin-bottom: 10px;
+          text-transform: uppercase;
+        }
+
+        .copy {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 1.3;
+        }
+      }
+    }
+
+  }
+}

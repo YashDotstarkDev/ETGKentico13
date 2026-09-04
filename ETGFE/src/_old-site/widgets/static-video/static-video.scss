@@ -1,0 +1,112 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.static-video {
+  padding: 20px 0;
+
+  .inner-container {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .video-container {
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &.play-video {
+      .video-button {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    .video-button {
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      position: absolute;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+
+      @media(--desktop) {
+        &:hover {
+          .play {
+            background-color: $primary;
+          }
+        }
+      }
+
+      img {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        font-family: "object-fit: cover";
+      }
+
+      .tint {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+        opacity: 0.8;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .copy {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #FFF;
+        text-align: center;
+        width: 100%;
+        font-size: 16px;
+        bottom: 20px;
+        line-height: 1.3;
+
+        @media(--landscape) {
+          font-size: 20px;
+        }
+      }
+
+      .play {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        background-color: $primary;
+        color: #FFF;
+        width: 60px;
+        height: 60px;
+        z-index: 1;
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
+
+        svg {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

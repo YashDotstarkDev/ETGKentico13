@@ -1,0 +1,21 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@{
+
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@model ETG.Web.Brochure.Models.BrochurePageViewModel
+@if (Model == null || Model.Brochure == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Brochure)
+}
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/flipstack.js")
+}
+
+<iframe class="flipstack" src="https://cdn.flipsnack.com/widget/v2/widget.html?hash=@Model.Brochure.FlipStackID" width="100%" height="480" seamless="seamless" scrolling="no" frameBorder="0" allowFullScreen></iframe>

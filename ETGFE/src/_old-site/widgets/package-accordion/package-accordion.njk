@@ -1,0 +1,123 @@
+<div class="widget package-accordion">
+  <!-- OPTIONAL -->
+  <!-- <div class="top">
+    <h2>Example heading</h2>
+    <div class="expand">
+      <a href="#" class="expander button ui primary transparent down">Expand All</a>
+    </div>
+  </div> -->
+  <!-- END OPTIONAL -->
+
+  <div class="ui styled fluid accordion">
+
+    <div class="accordion-panel">
+      <div class="title" data-step="roomOptions">
+        <h3 class="heading">Package Upgrades room options</h3>
+        <i class="dropdown icon"></i>
+      </div>
+
+      <div class="content accordion-content package-upgrades">
+        <div class="inner-content">
+          <a href="#" class="product-tile">
+            <span class="image">
+              {% if is_pdf_generation === true %}
+              <img src="https://devotion-creative.imgix.net/etgp0001/images/product-tile-image.jpg?auto=format&w=275&h=155&fit=crop" alt="">
+              {% else %}
+              <img class="lazyload bg" data-src="https://devotion-creative.imgix.net/etgp0001/images/product-tile-image.jpg?auto=format&w=275&h=155&fit=crop" alt="">
+              {% endif %}
+
+              <!-- added logos here -->
+              <span class="logos">
+                {% if is_pdf_generation === true %}
+                <img src="/images/product-tile-pom.png" alt="">
+                <img src="/images/product-tile-foc.png" alt="">
+                <img src="/images/product-tile-exclusive.png" alt="">
+                <img src="/images/product-tile-safe.png" alt="">
+                {% else %}
+                <img class="lazyload logo" data-src="/images/product-tile-pom.png" alt="">
+                <img class="lazyload logo" data-src="/images/product-tile-foc.png" alt="">
+                <img class="lazyload logo" data-src="/images/product-tile-exclusive.png" alt="">
+                <img class="lazyload logo" data-src="/images/product-tile-safe.png" alt="">
+                {% endif %}
+              </span>
+
+              <span class="save">Save up to $1,234</span>
+            </span>
+
+            <!-- location text changed to Main country + sub country + sub country -->
+            <span class="location">Main country + sub country</span>
+            <span class="name" data-mh="even-title">Romance in Paris</span>
+
+            <!-- "Tour code" changed to "Package code" -->
+            <span class="code">Package code: 123456</span>
+
+            <!-- added tour type TourTypeNameList.join(' + ') -->
+            <span class="type">Private escorted tours</span>
+
+            <!-- added location -->
+            <!--
+            if TourDestinationCity is blank, or if TourDepartureCity === TourDestinationCity, output should be
+            TourDepartureCity (Starts/Ends)
+
+            if TourDepartureCity != TourDestinationCity, output should be
+            TourDepartureCity &gt; TourDestinationCity
+             -->
+            <span class="where">TourDepartureCity &gt; TourDestinationCity</span>
+
+            <!-- added highlights - see ticket for rules -->
+            <span class="highlights">
+              <ul>
+                <li>Stay at the Main Hotel</li>
+                <li>Highlight 1</li>
+              </ul>
+            </span>
+
+            <span class="fixed-element">
+              <span class="line">10 nights
+                <span class="grey">|</span>
+                <span class="icon fal fa-plane"></span>
+                <span class="icon fal fa-bed"></span>
+                <span class="icon fal fa-utensils"></span>
+                <span class="icon fal fa-bus"></span>
+              </span>
+
+              <span class="line">
+                <span class="grey">From</span> $7,681 per person <span class="grey">twin share</span>
+              </span>
+            </span>
+
+            <span class="hover-overlay">
+              <p class="clamp">Delight in trustic charms and landscapes.Delight in trustic charms and landscapes..Delight in trustic charms and landscapes.</p>
+              <div class="button primary ui">View package</div>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-panel">
+      <div class="title">
+        <h3 class="heading">Freedom of Choice</h3>
+        <i class="dropdown icon"></i>
+      </div>
+
+      <div class="content accordion-content freedom-of-choice">
+        <div class="inner-content">
+          <div class="logo">
+            <img src="images/foc.png"/>
+          </div>
+          <div class="copy">
+            <p>Our Freedom of Choice program offers flexibility by allowing you to choose from different options on pre-selected days.</p>
+            <p>Our per person price includes one tour on each Freedom of Choice day as follows:</p>
+            <ul>
+              <li>One "Freedom of Choice" tour on day 3</li>
+              <li>One "Freedom of Choice" tour on day 5</li>
+            </ul>
+            <p>Expand the itinerary below for more details.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

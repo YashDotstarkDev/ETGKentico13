@@ -1,0 +1,23 @@
+﻿@using Castle.Core.Internal
+@model List<ETG.Web.Models.Widgets.FAQWidget.FAQViewModel>
+
+@if (Model.IsNullOrEmpty())
+{
+    return;
+}
+<div class="ui styled fluid accordion faqs-accordion">
+    <div class="accordion-panel">
+    @foreach (var faq in Model)
+    {
+        <div class="title @(ViewBag.IsPrint == null ? "" : " active")">
+            <h3 class="heading">@Html.Raw(faq.Question)</h3>
+            <i class="dropdown icon"></i>
+        </div>
+        <div class="content @(ViewBag.IsPrint == null ? "" : " active")">
+            <div class="inner-content">
+                @Html.Raw(faq.Answer.Replace("&nbsp;", " "))
+            </div>
+        </div>
+    }
+    </div>
+</div>

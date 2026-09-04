@@ -1,0 +1,113 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.testimonial {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  padding: 70px 0;
+
+  .quote-66 {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 33px;
+
+    @media(--landscape) {
+      width: 65px;
+    }
+  }
+
+  .quote-99 {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 33px;
+
+    @media(--landscape) {
+      width: 65px;
+    }
+  }
+
+  .bg {
+    img {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      font-family: "object-fit: cover";
+    }
+  }
+
+  .content {
+    color: #FFF;
+    position: relative;
+
+    .button {
+      margin-top: 20px;
+      color: #FFF !important;
+      padding: 14px 40px;
+    }
+
+    .row {
+      @media(--landscape) {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .col {
+        @media(--landscape) {
+          width: 45%;
+          flex-shrink: 0;
+        }
+
+        &:first-child {
+          @media(--landscape) {
+            width: 55%;
+            padding-right: 50px;
+          }
+        }
+      }
+
+      .title {
+        font-size: 47px;
+        line-height: 1;
+        font-family: $railway;
+        text-transform: uppercase;
+        font-weight: 900;
+        @media(--landscape) {
+          font-size: 60px;
+        }
+      }
+
+      .quote {
+        color: #FFF;
+        font-style: italic;
+        margin-top: 20px;
+        font-size: 16px;
+        border-left: none;
+        padding-left: 0;
+        line-height: 1.6;
+        font-family: $lato;
+
+        @media(--landscape) {
+          margin-top: 0;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .tint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}

@@ -1,0 +1,113 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@model ETG.Web.DestinationExpertTeam.Models.DestinationExpertTeamPageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.DestinationExpert)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+
+    @Html.ScriptTag("/scripts/destination-expert-detail.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+@if (Model?.DestinationExpert == null)
+{
+    return;
+}
+<div class="widget destination-expert" data-widget="destination-expert">
+    <div class="top">
+        <img class="lazyload bg" data-src="@Model.DestinationExpert.SummaryInfo.HeroImage.Imgixify()" alt="@Model.DestinationExpert.SummaryInfo.HeroImageAltText">
+        <div class="tint"></div>
+
+        <div class="icon icon-pin"></div>
+        <img class="lazyload round" data-src="@("/images/destination-round.png".Imgixify())" alt="">
+    </div>
+    <div class="bottom">
+
+        <div class="inner">
+            <div class="label">Our destination experts</div>
+            <h2>Our @Model.DestinationExpert.SummaryInfo.Name team</h2>
+            @if (Model.FavouriteTour != null)
+            {
+                @Html.Partial("Partial/Tour/_FavouriteTour", Model.FavouriteTour)
+            }
+            <a href="/destination-experts" class="button ui primary">The other destination expert teams</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wp">
+    <div class="article-layout">
+        <div class="main">
+            <p class="lead">@Html.Raw(Model.DestinationExpert.ObjectiveStatement)</p>
+            @Html.Raw(Model.DestinationExpert.Profile)
+        </div>
+        <div class="side">
+            <div class="widget stats-side" data-widget="stats-side">
+                @if (!Model.DestinationExpert.GoalList.IsNullOrEmpty())
+                {
+                    foreach (var goal in Model.DestinationExpert.GoalList)
+                    {
+                        <div class="set">
+                            <div class="label">@goal.Key</div>
+                            <div class="value">@goal.Value</div>
+                        </div>
+                    }
+                }
+                <a href="#" class="button ui primary">Read more on @Model.DestinationExpert.SummaryInfo.Name</a>
+            </div>
+            @if (Model.Brochure != null)
+            {
+                @Html.Partial("Partial/Tour/_TourBrochure", Model.Brochure)
+            }
+        </div>
+    </div>
+</div>
+
+@if (!Model.RelatedArticles.IsNullOrEmpty())
+{
+    <div class="widget blog-carousel" data-widget="blog-carousel">
+        <div class="wrapper">
+            <h2>Read what we've written on @Model.DestinationExpert.SummaryInfo.Name</h2>
+            @Html.Partial("Partial/Article/_RelatedArticles", Model.RelatedArticles)
+            <div class="widget view-all-cta" data-widget="view-all-cta">
+                <a href="/articles" class="ui button primary transparent">View all</a>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.FeatureTours != null && !Model.FeatureTours.Tours.IsNullOrEmpty())
+{
+    @Html.Partial("Partial/Tour/_TourListing", (Model.FeatureTours, $"Recommended by the Team", string.Empty))
+}
+
+@if (!Model.RegionMapItems.IsNullOrEmpty())
+{
+    @Html.Partial("Partial/Common/_Map", Model.RegionMapItems)
+}
+
+@{
+    Model.DestinationExpert.SummaryInfo.HideCTAButton = true;
+    @Html.Partial("Partial/Common/_PreferredSpeakingPhone", Model.DestinationExpert.SummaryInfo)
+    ;
+}

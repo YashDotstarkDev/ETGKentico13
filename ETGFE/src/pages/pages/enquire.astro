@@ -1,0 +1,46 @@
+---
+import Layout from "../../layouts/layout-main.astro";
+import EnquireForm from "../../components/legacy/EnquireForm.astro";
+import EnquireSide from "../../components/EnquireSide.astro";
+---
+
+<Layout>
+
+        <div class="wrapper wp">
+                <div class="article-layout">
+                        <div class="main">
+                                <h1 class="text-primary">Enquire Now</h1>
+                                <div class="mobile-intro md:hidden mt-2">
+                                        <p>We'd love to hear from you — call our office or complete the form below.</p>
+
+                                        <div class="flex flex-col gap-2 mt-4">
+                                                <div class="line flex flex-row gap-3 items-start">
+                                                        <span class="icon mt-1 fal fa-clock"></span> 8am - 6pm, Mon to Fri
+                                                        </div>
+
+                                                <div class="line flex flex-row gap-3 items-start">
+                                                        <span class="icon mt-1 fal fa-phone"></span>
+                                                        <div>
+                                                                Australia: <a href="tel:0290943322" class="text-body">(02) 9094 3322</a>
+                                                                <br>
+                                                                New Zealand: <a href="tel:0800 855 045" class="text-body">0800 855 045</a>
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                                        <div class="line bg-black/20 mt-6 h-px"></div>
+                                </div>
+                                <div class="desktop-intro hidden md:block mt-2">
+                                        <p>We look forward to helping you with your travel plans. Please complete the form below and our destination experts will get in touch with you shortly.</p>
+                                </div>
+                                <EnquireForm />
+                        </div>
+                        <div class="side">
+                                <EnquireSide />
+                        </div>
+                </div>
+        </div>
+
+        
+
+</Layout>

@@ -1,0 +1,48 @@
+﻿@model ETG.Web.Models.Common.GenericEnquireSidebarViewModel
+
+@if (Model != null && Model.EnquiryContacts.Any())
+{
+    <div class="enquire-side z-[500] border border-[#d6d6d6] p-6 rounded-lg">
+        <div class="side-section border-t border-[#d6d6d6] mt-6 pt-6 first:border-none first:mt-0 first:pt-0 flex flex-col gap-2">
+            <h4 class="uppercase text-black text-[18px]">Entire Travel Group</h4>
+        </div>
+
+
+        @foreach (var contact in Model.EnquiryContacts)
+        {
+            <div class="side-section border-t border-[#d6d6d6] mt-6 pt-6 first:border-none first:mt-0 first:pt-0 flex flex-col gap-2">
+                <h5 class="font-semibold text-base">@contact.Name</h5>
+                @if (!string.IsNullOrEmpty(contact.PhoneDigits))
+                {
+                    <a href="tel:@contact.PhoneDigits" class="line flex items-start gap-2 hover:no-underline text-body hover:text-primary">
+                        <svg class="svg-inline--fa fa-phone icon mt-1 shrink-0 text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="phone" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"></path></svg><!-- <div class="icon fas fa-phone shrink-0 mt-1 text-primary"></div> -->
+                        <div>@contact.Phone</div>
+                    </a>
+                }
+
+                @if (!string.IsNullOrEmpty(contact.Address))
+                {
+                    <div class="line flex items-start gap-2">
+                        <svg class="svg-inline--fa fa-envelope icon mt-1 shrink-0 text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"></path></svg><!-- <div class="icon fas fa-envelope shrink-0 mt-1 text-primary"></div> -->
+                        <div>@Html.Raw(contact.Address.Replace("\r\n", "<br>").Replace("\n", "<br>"))</div>
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(contact.Email))
+                {
+                    <a href="mailto:@contact.Email" class="line flex items-start gap-2 hover:no-underline text-body hover:text-primary">
+                        <svg class="svg-inline--fa fa-paper-plane icon mt-1 shrink-0 text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="paper-plane" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480l0-83.6c0-4 1.5-7.8 4.2-10.8L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"></path></svg><!-- <div class="icon fas fa-paper-plane shrink-0 mt-1 text-primary"></div> -->
+                        <div>@contact.Email</div>
+                    </a>
+                }
+            </div>
+        }
+
+        <div class="side-section border-t border-[#d6d6d6] mt-6 pt-6 first:border-none first:mt-0 first:pt-0 flex flex-col gap-2">
+            <div class="buttons flex flex-col gap-3">
+                @Html.Partial("Partial/Form/_SideButtons")
+            </div>
+        </div>
+
+    </div>
+}

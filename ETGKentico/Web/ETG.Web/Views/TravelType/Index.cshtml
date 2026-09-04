@@ -1,0 +1,70 @@
+@using System.Web.Mvc.Html
+@using Castle.Core.Internal
+@using ETG.Web.Helpers
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Web.Mvc
+
+@model ETG.Web.TravelType.Models.TravelTypeDetailPageViewModel
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model?.Detail == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Detail)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/new-travel-type-detail.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@Html.Partial("Partial/Common/_BreadCrumbs", Model)
+
+@Html.Partial("Partial/Common/_PageHero", Model.Hero)
+
+<div class="widget new-destination-page" data-widget="new-destination-page">
+
+    <div class="intro">
+        <div class="wrapper contained">
+            <h1>@Model.Detail.BasicInfo.Heading</h1>
+            <div class="intro-text">
+                @Model.Detail.BasicInfo.Summary
+            </div>
+        </div>
+    </div>
+
+
+    @Html.Kentico().EditableArea("Zone1")
+
+    @Html.Kentico().EditableArea("Zone2")
+    @if (Model.ThemedPackagesInfo != null)
+    {
+        @Html.Partial("Partial/Common/_ThemedPackages", Model.ThemedPackagesInfo)
+    }
+    <div class="wrapper">
+        @Html.Partial("Partial/Tour/_TourConnectWithUs", Model.ConnectWithUs)
+    </div>
+    @if (Model.RelatedArticles != null)
+    {
+        <div class="spacer"></div>
+        @Html.Partial("Partial/Common/_Articles", Model.RelatedArticles)
+    }
+
+    @if (Model.Detail.BasicInfo.HideGoogleReviews)
+    {
+    }
+</div>
+
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")

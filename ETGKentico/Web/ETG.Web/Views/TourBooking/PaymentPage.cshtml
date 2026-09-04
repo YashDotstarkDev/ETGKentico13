@@ -1,0 +1,164 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Data.Extensions
+@using ETG.Web.Helpers
+@model ETG.Web.Models.Pages.PaymentPageContentsViewModel
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@if (Model == null)
+{
+    return;
+}
+@section AdditionalHeadScripts
+{
+    <link rel="stylesheet" href="@Model.ETGSettings.TravelpayCSSLink" />
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/pay-now.js")
+    <script src="https://www.google.com/recaptcha/api.js?render=@ViewBag.RecaptchaSiteKey"></script>
+    <script type="text/javascript" src="@Model.ETGSettings.TravelpayBS5JSLink"></script>
+    <script type="text/javascript" src="@Model.ETGSettings.TravelpayJSLink"></script>
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+<div class="widget pay-now" data-widget="pay-now">
+    <div class="top">
+        <div class="wrapper">
+            <h1>@Html.Raw(Model.Heading)</h1>
+        </div>
+    </div>
+    <div class="bottom wp">
+        <div class="wrapper">
+            @Html.Raw(Model.PageBodyContent)
+            <div class="article-layout">
+                <div class="main">
+                    <div class="payment-form">
+                        <div class="form-heading">
+                            <h4>Your details</h4>
+                            <div class="cards">
+                                <img src="@("/images/cards-new.png".Imgixify())">
+                            </div>
+                        </div>
+
+                        <div class="ui form" data-method="POST" data-endpoint="/api/booking/createpayment" data-validate-inline="data-validate-inline" data-validate-on="submit" data-payment-result-page="@Model.ETGSettings.ETGPayNowProcessingUrl">
+                            <div class="row">
+                                <div class="column">
+                                    <div class="field">
+                                        <label>Lead passenger - First name</label>
+                                        <input type="text" name="firstname" data-rules="empty" data-prompts="Please enter first name" tabindex="1" />
+                                    </div>
+
+                                    <div class="field">
+                                        <label>Lead passenger - Last name</label>
+                                        <input type="text" name="lastname" data-rules="empty" data-prompts="Please enter last name" tabindex="2" />
+                                    </div>
+
+                                    <div class="field">
+                                        <label class="with-tooltip">
+                                            <div>Contact number</div>
+                                            <div class="ui tool-tip" data-html="<b>Australian Number</b><br><i>Area Code + Number</i><br>e.g. 0290943322<br><br><b>Australian Mobile</b><br><i>10 digits no spaces</i><br>e.g. 0430123123<br><br><b>International Number</b><br><i>Country Code + area code + number</i><br>e.g. +33148643543">
+                                                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#333333" />
+                                                </svg>
+                                            </div>
+                                        </label>
+                                        <input type="text" name="phone" data-rules="phone" data-prompts="Please enter contact number" tabindex="3" />
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="field">
+                                        <label>Email</label>
+                                        <input type="text" name="email" data-rules="empty,email" data-prompts="Please enter valid email address" tabindex="4" />
+                                    </div>
+                                    <div class="field">
+                                        <label class="with-tooltip">
+                                            <div>Invoice Booking Reference</div>
+                                            <div class="ui tool-tip" data-html="Use the full alpha-numeric Booking Reference shown on your invoice.<br><br>eg. <b>ETG123456</b>">
+                                                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#333333" />
+                                                </svg>
+                                            </div>
+                                        </label>
+                                        <input type="text" name="referenceno" data-rules="empty" data-prompts="Please enter the invoice booking reference" tabindex="5" />
+                                    </div>
+                                    <div class="field">
+                                        <label>Payment Amount</label>
+                                        <div class="payment-input">
+                                            <input type="text" name="paymentamount" data-rules="empty" data-prompts="Please enter the payment amount" tabindex="6" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.Partial("Partial/Form/_Recaptcha")
+                            <div class="row">
+                                <div class="field">
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" name="acceptterms" value="acceptterms" data-rules="checkboxCount[1]" data-prompts="Please accept Terms and Conditions" />
+                                        <label>
+                                            I accept the
+                                            <a href="/booking-conditions" target="_blank">
+                                                Terms and Conditions
+                                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M10.125 8H9.375C9.16406 8 9 8.1875 9 8.375V11H1.5V3.5H4.875C5.0625 3.5 5.25 3.33594 5.25 3.125V2.375C5.25 2.1875 5.0625 2 4.875 2H1.125C0.492188 2 0 2.51562 0 3.125V11.375C0 12.0078 0.492188 12.5 1.125 12.5H9.375C9.98438 12.5 10.5 12.0078 10.5 11.375V8.375C10.5 8.1875 10.3125 8 10.125 8ZM11.1094 0.5H7.40625C7.03125 0.5 6.75 0.804688 6.75 1.15625V1.60156C6.75 1.95312 7.03125 2.23438 7.38281 2.23438C7.40625 2.23438 7.40625 2.23438 7.40625 2.23438L9 2.1875L3.16406 8C3.04688 8.09375 2.97656 8.23438 2.97656 8.39844C2.97656 8.53906 3.04688 8.67969 3.16406 8.79688L3.70312 9.33594H3.72656C3.82031 9.45312 3.96094 9.5 4.10156 9.5C4.26562 9.5 4.40625 9.45312 4.5 9.33594L10.3125 3.5L10.2656 5.09375C10.2656 5.46875 10.5469 5.75 10.9219 5.75H11.3438C11.6953 5.75 12 5.46875 12 5.09375V1.39062C12 0.898438 11.6016 0.5 11.1094 0.5Z" fill="#CA568E" />
+                                                </svg>
+                                            </a> and
+                                            <a href="https://travelpay.com.au/travelpay-public-webpay-terms-conditions" target="_blank">
+                                                Payment Conditions
+                                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M10.125 8H9.375C9.16406 8 9 8.1875 9 8.375V11H1.5V3.5H4.875C5.0625 3.5 5.25 3.33594 5.25 3.125V2.375C5.25 2.1875 5.0625 2 4.875 2H1.125C0.492188 2 0 2.51562 0 3.125V11.375C0 12.0078 0.492188 12.5 1.125 12.5H9.375C9.98438 12.5 10.5 12.0078 10.5 11.375V8.375C10.5 8.1875 10.3125 8 10.125 8ZM11.1094 0.5H7.40625C7.03125 0.5 6.75 0.804688 6.75 1.15625V1.60156C6.75 1.95312 7.03125 2.23438 7.38281 2.23438C7.40625 2.23438 7.40625 2.23438 7.40625 2.23438L9 2.1875L3.16406 8C3.04688 8.09375 2.97656 8.23438 2.97656 8.39844C2.97656 8.53906 3.04688 8.67969 3.16406 8.79688L3.70312 9.33594H3.72656C3.82031 9.45312 3.96094 9.5 4.10156 9.5C4.26562 9.5 4.40625 9.45312 4.5 9.33594L10.3125 3.5L10.2656 5.09375C10.2656 5.46875 10.5469 5.75 10.9219 5.75H11.3438C11.6953 5.75 12 5.46875 12 5.09375V1.39062C12 0.898438 11.6016 0.5 11.1094 0.5Z" fill="#CA568E" />
+                                                </svg>
+                                            </a>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row right">
+                                <div class="field">
+                                    <input type="hidden" name="paymentid" />
+                                    <button class="ui button submit primary">Pay Now</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+                        @Html.Kentico().EditableArea("editableRHS")
+                    </div>
+                </div>
+                <div class="side">
+                    <div class="other-options">
+                        <h4>Other payment options</h4>
+                        @if (!Model.PaymentOptions.IsNullOrEmpty())
+                        {
+                            foreach (var modelPaymentOption in Model.PaymentOptions)
+                            {
+                                <div class="payment-option">
+                                    <div class="heading">@Html.Raw(modelPaymentOption.Name)</div>
+                                    <div class="content">
+                                        @Html.Raw(modelPaymentOption.Description)
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <div class="payment-option">
+                            <div class="note">
+                                <div class="heading">Note:</div>
+                                Please ensure Invoice Booking Reference is used for payments.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

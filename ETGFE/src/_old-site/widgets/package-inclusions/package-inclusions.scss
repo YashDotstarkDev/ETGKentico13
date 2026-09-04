@@ -1,0 +1,35 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-inclusions {
+  margin-top: 40px;
+  font-size: 16px;
+  line-height: 1.8;
+  break-inside: avoid-page; /* Ensure widget heading starts on same print page as its content */
+
+  p {
+    line-height: 1.8;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    html.pdf-generation-template & {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media(--portrait), print {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
+}

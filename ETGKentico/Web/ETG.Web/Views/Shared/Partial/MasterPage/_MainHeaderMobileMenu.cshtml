@@ -1,0 +1,131 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Constants;
+@model ETG.Web.Models.Layout.HeaderViewModel
+
+<div class="mobile-menu">
+    <div class="fader"></div>
+    <div class="primary-container">
+        <div class="top">
+            <div class="back">
+                <span class="icon fas fa-chevron-left"></span>
+            </div>
+            <a href="/enquire" class="button ui primary">Enquire now</a>
+            <a href="#" class="close">
+                <span class="fal fa-times"></span>
+            </a>
+        </div>
+
+        <div class="middle">
+            <ul>
+                @if (Model.MainLinks != null && !Model.MainLinks.IsNullOrEmpty())
+                {
+                    foreach (var mainLink in Model.MainLinks)
+                    {
+                        if (mainLink.Link != null)
+                        {
+                            <li>
+                                <a href="@mainLink.Link.Path.ToLower()">
+                                    @mainLink.Link.Label
+                                </a>
+
+                                @if (!mainLink.MenuGroups.IsNullOrEmpty())
+                                {
+                                    <div class="expand">
+                                        <span class="icon fas fa-chevron-right"></span>
+                                    </div>
+                                    <div class="secondary-container">
+                                        <div class="middle">
+                                            @foreach (var menuGroup in mainLink.MenuGroups)
+                                            {
+                                                <ul>
+                                                    @if (menuGroup.Link != null)
+                                                    {
+                                                        switch (menuGroup.Link.LinkGroupType)
+                                                        {
+                                                            case GlobalConstants.LINK_GROUP_GROUPED:
+                                                                if (!menuGroup.Link.Path.IsNullOrEmpty())
+                                                                {
+                                                                    <li class="parent"><a href="@menuGroup.Link.Path">@menuGroup.Link.Label</a></li>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <li class="parent">@menuGroup.Link.Label</li>
+                                                                }
+                                                                break;
+                                                            default:
+                                                                @Html.Raw($"<li><a href=\"{menuGroup.Link.Path.ToLower()}\">{menuGroup.Link.Label}</a></li>")
+                                                                ;
+                                                                break;
+                                                        }
+                                                    }
+
+                                                    @if (!menuGroup.ChildLinks.IsNullOrEmpty())
+                                                    {
+                                                        foreach (var menu in menuGroup.ChildLinks)
+                                                        {
+                                                            <li>
+                                                                <a href="@menu.Path.ToLower()">
+                                                                    @menu.Label
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            }
+
+                                        </div>
+                                        @if (mainLink.Link.CommonLinkCaption != null && mainLink.Link.CommonLinkUrl != null)
+                                        {
+                                            <div class="bottom">
+                                                <a href="@mainLink.Link.CommonLinkUrl.ToLower()" class="view-all button ui primary transparent">@mainLink.Link.CommonLinkCaption</a>
+                                            </div>
+                                        }
+
+                                    </div>
+                                }
+                            </li>
+                        }
+                    }
+                }
+            </ul>
+        </div>
+        <div class="bottom">
+            <ul>
+                @* <li> *@
+                @*     <a href="/articles">Be Inspired</a> *@
+                @* </li> *@
+                @*@if (!Model.PeaceOfMindUrl.IsNullOrEmpty())
+                {
+                    <li>
+                        <a href="@Model.PeaceOfMindUrl.ToLower()">Peace of Mind</a>
+                    </li>
+                }
+                @if (!Model.FreedomOfChoiceUrl.IsNullOrEmpty())
+                {
+                    <li>
+                        <a href="@Model.FreedomOfChoiceUrl.ToLower()">Freedom of Choice</a>
+                    </li>
+                }
+                @if (!Model.SafeTravelUrl.IsNullOrEmpty())
+                {
+                    <li>
+                        <a href="@Model.SafeTravelUrl.ToLower()">Safe Travels</a>
+                    </li>
+                }*@
+                @if (!Model.BookNowUrl.IsNullOrEmpty())
+                {
+                    <li>
+                        <a href="@Model.BookNowUrl.ToLower()">Book Now</a>
+                    </li>
+                }
+                <li>
+                    <a href="/agents">Agents</a>
+                </li>
+                <li>
+                    <a href="/brochures">Brochures</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

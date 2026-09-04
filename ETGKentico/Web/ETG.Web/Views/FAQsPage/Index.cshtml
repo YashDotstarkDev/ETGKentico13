@@ -1,0 +1,214 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@model ETG.Web.Models.Pages.FAQsPageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model?.Page == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page.Page)
+    <script type="application/ld+json">
+        {
+          "@@context": "https://schema.org",
+          "@@type": "FAQPage",
+          "mainEntity": [{
+            "@@type": "Question",
+            "name": "Who are Entire Travel Group?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Welcome to Entire Travel Group. We offer exceptional travel experiences across our extensive range of Entire Holiday Packages, Entire Group Journeys, Entire Rail Journeys, and Entire Cruise Journeys. With our industry-leading Peace of Mind Booking Plan, you can Book Now with flexibility and confidence. Entire Travel Group is celebrating over 50 years of passionately delivering unique and memorable travel experiences. We are an Australian, family-owned, award-winning business with a friendly team ready to match your expectations to the perfect holiday experience. Entire Travel Group used to be known by the individual brands shown in the footer of the website. The company has not changed, but we have amalgamated under one brand - Entire Travel Group. For more details please visit - About Us | Entire Travel Group"
+            }
+          },{
+            "@@type": "Question",
+            "name": "Is Entire Travel Group Australian owned and operated?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Entire Travel Group is proudly Australian family owned and operated and as it stands today represents 50 years of experience, progress, and evolution. We proudly support the community with our long-term commitment to many important charity organisations. We were awarded the best operator in our class at the most recent National Travel Industry Awards."
+            }
+          },{
+            "@@type": "Question",
+            "name": "Is Entire Travel Group industry accredited?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Entire Travel Group is both ATAS and CATO Accredited. ATAS is administered by the Australian Federation of Travel Agents (AFTA). The Council of Australian Tour Operators (CATO) is the trade association representing the land supply sector of the Australian Travel Industry. We are also recent winners at the National Travel Industry Awards."
+            }
+          },{
+            "@@type": "Question",
+            "name": "Does Entire Travel Group have industry awards?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Entire Travel Group was awarded “Best Specialty Wholesaler” at the 2019 National Travel Industry Awards (NTIA), which are held annually by the Australian Federation of Travel Agents (AFTA). The awards recognise quality and excellence in the Australian travel industry. We were extremely honoured to receive this recognition and we will continue to deliver the best service and value to our customers."
+            }
+          },{
+            "@@type": "Question",
+            "name": "Are the Entire Travel Group holiday packages exclusive?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "In some cases, we are the sole representative in Australia for the overseas travel operator. In other circumstances the product developed has been exclusively built for Entire Travel Group and can’t be found elsewhere."
+            }
+          },{
+            "@@type": "Question",
+            "name": "What’s unique about Entire Travel Group Holiday Packages?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "They are not group tours with set departures - they are pre-designed, purpose built, independent holiday packages full of unique and memorable experiences. Our holiday packages have been exclusively built for us in collaboration with our handpicked suppliers, who also offer full on-ground support for the clients. We are offering unique travel experiences which cannot be found elsewhere. Many packages include our “Freedom of Choice” options which allow you to tailor the holiday experience. Like a sommelier matching wine to a meal, we have used our experience to carefully select and offer the right experiences in each location. They include our Peace of Mind Booking Plan. A wide selection of our packages are compliant with the World Travel & Tourism Council (WTTC) Covid Safe Travels. Our motto for Independent Holiday Packages is start your holiday when and with who you want! Our Independent Holiday Packages are NOT group tours with set departure dates. Group Tours have specific set departure dates, and of course, you are travelling with unknown passengers in a coach. These tours are great for certain travellers and there are many reputable tour operators providing a wide range of options around the world. At Entire Travel Group, our focus is Independent Holiday Packages. Available daily, they are pre-designed, purpose built, packaged itineraries full of memorable experiences delivered by our hand-picked local partners. Our holidays suit every demographic, from couples to singles, to retirees to families and everyone else in between."
+            }
+          },{
+            "@@type": "Question",
+            "name": "Why travel with Entire Travel Group?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Of all the attributes Entire Travel Group offer - we have settled on “Experience” as the one quality we believe adds the most value to our customers. That’s how our tagline “When Experience Matters” came to life and encapsulates our business in three words, as experience does matter! We have been operating for many years and have the experience to determine what sightseeing, duration and accommodation style makes a great itinerary. Our technology is continually enhanced, giving our team the ability to provide a great customer service experience. Our relationship with our operators is extremely strong, which ensures we are confident of the travel experience and on ground support for our clients. For more details please visit - About Us | Entire Travel Group"
+            }
+          },{
+            "@@type": "Question",
+            "name": "How does the Peace of Mind Booking Plan work?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Our Peace of Mind Booking Plan allows you to book with confidence in the new international travel environment. With low deposits, a cooling off period and a flexibility period where you can cancel and rebook later, we really do have you covered. For more details please visit - Peace of Mind Booking Plan | Entire Travel Group"
+            }
+          },{
+            "@@type": "Question",
+            "name": "Is there a cooling-off period?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Look for packages with our Peace of Mind Booking Plan logo on the website. We understand that occasionally plans may change, so we give you the confidence to proceed with a cooling off period. You may cancel for any reason within 7 days, where you will receive a 100% refund of your $100 per person deposit. For more details please visit - Peace of Mind Booking Plan | Entire Travel Group"
+        }
+          },{
+            "@@type": "Question",
+            "name": "What is Freedom of Choice?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "At Entire Travel Group we understand that our customers have their own personal tastes and interests - so throughout our packages look for “Freedom of Choice” which gives you the ability to tailor your holiday from the various experiences offered on selected days. Like a sommelier matching wine to a meal, we have used our experience to carefully select and offer the right experiences in each location. The Freedom of Choice options are included in the package price, and the price remains the same regardless of the choice you make on each day. Our Freedom of Choice program offers flexibility, by allowing you to choose from different options on pre-selected days in the itinerary. Our per person price includes one tour on each Freedom of Choice day in the itinerary. The price of the package remains the same regardless of the choice you make on each day. For more details please visit - Freedom of Choice | Entire Travel Group"
+            }
+          },{
+            "@@type": "Question",
+            "name": "What is Book Now?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Book Now offers you the ability to make a reservation on our website for Holiday Packages that include our Peace of Mind Booking Plan. But it’s not just a static offer – you have complete flexibility from travel dates, passenger numbers, single supplements, room upgrades, optional extras, flexible booking terms and more. Our team will contact our overseas suppliers and confirm all arrangements. A Confirmation from our reservation system will be sent in the coming days. The Booking Number on this confirmation supersedes the website reference."
+            }
+          },{
+            "@@type": "Question",
+            "name": "What forms of payment can be used at Entire Travel Group?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "To confirm a booking using our on-line Book Now process, a credit card must be used to pay the refundable deposit. For additional payments on the booking, Entire Travel Group supports bank transfer, credit card, TravelPay B2B, PaymentGate. For further details please visit our Payments page."
+            }
+          },{
+            "@@type": "Question",
+            "name": "How secure is the Entire Travel Group's on-line payment portal?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Entire Travel Group have partnered with TravelPay to ensure secure on-line credit card payments. TravelPay is a level 1 PCI DSS compliant, which gives you peace of mind that your payment card data is in safe hands. Entire Travel Group does not store any credit card information. For more details please visit - Security and Compliance - TravelPay"    }
+          },{
+            "@@type": "Question",
+            "name": "Can you book my international airfares?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "On some Islands Holiday Packages (e.g. Fiji), it is practical to include flights, so where we have done this it is indicated by the plane icon. However, on the majority of our Holiday Packages, we do not include international flights. We found that many customers may prefer to: Travel on a specific airline of their choice Have the flexibility to book flights with Frequent Flyer points Select flight dates that may be different to our Holiday Package start/end dates Use a Travel Credit already held with the airline Use their travel agent for this service We are able to assist with flights on any Holiday Package, so please just notify us during the Book Now process or contact our team."
+            }
+          },{
+            "@@type": "Question",
+            "name": "Should I take travel insurance?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Travel insurance is strongly recommended. During the Book Now process please confirm you require assistance, and our team will be in contact with you."
+            }
+          },{
+            "@@type": "Question",
+            "name": "What should I do before travelling?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Before you travel it is your responsibility to ensure you have the appropriate documentation including visas. If you are travelling on a passport other than Australian or New Zealand, you will require a permit to re-enter Australia. It is your responsibility as the traveller and/or travel booker to meet all government entry requirements. For more information please visit - Before you travel | Entire Travel Group"
+            }
+          },{
+            "@@type": "Question",
+            "name": "How does a Travel Agent make a booking?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Please visit the Entire Travel Group's Agent Portal. We are here to support our industry partners with a range of informative updates, marketing collateral for campaigns and a reward & recognition program. How do I start a Booking? On any page that has Book Now simply follow the booking process. You must select the Travel Agent tick box and provide correct details. To confirm a booking only the refundable deposit is required. An agency credit card must be used for this initial payment."
+            }
+          },{
+            "@@type": "Question",
+            "name": "How do I contact Entire Travel Group?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "For more information please visit - Contact us | Entire Travel Group"
+            }
+          },{
+            "@@type": "Question",
+            "name": "How secure is the Entire Travel Group's on-line payment portal?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "Entire Travel Group have partnered with TravelPay to ensure secure on-line credit card payments. TravelPay is a level 1 PCI DSS compliant, which gives you peace of mind that your payment card data is in safe hands. Entire Travel Group does not store any credit card information. For more details please visit - Security and Compliance - TravelPay"    }
+          },{
+            "@@type": "Question",
+            "name": "What forms of payment can be used at Entire Travel Group?",
+            "acceptedAnswer": {
+              "@@type": "Answer",
+              "text": "To confirm a booking using our on-line Book Now process, a credit card must be used to pay the refundable deposit. For additional payments on the booking, Entire Travel Group supports bank transfer, credit card, TravelPay B2B, PaymentGate."
+            }
+          }]
+        }
+    </script>
+
+
+}
+
+@section AdditionalHeadScripts
+{
+    <!-- Calendly badge widget begin -->
+    <link href=https://assets.calendly.com/assets/external/widget.css rel="stylesheet">
+    <script src=https://assets.calendly.com/assets/external/widget.js type="text/javascript" async></script>
+    <!-- Calendly badge widget end -->
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/faqs.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+<div class="widget faqs-page" data-widget="faqs-page">
+    <div class="bottom wp">
+        <div class="wrapper">
+            <div class="article-layout">
+                <div class="main">
+                    @if (Model.Page.PageHero != null)
+                    {
+                        <h1>@Model.Page.PageHero.Heading</h1>
+                    }
+                    @Html.Raw(Model.Page.Content)
+                    @Html.Kentico().EditableArea("editableMain")
+
+                </div>
+                <div class="side">
+                    @Html.Partial("Partial/Common/_SideContact", Model.ContactDetails)
+                </div>
+                <div class="bottom">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")

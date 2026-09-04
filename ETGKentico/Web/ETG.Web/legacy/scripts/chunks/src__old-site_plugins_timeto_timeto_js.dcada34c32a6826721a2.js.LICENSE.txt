@@ -1,0 +1,10 @@
+/**
+ * Time-To jQuery plug-in
+ * Show countdown timer or realtime clock
+ *
+ * @author Oleksii Teterin <altmoc@gmail.com>
+ * @version 1.3.0
+ * @license MIT http://opensource.org/licenses/MIT
+ * @date 2019-05-14
+ * @host https://github.com/Lexxus/jq-timeTo
+ */

@@ -1,0 +1,10 @@
+# Ignore build outputs 
+**/bin/ 
+**/obj/ 
+# Ignore NuGet packages 
+**/packages/ 
+*.nupkg 
+# Ignore large files 
+*.dll 
+*.dep 
+*.mmdb 

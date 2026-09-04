@@ -1,0 +1,20 @@
+﻿@using Castle.Core.Internal
+@model ETG.Web.Models.Widgets.FAQWidget.FAQWidgetViewModel
+
+@if (Model == null || Model.FAQs.IsNullOrEmpty())
+{
+    return;
+}
+<a id="faqZone"></a>
+<div class="package-accordion">
+    <div class="wrapper">
+        <div class="heading flex items-end justify-between">
+            <h2 class="text-black uppercase">@Model.Heading</h2>
+            @if (Model.ShowViewAllButton)
+            {
+                <a href="@Model.FAQsPageUrl" class="btn btn-primary-outline">View All</a>
+            }
+        </div>
+        @Html.Partial("Partial/Common/_FAQsAstro", Model.FAQs)
+    </div>
+</div>

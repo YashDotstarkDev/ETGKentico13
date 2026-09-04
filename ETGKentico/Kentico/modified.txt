@@ -1,0 +1,7 @@
+Following files were copied into the target directory with the '.new' extension. Merge your custom changes into these files and remove the '.new' extensions afterwards.
+D:\Source Code\etg\Kentico\CMS\App_Data\Install\SQL.zip
+D:\Source Code\etg\Kentico\CMS\App_Themes\Default\Images\Images.zip
+D:\Source Code\etg\Kentico\CMS\CMSAdminControls\CKeditor\config.js
+D:\Source Code\etg\Kentico\CMS\CMSAdminControls\CKeditor\styles.js
+D:\Source Code\etg\Kentico\CMS\CMSModules\SmartSearch\Controls\Edit\ClassFields.ascx.cs
+D:\Source Code\etg\Kentico\CMS\CMSScripts\CMSModules\CMS\Loader.js

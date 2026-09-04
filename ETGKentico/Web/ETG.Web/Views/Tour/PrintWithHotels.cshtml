@@ -1,0 +1,35 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@{
+
+    Layout = "~/Views/Shared/_MasterPrint.cshtml";
+}
+@model ETG.Web.Tour.Models.TourPageViewModel
+@if (Model == null || Model.TourInfo == null || Model.TourInfo.TourSummaryInfo == null)
+{
+    return;
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/abcpdf-package-detail-html.js", false)
+}
+@Html.Partial("Partial/Tour/Print/_PrintLogo", Model.TourInfo.TourSummaryInfo)
+<article>
+    <div class="wrapper">
+        @Html.Partial("Partial/Tour/_TourHeroImage", Model)
+        <div class="widget package-intro">
+            <br/> <strong>Booking Number:</strong> @Model.BookingNumber<br/>
+            <strong>Travel Start Date:</strong> @Model.HotelPDFStartDateDisplay<br/>
+        </div>
+
+        @if (!Model.Hotels.IsNullOrEmpty())
+        {
+            <div class="widget package-hotels">
+                <div class="wrapper">
+                    @Html.Partial("Partial/Tour/Print/_PrintTourHotelsRowBreaks", (Model.Hotels, Model.HotelPDFStartDate, Model.PrintHotelIds, Model.PrintNights))
+                </div>
+            </div>
+        }
+    </div>
+</article>

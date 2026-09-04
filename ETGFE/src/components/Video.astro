@@ -1,0 +1,76 @@
+---
+import VideoPlayer from "./base/VideoPlayer.vue";
+---
+
+<!--
+/////
+video Start
+/////
+-->
+
+<div class="video @container">
+    <div class="wrapper max-w-6xl">
+        <VideoPlayer client:only="vue">
+            <div class="video-player relative aspect-video overflow-hidden border border-gray-200 shadow-lg">
+                <!-- player div -->
+                <div class="player" data-plyr-provider="youtube" data-plyr-embed-id="ssDTTHpmy60"></div>
+
+                <!-- vimeo example -->
+                <!-- <div id="player" data-plyr-provider="vimeo" data-plyr-embed-id="76979871"></div> -->
+
+                <!-- poster div -->
+                <div
+                        class="poster group absolute inset-0 isolate flex cursor-pointer items-center justify-center overflow-hidden transition-all duration-300"
+                >
+                    <!-- poster image -->
+                    <img
+                            data-lowsrc="https://entiretravel.imgix.net/getmedia/9abd159d-54b8-4b33-b066-cf02aecda715/matamanoa-hero-2-1500x780.jpg?auto=format&w=3"
+                            data-src="https://entiretravel.imgix.net/getmedia/9abd159d-54b8-4b33-b066-cf02aecda715/matamanoa-hero-2-1500x780.jpg?auto=format&w={width}"
+                            data-sizes="auto"
+                            class="lazyload absolute z-0 inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                            alt="Hilton Moorea Lagoon Resort & Spa"
+                    />
+
+                    <!-- tint -->
+                    <div class="tint absolute inset-0 z-20 bg-black opacity-30"></div>
+
+                    <button class="relative z-30 inline-flex items-center justify-center uppercase text-white transition-colors duration-300 bg-primary rounded-full w-[60px] h-[60px] md:w-[80px] md:h-[80px] group-hover:bg-white group-hover:text-primary">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M58.6739 41.3261L29.3261 58.4457V24.2065L58.6739 41.3261Z" fill="currentColor"/>
+                        </svg>
+
+                    </button>
+
+                    <div class="title hidden md:block absolute inset-x-0 bottom-8 z-30 mx-auto max-w-3xl text-center text-white p-12 h3 md:text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)]">
+                        Optional video title
+                    </div>
+                </div>
+            </div>
+        </VideoPlayer>
+
+        <div class="title md:hidden h4 mt-3 text-center">
+            Optional video title
+        </div>
+    </div>
+</div>
+
+<style is:global lang="scss">
+  html {
+    --plyr-color-main: #ca568e;
+  }
+
+  .video .player {
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .video .video-player.playing .poster {
+    opacity: 0;
+    visibility: hidden;
+  }
+</style>
+
+<!--
+/////
+video End
+/////
+-->

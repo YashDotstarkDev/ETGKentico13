@@ -1,0 +1,203 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.landing-sticky-footer {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  transition: bottom 1s ease;
+
+  &.scrolled {
+    bottom: 0;
+  }
+
+  .bar {
+    background-color: #fff;
+    padding: 15px 20px;
+    position: relative;
+
+    &.expand-sticky {
+      .right {
+        .buttons {
+          height: 58px;
+        }
+      }
+
+      .expand-sticky-trigger {
+        .icon {
+          &.down {
+            display: block;
+          }
+
+          &.up {
+            display: none;
+          }
+        }
+      }
+    }
+
+    @media(--portrait) {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .name {
+      font-size: 20px;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 30px;
+
+      @media(--portrait) {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .bar {
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.11);
+  }
+
+  .expand-sticky-trigger {
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+
+    @media(--portrait) {
+      display: none;
+    }
+
+    .icon {
+      color: $primary;
+      font-size: 20px;
+
+      &.down {
+        display: none;
+      }
+    }
+  }
+
+  .top {
+    @media(--portrait) {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .ui.button {
+    padding: 13px 20px;
+
+    @media(--portrait) {
+      padding: 13px 30px;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    @media(--portrait) {
+      justify-content: center;
+    }
+  }
+
+  .left {
+    display: none;
+
+    @media(--landscape) {
+      display: block;
+    }
+
+    .brand {
+      position: absolute;
+      top: 25px;
+      left: 20px;
+      width: 90px;
+
+      @media(min-width: 768px) {
+        width: 122px;
+        top: 20px;
+      }
+
+      svg {
+        width: 100%;
+      }
+
+      .pin {
+        fill: #929497;
+      }
+
+      .main {
+        fill: #000;
+      }
+
+      .shadow {
+        fill: $primary;
+      }
+
+      .sub {
+        fill: #929497;
+      }
+    }
+  }
+
+  .right {
+
+    @media(--portrait) {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      padding-right: 120px;
+    }
+
+    .contact-links {
+      justify-content: center;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .link {
+
+        .ui.primary.button {
+          padding-left: 20px;
+          padding-right: 20px;
+
+          @media(min-width: 768px) {
+            padding-left: 30px;
+            padding-right: 30px;
+          }
+        }
+      }
+
+      a {
+        box: horizontal middle center;
+      }
+
+      .phone {
+        margin-left: 10px;
+        @media(min-width: 768px) {
+          margin-left: 20px;
+        }
+
+        a {
+          color: $primary;
+          font-weight: 900;
+
+          svg {
+            display: block;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,79 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@{
+
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@model ETG.Web.Article.Models.ArticleLandingPageViewModel
+@if (Model == null || Model.Page == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page.Page)
+}
+
+@section AdditionalScripts {
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css"></noscript>
+    @Html.ScriptTag("/scripts/articles.js")
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+<div class="widget new-article-listing" data-index="@Model.ArticleIndexName" data-widget="new-article-listing">
+    <div class="wrapper top-stuff">
+        <h1>Inspiration</h1>
+
+        <div class="search-bar">
+            <div class="search-box">
+                <div id="searchbox" class="ui fluid input"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="destination">
+                        <div class="label">Destination</div>
+                        <div id="destinationSelect"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="category">
+                        <div class="label">Category</div>
+                        <div id="categorySelect"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="experience">
+                        <div class="label">Experience</div>
+                        <div id="experienceSelect"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper bottom-stuff">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div id="stats" class="value"></div>
+            </div>
+            <div class="stat-item">
+                <div class="label">View:</div>
+                <div id="hitsPerPage" class="value"></div>
+            </div>
+        </div>
+
+        <div id="statsHits"></div>
+        <div id="hits"></div>
+
+        <div class="pagination">
+            <div id="pagination"></div>
+        </div>
+    </div>
+</div>
+<div class="wrapper spacer"></div>
+
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")

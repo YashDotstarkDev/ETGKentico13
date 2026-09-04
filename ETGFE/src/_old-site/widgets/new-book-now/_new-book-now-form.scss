@@ -1,0 +1,911 @@
+.new-book-now {
+
+  /* 'Book now' heading */
+  h2 {
+    margin: 40px 0 20px !important;
+    text-align: center;
+
+    @media(--portrait) {
+      text-align: left;
+    }
+  }
+
+  .book-now-starter {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ededed;
+    border-radius: 8px;
+
+    .ui.button {
+      width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      svg {
+        margin-right: 5px;
+        display: inline-block;
+      }
+    }
+
+    .divider {
+      display: block;
+      margin: 20px 0;
+      height: 1px;
+      background-color: #E4E4E4;
+    }
+  }
+
+  .travel-agent-checkbox-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    background-color: #ededed;
+
+    .travel-agent {
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+
+  /* On book now confirmation page */
+  .actions {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 0 20px;
+
+    .button {
+      width: 50%;
+      padding: 11px 17px;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .details {
+    border-top: 1px solid #e6e6e6;
+    margin-top: 20px;
+    padding: 20px;
+
+    .set {
+      padding: 10px 0;
+      border-bottom: 1px solid #e6e6e6;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      label {
+        font-size: 12px !important;
+        font-weight: bold !important;
+      }
+    }
+  }
+
+  /* END On book now confirmation page */
+
+
+  .generic-form {
+    margin-bottom: 0;
+  }
+
+  label {
+    line-height: 1.6;
+  }
+
+  .ui.form .grouped.fields {
+    flex-wrap: nowrap;
+
+    .dates {
+      flex: 1 0;
+    }
+  }
+
+  .ui.form .grouped.fields .field,
+  .ui.form .grouped.inline.fields .field {
+    margin-top: 0;
+  }
+
+  .step-content .step-info {
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+    @media (--landscape) {
+      font-size: 13px;
+    }
+  }
+
+  .step-content .field .title {
+    margin-bottom: 10px
+  }
+
+  .step-content .field .comment-yes {
+    display: none;
+    margin-top: -20px;
+  }
+
+  .ui.checkbox label:after {
+    top: 1px !important;
+  }
+
+  .ui.radio label:after {
+    top: 3px !important;
+  }
+
+  .ui.radio.checkbox .box:before,
+  .ui.radio.checkbox label:before,
+  .ui.checkbox .box:after,
+  .ui.checkbox .box:before,
+  .ui.checkbox label:after,
+  .ui.checkbox label:before {
+    top: 3px;
+  }
+
+  .ui.radio.checkbox .box,
+  .ui.radio.checkbox label {
+    padding-left: 24px;
+  }
+
+  .ui.form .field > label {
+    line-height: 1.6
+  }
+
+  .ui.form .grouped.fields .field,
+  .ui.form .grouped.inline.fields .field {
+    margin-right: 20px !important;
+  }
+
+  .travel-agent-form {
+    padding: 15px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #ededed;
+    border-radius: 8px;
+
+    .field .prompt.label {
+      color: #ca568e !important
+    }
+
+    .field {
+      label.with-tooltip {
+        display: flex !important;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .tool-tip {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .action {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      margin-top: 30px;
+
+      .ui.button {
+        margin-top: 15px;
+        min-width: 115px;
+      }
+
+      a.cancel {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .form-steps {
+
+    .step {
+      display: none; /* Hide steps by default */
+      background-color: #fff;
+      border: 1px solid #e4e4e4;
+
+      + .step {
+        border-top: 0; /* Remove borders between steps */
+      }
+
+      &:first-child {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      /* NOTE: `.active` is assumed to always be the last step */
+      &.active,
+      &:last-child.complete {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+
+      &.hidden {
+        display: none !important
+      }
+    }
+
+    .step.disabled {
+      pointer-events: none;
+    }
+
+    /* Previous steps completed */
+    .step.complete {
+      display: block; /* Show completed steps */
+
+      .step-trigger {
+
+        /* Show step edit link when step has been completed */
+        .edit-step {
+          display: inline-block;
+        }
+
+        /*.step-number {
+          background-color: transparent !important;
+          border: 2px solid $primary;
+
+          .number {
+            display: none;
+          }
+
+          .tick {
+            display: inline;
+          }
+        }*/
+      }
+    }
+
+    /* Previous steps completed but opened for editing */
+    .step.complete.open {
+
+      /* Hide step edit link when currently editing step */
+      .edit-step {
+        display: none;
+      }
+
+      /*.chevron {
+        transform: rotate(180deg);
+      }*/
+    }
+
+    /* Current step in progress */
+    .step.active {
+      display: block; /* Show active step */
+
+      /*.chevron {
+        transform: rotate(180deg);
+      }*/
+
+      .step-trigger {
+        /*.step-number {
+          position: relative;
+          z-index: 1;
+          background-color: $primary;
+          border: 2px solid $primary;
+
+          @keyframes wave-animate {
+            0% {
+              transform: scale(1);
+              opacity: .2;
+            }
+            10% {
+              transform: scale(1);
+              opacity: .5;
+            }
+            100% {
+              transform: scale(2.3);
+              opacity: 0;
+            }
+          }
+
+          @keyframes pulse-animate {
+            0% {
+              transform: scale(1);
+              opacity: .5;
+            }
+            40% {
+              transform: scale(1.4);
+              opacity: .6;
+            }
+            100% {
+              transform: scale(1);
+              opacity: 0;
+            }
+          }
+
+          &::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: -1;
+            border-radius: 100%;
+            top: 0;
+            left: 0;
+            background-color: $primary;
+          }
+
+          &::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: -1;
+            border-radius: 100%;
+            top: 0;
+            left: 0;
+            background-color: $primary;
+          }
+
+          &.animate {
+            &::before {
+              animation: wave-animate 2s ease 5;
+            }
+
+            &::after {
+              animation: pulse-animate 2s ease 5;
+            }
+          }
+
+          .number {
+            color: #fff;
+          }
+        }*/
+      }
+    }
+
+    /* Step panel header */
+    .step-trigger {
+      padding: 20px 15px 15px;
+
+      .label-container {
+        display: flex;
+
+        .label {
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 1.2;
+        }
+
+        .ui.tool-tip {
+          margin-left: 7px;
+        }
+      }
+
+      .sub-label-container {
+        display: flex;
+
+        .sub-label {
+          font-size: 14px;
+          line-height: 26px;
+          margin-right: 10px;
+        }
+
+        .edit-step {
+          display: none;
+          margin-left: auto; /* push to right */
+          color: #929497;
+          text-decoration: underline;
+          font-size: 12px;
+          line-height: 26px; /* matches to .sub-label */
+          white-space: nowrap;
+        }
+      }
+
+      /*.step-number {
+        display: none !important;
+        text-align: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 100%;
+        border: 2px solid #fff;
+        line-height: 37px;
+        transition: all 0.3s ease;
+        background-color: #fff;
+
+        .tick {
+          display: none;
+        }
+
+        .number {
+          font-size: 18px;
+          font-weight: 700;
+          transition: color 0.3s ease;
+        }
+      }*/
+
+      .tool-tip {
+        margin-right: 10px;
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    /* Step panel content */
+    .step-content {
+      display: none;
+      padding: 0 15px 20px;
+
+      .option-set-container {
+        display: none;
+      }
+
+      .multiple-room-copy,
+      .select-later-copy {
+        display: none;
+      }
+
+      .calendar-container {
+        margin-top: 20px;
+      }
+
+      .ui.form {
+        margin-bottom: 0;
+      }
+
+      .submit-row {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+
+        .ui.button {
+          min-width: 115px;
+        }
+
+        a.cancel {
+          margin-left: 10px;
+          text-decoration: underline;
+        }
+      }
+
+      .radio-buttons,
+      .checkboxes {
+        .field {
+          margin-bottom: 10px;
+        }
+      }
+
+      .label,
+      .option-label {
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .option-set-container {
+        padding-top: 20px;
+
+        .field {
+          margin-bottom: 10px;
+        }
+
+        .option-set {
+          padding-top: 20px;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          margin-top: 20px;
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+      }
+
+      ol {
+        padding-left: 20px;
+      }
+
+      .disclaimer {
+        padding-top: 20px;
+        opacity: 1
+      }
+
+
+      .ui.styled.accordion {
+        /* Accordion theme */
+        border-bottom: 1px solid #ededed;
+
+        > .title:first-child,
+        > .accordion-item:first-child .title {
+          border-top: 1px solid #ededed;
+        }
+
+        .content {
+          padding: 0 !important; /* fix collapse transition jump at end */
+          background-color: #fff;
+        }
+
+        .title {
+          margin: 0;
+          border-top: 1px solid #ededed;
+          background-color: #fff;
+
+          &:hover,
+          &:hover.active {
+            background-color: #ededed;
+
+            .heading {
+              text-decoration: none;
+            }
+          }
+        }
+
+        .active.content,
+        .animating {
+          background: #fff;
+        }
+
+        .active.title {
+          border-top-color: #ededed;
+          background-color: #fff;
+        }
+        /* END Accordion theme */
+
+        /* Accordion icon */
+        .title .dropdown.icon {
+          margin: 0 -7px 0 0;
+          color: $primary;
+          font-size: 24px;
+          font-family: 'icomoon';
+
+          &:before {
+            content: "\e900"; /* Chevron icon */
+          }
+        }
+
+        .active.title .dropdown.icon {
+          transform: rotate(180deg);
+        }
+
+        /* END Accordion icon */
+
+        .title {
+          padding: 7px 10px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-direction: row;
+          color: #333;
+
+          html.pdf-generation-template & {
+            padding-left: 0;
+            padding-right: 0;
+          }
+
+          .heading {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.4;
+            font-family: $lato;
+            font-weight: normal;
+          }
+
+          .icon {
+            flex-shrink: 0;
+          }
+        }
+
+        .content {
+          .inner-content {
+            padding: 5px 10px 15px;
+
+            html.pdf-generation-template & {
+              padding-left: 0;
+              padding-right: 0;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  .double-room-suboptions {
+    padding: 10px 20px 0;
+
+    label {
+      margin-top: 10px;
+      display: block
+    }
+  }
+
+  .max-guests {
+    .max-guest-label {
+      display: block;
+    }
+
+    .prompt.label {
+      display: none !important;
+    }
+  }
+
+  .incomplete-rooms-type {
+    .incomplete-rooms-type-label {
+      display: block;
+    }
+
+    .prompt.label {
+      display: none !important;
+    }
+  }
+
+  .calendar.hasDatepicker {
+    margin: 0 -15px; /* offset `.step-content` padding */
+  }
+
+  .ui-datepicker {
+    width: 100%;
+  }
+
+  .max-guest-label,
+  .incomplete-rooms-type-label {
+    display: none;
+    font-weight: 700;
+    color: #f00 !important;
+    font-size: 14px;
+  }
+
+  .ui-widget.ui-widget-content {
+    border: none;
+  }
+
+  .ui-state-default,
+  .ui-widget-content .ui-state-default {
+    background-color: #fff;
+    text-align: center;
+  }
+
+  .ui-button.ui-state-active:hover,
+  .ui-button:active,
+  .ui-state-active,
+  .ui-widget-content .ui-state-active,
+  .ui-widget-header .ui-state-active, a.ui-button:active {
+    border: 1px solid #ca568e;
+    background: #ca568e;
+  }
+
+  .entire-flex-option {
+    .less-30-days {
+      display: none;
+    }
+
+    &.less {
+      .less-30-days {
+        display: block;
+      }
+
+      .more-30-days {
+        display: none;
+      }
+    }
+  }
+
+  .ui-datepicker td span,
+  .ui-datepicker td a {
+    padding-bottom: 1em;
+  }
+
+  .departure-day.first-day.ui-datepicker-current-day:after {
+    color: #fff;
+  }
+
+
+  a.ui-state-default {
+    border: 1px solid rgba(197, 197, 197, 0.35) !important;
+  }
+
+  .ui-datepicker td {
+    position: relative;
+  }
+
+  .ui-datepicker td[title]::after {
+    content: attr(title);
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    text-align: center;
+    bottom: 2px;
+  }
+
+  .book-now .ui-datepicker td {
+    height: 40px;
+  }
+
+  .ui-datepicker {
+    padding: 0;
+  }
+
+  .ui-datepicker td {
+    width: 14.2%;
+    padding: 0;
+  }
+
+  .ui-state-highlight a,
+  .ui-widget-content .ui-state-highlight a {
+    background: #f4dde8 !important;
+    color: #454545 !important;
+  }
+
+  ui-state-highlight a,
+  .ui-widget-content .ui-state-highlight.ui-datepicker-current-day a {
+    background: #ca568e !important;
+    background-color: #ca568e !important;
+    color: #fff !important;
+  }
+
+  .ui-state-highlight,
+  .ui-widget-content .ui-state-highlight {
+    border: none !important;
+    color: #454545 !important;
+  }
+
+  .ui-state-default.ui-state-highlight.ui-state-active {
+    color: #fff !important;
+  }
+
+  .ui-datepicker-today .ui-widget-content.ui-state-highlight {
+    background: #f4dde8 !important;
+  }
+
+  .ui-state-highlight:after {
+    display: none !important;
+  }
+
+  .ui-state-highlight.ui-datepicker-current-day:after {
+    display: block !important;
+  }
+
+  .ui-state-highlight.ui-datepicker-current-day,
+  .departure-day {
+    cursor: pointer;
+  }
+
+  .ui-widget-header {
+    border: none;
+  }
+
+  .ui-state-highlight:not(.ui-datepicker-current-day) {
+    pointer-events: none;
+
+    a {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  .ui-state-disabled.ui-state-highlight.last-day,
+  .ui-datepicker-week-end.ui-state-highlight.last-day {
+    .ui-state-default {
+      background: #ca568e !important;
+      background-color: #ca568e !important;
+      color: #fff !important;
+    }
+  }
+
+  .ui-widget-header {
+    background-color: #fff;
+  }
+
+  .ui-widget-header .ui-state-hover {
+    border: none;
+    background-color: transparent;
+  }
+
+  .ui-datepicker-prev {
+    right: 2px !important;
+    top: 2px !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    @media(--desktop) {
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    &:after {
+      position: absolute;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translateX(-50%) translateY(-50%);
+      display: block;
+      font-family: 'icomoon';
+      color: $primary;
+      font-size: 20px;
+      font-weight: 400;
+      content: "\e92c";
+    }
+  }
+
+  td[data-event="click"] {
+    cursor: pointer;
+  }
+
+  .departure-day.ui-datepicker-current-day {
+    .ui-state-default.ui-state-active {
+      background-color: #fff;
+      color: #454545;
+    }
+
+    &:after {
+      color: #454545;
+    }
+  }
+
+  .ui-datepicker-next {
+    right: 2px !important;
+    top: 2px !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    @media(--desktop) {
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    &:after {
+      position: absolute;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translateX(-50%) translateY(-50%);
+      display: block;
+      font-family: 'icomoon';
+      color: $primary;
+      font-size: 20px;
+      font-weight: 400;
+      content: "\e922";
+    }
+  }
+
+  .ui-state-disabled.ui-state-highlight {
+    background-color: #fff;
+    opacity: 1;
+
+    .ui-state-default {
+      background-color: #f4dde8 !important;
+    }
+  }
+
+  .ui-datepicker-other-month.ui-state-disabled.ui-state-highlight .ui-state-default {
+    background-color: #fff;
+  }
+
+  .ui-datepicker-other-month.ui-datepicker-unselectable.ui-state-disabled.departure-day.first-day.ui-datepicker-current-day.ui-state-highlight.ui-datepicker-current-day .ui-state-default {
+    background: #ca568e !important;
+    background-color: #ca568e !important;
+    color: #fff !important;
+  }
+
+  .ui-widget-header .ui-icon {
+    background-image: none !important;
+  }
+
+  .ui-state-highlight.last-day {
+    a {
+      background: #ca568e !important;
+      background-color: #ca568e !important;
+      color: #fff !important;
+    }
+  }
+
+  .full-payment-message {
+    display: none;
+  }
+}

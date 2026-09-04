@@ -1,0 +1,64 @@
+@layer components {
+  .btn {
+    @apply relative uppercase inline-flex leading-snug cursor-pointer select-none items-center justify-center gap-x-1.5 rounded-full px-7 py-4 text-center text-[12px] font-bold no-underline ring-2 ring-inset ring-transparent transition-all duration-300;
+    @apply hover:no-underline;
+    @apply focus:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1;
+    @apply text-balance;
+
+    &.wide {
+      @apply px-8;
+    }
+    &.thin {
+      @apply px-2;
+    }
+
+    &.disabled {
+      opacity: 0.2;
+        pointer-events: none;
+    }
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white ring-primary hover:bg-white hover:text-primary;
+    @apply focus-visible:outline-primary/50;
+  }
+
+  .btn-primary-outline {
+    @apply bg-transparent text-primary ring-primary hover:bg-primary hover:text-white;
+    @apply focus-visible:outline-primary/50;
+  }
+
+  .btn-white {
+    @apply bg-white text-primary ring-white;
+    @apply hover:bg-transparent hover:ring-white hover:text-white;
+    @apply focus-visible:outline-primary/50;
+  }
+
+  .btn-white-outline {
+    @apply bg-transparent text-white ring-white;
+    @apply hover:bg-white hover:ring-white hover:text-primary;
+    @apply focus-visible:outline-primary/50;
+  }
+
+  .btn:not(.loading) .spinner {
+    @apply hidden #{!important};
+  }
+
+  .btn.loading {
+    @apply pointer-events-none text-transparent;
+
+    svg {
+      opacity: 0;
+    }
+
+    .spinner {
+      @apply absolute inset-0 flex items-center justify-center;
+
+      &::before {
+        @apply box-border h-5 w-5 animate-spin rounded-full border-2 border-solid border-inherit border-t-transparent content-[''];
+      }
+    }
+  }
+}
+
+

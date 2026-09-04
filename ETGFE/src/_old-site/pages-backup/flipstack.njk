@@ -1,0 +1,28 @@
+{% set page_title = 'Flipstack' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+
+{% endblock %}
+
+{% block beforeArticle %}
+  {% include "src/widgets/header/header.njk" %}
+  {% include "src/widgets/header-spacer/header-spacer.njk" %}
+
+{% endblock %}
+
+{% block article %}
+  <div class="wp">
+    <div class="text-center"><a href="#" class="button ui primary">Download</a></div>
+
+  </div>
+  <iframe class="flipstack" src="https://cdn.flipsnack.com/widget/v2/widget.html?hash=f7p0r5sak" width="100%" height="480" seamless="seamless" scrolling="no" frameBorder="0" allowFullScreen></iframe>
+{% endblock %}
+
+{% block afterArticle %}
+{% include "src/widgets/footer/footer.njk" %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="/scripts/flipstack.js"></script>
+{% endblock %}

@@ -1,0 +1,368 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@model ETG.Web.Models.Pages.SearchPageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page.Page)
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css" integrity="sha256-HB49n/BZjuqiCtQQf49OdZn63XuKFaxcIHWf0HNKte8=" crossorigin="anonymous">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css"></noscript>
+
+}
+
+@section AdditionalScripts {
+    @* NOTE jquery-ui and dayjs included in scripts bundle *@
+    @Html.ScriptTag("/scripts/find-a-package.js")
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+<div class="widget find-a-package" data-widget="find-a-package" data-tour-indexname="@Model.TourIndexName" data-article-indexname="@Model.ArticleIndexName" data-contents-indexname="@Model.ContentsIndexName" data-current-url="search">
+
+<div class="icon-set">
+    @foreach (var item in Model.PriceInclusions)
+    {
+        <div data-inclusion="@item.Key">
+            <span class="icon @item.Value"></span>
+        </div>
+    }
+    @foreach (var item in Model.TourTypes)
+    {
+        <div data-inclusion="@item.Key">
+            <span class="icon @item.Value"></span>
+        </div>
+    }
+    @foreach (var item in Model.CruiseTypes)
+    {
+        <div data-inclusion="@item.Key">
+            <span class="icon @item.Value"></span>
+        </div>
+    }
+    @foreach (var item in Model.Experiences)
+    {
+        <div data-inclusion="@item.Key">
+            <span class="icon @item.Value"></span>
+        </div>
+    }
+</div>
+<div class="top search-filters">
+    <div class="mobile-nav">
+        <div class="close">
+            <span class="fal fa-times"></span>
+        </div>
+        <div class="inner">
+            <div class="heading">Search results</div>
+            <div class="links">
+                <a href="#" class="active" data-tab="tours">Packages (<span class="tour_stats"></span>)</a>
+                <a href="#" data-tab="inspiration">Inspiration (<span class="inspiration_stats"></span>)</a>
+                <a href="#" data-tab="content">Content (<span class="content_stats"></span>)</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <h1>Holiday Packages</h1>
+         <div class="simple-search">
+          <div id="tour_searchbox"></div>
+        </div>
+
+        <div class="advanced-search">
+            <div class="advanced-search-trigger">
+                Advanced search
+                <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.125 7.125C6.87891 7.125 6.66016 7.04297 6.49609 6.87891L1.24609 1.62891C0.890625 1.30078 0.890625 0.726562 1.24609 0.398438C1.57422 0.0429688 2.14844 0.0429688 2.47656 0.398438L7.125 5.01953L11.7461 0.398438C12.0742 0.0429688 12.6484 0.0429688 12.9766 0.398438C13.332 0.726562 13.332 1.30078 12.9766 1.62891L7.72656 6.87891C7.5625 7.04297 7.34375 7.125 7.125 7.125Z" fill="currentColor"/>
+                </svg>
+            </div>
+            
+            <div class="advanced-search-container">
+                <div class="ui form advanced-search-inner">
+                    @*<div class="row">
+                        <div class="col">
+                            <label>Destination</label>
+                            <div id="destinationMenu"></div>
+                        </div>
+                        <div class="col">
+                            <label>Tour code</label>
+                            <div id="tourCodeMenu"></div>
+                        </div>
+                    </div>*@
+                    @*<div class="row">
+                        <div class="col">
+                            <label for="startDate">Earliest Holiday Package Start Date</label>
+                            <div id="inputStartDate"></div>
+                            </div>
+                        <div class="col">
+                            <label for="endDate">Latest Holiday Package End Date</label>
+                            <div id="inputEndDate"></div>
+                            </div>
+                    </div>*@
+                    <div class="row">
+                        <div class="col">
+                            <label>Holiday Package Start Location</label>
+                            <div id="startLocationMenu"></div>
+                        </div>
+                        <div class="col">
+                            <label>Holiday Package End Location</label>
+                            <div id="endLocationMenu"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="advanced-search-close-trigger">
+              Close Advanced Search
+              <svg class="svg-inline--fa fa-chevron-up fa-w-14 up icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z"></path>
+              </svg>
+            </div>
+        </div>
+        <div class="nav">
+            <a href="#" class="active" data-tab="tours">Packages (<span id="tour_stats"></span>)</a>
+            <a href="#" data-tab="inspiration">Inspiration (<span id="inspiration_stats"></span>)</a>
+            <a href="#" data-tab="content">Content (<span id="content_stats"></span>)</a>
+        </div>
+    </div>
+    <div class="mobile-menu-trigger">
+        <div class="label">Showing</div>
+        <div class="nav-item">Packages</div>
+        <div class="icon fas fa-chevron-right"></div>
+    </div>
+</div>
+
+<div class="wrapper">
+<div class="bottom" data-tab="tours">
+    <div class="main">
+        <div class="filter-column">
+            <div class="label">
+                Filter
+            </div>
+            <div id="clear_refinements"></div>
+            <div class="filter-container">
+                <div class="inner-container">
+                    <div class="filter-set filter-set-destination">
+                        <div class="expander">
+                            Destinations
+                            <div class="fas down icon fa-chevron-down"></div>
+                            <div class="fas up icon fa-chevron-up"></div>
+                        </div>
+                        <div class="selected">
+                            <span class="count"></span> selected
+                            <div class="fal icon fa-times"></div>
+                        </div>
+                        <div class="filters">
+                            <div id="tour_destinationfilters"></div>
+                        </div>
+                    </div>
+                    <div class="filter-set filter-set-experiences">
+                        <div class="expander">
+                            Experiences
+                            <div class="fas down icon fa-chevron-down"></div>
+                            <div class="fas up icon fa-chevron-up"></div>
+                        </div>
+                        <div class="selected">
+                            <span class="count"></span> selected
+                            <div class="fal icon fa-times"></div>
+                        </div>
+                        <div class="filters">
+                            <div id="tour_experiencefilters"></div>
+                        </div>
+                    </div>
+                    <div class="filter-set filter-set-travelstyles">
+                        <div class="expander">Travel Styles 
+                            <div class="fas down icon fa-chevron-down"></div>
+                            <div class="fas up icon fa-chevron-up"></div>
+                            </div>
+                        <div class="selected"><span class="count"></span> selected <div class="fal icon fa-times"></div></div>
+
+                        <div class="filters">
+                            <div id="tour_travelstylesfilters"></div>
+
+                        </div>
+                    </div>
+                    <div class="filter-set">
+                        <div class="expander">
+                            Duration
+                            <div class="fas down icon fa-chevron-down"></div>
+                            <div class="fas up icon fa-chevron-up"></div>
+                        </div>
+                        <div class="selected">
+                            <span class="count"></span> selected
+                            <div class="fal icon fa-times"></div>
+                        </div>
+                        <div class="filters">
+                            <div id="tour_durationfilters"></div>
+                        </div>
+                    </div>
+                    <div class="filter-set price-range-container" data-filter="price">
+                        <label for="">Per Person Price Range</label>
+                        <div class="price-range">
+                            <span class="from-value"></span> - <span class="to-value"></span>
+                        </div>
+                        <div id="tour_range-slider" class="pricerangeslider"></div>
+                    </div>
+
+                    <div class="filter-set" data-filter="deals">
+                        <div class="filter">
+                            <div id="tour_book_now"></div>
+                            <div id="tour_peace_of_mind"></div>
+                            <div id="tour_freedom_of_choice"></div>
+                            <div id="tour_safe_travel"></div>
+                            <div id="tour_deals"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-set" data-filter="TourHasPeaceOfMindGuarantee">
+                        <div class="filter">
+                            <div id="tour_deals"></div>
+                            <div id="tour_peace_of_mind"></div>
+                            <div id="tour_freedom_of_choice"></div>
+                            <div id="tour_safe_travel"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-expand-container">
+                <a class="expand-filters button ui primary small">
+                    <span class="show">Show filters</span><span class="hide">Hide filters</span>
+                </a>
+            </div>
+            <div class="expand-container">
+                <a class="expand-filters button ui primary small">
+                    <span class="show">Expand all</span><span class="hide">Hide all</span>
+                </a>
+            </div>
+        </div>
+        <div class="content-column">
+            <div class="view-container">
+                <div class="sort">
+                    Sort:
+                    <div id="tour_sort"></div>
+                </div>
+                <div class="view">
+                    View:
+                    <div id="tour_view" class="view-dd"></div>
+
+                </div>
+            </div>
+
+            <div class="results">
+                <div class="widget products" data-widget="products">
+                    <div class="product-tiles-container">
+                        <div id="tour_hits"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tour_pagination"></div>
+        </div>
+    </div>
+</div>
+<div class="bottom" data-tab="inspiration">
+    <div class="main">
+        <div class="filter-column">
+            <div class="label">
+                Filter
+            </div>
+            <div class="filter-container">
+                <div class="inner-container">
+                    <div class="filter-set">
+                        <div class="expander">
+                            Destinations
+                            <div class="fas down icon fa-chevron-down"></div>
+                            <div class="fas up icon fa-chevron-up"></div>
+                        </div>
+                        <div class="selected">
+                            <span class="count"></span> selected
+                            <div class="fal icon fa-times"></div>
+                        </div>
+                        <div class="filters">
+                            <div id="inspiration_destinationfilters"></div>
+                        </div>
+                    </div>
+                    <div class="filter-set">
+                        <div class="expander">
+                            Experiences
+                            <div class="fas down icon fa-chevron-down"></div>
+                            <div class="fas up icon fa-chevron-up"></div>
+                        </div>
+                        <div class="selected">
+                            <span class="count"></span> selected
+                            <div class="fal icon fa-times"></div>
+                        </div>
+                        <div class="filters">
+                            <div id="inspiration_experiencefilters"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-expand-container">
+                <a class="expand-filters button ui primary small">
+                    <span class="show">Show filters</span><span class="hide">Hide filters</span>
+                </a>
+            </div>
+            <div class="expand-container">
+                <a class="expand-filters button ui primary small">
+                    <span class="show">Expand all</span><span class="hide">Hide all</span>
+                </a>
+            </div>
+        </div>
+        <div class="content-column">
+            <div class="view-container">
+                <div class="sort">
+                    Sort:
+                    <div id="inspiration_sort"></div>
+                </div>
+                <div class="view">
+                    View:
+                    <div id="inspiration_view" class="view-dd"></div>
+                </div>
+            </div>
+
+            <div class="results">
+                <div class="widget related-articles" data-widget="related-articles">
+                    <div class="articles">
+                        <div id="inspiration_hits"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="inspiration_pagination"></div>
+        </div>
+    </div>
+</div>
+<div class="bottom" data-tab="content">
+    <div class="main">
+        <div class="content-column">
+            <div class="view-container">
+                <div class="sort">
+                </div>
+                <div class="view">
+                    <div id="content_view"></div>
+                </div>
+            </div>
+            <div class="results">
+                <div class="widget related-articles" data-widget="related-articles">
+                    <div class="articles">
+                        <div id="content_hits"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="content_pagination"></div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

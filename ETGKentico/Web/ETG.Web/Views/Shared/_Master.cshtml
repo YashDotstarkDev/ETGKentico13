@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="msapplication-TileColor" content="#fc3dff">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:400,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:400,900&display=swap">
+    </noscript>
+    <script src="https://kit.fontawesome.com/d67a31d7e1.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.icomoon.io/39161/ETGP0001EntireTravelGroup/style.css?c3unwu" rel="stylesheet">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.icomoon.io/39161/ETGP0001EntireTravelGroup/style.css?c3unwu">
+    </noscript>
+
+    @Html.Partial("Partial/MasterPage/_CanonicalUrl")
+    @Html.Partial("Partial/MasterPage/_Favicons")
+    @RenderSection("HeadMeta", required: false)
+    @Html.Action("HeadScripts", "MasterPage")
+    @RenderSection("AdditionalHeadScripts", required: false)
+</head>
+<body class="tracking-wider leading-relaxed">
+
+    <div id="fb-root"></div>
+    @Html.Action("BodyTopScripts", "MasterPage")
+
+    <div class="layout layout-main relative">
+        @Html.Action("MainHeader", "MasterPage", true)
+
+        @RenderSection("TopBreadcrumbs", required: false)
+
+        @RenderBody()
+
+        @*@Html.Action("MainFooterProofPoints", "MasterPage")*@
+
+        @if (ViewBag.HideFooterSubscribe == null)
+        {
+            @Html.Action("MainFooterSubscription", "MasterPage")
+        }
+        @if (ViewBag.HideFeefo == null)
+        {
+            @Html.Partial("Partial/Common/_FeefoReview")
+        }
+        @RenderSection("AfterArticle", required: false)
+        @Html.Action("GetSiteSelector", "SiteSelectorPopup")
+        @Html.Action("MainFooter", "MasterPage")
+    </div>
+
+    @Html.Partial("Partial/MasterPage/_FacebookChat")
+    @RenderPage("_MasterScripts.cshtml")
+
+    @RenderSection("AdditionalScripts", required: false)
+
+    @Html.Partial("Partial/MasterPage/_AstroBodyTags")
+</body>
+</html>

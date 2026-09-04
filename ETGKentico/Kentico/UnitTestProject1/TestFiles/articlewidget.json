@@ -1,0 +1,122 @@
+{
+  "editableAreas": [
+    {
+      "identifier": "ArticleBody",
+      "sections": [
+        {
+          "identifier": "76619501-1cfd-45ce-849f-9a46de307568",
+          "type": "Kentico.DefaultSection",
+          "properties": null,
+          "zones": [
+            {
+              "identifier": "b5d47e10-f315-451d-aa20-0ec430e2786d",
+              "widgets": [
+                {
+                  "identifier": "fd9f231b-2d46-4949-9019-0de37c2c3faa",
+                  "type": "ETG.Web.Widget.HtmlTextWidget",
+                  "variants": [
+                    {
+                      "identifier": "515945d4-193a-4f7c-8384-f04db24f35ae",
+                      "properties": { "text": " <p class=\"lead\">Italy is not just a country with beautiful views from every direction; it’s also a country with a delicious and diverse cuisine.</p>\r\n\r\n <p>Throughout the world, the <a href=\"#\">Italian cuisine</a> is one of the most recognisable and replicated. From the humble pasta to cured meat, your palate will be treated to a <a href=\"#\">delicious journey</a> through all Italy has to offer.</p>\r\n\r\n <p>Though one visit is not enough to eat every good dish, starting with the local favourites is a good way to go.</p>\r\n\r\n <h2 class=\"text-left\">1. pizza</h2>\r\n\r\n <p>Almost synonymous to the word ‘Italian,’ the pizza pie is one of the most beloved foods all over the world. Though it’s been interpreted by many, the original pizza can be found in the southern city of Naples. Made with fresh tomato sauce, and topped with mozzarella cheese, fresh basil, tomatoes, and olive oil, the Margherita is of course the classic Napoli pizza.</p>" }
+                    }
+                  ]
+                },
+                {
+                  "identifier": "f598ba6e-c1be-44b0-82a0-68432706c57f",
+                  "type": "ETG.Web.Widget.QuoteContent",
+                  "variants": [
+                    {
+                      "identifier": "3267a9dc-7a23-4a1c-a1b9-ae21d3b416eb",
+                      "properties": {
+                        "textContent": "Nullam suscipit volutpat lectus, non vestibulum tellus faucibus vitae. Donec id risus eget justo commodo viverra. Proin sed varius purus. Cras id orci dolor. Suspendisse iaculis dignissim magna quis consectetur.",
+                        "source": "F. Smith, Porto Discovery Package"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "identifier": "46c33fe2-af0a-4084-8bd4-1abc318f5a0d",
+                  "type": "ETG.Web.Widget.HtmlTextWidget",
+                  "variants": [
+                    {
+                      "identifier": "cca8fb21-bf0a-454a-8215-0e8afc5e079c",
+                      "properties": { "text": "<h2 class=\"text-left\">2. Pasta carbonara</h2>\r\n\r\n <p>Yet another classic, the spaghetti carbonara is a simple but delectable dish originating from capital of Italy – Rome. Others often make the mistake of using cream for the sauce, but the authentic carbonara is made with pasta, eggs, pancetta or guanciale (pork cheeks), Romano, and black pepper.</p>\r\n" }
+                    }
+                  ]
+                },
+                {
+                  "identifier": "c1ff4a77-cf00-45b5-bd60-11277a9b612a",
+                  "type": "ETG.Web.Widget.TwoSideBySideImage",
+                  "variants": [
+                    {
+                      "identifier": "3abbbaa5-cd3f-49fd-8621-c617d6d07c7a",
+                      "properties": {
+                        "image1": [ { "fileGuid": "0224e64d-b3f5-49f5-95b8-57044b9a49c4" } ],
+                        "caption1": "Image 1 caption",
+                        "image2": [ { "fileGuid": "0224e64d-b3f5-49f5-95b8-57044b9a49c4" } ],
+                        "caption2": "Image 2 caption"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "identifier": "7c68f96a-12a9-4638-99ce-0a507a293f58",
+                  "type": "ETG.Web.Widget.FullWidthImage",
+                  "variants": [
+                    {
+                      "identifier": "747479da-818c-47d4-b6ca-0448d2c14931",
+                      "properties": {
+                        "image": [ { "fileGuid": "0224e64d-b3f5-49f5-95b8-57044b9a49c4" } ],
+                        "caption": "full width image"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "identifier": "f836c7b7-f7ae-4d12-b251-c4db1c5ebd3b",
+                  "type": "ETG.Web.Widget.HtmlTextWidget",
+                  "variants": [
+                    {
+                      "identifier": "5ef65eb9-ea68-40b3-b42d-406ca088c055",
+                      "properties": { "text": "<h2 class=\"text-left\">3. Gelato</h2>\r\n <p>You say, ‘ice cream,’ the Italians say, ‘gelato.’ This beloved dessert is softer than ice cream but rich in flavour. It has a high density because of its higher proportion of milk, and it’s churned slowly. Having far less fat than your average ice cream, you can have a scoop after each meal without the guilt. Grab a cone when you visit Florence, Rome, or Venice.</p>" }
+                    }
+                  ]
+                },
+                {
+                  "identifier": "908b97d7-1327-4989-acdc-0be941121819",
+                  "type": "ETG.Web.Widget.YoutubeVideo",
+                  "variants": [
+                    {
+                      "identifier": "a922dd76-3586-494f-b953-f205c584e711",
+                      "properties": {
+                        "image": [ { "fileGuid": "0224e64d-b3f5-49f5-95b8-57044b9a49c4" } ],
+                        "youtubeID": "4-67CHEUUro",
+                        "caption": "Example youtube video"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "BelowArticle",
+      "sections": [
+        {
+          "identifier": "ebe265ac-5d41-4b52-942a-bd2406f5727b",
+          "type": "Kentico.DefaultSection",
+          "properties": null,
+          "zones": [
+            {
+              "identifier": "85f7faf4-ac08-41bb-b6c3-c1bcdb682434",
+              "widgets": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} 

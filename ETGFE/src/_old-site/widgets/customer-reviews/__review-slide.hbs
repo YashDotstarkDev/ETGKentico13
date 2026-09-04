@@ -1,0 +1,28 @@
+<div class="swiper-slide">
+  <div class="rating-card" data-id="{{id}}">
+    <div class="top">
+      <div class="author">
+        {{#if reviewerAvatar}}
+        <div class="thumb">
+          <img src="{{reviewerAvatar}}" alt>
+        </div>
+        {{/if}}
+        <div>
+          <div class="name">
+            <strong>{{reviewer}}</strong>
+          </div>
+          <span class="date">{{dateFromNow}}</span>
+        </div>
+      </div>
+      <div class="right"></div>
+    </div>
+    <div class="star-rating">
+      <span class="stars" data-rating="{{rating}}"></span>
+    </div>
+    <div class="review-text">
+      <div class="i-review-text">
+        {{text}}
+      </div>
+    </div>
+  </div>
+</div>

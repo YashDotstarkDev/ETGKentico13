@@ -1,0 +1,8 @@
+<appSettings>
+    <add key="ImgixDomain" value="" />
+    <add key="CMSWebFarmServerName" value="" />
+    <add key="CMSAzureAccountName" value="" />
+    <add key="CMSAzureSharedKey" value="" />
+    <add key="AzureContainer" value="" />
+    <add key="CreateTourSubFolders" value="True" />
+</appSettings>

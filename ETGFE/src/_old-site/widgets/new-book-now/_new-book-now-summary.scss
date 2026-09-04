@@ -1,0 +1,125 @@
+.new-book-now {
+
+  .booking-summary {
+    /*display: none;*/
+  }
+
+  .booking-summary-section {
+    padding: 20px;
+    color: #fff;
+    background-color: #CA568E;
+
+    &:last-child {
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    &.booking-summary-breakdown {
+      color: #fff;
+      background-color: #333;
+    }
+
+    h4,
+    h5 {
+      margin-top: 0;
+      color: inherit;
+      font-family: $lato;
+      font-weight: normal;
+    }
+
+    /* Summary item (e.g. package name, qty and price) */
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .label {
+        font-weight: bold;
+      }
+
+      &.item-full.total,
+      &.item-deposit.total {
+        justify-content: flex-start;
+        flex-direction: column;
+        font-size: 18px;
+
+        .inner {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          padding: 10px 0;
+          border-top: 1px solid rgb(255 255 255 / 20%);
+
+          .total-price {
+            font-weight: 400;
+            text-align: right;
+          }
+        }
+
+        .price-aud{
+          font-size: 14px;
+          text-align: right;
+        }
+
+        .terms {
+          border-top: 1px solid rgb(255 255 255 / 20%);
+          padding-top: 20px;
+          font-size: 12px;
+        }
+      }
+
+      &.highlight,
+      &.highlight.total {
+        padding: 10px !important;
+        background-color: #ededed;
+        color: #000;
+
+        .total-label {
+          color: #000;
+        }
+      }
+    }
+
+    .package, .single-package{
+
+      .item{
+
+        margin-bottom:0;
+        
+        &:last-child{
+          margin-bottom:20px
+        }
+      }
+
+    }
+
+    /* Confirm booking buttons */
+    .action {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+
+      .cancel {
+        color: #fff;
+        margin-top: 10px;
+        font-size: 12px;
+        text-decoration: underline;
+      }
+
+      .radio-buttons {
+        text-align: left;
+
+        .radio {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

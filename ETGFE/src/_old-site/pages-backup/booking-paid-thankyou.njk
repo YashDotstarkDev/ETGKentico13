@@ -1,0 +1,23 @@
+{% set page_title = 'Booking (paid) thank you' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}{% endblock %}
+
+{% block beforeArticle %}
+{% include "src/widgets/new-header/new-header.njk" %}
+{% endblock %}
+
+{% block article %}
+{% include "src/widgets/new-hero/new-hero--single-image.njk" %}
+{% include "src/widgets/booking-thankyou/booking-thankyou--paid.njk" %}
+{% include "src/widgets/experience-ticker/experience-ticker.njk" %}
+{% include "src/widgets/subscribe-to-win-widget/subscribe-to-win-widget.njk" %}
+{% endblock %}
+
+{% block afterArticle %}
+{% include "src/widgets/new-footer/new-footer.njk" %}
+{% endblock %}
+
+{% block scripts %}
+<script src="/scripts/booking-thankyou.js"></script>
+{% endblock %}

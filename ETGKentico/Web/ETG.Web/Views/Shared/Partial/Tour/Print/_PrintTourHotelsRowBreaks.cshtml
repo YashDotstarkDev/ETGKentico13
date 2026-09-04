@@ -1,0 +1,50 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using System.Linq
+@using Devotion.Web.Base.Extensions
+@model (List<ETG.Web.Tour.Models.HotelViewModel> Hotels, DateTime TravelStartDate, string HotelIds, string Nights)
+
+@if (Model.HotelIds.IsNullOrEmpty() || Model.HotelIds.IsNullOrEmpty())
+{
+    return;
+}
+@{
+    var hotelIdList = Model.HotelIds.Split(',').ToList();
+    var nightsList = Model.Nights.Split(',').ToList();
+}
+<div>
+    <div class="hotels" style="display: block; padding-bottom: 0; margin-bottom: 0; border-bottom:none">
+        <div class="gr-10">
+
+            @{
+                var startDate = Model.TravelStartDate;
+            }
+            @for (var i = 0; i < hotelIdList.Count; i++)
+            {
+                if (i > 0 && i % 3 == 0)
+                {
+                    @Html.Raw("</div><div class=\"gr-10\" style=\"padding-top:20px\">")
+                }
+                var hotel = Model.Hotels.Where(a=>a.HotelId == hotelIdList[i].ToInteger()).FirstOrDefault();
+                if (hotel == null)
+                {
+                    continue;
+                }
+                <div class="gc-4-12 gc-768-4-12 gc-1024-4-12">
+                    <div class="image">
+                        <img src="@hotel.Images.FirstOrDefault().Key.Imgixify()" alt="">
+                    </div>
+                    <div class="name">@hotel.Name</div>
+                    @if (i < nightsList.Count)
+                    {
+                        var noOfNights = nightsList[i].ToInteger();
+                        <div>@nightsList[i] @(noOfNights < 2 ? "night" : "nights")</div>
+                        <div>@startDate.ToString("dd MMM yyyy") - @(startDate.Date.AddDays(noOfNights).ToString("dd MMM yyyy"))</div>
+                        startDate = startDate.Date.AddDays(noOfNights);
+                    }
+                    @Html.Raw(hotel.Detail)
+                </div>
+            }
+        </div>
+    </div>
+</div>

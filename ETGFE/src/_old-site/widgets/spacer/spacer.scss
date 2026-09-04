@@ -1,0 +1,10 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.spacer {
+  height: 50px;
+
+  @media(min-width: 768px) {
+    height: 100px;
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "searchResult": {
+    "results": [
+      {
+        "title": "10 MUST-TRY FOODS IN ITALY - WHERE AND WHAT TO ORDER FOR AN AUTHENTIC FOODIE EXPERIENCE",
+        "image": "~/ETG/media/assets/Images/article-hero.jpg?ext=.jpg",
+        "date": "20 Sep 2019",
+        "categories": "Europe, Islands, Listicles",
+        "url": "/articles/Article-Three",
+        "destination": "Europe"
+      },
+      {
+        "title": "Article Portugal 2",
+        "image": "~/ETG/media/assets/Images/article-hero.jpg?ext=.jpg",
+        "date": "17 Sep 2019",
+        "categories": "",
+        "url": "/articles/Article  -Portugal-2",
+        "destination": "Portugal"
+      },
+      {
+        "title": "10 MUST-TRY FOODS IN ITALY - WHERE AND WHAT TO ORDER FOR AN AUTHENTIC FOODIE EXPERIENCE",
+        "image": "~/ETG/media/assets/Images/article-hero.jpg?ext=.jpg",
+        "date": "20 Sep 2019",
+        "categories": "Europe, Islands, Listicles",
+        "url": "/articles/Article-Three",
+        "destination": "Europe"
+      },
+      {
+        "title": "Article Portugal 2",
+        "image": "~/ETG/media/assets/Images/article-hero.jpg?ext=.jpg",
+        "date": "17 Sep 2019",
+        "categories": "",
+        "url": "/articles/Article-Portugal-2",
+        "destination": "Portugal"
+      },
+      {
+        "title": "10 MUST-TRY FOODS IN ITALY - WHERE AND WHAT TO ORDER FOR AN AUTHENTIC FOODIE EXPERIENCE",
+        "image": "~/ETG/media/assets/Images/article-hero.jpg?ext=.jpg",
+        "date": "20 Sep 2019",
+        "categories": "Europe, Islands, Listicles",
+        "url": "/articles/Article-Three",
+        "destination": "Europe"
+      },
+      {
+        "title": "Article Portugal 2",
+        "image": "~/ETG/media/assets/Images/article-hero.jpg?ext=.jpg",
+        "date": "17 Sep 2019",
+        "categories": "",
+        "url": "/articles/Article-Portugal-2",
+        "destination": "Portugal"
+      },
+      {
+        "title": "10 MUST-TRY FOODS IN ITALY - WHERE AND WHAT TO ORDER FOR AN AUTHENTIC FOODIE EXPERIENCE",
+        "image": "~/ETG/media/assets/Images/article-hero.jpg?ext=.jpg",
+        "date": "20 Sep 2019",
+        "categories": "Europe, Islands, Listicles",
+        "url": "/articles/Article-Three",
+        "destination": "Europe"
+      },
+      {
+        "title": "Article Portugal 2",
+        "image": "~/ETG/media/assets/Images/article-hero.jpg?ext=.jpg",
+        "date": "17 Sep 2019",
+        "categories": "",
+        "url": "/articles/Article-Portugal-2",
+        "destination": "Portugal"
+      }
+      
+    ],
+    "totalCount": 51
+  },
+  "success": true,
+  "message": null
+}

@@ -1,0 +1,58 @@
+{"totalPrice":4652.0,"totalDisplayPrice":"$4,652","numberOfTravellers":2,"totalRooms":1,"roomOptions": [
+    {
+        "fieldName": "twinRoomOption1",
+        "fieldLabel": "Room option 1",
+        "options": [
+            {
+                "label": "Lagoon-Pool Villa",
+                "supplementalCost": 699.0,
+                "optionGuid": "1da444a7-2d4d-418f-8c4d-13f76548ce38",
+                "fieldName": null,
+                "isSelected": true
+            },
+            {
+                "label": "Waterfront Villa",
+                "supplementalCost": 680.0,
+                "optionGuid": "e159591b-4846-4bf4-82a9-ee67ef055878",
+                "fieldName": null,
+                "isSelected": false
+            },
+            {
+                "label": "Deluxe Waterfront Villa",
+                "supplementalCost": 748.0,
+                "optionGuid": "ce3ad002-b19b-4b86-98c8-ee8e5dc5f96b",
+                "fieldName": null,
+                "isSelected": false
+            }
+        ]
+    },
+    {
+        "fieldName": "singleRoomOption1",
+        "fieldLabel": "Room option 2 (solo traveller)",
+        "options": [
+            {
+                "label": "Lagoon-Pool Villa",
+                "supplementalCost": 699.0,
+                "optionGuid": "6184404d-941c-4545-8f5b-ae9b429bdafd",
+                "fieldName": null,
+                "isSelected": false
+            },
+            {
+                "label": "Waterfront Villa",
+                "supplementalCost": 680.0,
+                "optionGuid": "8c55aed8-1af0-4084-97b8-ccebccb05f2f",
+                "fieldName": null,
+                "isSelected": false
+            },
+            {
+                "label": "Deluxe Waterfront Villa",
+                "supplementalCost": 748.0,
+                "optionGuid": "0e426b11-ac7b-4752-9102-f57de9396007",
+                "fieldName": null,
+                "isSelected": false
+            }
+        ]
+    }
+],"hasExtras":true,
+"extraOptions":[{"label":"Zip Line Tour - Momi Bay","supplementalCost":190.0,"optionGuid":"dd57be10-eee1-4338-9f4f-0ffe34399c82",
+"fieldName":"extrasOption2","isSelected":false}],"success":true,"message":null}

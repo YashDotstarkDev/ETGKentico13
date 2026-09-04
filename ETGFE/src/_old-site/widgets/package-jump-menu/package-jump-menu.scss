@@ -1,0 +1,71 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-jump-menu {
+  margin: 40px 0;
+  padding: 10px;
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+  background-color: #ededed;
+  position: sticky;
+  top: 100px;
+  z-index: 500;
+
+  @media(min-width: 768px) {
+    margin: 60px 0;
+  }
+
+  @media(min-width: 1024px) {
+    margin-top: 20px;
+  }
+
+  @media(min-width: 1220px) {
+    margin-top: 0;
+  }
+
+  @media(min-width: 1230px) {
+    padding: 3px 20px 0 20px;
+    margin-top: -30px;
+  }
+
+  .menu-links {
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: none;
+    @media(min-width: 1230px) {
+      display: flex;
+    }
+
+    a {
+      display: block;
+      padding: 15px 0;
+      border-bottom: 3px solid #ededed;
+      transition: border-bottom-color .15s;
+      text-decoration: none !important;
+
+      &:hover,
+      &:focus {
+        border-bottom-color: $primary;
+        text-decoration: none !important;
+      }
+
+      &.active {
+        border-bottom-color: #333;
+        color: #333;
+        cursor: pointer;
+        user-select: none;
+        text-decoration: none !important;
+      }
+    }
+  }
+
+  .menu-select {
+
+    @media(min-width: 1230px) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@model List<ETG.Web.Models.Common.MapItemViewModel>
+
+@if (Model == null)
+{
+    return;
+}
+<div class="widget region-map" data-widget="region-map">
+    <div class="region-list">
+       
+        @for (var i = 0; i< Model.Count;i++)
+        {
+            var location = Model[i];
+            <div class="region"
+                 data-id="@i"
+                 data-lat="@location.Latitude"
+                 data-lng="@location.Longitude"
+                 data-region="@location.Name"
+                 data-summary="@location.Summary"
+                 data-url="@location.Url">
+            </div>
+
+        }
+    </div>
+    <div class="map-container" @(ViewBag.IsPrint == null ? "" : "style=\"width: 60%; margin:0 auto\"")  data-cluster-image-small="/images/cluster-pin.png" data-cluster-image-medium="/images/cluster-pin.png" data-cluster-image-large="/images/cluster-pin.png" data-close-image="/images/close.svg"  data-pin="/images/map-pin.png">
+        <div class="map-canvas"></div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@using Castle.Core.Internal
+@model ETG.Web.Models.Widgets.BrochureCTAWidget.BrochureCTAWidgetViewModel
+
+@if (Model == null || Model.CTALabel.IsNullOrEmpty())
+{
+    return;
+}
+<div class="order-cta">
+  <div class="heading">
+    @Model.Heading
+    <a href="@Model.CTAUrl" target="_blank" class="ui primary outline button">@Model.CTALabel</a>
+  </div>
+  <div class="description">
+    If you would like us to post you a brochure, please email <a href="mailto:brochures@entiretravel.com.au">brochures@entiretravel.com.au</a> with the name of the brochure and your mailing address.
+  </div>
+</div>

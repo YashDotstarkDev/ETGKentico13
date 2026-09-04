@@ -1,0 +1,10 @@
+﻿@using ETG.Core.Extensions
+@model Tuple<string, string, bool>
+@if (Model.Item3)
+{   
+    <img class="lazyload" data-src="@Model.Item1.Imgixify()" alt="@Model.Item2">
+}
+else
+{
+    <img src="@Model.Item1.Imgixify()" alt="@Model.Item2" style="position:relative">
+}

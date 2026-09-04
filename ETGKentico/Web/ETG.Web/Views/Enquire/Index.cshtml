@@ -1,0 +1,139 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@using System.Text.RegularExpressions;
+
+@model ETG.Web.Models.Forms.GenericEnquiryPageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model?.Page == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page.Page)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+    @* noindex,nofollow except main enquire page *@
+    @if (!Context.Request.Path.ToLower().Equals("/enquire"))
+    {
+        <meta name="robots" content="noindex,nofollow">
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/enquire-now.js")
+    <!-- Calendly badge widget begin -->
+    <link href=https://assets.calendly.com/assets/external/widget.css rel="stylesheet">
+    <script src=https://assets.calendly.com/assets/external/widget.js type="text/javascript" async></script>
+    <!-- Calendly badge widget end -->
+    <script src="https://www.google.com/recaptcha/api.js?render=@ViewBag.RecaptchaSiteKey"></script>
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+@*@Html.Partial("Partial/Common/_PageHero", Model.Page.PageHero)*@
+<div class="wrapper wp">
+    <div class="article-layout">
+        <div class="main">
+            @if (@Model.Page.PageHero != null)
+            {
+                <h1 class="text-primary">@Model.Page.PageHero.Heading</h1>
+            }
+
+            <!-- mobile content -->
+            <div class="mobile-intro md:hidden mt-2">
+                <p>We'd love to hear from you — call our office or complete the form below.</p>
+                <div class="flex flex-col gap-2 mt-4">
+                    <div class="line flex flex-row gap-3 items-start">
+                        <span class="icon mt-1 fal fa-clock"></span> @Model.ContactDetails.GeneralContact.OpeningHours
+                    </div>
+                    <div class="line flex flex-row gap-3 items-start">
+                        <span class="icon mt-1 fal fa-phone"></span>
+                        <div>
+                            @{
+                                var phoneArr1 = Model.ContactDetails.GeneralContact.PhoneNumber.Split(':');
+                                if (phoneArr1.Length > 1)
+                                {
+                                    string phoneName1 = phoneArr1[0].Trim().ToString();
+                                    string phoneNumberDisplay1 = phoneArr1[1].Trim().ToString();
+                                    string phoneNumber1 = Regex.Replace(phoneNumberDisplay1, @"\D", "");
+                                    string phoneLink1 = string.Format("{0}: <a href=\"tel:{1}\" class=\"text-body\">{2}</a>", phoneName1, phoneNumber1, phoneNumberDisplay1);
+
+                                    @Html.Raw(phoneLink1);
+                                }
+
+                                if (!Model.ContactDetails.GeneralContact.PhoneNumber2.IsNullOrEmpty())
+                                {
+                                    var phoneArr2 = Model.ContactDetails.GeneralContact.PhoneNumber2.Split(':');
+                                    if (phoneArr2.Length > 1)
+                                    {
+                                        <br />
+                                        string phoneName2 = phoneArr2[0].Trim().ToString();
+                                        string phoneNumberDisplay2 = phoneArr2[1].Trim().ToString();
+                                        string phoneNumber2 = Regex.Replace(phoneNumberDisplay2, @"\D", "");
+                                        string phoneLink2 = string.Format("{0}: <a href=\"tel:{1}\" class=\"text-body\">{2}</a>", phoneName2, phoneNumber2, phoneNumberDisplay2);
+
+                                        @Html.Raw(phoneLink2);
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="line bg-black/20 mt-6 h-px"></div>
+            </div>
+
+            <!-- non-mobile (existing) content -->
+            <div class="desktop-intro hidden md:block mt-2">
+                <p>We look forward to helping you with your travel plans. Please complete the form below and our destination experts will get in touch with you shortly.</p>
+            </div>
+
+            <div class="widget enquire-form" data-widget="enquire-form">
+                <div id="enquireForm" class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit" data-method="POST" data-endpoint="@Url.Action("Submit", "Enquire")">
+                    @if (Model.Form != null && !Model.Form.ErrorMessage.IsNullOrEmpty())
+                    {
+                        <div class="field">
+                            <div class="ui basic red pointing prompt label">
+                                @Html.Raw(Model.Form.ErrorMessage)
+                            </div>
+                        </div>
+                    }
+                    @Html.AntiForgeryToken()
+                    @Html.EditorFor(m => m)
+                    <div class="response-container"></div>
+                    <div class="submit-row">
+                        <button class="ui button submit primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="side">
+            @if (Model.ContactDetails != null)
+            {
+                @Html.Action("GetEnquireSidebar", "GenericEnquireSidebar")
+            }
+        </div>
+        <div class="bottom">
+            @Html.Kentico().EditableArea("editableBottom")
+        </div>
+    </div>
+</div>
+
+@if (false && Model.DestinationExpertDetails != null)
+{
+    @Html.Partial("Partial/Common/_PreferredSpeakingPhone", Model.DestinationExpertDetails)
+}

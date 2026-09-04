@@ -1,0 +1,91 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-enquiry {
+  color: #fff;
+  background-color: $primary;
+  border-radius: 8px;
+  padding: 40px 15px;
+  text-align: center;
+
+  .top {
+
+    h2 {
+      margin: 0;
+      color: inherit;
+    }
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .phone-numbers {
+    margin-top: 15px;
+
+    html.pdf-generation-template & {
+      display: flex;
+      justify-content: center;
+    }
+
+    @media(--portrait), print {
+      display: flex;
+      justify-content: center;
+    }
+
+    .number {
+      margin: 10px 0;
+      font-size: 18px;
+
+      html.pdf-generation-template & {
+        font-size: 20px;
+
+        &:not(:first-child) {
+          margin-left: 15px;
+          padding-left: 15px;
+          border-left: 1px solid rgba(255, 255, 255, .2);
+        }
+      }
+
+      @media(--portrait), print {
+        font-size: 20px;
+
+        &:not(:first-child) {
+          margin-left: 15px;
+          padding-left: 15px;
+          border-left: 1px solid rgba(255, 255, 255, .2);
+        }
+      }
+
+      a {
+        position: relative;
+        padding-left: 30px;
+
+        svg {
+          position: absolute;
+          top: 2px;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .links {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 15px;
+
+    html.pdf-generation-template & {
+      display: none;
+    }
+
+    .ui.button {
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
+}

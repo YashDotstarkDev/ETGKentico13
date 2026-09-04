@@ -1,0 +1,36 @@
+﻿@using Castle.Core.Internal
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Web.Mvc
+@using ETG.Web.Models.Widgets.CTAPanel
+@using ETG.Web.Helpers
+@using ETG.Core.Extensions;
+@model ComponentViewModel<ETG.Web.Models.Widgets.SixColumnCallout.SixColumnCalloutProperties>
+
+<div class="spacer"></div>
+@if (!String.IsNullOrWhiteSpace(Model.Properties.SectionId))
+{
+    <div class="relative">
+        <div class="anchor-section top-[-200px] absolute" id="@Model.Properties.SectionId"></div>
+    </div>
+}
+<div class="new-covered">
+    <div class="wrapper">
+        <h2 class="uppercase text-black text-center">@Html.Raw(Model.Properties.Heading)</h2>
+        <div class="badges grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 mx-auto max-w-[360px] md:max-w-[540px] xl:max-w-[1080px] mt-12 gap-8">
+            @foreach (var callout in Model.Properties.Callouts)
+            {
+                <div class="badge flex flex-col items-center gap-2 text-xs uppercase text-center font-bold">
+                    @Html.Raw(callout.IconClass)
+                    @Html.Raw(callout.Label)
+                </div>
+            }
+
+        </div>
+        @if (!Model.Properties.CTALabel.IsNullOrEmpty() && !Model.Properties.CTAUrl.IsNullOrEmpty())
+        {
+            <div class="cta mt-12 text-center">
+                <a href="@Model.Properties.CTAUrl" class="btn btn-primary-outline">@Model.Properties.CTALabel</a>
+            </div>
+        }
+    </div>
+</div>

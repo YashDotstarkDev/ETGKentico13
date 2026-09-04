@@ -1,0 +1,18 @@
+@use "functions/functions" as functions;
+
+$colourPrimary: #ca568e;
+$colourSecondary: #0DD1D1;
+$colourBody: #444;
+
+$colourPurple: #AC117C;
+$colourGreen: #7afa31;
+$colourGrey: #929497;
+
+:root {
+  --colour-primary: #{functions.hexToRgb($colourPrimary)};
+  --colour-secondary: #{functions.hexToRgb($colourSecondary)};
+  --colour-body: #{functions.hexToRgb($colourBody)};
+  --colour-purple: #{functions.hexToRgb($colourPurple)};
+  --colour-green: #{functions.hexToRgb($colourGreen)};
+  --colour-grey: #{functions.hexToRgb($colourGrey)};
+}

@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/layout-main.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import NewHero from "../../components/NewHero.astro";
+import NewSearch from "../../components/legacy/NewSearch.astro";
+---
+
+<Layout>
+
+    <!-- These are the section markers for the anchor nav -->
+    <!-- This one isn't linked in the nav but it exists so there's always a match -->
+    <div class="relative">
+        <div class="anchor-section top-[-250px] absolute" id="Hero"></div>
+    </div>
+
+    <Breadcrumbs />
+    <NewHero />
+    <div class="spacer small"></div>
+
+    <NewSearch />
+
+</Layout>

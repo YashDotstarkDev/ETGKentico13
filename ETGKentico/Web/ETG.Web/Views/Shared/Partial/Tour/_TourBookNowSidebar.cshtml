@@ -1,0 +1,739 @@
+﻿@using Castle.Core.Internal
+@using CMS.Core
+@using ETG.Booking.Pricing.Services
+@using ETG.Data.Extensions
+@using ETG.Data.Helpers
+@using ETG.Data.Tour
+@using ETG.Module.Booking.Constants
+@using ETG.Module.Booking.Models
+@using ETG.Module.Booking.Models.Steps
+@using ETG.Web.Extensions
+@model ETG.Web.Tour.BookNow.Models.BookNowViewModel
+@{
+    var currencyPricing = new CurrentCurrencyPricing(DependencyResolver.Current.GetService<ICurrencyService>());
+    
+    if (Model?.Tour?.TourSummaryInfo == null)
+    {
+        return;
+    }
+
+    var BookNowStepsDetails = Model.BookNowStepsDetails;
+    if (BookNowStepsDetails == null)
+    {
+        BookNowStepsDetails = new BookNowStepsDetailsModel();
+    }
+}
+
+<div class="widget new-book-now@(Model.BookingCartIsComplete ? " cart-complete" : "")"
+     data-widget="new-book-now"
+     data-tourcode="@Model.Tour.TourSummaryInfo.TourCode"
+     data-tourdays="@(Model.Tour.TourSummaryInfo.NoOfNights + 1)"
+     data-hasfreedomofchoice="@Model.HasFreedomOfChoice.ToString().ToLower()"
+     data-isonsalenow="@Model.Tour.TourSummaryInfo.TourIsOnSaleNow.ToString().ToLower()"
+     data-peaceofmind="@Model.Tour.HasPeaceOfMindGuarantee.ToString().ToLower()"
+     data-changeofmindthresholddays="@Model.EntireFlexThresholdDays"
+     @Html.Raw(Model.BookingCartIsComplete ? $"data-selecteddate=\"{BookNowStepsDetails.StepDateSelect.SelectedDate:dd/MM/yyyy}\"" : "")
+     data-no-roomupgrades="@Model.HasNoRoomUpgrades.ToString().ToLower()"
+     data-currency="@currencyPricing.CurrentCurrency"
+     data-currency-symbol="@currencyPricing.CurrentCurrencySymbol">
+
+<div class="endpoints"
+     data-initial="/api/booking/getdeparturedates" data-initial-type="GET"
+     data-booking-summary="/api/booking/getsummary" data-booking-summary-type="GET"
+     data-cancel="/api/booking/clearcart">
+</div>
+<div class="cancel-booking-modal ui modal">
+    <div class="inner-container">
+        <div>
+            <h2>Cancel booking</h2>
+            <p>Are you sure you want to cancel this booking?</p>
+        </div>
+
+        <div class="btn-container">
+            <button class="ui transparent button primary yes" type="button">Yes</button>
+            <button class="ui submit button primary no" type="button">No</button>
+        </div>
+    </div>
+</div>
+
+<div class="book-now-package-details">
+    <div class="top">
+        <div class="package-duration">@(Model.Tour.TourSummaryInfo.NoOfNights + 1) days</div>
+        @if (!Model.Tour.TourSummaryInfo.PriceInclusionIcons.IsNullOrEmpty())
+        {
+            <div class="package-inclusion-icons">
+                @foreach (var icon in Model.Tour.TourSummaryInfo.PriceInclusionIcons)
+                {
+                    <span class="icon @icon.IconClass"></span>
+                }
+            </div>
+        }
+
+    </div>
+    <div class="middle">
+        <div class="package-price" data-currency="AUD" data-currency-symbol="$">
+            @if (Model.Tour.TourSummaryInfo.FromPrice != null)
+            {
+                <div class="prices">
+                    <div class="price-from">
+                        From
+                        @if (currencyPricing.CurrencyAppliesDiscounts && Model.Tour.TourSummaryInfo.Promotion != null)
+                        {
+                            <span class="strike">
+                                <span class="price-currency">@Model.Tour.TourSummaryInfo.FromPrice.Currency</span>@Model.Tour.TourSummaryInfo.FromPrice.GetDisplayedPriceNoCurrencyForCurrentCurrency()
+                            </span>
+                        }
+                    </div>
+                    <div class="price-actual">
+                        <span class="price-currency">@Model.Tour.TourSummaryInfo.FromPrice.Currency</span>
+                        @if (!currencyPricing.CurrencyAppliesDiscounts || Model.Tour.TourSummaryInfo.Promotion == null)
+                        {
+                            @Model.Tour.TourSummaryInfo.FromPrice.GetDisplayedPriceNoCurrencyForCurrentCurrency()
+                        }
+                        else
+                        {
+                            @currencyPricing.ConvertAUDToCurrentCurrency(Model.Tour.TourSummaryInfo.Promotion.GetDiscountedPrice(Model.Tour.TourSummaryInfo.FromPrice.LowestPrice)).ToString("#,###")
+                        }
+
+                    </div>
+                </div>
+            }
+            @if (currencyPricing.CurrencyAppliesDiscounts && Model.Tour.TourSummaryInfo.Promotion != null)
+            {
+                <div class="price-saving">
+                    Save <span class="price-currency-symbol">$</span>@currencyPricing.ConvertAUDToCurrentCurrency(Model.Tour.TourSummaryInfo.Promotion.GetDiscount(Model.Tour.TourSummaryInfo.FromPrice.LowestPrice, 1))<span>pp</span>
+                </div>
+            }
+            <div class="price-notes">
+                @Model.Tour.TourSummaryInfo.PriceTypeLabel
+            </div>
+            <div class="buttons">
+                <a href="/pdf/@Model.Tour.TourSummaryInfo.TourCode" class="button ui white" target="_blank">Download PDF</a>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="package-book-notes">
+            <div>
+                Travelling with kids?
+                <a href="/experiences/family" target="_blank">
+                    Read more&nbsp;
+                    <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.6484 0.5L7.82812 0.523438C7.64062 0.523438 7.5 0.664062 7.5 0.851562V1.625C7.5 1.8125 7.64062 1.97656 7.82812 1.97656L9.5625 1.90625L9.60938 1.95312L3.07031 8.49219C3.02344 8.53906 2.97656 8.63281 2.97656 8.67969C2.97656 8.75 3.02344 8.84375 3.07031 8.89062L3.60938 9.42969C3.65625 9.47656 3.75 9.52344 3.82031 9.52344C3.86719 9.52344 3.96094 9.47656 4.00781 9.42969L10.5469 2.89062L10.5938 2.9375L10.5234 4.67188C10.5234 4.85938 10.6875 5 10.875 5H11.6484C11.8359 5 11.9766 4.85938 11.9766 4.67188L12 0.851562C12 0.664062 11.8359 0.5 11.6484 0.5ZM10.125 7.25H9.75C9.53906 7.25 9.375 7.4375 9.375 7.625V11.2344C9.375 11.3281 9.30469 11.375 9.23438 11.375H1.26562C1.17188 11.375 1.125 11.3281 1.125 11.2344V3.26562C1.125 3.19531 1.17188 3.125 1.26562 3.125H4.875C5.0625 3.125 5.25 2.96094 5.25 2.75V2.375C5.25 2.1875 5.0625 2 4.875 2H1.125C0.492188 2 0 2.51562 0 3.125V11.375C0 12.0078 0.492188 12.5 1.125 12.5H9.375C9.98438 12.5 10.5 12.0078 10.5 11.375V7.625C10.5 7.4375 10.3125 7.25 10.125 7.25Z" fill="#CA568E"/>
+                    </svg>
+                </a>
+            </div>
+            <div>
+                All services are subject to availability.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="book-now-package-booking">
+<h2 class="book-now-heading">Book Now</h2>
+<div class="book-now-note">
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="18" fill="none">
+            <path fill="#CA568E" d="M18.809.264a.77.77 0 0 1 1.16 0l2.25 2.25c.175.14.281.351.281.562a.751.751 0 0 1-.281.598l-2.25 2.25a.77.77 0 0 1-1.16 0c-.352-.317-.352-.844 0-1.195l.808-.81H13.5c-.492 0-.844-.35-.844-.843 0-.457.352-.844.844-.844h6.117l-.808-.808a.77.77 0 0 1 0-1.16ZM3.656 13.236l-.808.809h6.117c.492 0 .844.387.844.844 0 .492-.352.843-.844.843H2.848l.808.809c.352.352.352.879 0 1.195a.77.77 0 0 1-1.16 0l-2.25-2.25C.07 15.346 0 15.135 0 14.89c0-.211.07-.422.246-.598l2.25-2.25a.828.828 0 0 1 1.16 0c.352.352.352.879 0 1.195ZM3.34 2.232h8.508a2.416 2.416 0 0 0-.176.844c0 1.02.808 1.828 1.828 1.828h3.41c.106.633.457 1.16.985 1.477.07.105.14.176.21.246a1.764 1.764 0 0 0 2.567 0l.703-.668v7.523c0 1.266-1.02 2.25-2.25 2.25h-8.508c.106-.246.176-.527.176-.843 0-.985-.809-1.829-1.828-1.829h-3.41a2.098 2.098 0 0 0-.985-1.44c-.07-.106-.14-.177-.21-.247a1.764 1.764 0 0 0-2.567 0l-.703.668V4.482c0-1.23 1.02-2.25 2.25-2.25Zm0 4.5c1.265 0 2.25-.984 2.25-2.25H3.34v2.25Zm15.785 6.75v-2.25a2.243 2.243 0 0 0-2.25 2.25h2.25Zm-7.91-1.125c1.898 0 3.41-1.511 3.41-3.375 0-1.863-1.512-3.375-3.41-3.375a3.376 3.376 0 0 0 0 6.75Z"></path>
+        </svg>
+    </div>
+    <span>Only $100pp deposit to Book Now</span>
+</div>
+
+<div class="book-now-starter js-start-buttons" @Html.Raw(Model.BookingCartIsComplete ? " style=\"display:none\"" : "")>
+    <button class="ui button primary js-start-steps">Pick your dates</button>
+    <span class="divider"></span>
+    <button class="ui button primary transparent js-start-agent">Travel agent quote & book</button>
+    <p>Visit our <a href="/agents" style="white-space: nowrap">Agent Portal</a> for more info.</p>
+    <span class="divider"></span>
+    <a href="/enquire/@Model.Tour.TourSummaryInfo.TourCode" target="_blank" class="ui button primary transparent">
+        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.1562 0.59375L1.28125 6.85156C0.859375 7.08594 0.90625 7.69531 1.32812 7.85938L3.83594 8.91406L10.5625 2.98438C10.6797 2.86719 10.8672 3.03125 10.75 3.17188L5.125 10.0391V11.9375C5.125 12.5 5.78125 12.7109 6.10938 12.3125L7.60938 10.4844L10.5156 11.7266C10.8438 11.8672 11.2422 11.6562 11.2891 11.2812L12.9766 1.15625C13.0703 0.6875 12.5547 0.359375 12.1562 0.59375Z" fill="currentColor"></path>
+        </svg>
+        Make an enquiry
+    </a>
+
+</div>
+@Html.Partial("Partial/Form/_BookingAgentForm", (Model.BookingForm, Model.Tour))
+<div class="form-steps js-form-steps" style="display: none;">
+
+<div class="form-steps" @Html.Raw(Model.BookingCartIsComplete ? " style=\"display:block\"" : "")>
+<div class="step @(Model.StepCompletedCssClass)" data-step="date">
+    <div class="step-trigger">
+        <div class="label-container">
+            <div class="label">@(BookNowStepsDetails.StepDateSelect.MainLabel)</div>
+        </div>
+        <div class="sub-label-container">
+            <div class="sub-label">@BookNowStepsDetails.StepDateSelect.DisplaySelectedDate</div>
+            <a href="#" class="edit-step js-edit">Change</a>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="step-info">
+            <b>Package prices are per person twin share.</b>
+            @if (!Model.Tour.DepartureDaysOfWeek.IsNullOrEmpty() || (Model.Tour.DepartureDaysOfWeek.Count > 0 && Model.Tour.DepartureDaysOfWeek.Count < 7))
+            {
+                <br/>
+                <span>This package starts on specific days<br/>of the week.</span>
+            }
+        </div>
+        <div class="ui form step-date" data-method="POST" data-endpoint="/api/booking/submitbookingdatenonagent"
+             data-endpoint-agent="/api/booking/submitbookingdateagent" data-endpoint-nonagent="/api/booking/submitbookingdatenonagent"
+             data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <input type="hidden" name="sessionId" value="@System.Web.HttpContext.Current.Session.SessionID"/>
+            <input type="hidden" name="tourCode" value="@Model.Tour.TourSummaryInfo.TourCode"/>
+            <input type="hidden" name="skuId" value="@Model.Tour.SkuId"/>
+            <input type="hidden" name="tourDays" value="@(Model.Tour.TourSummaryInfo.NoOfNights + 1)" />
+            <input type="hidden" name="hasPrePostNights" value="" />
+            @if (Model.Tour.BookingDepartureDatesOptions != BookingConstants.DEPARTURE_DATES_VIEW_RADIO)
+            {
+                <div class="calendar-container">
+                    <div class="field">
+                        <div class="calendar"></div>
+                        <input type="hidden" class="calendar-date" data-rules="checkHiddenInputVisible" name="departureDate" data-prompts="Please select a date" value="@Model.BookNowStepsDetails.StepDateSelect.FormattedSelectedDate"/>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="radio-list">
+                    <div class="field radio-buttons">
+                        <div class="grouped fields">
+                            <input type="hidden" data-rules="checkboxCount[1]" name="validator" data-prompts="Please select a date"/>
+                            <div class="dates"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (Model.DaysFromDepartureDateForFullPayment > 0)
+            {
+                <div class="full-payment-message">
+                    The date you have selected is less than @Model.DaysFromDepartureDateForFullPayment days. Full payment is required at time of booking*
+                </div>
+            }
+            <div class="submit-row">
+                <button type="button" class="ui button primary submit transparent">Next</button>
+                <a href="#" class="cancel">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="step@(Model.StepCompletedCssClass)" data-step="travellers">
+    <div class="step-trigger">
+        <div class="label-container">
+            <div class="label">
+                @(BookNowStepsDetails.StepTraveller.MainLabel)
+            </div>
+            <div class="ui tool-tip" data-html="@(ResourceHelper.GetString("booknow.tooltip.travellers").Replace("{contacturl}", $"/enquire/{Model.Tour.TourSummaryInfo.TourCode}"))">
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#ca568e"/>
+                </svg>
+            </div>
+        </div>
+        <div class="sub-label-container">
+            <div class="sub-label">@(BookNowStepsDetails.StepTraveller.SubLabel)</div>
+            <a href="#" class="edit-step js-edit">Change</a>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="ui form" data-method="POST" data-endpoint="/api/booking/submittravellercount" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="validation-set">
+                <div class="field">
+                    <input type="hidden" name="travellerValidator" data-rules="validateTraveller" data-prompts="Please select the number of rooms to book."/>
+                    <div class="field field-double-room">
+                        <label>No. of twin/double rooms</label>
+
+                        <select class="double-room select-room-count" name="twinShareOptions">
+                            @if (BookNowStepsDetails.StepTraveller.TwinShareOptions != null)
+                            {
+                                <option value=" ">None</option>
+                                foreach (var option in BookNowStepsDetails.StepTraveller.TwinShareOptions)
+                                {
+                                    <option @(option.IsSelected ? " selected" : "") value="@option.NumberOfRooms">
+                                        @option.Label
+                                    </option>
+                                }
+                            }
+                        </select>
+                        <div class="double-room-suboptions">
+                            @if (!BookNowStepsDetails.StepTraveller.SelectedTwinShareRoomsType.IsNullOrEmpty())
+                            {
+                                var selectedRoomsType = BookNowStepsDetails.StepTraveller.SelectedTwinShareRoomsType;
+                                for (var i = 1; i <= BookNowStepsDetails.StepTraveller.SelectedTwinShareRoomsType.Count; i++)
+                                {
+                                    <label>Room @i</label>
+                                    <select class="room-type" name="twinRoomType">
+                                        <option value=" ">None</option>
+                                        <option @(selectedRoomsType[i - 1] == "Twin" ? "selected" : "") value="Twin">Twin</option>
+                                        <option @(selectedRoomsType[i - 1] == "Double" ? "selected" : "") value="Double">Double</option>
+                                    </select>
+                                }
+                            }
+                        </div>
+                        <input name="selectedRoomTypes" type="hidden"/>
+                    </div>
+                    <div class="field field-single-room" @Html.DisplayNoneStyle(BookNowStepsDetails.StepTraveller.HideSingleRoomDropdown)>
+                        <label>No. of single rooms (single supplement applies)</label>
+                        <select class="single-room select-room-count" name="singleRoomOptions">
+                            @if (!BookNowStepsDetails.StepTraveller.SingleRoomOptions.IsNullOrEmpty())
+                            {
+                                <option value=" ">None</option>
+                                foreach (var option in BookNowStepsDetails.StepTraveller.SingleRoomOptions)
+                                {
+                                    <option @(option.IsSelected ? " selected" : "") value="@option.NumberOfRooms">
+                                        @option.Label
+                                    </option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="incomplete-rooms-type-label">Please select room types for each twin/double rooms</div>
+                <div class="max-guest-label">Maximum for online booking is 9 people</div>
+            </div>
+            <div class="submit-row">
+                <button type="button" class="ui button primary submit transparent">Next</button>
+                <a href="#" class="cancel">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="step@(Model.StepCompletedCssClass) @Html.HiddenClass(BookNowStepsDetails.StepRoomOptions.IsHidden)" data-step="roomOptions">
+    <div class="step-trigger">
+        <div class="label-container">
+            <div class="label">@(BookNowStepsDetails.StepRoomOptions.MainLabel)</div>
+            <div class="ui tool-tip" data-html="@ResourceHelper.GetString("booknow.tooltip.roompotions")">
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#ca568e"/>
+                </svg>
+            </div>
+        </div>
+        <div class="sub-label-container">
+            <div class="sub-label">@Html.Raw(BookNowStepsDetails.StepRoomOptions.SubLabel)</div>
+            <a href="#" class="edit-step js-edit">Change</a>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="ui form" data-method="POST" data-endpoint="/api/booking/submitroomoptions" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="validation-set">
+                <div class="field">
+                    <input type="hidden" name="travellerValidator"/>
+                    @if (!BookNowStepsDetails.StepRoomOptions.HotelName.IsNullOrEmpty())
+                    {
+                        <div class="title"><b>Hotel:</b>&nbsp;@Html.Raw(BookNowStepsDetails.StepRoomOptions.HotelName)</div>
+                    }
+                    <div class="field-container">
+                        @if (BookNowStepsDetails.StepRoomOptions.RoomOptions != null)
+                        {
+                            foreach (var roomOption in BookNowStepsDetails.StepRoomOptions.RoomOptions)
+                            {
+                                <div class="field">
+                                    <label>@roomOption.FieldLabel</label>
+                                    <select name="@roomOption.FieldName">
+                                        <option value=" ">None</option>
+                                        @foreach (var option in roomOption.Options)
+                                        {
+                                            <option @(option.IsSelected ? " selected" : "") value="@option.OptionGuid">
+                                                @option.Label @($"(+{Model.Tour.TourSummaryInfo.PriceCurrencySymbol}{option.SupplementalCost.ToString("#,###")}pp)")
+                                            </option>
+                                        }
+                                    </select>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="submit-row">
+                <button type="button" class="ui button primary submit transparent">Next</button>
+                <a href="#" class="cancel">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="step@(Model.StepCompletedCssClass)" data-step="prePost">
+    <div class="step-trigger">
+        <div class="label-container">
+            <div class="label">
+                @(BookNowStepsDetails.StepPrePostNights.MainLabel)
+            </div>
+            <div class="ui tool-tip" data-html="Add Pre/Post Nights at the start/end of your package, staying at the same hotel as per the itinerary.">
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#ca568e"/>
+                </svg>
+            </div>
+        </div>
+        <div class="sub-label-container">
+            <div class="sub-label">@Html.Raw(BookNowStepsDetails.StepPrePostNights.SubLabel)</div>
+            <a href="#" class="edit-step js-edit">Change</a>
+        </div>
+    </div>
+
+    <div class="step-content">
+
+        <div class="ui form step-prePost" data-method="POST" data-endpoint="/api/booking/submitprepostnights" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="field field-pre">
+                <label>Add Pre Nights</label>
+                <select class="select-pre" name="preNights">
+                    <option value=" ">None</option>
+                    @if (BookNowStepsDetails.StepPrePostNights.PreNightsOptions != null)
+                    {
+                        foreach (var option in BookNowStepsDetails.StepPrePostNights.PreNightsOptions)
+                        {
+                            <option @(option.IsSelected ? " selected" : "") value="@option.Value">
+                                @option.Label
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="field field-post">
+                <label>Add Post Nights</label>
+                <select class="select-post" name="postNights">
+                    <option value=" ">None</option>
+                    @if (BookNowStepsDetails.StepPrePostNights.PostNightsOptions != null)
+                    {
+                        foreach (var option in BookNowStepsDetails.StepPrePostNights.PostNightsOptions)
+                        {
+                            <option @(option.IsSelected ? " selected" : "") value="@option.Value">
+                                @option.Label
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="submit-row">
+                <button type="button" class="ui button primary transparent medium submit">Next</button>
+                <a href="#" class="cancel">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="step@(Model.StepCompletedCssClass)" data-step="freedomOfChoice">
+    <div class="step-trigger">
+        <div class="label-container">
+            <div class="label">Freedom of Choice</div>
+            <div class="ui tool-tip" data-html="@ResourceHelper.GetString("booknow.tooltip.freedomofchoice")">
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#ca568e"/>
+                </svg>
+            </div>
+        </div>
+        <div class="sub-label-container">
+            <div class="sub-label"></div>
+            <a href="#" class="edit-step js-edit">Change</a>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="ui form" data-method="POST" data-endpoint="/api/booking/submitfreedomofchoice" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="field radio-buttons">
+                <input type="hidden" data-validate="checkboxGroup1" data-rules="checkboxCount[1]" data-prompts="Please select an option"/>
+                <div class="field">
+                    <div class="ui radio checkbox selectnow">
+                        <input type="radio" class="show-dynamic-fields" name="freedomofchoice" value="selectnow" @Html.DisableAttrubute(BookNowStepsDetails.StepFreedomOfChoice.DisableSelectNow) @(BookNowStepsDetails.StepFreedomOfChoice.FreedomOfChoiceSelectNow == null || !BookNowStepsDetails.StepFreedomOfChoice.FreedomOfChoiceSelectNow.Value ? "" : "checked")/>
+                        <label>Select Now</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox selectlater">
+                        <input type="radio" class="show-dynamic-fields" name="freedomofchoice" value="selectlater" @(BookNowStepsDetails.StepFreedomOfChoice.FreedomOfChoiceSelectNow == null || BookNowStepsDetails.StepFreedomOfChoice.FreedomOfChoiceSelectNow.Value ? "" : "checked")/>
+                        <label>Select Later</label>
+                    </div>
+                </div>
+            </div>
+            <div class="select-later-copy" @Html.DisplayBlockStyle(!(BookNowStepsDetails.StepFreedomOfChoice.FreedomOfChoiceSelectNow == null || BookNowStepsDetails.StepFreedomOfChoice.FreedomOfChoiceSelectNow.Value))>
+                Freedom of Choice options need to be confirmed within the next 2 weeks.
+            </div>
+            <div class="multiple-room-copy" @Html.DisplayBlockStyle(BookNowStepsDetails.StepFreedomOfChoice.DisableSelectNow)>
+                As multiple rooms have been selected, our team will contact you to discuss the Freedom of Choice options.
+            </div>
+            <div class="option-set-container" @Html.Raw(BookNowStepsDetails.StepFreedomOfChoice.FreedomOfChoiceSelectNow == null || !BookNowStepsDetails.StepFreedomOfChoice.FreedomOfChoiceSelectNow.Value ? "" : " style=\"display:block\"")>
+                @if (!Model.BookingFreedomOfChoices.IsNullOrEmpty())
+                {
+                    var index = 0;
+                    foreach (var freedom in Model.BookingFreedomOfChoices)
+                    {
+                        <div class="option-set field">
+                            <div class="option-label">@freedom.DayLabel</div>
+
+                            <div class="field radio-buttons">
+                                <input type="hidden" data-validate="@(index++)" data-rules="checkboxCountVisible[1]" data-prompts="Please select an option">
+
+                                @foreach (var option in freedom.Options)
+                                {
+                                    <div class="field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="@freedom.DayName" value="@freedom.DayLabel|@option.Value" @(BookNowStepsDetails.StepFreedomOfChoice.IsSelected(freedom.DayLabel, option.Value)) tabindex="0" class="hidden">
+                                            <label>@option.Value</label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+
+            <div class="submit-row">
+                <button type="button" class="ui button primary submit transparent">Next</button>
+                <a href="#" class="cancel">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="step@(Model.StepCompletedCssClass) @Html.HiddenClass(BookNowStepsDetails.StepExtras.IsHidden)" data-step="optionalExtras">
+    <div class="step-trigger">
+        <div class="label-container">
+            <div class="label">@(BookNowStepsDetails.StepExtras.MainLabel)</div>
+            <div class="ui tool-tip" data-html="@ResourceHelper.GetString("booknow.tooltip.optionalextras")">
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#ca568e"/>
+                </svg>
+            </div>
+        </div>
+        <div class="sub-label-container">
+            <div class="sub-label">@(BookNowStepsDetails.StepExtras.SubLabel)</div>
+            <a href="#" class="edit-step js-edit">Change</a>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="ui form" data-method="POST" data-endpoint="/api/booking/submitextraoptions" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            <div class="field">
+                <div class="option-set">
+                    @if (BookNowStepsDetails.StepExtras.ExtraOptions != null)
+                    {
+                        foreach (var option in BookNowStepsDetails.StepExtras.ExtraOptions)
+                        {
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input @(option.IsSelected ? " checked" : "") type="checkbox" name="@option.FieldName" value="@option.OptionGuid" tabindex="0" class="hidden"><label>@option.Label @($"+{Model.Tour.TourSummaryInfo.PriceCurrencySymbol}{option.SupplementalCost.ToString("#,###")}pp")</label>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            @*<div class="multiple-room-copy" @Html.DisplayBlockStyle(BookNowStepsDetails.StepExtras.DisableSelectNow)>
+                As multiple rooms have been selected, our team will contact you to discuss Optional Extras.
+            </div>*@
+            <div class="submit-row">
+                <button type="button" class="ui button primary submit transparent">Next</button>
+                <a href="#" class="cancel">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="step@(Model.StepCompletedCssClass)" data-step="otherOptions">
+    <div class="step-trigger">
+        <div class="label-container">
+            <div class="label">Other Options</div>
+            <div class="ui tool-tip" data-html="@ResourceHelper.GetString("booknow.tooltip.otheroptions")">
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 0.96875C3.25391 0.96875 0.21875 4.03125 0.21875 7.75C0.21875 11.4961 3.25391 14.5312 7 14.5312C10.7188 14.5312 13.7812 11.4961 13.7812 7.75C13.7812 4.03125 10.7188 0.96875 7 0.96875ZM7 13.2188C3.96484 13.2188 1.53125 10.7852 1.53125 7.75C1.53125 4.74219 3.96484 2.28125 7 2.28125C10.0078 2.28125 12.4688 4.74219 12.4688 7.75C12.4688 10.7852 10.0078 13.2188 7 13.2188ZM7 3.97656C6.34375 3.97656 5.85156 4.49609 5.85156 5.125C5.85156 5.78125 6.34375 6.27344 7 6.27344C7.62891 6.27344 8.14844 5.78125 8.14844 5.125C8.14844 4.49609 7.62891 3.97656 7 3.97656ZM8.53125 10.9219V10.2656C8.53125 10.1016 8.36719 9.9375 8.20312 9.9375H7.875V7.20312C7.875 7.03906 7.71094 6.875 7.54688 6.875H5.79688C5.60547 6.875 5.46875 7.03906 5.46875 7.20312V7.85938C5.46875 8.05078 5.60547 8.1875 5.79688 8.1875H6.125V9.9375H5.79688C5.60547 9.9375 5.46875 10.1016 5.46875 10.2656V10.9219C5.46875 11.1133 5.60547 11.25 5.79688 11.25H8.20312C8.36719 11.25 8.53125 11.1133 8.53125 10.9219Z" fill="#ca568e"/>
+                </svg>
+            </div>
+        </div>
+        <div class="sub-label-container">
+            <div class="sub-label"></div>
+            <a href="#" class="edit-step js-edit">Change</a>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="ui form" data-method="POST" data-endpoint="/api/booking/submitotheroptions" data-validate-inline="data-validate-inline" data-validate-on="submit">
+            @if (false && !Model.HideFlightsOtherOptions)
+            {
+                <div class="field">
+                    <label><b>International Airfares</b> are not included. Do you require assistance?</label>
+                    <div class="grouped fields">
+                        <input type="hidden" data-validate="checkboxGroup1" data-rules="checkboxCount[1]" data-prompts="Please select yes or no"/>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="requireFareAssistance" value="true" @(BookNowStepsDetails.StepOtherOptions.RequireFareAssistance == null || !BookNowStepsDetails.StepOtherOptions.RequireFareAssistance.Value ? "" : "checked")/>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="requireFareAssistance" value="false" @(BookNowStepsDetails.StepOtherOptions.RequireFareAssistance == null || BookNowStepsDetails.StepOtherOptions.RequireFareAssistance.Value ? "" : "checked")/>
+                                <label>No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-yes" @Html.Raw(BookNowStepsDetails.StepOtherOptions.RequireFareAssistance == null || !BookNowStepsDetails.StepOtherOptions.RequireFareAssistance.Value ? "" : "style=\"display:block\"")>Great, no problem. Please complete the Book Now process. Our team will assist you later.</div>
+                </div>
+            }
+            <div class="field">
+                <label><b>Travel Insurance</b> is strongly recommended. Do you require assistance?</label>
+                <div class="grouped fields">
+                    <input type="hidden" data-validate="checkboxGroup2" data-rules="checkboxCount[1]" data-prompts="Please select yes or no"/>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="requireInsuranceAssistance" value="true" @(BookNowStepsDetails.StepOtherOptions.RequireTravelInsuranceAssistance == null || !BookNowStepsDetails.StepOtherOptions.RequireTravelInsuranceAssistance.Value ? "" : "checked")/>
+                            <label>Yes</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="requireInsuranceAssistance" value="false" @(BookNowStepsDetails.StepOtherOptions.RequireTravelInsuranceAssistance == null || BookNowStepsDetails.StepOtherOptions.RequireTravelInsuranceAssistance.Value ? "" : "checked")/>
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-yes" @Html.Raw(BookNowStepsDetails.StepOtherOptions.RequireTravelInsuranceAssistance == null || !BookNowStepsDetails.StepOtherOptions.RequireTravelInsuranceAssistance.Value ? "" : "style=\"display:block\"")>Great, no problem. Please complete the Book Now process. Our team will assist you later.</div>
+            </div>
+            <div class="submit-row">
+                <button type="button" class="ui button primary submit transparent">Next</button>
+                <a href="#" class="cancel">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="booking-summary js-booking-summary" style="display: none;">
+    <div class="booking-summary-section booking-summary-breakdown">
+        <h4>Booking Summary</h4>
+        <h5></h5>
+        <div class="package">
+            <div class="item">
+                <div class="item-name">
+                    <div class="label"></div>
+                    <div class="qty"></div>
+                </div>
+                <div class="price"></div>
+            </div>
+            <div class="item">
+                <div>
+                    <div class="prepost-nights-breakdown"></div>
+                    <div class="roomtypes-breakdown"></div>
+                </div>
+            </div>
+        </div>
+         <div class="single-package">
+             <div class="item">
+                 <div class="item-name">
+                     <div class="label"></div>
+                     <div class="qty"></div>
+                 </div>
+                 <div class="price"></div>
+             </div>
+             <div class="item">
+                 <div>
+                     <div class="prepost-nights-breakdown"></div>
+                 </div>
+             </div>
+        </div>
+        <div class="item room-option">
+            <div class="item-name">
+                <div class="label">Room Upgrades</div>
+                <div class="room-list"></div>
+            </div>
+
+            <div class="price"></div>
+        </div>
+        <div class="item extras-option">
+            <div class="item-name">
+                <div class="label">Extras</div>
+                <div class="extras-list"></div>
+            </div>
+            <div class="price"></div>
+        </div>
+
+        <div class="item entire-flex">
+            <div class="item-name">
+                <div class="label"></div>
+                <div class="qty"></div>
+            </div>
+            <div class="price"></div>
+        </div>
+        <div class="item discount">
+            <div class="item-name">
+                <div class="label"></div>
+                <div class="qty"></div>
+            </div>
+            <div class="price"></div>
+        </div>
+        <div class="item total item-full">
+            <div class="inner">
+                <div class="total-label">Total</div>
+                <div class="total-price"><span></span>
+                     @if (!currencyPricing.CurrentCurrencyIsAUD)
+                     {
+                         <br/>
+                         <div class="price-aud">
+                             (AUD <span></span>)
+                         </div>
+                     }
+                </div>
+            </div>
+            <div class="terms">
+                @if (Model.DaysFromDepartureDateForFullPayment > 0)
+                {
+                    <div class="full-payment-message">
+                        The date you have selected is less than @Model.DaysFromDepartureDateForFullPayment days. Full payment is required at time of booking*
+                    </div>
+                }
+                @if (Model.Tour.TourSummaryInfo.TourIsOnSaleNow && Model.Tour.TourSummaryInfo.OnSaleFullpaymentRquired)
+                {
+                    <div>
+                        On Sale Now packages require full payment at time of booking.
+                    </div>
+                }
+                <div class="full-payment-additional-message">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="booking-summary-section deposit-due">
+        <h4>Due Now</h4>
+
+        <div class="item deposit">
+            <div class="item-name">
+                <div class="label">Deposit</div>
+                <div class="qty"></div>
+            </div>
+            <div class="price"></div>
+        </div>
+
+        <div class="item deposit-entire-flex">
+            <div class="item-name">
+                <div class="label"></div>
+                <div class="qty"></div>
+            </div>
+            <div class="price"></div>
+        </div>
+
+        <div class="item item-deposit total">
+            <div class="inner">
+                <div class="total-label">Total Due Now</div>
+                <div class="total-deposit-price"><span></span>
+                @if (!currencyPricing.CurrentCurrencyIsAUD)
+                {
+                    <br/>
+                    <div class="price-aud">
+                        (AUD <span></span>)
+                    </div>
+                }
+                    </div>
+            </div>
+
+            <div class="terms"></div>
+        </div>
+    </div>
+    <div class="booking-summary-section">
+
+        <div class="action non-agent">
+            <a href="/booking/checkout" class="button ui white proceed-button">Proceed</a>
+            <a href="#" class="cancel">Cancel</a>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>

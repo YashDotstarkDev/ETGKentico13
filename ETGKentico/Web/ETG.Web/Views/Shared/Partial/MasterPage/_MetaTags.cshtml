@@ -1,0 +1,29 @@
+﻿@using ETG.Core.Extensions
+@using ETG.Data.Helpers
+@model ETG.Web.Models.Base.PageNodeViewModel
+
+<title>@Model.PageTitle</title>
+
+<meta name="description" content="@Model.PageDescription" />
+<meta name="keywords" content="@Model.PageKeywords" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="@Model.ShareTitle" />
+<meta property="og:description" content="@Model.ShareDescription" />
+<meta property="og:url" content="@HttpContext.Current.Request.Url.ToString()" />
+
+@if (Model.ShareTitle != null)
+{
+    <meta property="og:image" content="@Model.ShareImage.Imgixify()" />
+    <meta property="og:image:height" content="780" />
+    <meta property="og:image:width" content="1500" />
+}
+
+<meta name="facebook-domain-verification" content="ng94q71cwn2e7xeqarcf0tkr5y7xwi" />
+@{
+    string googleVerificationCode = MetaTagHelper.GetGoogleVerificationCode();
+    if (!string.IsNullOrEmpty(googleVerificationCode))
+    {
+        <meta name="google-site-verification" content="@googleVerificationCode" />
+    }
+}

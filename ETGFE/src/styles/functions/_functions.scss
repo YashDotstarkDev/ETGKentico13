@@ -1,0 +1,14 @@
+@use "sass:color";
+
+// Convert 'px-to-em' function
+// See https://css-tricks.com/snippets/sass/px-to-em-functions/#aa-the-em-sass-function
+@function em($pixels, $context: 16) {
+  @return #{$pixels/$context}em;
+}
+
+// Convert hex to rgb "channels"
+// E.g. `#bada55` returns `186 218 85`
+// See https://tailwindcss.com/docs/customizing-colors#using-css-variables
+@function hexToRgb($hex) {
+  @return color.channel($hex, "red", $space: rgb) + " " + color.channel($hex, "green", $space: rgb) + " " + color.channel($hex, "blue", $space: rgb);
+}

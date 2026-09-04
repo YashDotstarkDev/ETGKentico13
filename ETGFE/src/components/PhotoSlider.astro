@@ -1,0 +1,30 @@
+---
+import PhotoSliderImage from './PhotoSliderImage.vue'
+---
+
+<!--
+/////
+photo-slider Start
+/////
+-->
+
+<div class="photo-slider">
+    <div class="wrapper-large">
+        <div class="image-container aspect-video relative rounded-xl overflow-hidden">
+            <PhotoSliderImage client:only="vue" images={[
+                'https://entiretravel.imgix.net/getmedia/9abd159d-54b8-4b33-b066-cf02aecda715/matamanoa-hero-2-1500x780.jpg',
+                'https://entiretravel.imgix.net/getmedia/fabec49a-e559-4223-96fc-09a356379c32/matamanoa-hero-1-1500x780.jpg',
+                'https://entiretravel.imgix.net/getmedia/a9f7b43a-33f9-4fba-af48-28e63ab7d6b1/Villa-Matamanoa.jpg',
+                'https://entiretravel.imgix.net/getmedia/058b1c64-ce90-46ed-bb2b-3e9d01b9e19b/Matamanoa-Hero-4-1500x780_1.jpg',
+                'https://entiretravel.imgix.net/getmedia/63f0071a-7d4a-4400-b302-9db1c2a83800/Garden-View-Resort-Room-Matamanoa.jpg',
+                'https://entiretravel.imgix.net/getmedia/68d2be6b-dcce-4a53-9b9f-2790a9b7e445/Matamanoa-Hero-3-1500x780.jpg'
+            ]} />
+        </div>
+    </div>
+</div>
+
+<!--
+/////
+photo-slider End
+/////
+-->

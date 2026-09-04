@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ConsultantFilter.ascx.cs" Inherits="CMSApp.Custom.EnquiryManagement.ConsultantFilter" %>
+<asp:DropDownList runat="server" id="ddlConsultant" CssClass="form-control" />

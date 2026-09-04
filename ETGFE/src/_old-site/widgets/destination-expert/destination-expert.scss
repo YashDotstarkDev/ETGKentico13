@@ -1,0 +1,260 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.destination-expert {
+  overflow: hidden;
+
+  .top {
+    position: relative;
+    height: 230px;
+
+    @media(--landscape) {
+      height: 385px;
+    }
+
+    .icon {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      bottom: 30px;
+      color: $primary;
+      font-size: 80px;
+    }
+
+    .round {
+      display: block;
+      max-width: 1440px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -2px;
+    }
+
+    .avatar {
+      display: block;
+      width: 130px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      z-index: 1;
+
+      @media(--landscape) {
+        width: 180px;
+      }
+    }
+
+    .bg {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      font-family: "object-fit: cover";
+    }
+
+    .tint {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(#000, 0.5);
+    }
+  }
+
+  .bottom {
+    background-color: #ededed;
+    padding: 0 20px 60px;
+
+    @media(--landscape) {
+      padding-bottom: 90px;
+    }
+
+    h2 {
+      margin-top: 5px;
+    }
+
+    .label {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 900;
+      padding-top: 10px;
+    }
+
+    .copy {
+      max-width: 775px;
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 1.6;
+
+      @media(--landscape) {
+        font-size: 20px;
+      }
+
+      &.expanded {
+        .up {
+          display: block;
+        }
+
+        .down {
+          display: none;
+        }
+
+        .grad {
+          display: none;
+        }
+
+        .inner-copy {
+          max-height: 1000px;
+        }
+      }
+
+      .up {
+        display: none;
+      }
+
+      .grad {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(180deg, rgba(237, 237, 237, 0) 0%, #EDEDED 100%);
+        height: 75px;
+
+        @media(--portrait) {
+          display: none;
+        }
+      }
+
+      .inner-copy {
+        position: relative;
+        max-height: 75px;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+
+        @media(--portrait) {
+          max-height: none;
+        }
+      }
+    }
+
+    .read-more {
+      color: $primary;
+      cursor: pointer;
+      margin-top: 10px;
+
+      @media(--portrait) {
+        display: none;
+      }
+    }
+
+    .button {
+      margin-top: 30px;
+      width: 100%;
+      padding: 15px 25px;
+
+      @media(--portrait) {
+        padding: 15px 30px;
+        width: auto;
+      }
+    }
+
+    .description {
+      min-height: 103px;
+    }
+
+    .details {
+      margin-top: 10px;
+
+      @media(--portrait) {
+        margin-top: 0;
+      }
+    }
+
+    .favourite {
+
+
+      .favourite-label {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 20px;
+      }
+
+      .location {
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      .title {
+        color: $primary;
+        font-size: 20px;
+      }
+
+      .panel {
+        background-color: #fff;
+        margin-top: 10px;
+        color: #000;
+
+        @media(--portrait) {
+          display: flex;
+          flex-direction: row;
+        }
+
+        .col {
+          position: relative;
+          @media(--portrait) {
+            width: 50%;
+          }
+
+          &:last-child {
+            text-align: left;
+            padding: 20px;
+
+            @media(--portrait) {
+              padding: 30px;
+            }
+          }
+        }
+
+        img {
+          display: block;
+          width: 100%;
+
+          @media(--portrait) {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            font-family: "object-fit: cover";
+            position: absolute;
+          }
+        }
+      }
+    }
+
+    .line {
+      font-weight: 700;
+
+      .icon {
+        margin: 0 3px;
+      }
+
+      .grey {
+        font-weight: 400;
+        opacity: 0.5;
+      }
+    }
+
+    .inner {
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+
+    }
+  }
+}

@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TourCodeControl.ascx.cs" Inherits="CMSApp.CMSFormControls.Custom.TourCodeControl" %>
+<cms:CMSTextBox runat="server" ID="txtTourCode"></cms:CMSTextBox>

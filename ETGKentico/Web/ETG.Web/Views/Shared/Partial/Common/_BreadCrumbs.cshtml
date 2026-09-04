@@ -1,0 +1,64 @@
+﻿@using Castle.Core.Internal
+
+@model ETG.Web.Models.Base.BasePageViewModel
+
+@if (Model == null || Model.BreadCrumbs.IsNullOrEmpty())
+{
+    return;
+}
+
+<div class="widget breadcrumbs" data-widget="breadcrumbs">
+    <div class="wrapper">
+        <div class="links">
+            <a href="/" class="item">Home</a>
+            @for (var i = 0; i < Model.BreadCrumbs.Count; i++)
+            {
+                if (i < Model.BreadCrumbs.Count - 1)
+                {
+                    @Html.Raw("/")
+                    <a href="@Model.BreadCrumbs[i].Url.ToLower()" class="item">@Model.BreadCrumbs[i].Label</a>
+                }
+                else
+                {
+                    @Html.Raw("/")
+                    <div class="item">@Model.BreadCrumbs[i].Label</div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<script type="application/ld+json">
+{
+    "@@context": "http://schema.org",
+    "@@type": "WebPage",
+    "breadcrumb": "@($"Home | {string.Join(" | ", Model.BreadCrumbs.Select(x => x.Label))}")",
+    "mainEntity": {
+        "@@type": "Service",
+        "url":"https://www.entiretravel.com.au/@(Request.RawUrl.TrimStart('/'))"
+    }
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@@context" : "http://schema.org",
+    "@@type" : "BreadcrumbList",
+    "itemListElement" : [
+        {"@@type" : "ListItem", "position" : 1,"item" : { "name" : "Home", "@@id" : "https://www.entiretravel.com.au/" }} 
+        
+        @{
+            var bcListCounter = 1;
+            var remainingItems = ",";
+        }
+        
+        @foreach (var breadcrumb in Model.BreadCrumbs)
+        {
+            bcListCounter++;
+            remainingItems += $"{{\"@type\" : \"ListItem\", \"position\" : {bcListCounter}, \"item\" : {{ \"name\" : \"{Html.Encode(breadcrumb.Label)}\", \"@id\" : \"https://www.entiretravel.com.au/{(string.IsNullOrWhiteSpace(breadcrumb.Url) ? Request.RawUrl : breadcrumb.Url).TrimStart('/')}\" }} }},";
+        }
+          
+        @(Html.Raw(remainingItems.TrimEnd(',')))
+    ]
+}
+</script>

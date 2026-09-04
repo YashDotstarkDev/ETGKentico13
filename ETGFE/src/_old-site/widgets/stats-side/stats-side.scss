@@ -1,0 +1,31 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.stats-side {
+  padding: 20px;
+  background-color: #EDEDED;
+
+  .button {
+    width: 100%;
+    padding: 13px 20px;
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .set {
+    padding: 15px 0;
+    border-bottom: 1px solid #d6d6d6;
+    line-height: 1.4;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+}

@@ -1,0 +1,309 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.travel-deals {
+
+  .ui.form .field > .selection.dropdown {
+    min-width: 0;
+  }
+
+  #deal_hits {
+    width: 100%;
+  }
+
+  .ais-Hits {
+    width: 100%;
+
+    .ais-Hits-list {
+      width: 100%;
+
+      #deal_hits {
+        width: 100%;
+      }
+    }
+  }
+
+  .container {
+    @media(--portrait) {
+      display: flex;
+      flex-direction: row;
+      margin: 0 -10px;
+    }
+
+    .field {
+      @media(--portrait) {
+        padding: 0 10px;
+        width: 25%;
+      }
+    }
+
+    .pricerangeslider {
+      margin-top: 9px;
+    }
+
+    .make-dropdown {
+      width: 100%;
+    }
+  }
+
+  .price-range {
+    font-size: 13px;
+    margin-top: -5px;
+  }
+
+  .from-value,
+  .to-value {
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .irs--big .irs-min,
+  .irs--big .irs-max {
+    display: none;
+  }
+
+  .irs--big .irs-bar {
+    border: none;
+    background: $primary;
+    height: 6px;
+    top: 2px;
+  }
+
+  .controls {
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .sort {
+      @media(--portrait) {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+      }
+
+      #deal_sort {
+        margin-top: 5px;
+
+        @media(--portrait) {
+          margin-top: 0;
+          margin-left: 5px;
+        }
+      }
+    }
+
+    .view {
+      @media(--portrait) {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+      }
+
+      #deal_view {
+        margin-top: 5px;
+        @media(--portrait) {
+          margin-top: 0;
+          margin-left: 5px;
+        }
+
+        .ui.selection.dropdown {
+          min-width: 70px;
+        }
+      }
+    }
+  }
+
+  h4 {
+    font-family: $lato;
+
+    display: flex;
+    flex-direction: row;
+  }
+
+  .ais-Stats {
+    font-size: inherit;
+    display: inline-block;
+  }
+
+  .deals {
+
+    @media(--portrait) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .ais-Hits-list {
+      margin: 0;
+      margin: 0 -10px;
+    }
+
+    .ais-Hits-item {
+      padding: 10px;
+      width: 100%;
+      margin: 0;
+      border: none;
+      box-shadow: none;
+
+      @media(--portrait) {
+        width: 50%;
+      }
+
+      @media(--landscape) {
+        width: 33.3333%;
+      }
+    }
+
+    .item {
+      color: #FFF;
+      display: block;
+      margin-top: 20px;
+      overflow: hidden;
+      width: 100%;
+
+      @media(--portrait) {
+      }
+
+
+      .title {
+        //box-item:flex-1;
+        position: relative;
+        line-height: 1;
+        font-size: 30px;
+        font-family: $railway;
+        text-transform: uppercase;
+        padding-bottom: 20px;
+        color: #FFF;
+
+        @media(--desktop) {
+          font-size: 50px;
+          padding-bottom: 40px;
+
+        }
+      }
+
+      .description {
+        color: #FFF;
+        position: relative;
+        font-size: 20px;
+        line-height: 1.2;
+      }
+
+      .tint {
+        position: absolute;
+        height: 300px;
+        background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+        opacity: 0.7;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+      }
+
+      .button {
+        margin-top: 20px;
+        position: relative;
+        display: block;
+      }
+
+      .inner {
+        position: relative;
+        padding: 20px;
+        height: 100%;
+        box: vertical;
+      }
+
+      img {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        font-family: "object-fit: cover";
+      }
+    }
+  }
+
+  .pagination {
+    border-top: 1px solid #e4e4e4;
+    padding-top: 10px;
+    margin-top: 20px;
+
+    .controls {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: flex-end;
+      border-bottom: none;
+
+
+    }
+
+    input {
+      width: 40px !important;
+      margin: 0 10px !important;
+    }
+
+    .of {
+      margin-right: 10px;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+
+      .icon {
+        margin: 0 5px;
+      }
+    }
+  }
+
+  .irs--big .irs-line {
+    background: #ededed;
+    height: 10px;
+    border: none;
+    top: 0;
+  }
+
+  .irs-from,
+  .irs-to,
+  .irs-single {
+    display: none;
+  }
+
+  .irs--big {
+    height: auto;
+    margin-top: 8px;
+  }
+
+
+  .irs--big .irs-handle.state_hover,
+  .irs--big .irs-handle:hover {
+    border: 1px solid #CA568E;
+    background: #CA568E;
+  }
+
+  .irs--big .irs-handle {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $primary;
+    background: $primary;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25) !important;
+    top: -6px;
+  }
+
+  .submit-row {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .ui.selection.dropdown {
+    min-width: 100px;
+  }
+}

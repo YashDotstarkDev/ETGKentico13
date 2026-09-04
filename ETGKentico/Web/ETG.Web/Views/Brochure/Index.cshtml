@@ -1,0 +1,79 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@model ETG.Web.Brochure.Models.BrochureListingPageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model?.Page == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page.Page)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @Html.ScriptTag("/scripts/new-brochures.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@section TopBreadcrumbs {
+    @Html.Partial("Partial/Common/_BreadCrumbs", Model)
+}
+
+<div class="widget new-brochure-listing" data-widget="new-brochure-listing">
+    <div class="wrapper">
+        <h1>@Model.Page.PageHero.Heading</h1>
+
+        <div>
+            @Html.Kentico().EditableArea("editableAreaCta", allowedWidgets: new[] { "ETG.Web.Widget.BrochureCTAWidget" })
+
+        </div>
+
+        <div class="list">
+            @foreach (var brochure in Model.Brochures)
+            {
+                <div class="item">
+                    @if (brochure.IsComingSoon)
+                    {
+                        <div class="coming-soon">
+                            <div class="image">
+                                <img src="@brochure.CoverImage.Imgixify()" alt="@brochure.Name">
+                            </div>
+                            <div class="content">
+                                <h3>@brochure.Name</h3>
+                                <div class="ui primary outline button">Coming Soon</div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <a href="@(!string.IsNullOrWhiteSpace(brochure.FilePath) ? brochure.FilePath : brochure.BrochureLink)" target="_blank">
+                            <div class="image">
+                                <img src="@brochure.CoverImage.Imgixify()" alt="@brochure.Name">
+                            </div>
+                            <div class="content">
+                                <h3>@brochure.Name</h3>
+                                <div class="ui primary outline button">View now</div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")

@@ -1,0 +1,10 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.header-spacer {
+  height: 80px;
+
+  @media(--landscape) {
+    height: 110px;
+  }
+}

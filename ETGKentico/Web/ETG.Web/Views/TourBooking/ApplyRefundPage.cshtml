@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+@using ETG.Core.Extensions
+@using ETG.Data.Extensions
+@using ETG.Web.Helpers
+
+
+@model ETG.Web.Models.TourBooking.ApplyRefundViewModel
+@if (Model == null)
+{
+    return;
+}
+<div class="wrapper wp">
+    <div class="article-layout">
+        <div class="main">
+            @Html.Raw(Model.PageContents?.Contents)
+            <div>
+                <b>Order Reference:</b> @Model.OrderID<br/>
+                <b>Customer Name:</b> @Model.CustomerFirstName @Model.CustomerLastName<br/><br/>
+            </div>
+            <div id="buttonPanel">
+                @using (Html.BeginForm("RedirectToRefundProtectRefundPage", "TourBooking"))
+                {
+                    @Html.HiddenFor(m=>m.OrderID)
+                    <div class="links">
+                        <button class="ui button primary accept" type="submit" value="apply" name="submitbutton">Apply Now</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

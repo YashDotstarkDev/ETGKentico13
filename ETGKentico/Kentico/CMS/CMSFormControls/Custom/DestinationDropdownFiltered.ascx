@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DestinationDropdownFiltered.ascx.cs" Inherits="CMSApp.CMSFormControls.Custom.DestinationDropdownFiltered" %>
+<asp:DropDownList runat="server" id="ddlDestination" CssClass="form-control"></asp:DropDownList>

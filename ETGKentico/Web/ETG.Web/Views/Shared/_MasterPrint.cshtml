@@ -1,0 +1,20 @@
+@using ETG.Web.Helpers
+<!DOCTYPE html>
+<html lang="en" class="pdf-generation-template">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>PDF generation template for Package Detail</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.icomoon.io/39161/ETGP0001EntireTravelGroup/style.css?c3unwu">
+
+    <link rel="stylesheet" href="/styles/pdf-generation.css">
+</head>
+<body>
+    @RenderBody()
+
+    @* NOTE not required, all styling handled by `/styles/pdf-generation.css`.
+    @Html.ScriptTag("/scripts/pdf-generation.js", false)
+    *@
+</body>
+</html>

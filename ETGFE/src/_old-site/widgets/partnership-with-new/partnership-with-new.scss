@@ -1,0 +1,76 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.partnership-with-new {
+  margin-top: 40px;
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    html.pdf-generation-template & {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media(--portrait), print {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media(--landscape) {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .disclaimer {
+    margin-top: 20px;
+    opacity: .5;
+    font-size: 12px;
+    text-align: center;
+
+    html.pdf-generation-template & {
+      text-align: left;
+    }
+  }
+
+  .images {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: -10px;
+
+    html.pdf-generation-template & {
+      justify-content: flex-start;
+    }
+
+    .item {
+      padding: 10px;
+      max-width: 180px;
+      min-width: 120px;
+      width: 33.333%;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    @media screen and (--portrait) {
+      flex-direction: column;
+
+      .item {
+        width: 100%;
+      }
+    }
+  }
+}

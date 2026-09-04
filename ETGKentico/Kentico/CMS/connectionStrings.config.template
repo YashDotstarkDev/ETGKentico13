@@ -1,0 +1,4 @@
+<connectionStrings>
+  <!-- Main database -->
+  <add name="CMSConnectionString" connectionString="" />
+</connectionStrings>

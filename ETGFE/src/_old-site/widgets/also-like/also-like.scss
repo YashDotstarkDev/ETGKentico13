@@ -1,0 +1,27 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.also-like {
+  padding-bottom: 0 !important;
+
+  .swiper-wrapper {
+    @media(--landscape) {
+      box: horizontal top wrap;
+      transfrom: none !important;
+    }
+  }
+
+  .swiper-slide {
+    width: 200px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+
+    @media(--mobileLarge) {
+      width: 280px;
+    }
+
+    @media(--landscape) {
+      width: 25%;
+    }
+  }
+}

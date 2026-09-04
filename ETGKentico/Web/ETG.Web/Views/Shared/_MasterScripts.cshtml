@@ -1,0 +1,12 @@
+﻿@using ETG.Web.Helpers
+@* Google Maps
+NOTE: Google Maps script is loaded by '@googlemaps/js-api-loader', so do not directly link
+<script defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDHeI_wYHKuPbRXvq5q5U-l3It4DTBYDZM"></script>
+*@
+@* Expose maps api key to pass into config for '@googlemaps/js-api-loader' *@
+<script>
+    const GOOGLE_MAPS_API_KEY = 'AIzaSyBQSwFeJc6YO0wrcLPtvCu-9KSXXRMWReI'
+</script>
+@* END Google maps *@
+<script src="https://kit.fontawesome.com/d67a31d7e1.js" crossorigin="anonymous"></script>
+@Html.ScriptTag("/content/scripts/utmscripts.js")

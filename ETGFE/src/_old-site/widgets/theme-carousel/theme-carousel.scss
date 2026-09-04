@@ -1,0 +1,187 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.theme-carousel {
+  overflow: hidden;
+
+  h2 {
+    text-align: left;
+  }
+
+  .location {
+    display: block;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .title {
+    margin-top: 10px;
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: bold;
+  }
+
+  .image {
+    position: relative;
+    height: 240px;
+    width: 100%;
+    display: block;
+
+    img {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      font-family: "object-fit: cover";
+    }
+  }
+
+  .item {
+    padding-bottom: 70px;
+    border: 1px solid #ededed;
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+    flex: 1;
+    height: 100%;
+  }
+
+  .copy {
+    padding: 20px;
+  }
+
+  .description {
+    margin-top: 20px;
+  }
+
+  .cta {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+
+  .articles {
+    margin: 40px 0;
+    position: relative;
+
+    .swiper-container {
+      overflow: visible;
+    }
+
+    &.end {
+      &:after {
+        opacity: 0;
+      }
+
+      .next {
+        opacity: 0;
+      }
+    }
+
+    &.beginning {
+      &:before {
+        opacity: 0;
+      }
+
+      .prev {
+        opacity: 0;
+      }
+    }
+
+    .prev,
+    .next {
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      background-color: $primary;
+      position: absolute;
+      top: 120px;
+      margin-top: -20px;
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      color: #FFF;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #333;
+      }
+
+      svg {
+        display: block;
+
+        path {
+          fill: currentColor;
+        }
+      }
+    }
+
+    .prev {
+      left: 20px;
+    }
+
+    .next {
+      right: 20px;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      @media(min-width: 768px) {
+        width: 300px;
+      }
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+      z-index: 5;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      @media(min-width: 768px) {
+        width: 300px;
+      }
+      height: 100%;
+      background: linear-gradient(270deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+      z-index: 5;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .swiper-slide {
+      padding: 0 10px;
+      display: flex;
+      height: auto;
+
+      width: 95%;
+
+      @media(min-width: 768px) {
+        width: 45%;
+      }
+
+      @media(min-width: 1024px) {
+        width: 30%;
+      }
+    }
+  }
+}

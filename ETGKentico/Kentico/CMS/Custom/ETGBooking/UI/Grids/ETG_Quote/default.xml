@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grid>
+    <actions>
+        <action name="edit" caption="$General.Edit$" fonticonclass="icon-edit" fonticonstyle="allow"/>
+        <action name="empty" contextmenu="~"/>
+    </actions>
+    
+    <columns>
+        <column source="BookingQuoteID" externalsourcename="quoteid" caption="Quote ID" wrap="false" localize="true">
+        </column>
+        
+        <column source="BookingQuoteCustomerID" externalsourcename="customerid" caption="Customer ID" wrap="false"
+                localize="true">
+        </column>
+        
+        <column source="BookingQuoteTourCode" caption="Package code" wrap="false" localize="true">
+            <filter type="text" size="200"/>
+        </column>
+        
+        <column source="BookingQuoteTotalPrice" externalsourcename="quoteprice" caption="Our Price" wrap="false"
+                localize="true">
+        </column>
+        
+        <column source="BookingQuoteNetPrice" externalsourcename="quotenetprice" caption="Net Price" wrap="false"
+                localize="true">
+        </column>
+        
+        <column source="BookingQuoteAgentPrice" externalsourcename="quoteagentprice" caption="Agent Price" wrap="false"
+                localize="true">
+        </column>
+        
+        <column source="BookingQuoteValidDays" caption="Valid days" wrap="false" localize="true">
+        </column>
+        
+        <column source="BookingQuoteCreated" externalsourcename="#date" caption="Quote Created Date" wrap="false"
+                localize="true">
+        </column>
+        
+        <column source="BookingQuoteCustomerID" externalsourcename="agencyname" caption="Agency name" wrap="false"
+                localize="true">
+        </column>
+        
+        <column source="BookingQuoteCustomerID" externalsourcename="advisorname" caption="Advisor name" wrap="false"
+                localize="true">
+        </column>
+        
+        <column source="BookingQuoteCustomerID" externalsourcename="clientname" caption="Client name" wrap="false"
+                localize="true">
+        </column>
+
+        <column source="BookingQuoteUtmCampaign" caption="UTM campaign" wrap="false" localize="true">
+            <filter type="text" size="200" />
+        </column>
+
+        <column source="BookingQuoteUtmContent" caption="UTM content" wrap="false" localize="true">
+            <filter type="text" size="200" />
+        </column>
+
+        <column source="BookingQuoteUtmMedium" caption="UTM medium" wrap="false" localize="true">
+            <filter type="text" size="200" />
+        </column>
+
+        <column source="BookingQuoteUtmSource" caption="UTM source" wrap="false" localize="true">
+            <filter type="text" size="200" />
+        </column>
+
+        <column source="BookingQuoteUtmTerm" caption="UTM term" wrap="false" localize="true">
+            <filter type="text" size="200" />
+        </column>
+    </columns>
+    <options>
+        <key name="DisplayFilter" value="true"/>
+    </options>
+</grid>

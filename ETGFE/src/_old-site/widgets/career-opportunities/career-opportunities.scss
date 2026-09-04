@@ -1,0 +1,119 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.career-opportunities {
+  background-color: #EDEDED;
+
+  .opportunities {
+    max-width: 780px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+
+  .button {
+    margin-top: 15px !important;
+    display: inline-block
+  }
+
+  .or {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  .link {
+    background-color: #fff;
+    padding: 11px 20px;
+    margin-bottom: 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .inner {
+
+      @media(--portrait) {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .title {
+      font-weight: 900;
+    }
+
+    .mobile-arrow {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+
+      @media(--portrait) {
+        display: none;
+      }
+
+      .arrow {
+        font-size: 19px;
+        padding-left: 20px;
+        color: $primary;
+      }
+    }
+
+    .right {
+      text-align: left;
+      width: 100%;
+      display: block;
+
+      @media(--portrait) {
+        width: auto;
+        text-align: left;
+
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .location {
+        border-left: none;
+        padding-left: 0;
+        color: #333;
+      }
+
+      span {
+
+        &.availability {
+          display: inline-block;
+          border-left: none;
+          width: auto;
+          margin-left: 10px;
+          padding-right: 10px;
+          color: #333;
+
+          padding-left: 10px;
+          border-left: 1px solid #e7e5e5;
+
+        }
+
+        &.arrow {
+          font-size: 15px;
+          display: none;
+          @media(--portrait) {
+            display: block;
+          }
+
+          i {
+            line-height: 1;
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}

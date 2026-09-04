@@ -1,0 +1,101 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Constants;
+@model List<ETG.Web.Models.Menu.MainMenuViewModel>
+
+<div class="main-nav">
+    <button type="button" class="ui icon button close-desktop-menu">
+        <i class="icon fal fa-times"></i>
+    </button>
+    <nav>
+        <ul>
+            @if (Model != null && !Model.IsNullOrEmpty())
+            {
+                foreach (var mainLink in Model)
+                {
+                    if (mainLink.Link != null)
+                    {
+                        var activeClass = "";
+
+                        if (Html.ViewContext.HttpContext.Request.Url.PathAndQuery.ToLower().StartsWith(mainLink.Link.Path.ToLower()))
+                        {
+                            activeClass = "active";
+                        }
+                        
+                        <li class="@activeClass">
+                            @if (mainLink.Link.LinkGroupType == GlobalConstants.LINK_GROUP_GROUPED || mainLink.Link.LinkGroupType == GlobalConstants.LINK_GROUP_3COL || !mainLink.MenuGroups.IsNullOrEmpty())
+                            {
+                                <a href="@mainLink.Link.Path.ToLower()" class="browse item">
+                                    @mainLink.Link.Label
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@mainLink.Link.Path.ToLower()">
+                                    @mainLink.Link.Label
+                                </a>
+                            }
+
+                            @if (!mainLink.MenuGroups.IsNullOrEmpty())
+                            {
+                                <div class="ui menu">
+                                    <span class="icon fas fa-chevron-down"></span>
+                                </div>
+                                <div class="ui popup">
+                                    <div class="@mainLink.Link.LinkGroupType">
+                                        <div class="top">
+                                            @if (mainLink.Link.LinkGroupType == GlobalConstants.LINK_GROUP_GROUPED)
+                                            {
+                                                foreach (var menuGroup in mainLink.MenuGroups)
+                                                {
+                                                    <div class="col">
+                                                        @Html.Raw(menuGroup.Link != null && mainLink.Link.LinkGroupType == GlobalConstants.LINK_GROUP_GROUPED ? $"<h5>{menuGroup.Link.Label}</h5>" : "")
+
+                                                        @if (!menuGroup.ChildLinks.IsNullOrEmpty())
+                                                        {
+                                                            <div class="links">
+                                                                @foreach (var menu in menuGroup.ChildLinks)
+                                                                {
+                                                                    <a href="@menu.Path.ToLower()">
+                                                                        @Html.Raw(!menu.IconClass.IsNullOrEmpty() ? $"<span class=\"icon {menu.IconClass}\"></span>" : "")@menu.Label
+                                                                    </a>
+                                                                }
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                foreach (var menuGroup in mainLink.MenuGroups)
+                                                {
+                                                    if (!menuGroup.ChildLinks.IsNullOrEmpty())
+                                                    {
+                                                        foreach (var menu in menuGroup.ChildLinks)
+                                                        {
+                                                            <a href="@menu.Path.ToLower()">
+                                                                @Html.Raw(!menu.IconClass.IsNullOrEmpty() ? $"<span class=\"icon {menu.IconClass}\"></span>" : "")@menu.Label
+                                                            </a>
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        </div>
+                                        
+                                        @if (!mainLink.Link.CommonLinkCaption.IsNullOrEmpty() && !mainLink.Link.CommonLinkUrl.IsNullOrEmpty())
+                                        {
+                                            <div class="bottom">
+                                                <a href="@mainLink.Link.CommonLinkUrl.ToLower()" rel="nofollow" class="ui button transparent">
+                                                    @mainLink.Link.CommonLinkCaption
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </nav>
+</div>

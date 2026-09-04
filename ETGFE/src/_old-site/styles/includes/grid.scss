@@ -1,0 +1,210 @@
+@import "settings.scss";
+
+/* aspect ratios */
+.aspect-ratio-container {
+  position: relative;
+
+  [class*='aspect-ratio-'] {
+    position: relative;
+    z-index: 0;
+  }
+
+  .aspect-ratio-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+  }
+}
+
+.aspect-ratio-16-5 {
+  @util aspect-ratio(16:5);
+}
+.aspect-ratio-5-16 {
+  @util aspect-ratio(5:16);
+}
+.aspect-ratio-16-9 {
+  @util aspect-ratio(16:9);
+}
+.aspect-ratio-9-16 {
+  @util aspect-ratio(9:16);
+}
+.aspect-ratio-16-10 {
+  @util aspect-ratio(16:10);
+}
+.aspect-ratio-10-16 {
+  @util aspect-ratio(10:16);
+}
+.aspect-ratio-5-4 {
+  @util aspect-ratio(5:4);
+}
+.aspect-ratio-4-5 {
+  @util aspect-ratio(4:5);
+}
+.aspect-ratio-1-1 {
+  @util aspect-ratio(1:1);
+}
+.aspect-ratio-2-1 {
+  @util aspect-ratio(2:1);
+}
+.aspect-ratio-1-2 {
+  @util aspect-ratio(1:2);
+}
+
+@each $breakpoint in $gridBreakpoints {
+  @media(min-width: $(breakpoint)px) {
+    .aspect-ratio-$(breakpoint)-16-5 {
+      @util aspect-ratio(16:5);
+    }
+    .aspect-ratio-$(breakpoint)-5-16 {
+      @util aspect-ratio(5:16);
+    }
+    .aspect-ratio-$(breakpoint)-16-9 {
+      @util aspect-ratio(16:9);
+    }
+    .aspect-ratio-$(breakpoint)-9-16 {
+      @util aspect-ratio(9:16);
+    }
+    .aspect-ratio-$(breakpoint)-16-10 {
+      @util aspect-ratio(16:10);
+    }
+    .aspect-ratio-$(breakpoint)-10-16 {
+      @util aspect-ratio(10:16);
+    }
+    .aspect-ratio-$(breakpoint)-5-4 {
+      @util aspect-ratio(5:4);
+    }
+    .aspect-ratio-$(breakpoint)-4-5 {
+      @util aspect-ratio(4:5);
+    }
+    .aspect-ratio-$(breakpoint)-1-1 {
+      @util aspect-ratio(1:1);
+    }
+    .aspect-ratio-$(breakpoint)-2-1 {
+      @util aspect-ratio(2:1);
+    }
+    .aspect-ratio-$(breakpoint)-1-2 {
+      @util aspect-ratio(1:2);
+    }
+  }
+}
+
+/* spacers */
+@each $spacer in $spacerHeights {
+  .spacer-$(spacer)
+  {
+    height: $(spacer)px;
+  }
+}
+@each $breakpoint in $gridBreakpoints {
+  @media(min-width: $(breakpoint)px) {
+    @each $spacer in $spacerHeights {
+      .spacer-$(breakpoint)-$(spacer)
+      {
+        height: $(spacer)px;
+      }
+    }
+  }
+}
+
+/* wrappers */
+@each $wrapper in $wrapperWidths {
+  .wrap-$(wrapper)
+  {
+    width: 100%;
+    max-width: $(wrapper)px;
+    margin: 0 auto;
+  }
+}
+@each $breakpoint in $gridBreakpoints {
+  @media(min-width: $(breakpoint)px) {
+    @each $wrapper in $wrapperWidths {
+      .wrap-$(breakpoint)-$(wrapper)
+      {
+        max-width: $(wrapper)px;
+      }
+    }
+  }
+}
+
+/* visibility */
+@each $breakpoint in $gridBreakpoints {
+  @media(min-width: $(breakpoint)px) {
+    .visible-$(breakpoint)
+  {
+    display: block;
+  }
+    .hidden-$(breakpoint)
+  {
+    display: none;
+  }
+  }
+}
+
+
+[class*='gr-'] {
+  @util clearfix;
+}
+
+[class*='gc-'] {
+  float: left;
+  position: relative;
+}
+
+
+@each $column in $gridColumns {
+
+  @for $i from 1 to $(column) {
+  .gc-$(i)-$(column)
+{
+  width: resolve(((100 / $(column)) * $i))%;
+}
+  .go-$(i)-$(column)
+{
+  margin-left: resolve(((100 / $(column)) * $i))%;
+}
+}
+
+  @each $breakpoint in $gridBreakpoints {
+
+    @media(min-width: $(breakpoint)px) {
+
+      .go-$(breakpoint)-0
+    {
+      margin-left: 0;
+    }
+      @for $i from 1 to $(column) {
+
+      .gc-$(breakpoint)-$(i)-$(column)
+    {
+      width: resolve(((100 / $(column)) * $i))%;
+    }
+      .go-$(breakpoint)-$(i)-$(column)
+    {
+      margin-left: resolve(((100 / $(column)) * $i))%;
+    }
+    }
+    }
+  }
+}
+
+@each $pad in $gridPadding {
+  .gr-$(pad),
+[class*='gr-'] .gr-$(pad),
+[class*='gr-'] [class*='gr-'] .gr-$(pad),
+[class*='gr-'] [class*='gr-'] [class*='gr-'] .gr-$(pad)
+{
+  margin: 0 -$(pad)px;
+
+  [class*='gc-'] {
+    padding: 0 $(pad)px;
+  }
+
+  .go-0
+  {
+    margin-left: 0;
+  }
+}
+}

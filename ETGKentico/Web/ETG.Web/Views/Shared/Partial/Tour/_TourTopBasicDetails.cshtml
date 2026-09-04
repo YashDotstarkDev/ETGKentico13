@@ -1,0 +1,13 @@
+﻿@using Castle.Core.Internal
+@model ETG.Web.Tour.Models.TourSummaryInfoViewModel
+
+@if (Model == null)
+{
+    return;
+}
+ 
+<div class="widget package-intro" data-widget="package-intro">
+    <div class="intro">
+        @Model.Summary
+    </div>
+</div>

@@ -1,0 +1,7 @@
+﻿@model ETG.Web.Models.Widgets.ProductsWidget.ProductsWidgetViewModel
+
+@if (Model.Tours == null)
+{
+    return;
+}
+@Html.Partial("Partial/Tour/_TourListing", (Model.Tours, Model.Heading , Model.SectionId))

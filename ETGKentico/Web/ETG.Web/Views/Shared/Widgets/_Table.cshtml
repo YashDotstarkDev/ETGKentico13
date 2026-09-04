@@ -1,0 +1,22 @@
+﻿@model ETG.Web.Models.Widgets.Table.TableViewModel
+
+<div class="widget table wp" style="opacity: 1;" data-widget="table">
+    <div class="wrapper contained">
+        @if (!string.IsNullOrWhiteSpace(Model.Title))
+        {
+            <h2>@Model.Title</h2>   
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.Content))
+        {
+            <p>@Html.Raw(Model.Content)</p>   
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.HtmlTableContent))
+        {
+            <div class="table-container">
+                @Html.Raw(Model.HtmlTableContent)
+            </div>
+        }
+    </div>
+</div>

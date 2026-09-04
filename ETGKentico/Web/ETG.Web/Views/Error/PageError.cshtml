@@ -1,0 +1,67 @@
+@using ETG.Web.Helpers
+
+@section AdditionalScripts {
+    <script defer src="/scripts/500.js"></script>
+}
+<!DOCTYPE html>
+<html lang="en" class="show-gdpr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.icomoon.io/39161/ETGP0001EntireTravelGroup/style.css?c3unwu">
+    @* Google Maps
+    NOTE: Google Maps script is loaded by '@googlemaps/js-api-loader', so do not directly link
+    <script defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDHeI_wYHKuPbRXvq5q5U-l3It4DTBYDZM"></script>
+    *@
+    @* Expose maps api key to pass into config for '@googlemaps/js-api-loader' *@
+    <script>
+      const GOOGLE_MAPS_API_KEY = 'AIzaSyBQSwFeJc6YO0wrcLPtvCu-9KSXXRMWReI'
+    </script>
+    @* END Google maps *@
+    
+    <!-- Please inline this css file -->
+    <link rel="stylesheet" href="/styles/global.css">
+</head>
+<body class="pushable" style="opacity: 0;">
+    <div class="pusher">
+        <div class="print-logo page-500" style="display:block;">
+            <div class="wrapper">
+                <?xml version="1.0" encoding="utf-8" ?>
+                <a href="/">
+                    @Html.Partial("Partial/Masterpage/_BrandLogo")
+                </a>
+            </div>
+        </div>
+        <article>
+            <div class="widget content-500" data-widget="content-500">
+                <div class="wrapper contained">
+                    <h1>Whoops, we may have encountered the bermuda Triangle</h1>
+                    <div class="triangle">&#8420;</div>
+                    <p class="lead">Be patient. We hope to be rescued shortly!</p>
+                    <p class="lead">For urgent enquiries, please contact us on <a href="mailto:webmaster@entiretravel.com.au">webmaster@entiretravel.com.au</a></p>
+
+                </div>
+            </div>
+        </article>
+
+        <div class="widget simple-footer" data-widget="simple-footer">
+            <div class="copyright">
+                © 2020 Entire Travel Group Pty Ltd ABN 60 625 410 755.
+            </div>
+
+            <div class="links">
+                <a href="/legals/Terms-and-Conditions">Terms and Conditions</a>
+                <a href="/legals/privacy-policy">Privacy Policy</a>
+                <a href="https://www.devotion.com.au" target="_blank" rel="nofollow">Made with Devotion</a>
+            </div>
+        </div>
+    </div>
+
+    @Html.ScriptTag("/scripts/runtime.js")
+      @Html.ScriptTag("/scripts/global.js")
+      @Html.ScriptTag("/scripts/500.js")
+
+</body>
+</html>

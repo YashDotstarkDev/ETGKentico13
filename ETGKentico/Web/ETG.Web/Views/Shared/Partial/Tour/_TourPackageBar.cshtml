@@ -1,0 +1,72 @@
+﻿@using Castle.Core.Internal
+@model ETG.Web.Tour.Models.TourViewModel
+
+@if (Model == null)
+{
+    return;
+}
+<div class="widget package-detail-bar" data-widget="package-detail-bar">
+    @if (!Model.DepartFromInAustralia.IsNullOrEmpty())
+    {
+        <div class="item">
+            <div class="label">Starts and Ends</div>
+            @if (Model.DepartFromInAustralia == Model.TravelEndsLocation || Model.TravelEndsLocation.IsNullOrEmpty())
+            {
+                <div class="value">in @Model.DepartFromInAustralia</div>    
+            }
+            else
+            {
+                <div class="value value--start-end">
+                    @Model.DepartFromInAustralia <span class="faded">to</span>
+                    <br>@Model.TravelEndsLocation
+                </div>
+            }
+        </div>
+    }
+
+    @if (!Model.TravelDates.IsNullOrEmpty())
+    {
+        <div class="item">
+            <div class="label">Travel Periods</div>
+            <div class="value">@Model.TravelDates</div>
+        </div>
+    }
+    
+    @if (!Model.TourSummaryInfo.ExperiencesText.IsNullOrEmpty())
+    {
+        <div class="item">
+            <div class="label">Experience</div>
+            <ul class="value">
+                @foreach (var exp in Model.TourSummaryInfo.Experiences)
+                {
+                    if (ViewBag.IsPrint == null)
+                    {
+                        <li><a href="@exp.Path"><span class="icon @exp.IconClass"></span>@exp.Name</a></li>    
+                    }
+                    else
+                    {
+                        <li><a href="@exp.Path">@exp.Name</a></li>    
+                    }
+                }
+            </ul>
+        </div>
+    }
+    
+    @if (!Model.TourSummaryInfo.TourTypes.IsNullOrEmpty())
+    {
+        var tourType = Model.TourSummaryInfo.TourTypes.FirstOrDefault();
+        <div class="item">
+            <div class="label">Travel Style</div>
+            <div class="value">
+                @if (tourType.Url.IsNullOrEmpty())
+                {
+                    @tourType.Name
+                }
+                else
+                {
+                    <a href="@tourType.Url">@tourType.Name</a>    
+                }
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,85 @@
+﻿@model ETG.Web.Models.GoogleReviews.GoogleReviewsViewModel
+
+@if (Model.ReviewListingResponse == null)
+{
+    return;
+}
+<div class="customer-reviews"
+        data-endpoint="/api/reviews/getreviews"
+        data-endpoint-method="GET">
+    <div class="wrapper">
+        <h2 class="text-center text-black uppercase">What our customers say</h2>
+        <div class="rating mt-6">
+            <div class="flex items-center justify-center">
+                @{
+                    decimal rating = Model.ReviewListingResponse.Totals.AverageRating;
+                    int fullStars = (int)Math.Floor(rating);
+                    decimal decimalOpacity = Math.Round(rating - fullStars, 1);
+                }
+
+                @for (int i = 0; i < 5; i++)
+                {
+                    string style = "";
+
+                    if (i < fullStars)
+                    {
+                        style = "";
+                    }
+                    else if (i == fullStars && decimalOpacity > 0)
+                    {
+                        style = $"opacity: {decimalOpacity};";
+                    }
+                    else
+                    {
+                        style = "opacity: 0;";
+                    }
+
+                    <svg class="w-4 h-4 text-yellow-300 ms-1" style="@style" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+                    </svg>
+                }
+            </div>
+            <div class="flex items-center justify-center mt-2 gap-2">
+                <div><b class="font-bold">@Model.ReviewListingResponse.Totals.AverageRating</b> Stars</div>
+                <div class="divider h-3 w-px bg-gray-400"></div>
+                <div><b class="font-bold">@Model.ReviewListingResponse.Totals.ReviewCount</b> Reviews</div>
+            </div>
+        </div>
+        <div class="reviews">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mt-8 items-start">
+
+                @for (var i=0; i < Model.ReviewListingResponse.Reviews.Count && i < 4; i++)
+                {
+                    var review = Model.ReviewListingResponse.Reviews[i];
+                    <div class="review border border-gray-200 rounded-xl p-6 group">
+                        <div class="name font-bold">@review.Reviewer</div>
+                        <div class="time">@Model.GetDateText(review.Datetime)</div>
+                        <div class="flex items-center justify-start -ml-1 mt-4">
+                            <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+                            </svg> <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+                            </svg> <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+                            </svg> <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+                            </svg> <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"></path>
+                            </svg>
+                        </div>
+                        <div class="mt-4">
+                            <p class="line-clamp-4 group-focus-within:line-clamp-none">
+                                @Html.Raw(review.Text)
+                            </p>
+                            <astro-island uid="n8tqG" component-url="/scripts/ReviewBlurButton.js" component-export="default" renderer-url="/scripts/client.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;ReviewBlurButton&quot;,&quot;value&quot;:&quot;vue&quot;}"></astro-island> <button type="button" class="text-primary mt-2 group-focus-within:opacity-0 group-focus-within:pointer-events-none">Read more</button>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="cta mt-8 flex justify-center">
+            <a href="https://www.google.com/search?q=Entire+Travel+Group#lrd=0x6b12aef2f2930b1d:0x8b67632a2611d211,1,,,," target="_blank" class="btn btn-primary-outline">View all</a>
+        </div>
+    </div>
+</div>

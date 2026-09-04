@@ -1,0 +1,13 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.career-callout {
+  background-color: $primary;
+  color: #FFF;
+
+  .inner {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}

@@ -1,0 +1,94 @@
+---
+import Layout from "../../layouts/layout-main.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import NewPackageHero from "../../components/legacy/NewPackageHero.astro";
+import PackageDetailTitle from "../../components/legacy/PackageDetailTitle.astro";
+import PackageDetailBar from "../../components/legacy/PackageDetailBar.astro";
+import PackageIntro from "../../components/legacy/PackageIntro.astro";
+import PackageHighlights from "../../components/legacy/PackageHighlights.astro";
+import DiscountOffers from "../../components/legacy/DiscountOffers.astro";
+import NewBookNow from "../../components/legacy/NewBookNow.astro";
+import PartnershipWithNew from "../../components/legacy/PartnershipWithNew.astro";
+import PackageJumpMenu from "../../components/legacy/PackageJumpMenu.astro";
+import PackageOverview from "../../components/legacy/PackageOverview.astro";
+import PeaceBookingPlan from "../../components/legacy/PeaceBookingPlan.astro";
+import PackageInclusions from "../../components/legacy/PackageInclusions.astro";
+import PackageItinerary from "../../components/legacy/PackageItinerary.astro";
+import PackageHotels from "../../components/legacy/PackageHotels.astro";
+import PackageOptionalExtras from "../../components/legacy/PackageOptionalExtras.astro";
+import PackageAdditionalInformation from "../../components/legacy/PackageAdditionalInformation.astro";
+import Faqs from "../../components/legacy/Faqs.astro";
+import PackageStickyFooter from "../../components/legacy/PackageStickyFooter.astro";
+import PackageStickyHeader from "../../components/PackageStickyHeader.astro";
+---
+
+<Layout>
+
+    <Breadcrumbs />
+
+    <NewPackageHero />
+
+    <div class="wrapper">
+        <div class="package-layout">
+            <div class="main">
+                <div class="top">
+
+                    <PackageDetailTitle />
+                    <PackageDetailBar />
+                    <PackageIntro />
+                    <PackageHighlights />
+
+                </div>
+                <div class="side">
+                    <DiscountOffers />
+                    <NewBookNow />
+                    <PartnershipWithNew />
+                </div>
+                <div class="bottom relative">
+                    <PackageJumpMenu />
+
+                    <!-- "Overview" -->
+                    <div class="scroll-section" id="section_overview">
+                        <PackageOverview />
+                        <PeaceBookingPlan />
+                    </div>
+
+                    <!-- "Inclusions" -->
+                    <div class="scroll-section" id="section_inclusions">
+                        <PackageInclusions />
+                    </div>
+
+                    <!-- "Itinerary" -->
+                    <div class="scroll-section" id="section_itinerary">
+                        <PackageItinerary />
+                    </div>
+
+                    <!-- "Accommodation" -->
+                    <div class="scroll-section" id="section_accommodation">
+                        <PackageHotels />
+                    </div>
+
+                    <!-- "Optional Extras" -->
+                    <div class="scroll-section" id="section_optional-extras">
+                        <PackageOptionalExtras />
+                    </div>
+
+                    <!-- "Additional Information" -->
+                    <div class="scroll-section" id="section_additional-information">
+                        <PackageAdditionalInformation />
+                    </div>
+
+                    <!--  "FAQs" -->
+                    <div class="scroll-section" id="section_faqs">
+                        <Faqs />
+                    </div>
+
+                    <!-- END Sections -->
+
+                    <PackageStickyFooter />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</Layout>

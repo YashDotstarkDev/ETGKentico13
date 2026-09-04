@@ -1,0 +1,95 @@
+{% set page_title = 'Package detail completed booking' %}
+{% extends "src/views/main.njk" %}
+
+{% block beforePusher %}
+  {# WAS ALREADY HIDDEN {% include "src/widgets/gdpr-consent/gdpr-consent.njk" %} #}
+{% endblock %}
+
+{% block beforeArticle %}
+  {% include "src/widgets/new-header/new-header.njk" %}
+  {% include "src/widgets/breadcrumbs/breadcrumbs.njk" %}
+{% endblock %}
+
+{% block article %}
+  {% include "src/widgets/new-package-hero/new-package-hero.njk" %}
+  {% include "src/widgets/brochure-gate-popup/brochure-gate-popup.njk" %}
+
+  <div class="wrapper">
+    <div class="article-layout">
+      <div class="main">
+        {% include "src/widgets/package-detail-title/package-detail-title.njk" %}
+        {% include "src/widgets/package-detail-bar/package-detail-bar.njk" %}
+        {% include "src/widgets/package-intro/package-intro.njk" %}
+        {% include "src/widgets/package-highlights/package-highlights.njk" %}
+
+        <!-- START Sections -->
+        <!-- TODO Create sections jump-to navbar -->
+
+        <!-- "Overview" -->
+        {% include "src/widgets/package-overview/package-overview.njk" %}
+        {% include "src/widgets/peace-booking-plan/peace-booking-plan.njk" %}
+        <!-- "Inclusions" -->
+        {% include "src/widgets/package-inclusions/package-inclusions.njk" %}
+        <!-- "Itinerary" -->
+        {% include "src/widgets/package-itinerary/package-itinerary.njk" %}
+        <!-- "Accommodation" -->
+        {% include "src/widgets/package-hotels/package-hotels.njk" %}
+        <!-- "Optional Extras" -->
+        <!-- TODO Update optional extras content design to accordion -->
+        {% include "src/widgets/package-optional-extras/package-optional-extras.njk" %}
+        <!-- "Additional Information" -->
+        {% include "src/widgets/package-additional-information/package-additional-information.njk" %}
+        <!--  "FAQs" -->
+        {% include "src/widgets/faqs/faqs.njk" %}
+        <!-- END Sections -->
+
+        {% include "src/widgets/package-sticky-footer/package-sticky-footer.njk" %}
+      </div>
+
+      <div class="side">
+        <!-- NEW REMOVED <a href="#" class="read-link"><span class="icon fas fa-chevron-left"></span>Read more about Spain</a> -->
+        {# NEW REMOVED {% include "src/widgets/package-offer/package-offer.njk" %} #}
+
+        <!-- Offers with count down timer -->
+        {% include "src/widgets/discounts-offers/discounts-offers.njk" %}
+
+        <!-- Package pricing and "Book now" process -->
+        <!-- TODO Update 'book now' form and 'is travel agent' -->
+        {% include "src/widgets/new-book-now/new-book-now-completed.njk" %}
+
+        <!-- "In partnership" -->
+        {% include "src/widgets/partnership-with-new/partnership-with-new.njk" %}
+
+        {# NEW REMOVED {% include "src/widgets/feature-box/feature-box.njk" %} #}
+        {# WAS ALREADY HIDDEN {% include "src/widgets/departures-pricing/departures-pricing.njk" %} #}
+        {# WAS ALREADY HIDDEN {% include "src/widgets/package-brochure/package-brochure.njk" %} #}
+        <!-- WAS ALREADY HIDDEN <a href="#" class="logo"><img src="images/pom-large.png" alt=""></a> -->
+        <!-- WAS ALREADY HIDDEN <a href="#" class="logo"><img src="images/freedom-of-choice.png" alt=""></a> -->
+        <!-- WAS ALREADY HIDDEN <a href="#" class="logo"><img src="images/logo-safe-travels.png" alt=""></a> -->
+        <!-- NEW REMOVED <div class="disclaimer"> -->
+        <!--   * Instant purchase offers are subject to availability. Upon receiving your full payment, our team will confirm your booking with our suppliers and contact you shortly to finalise all arrangements. A full refund will be made if we are unable to confirm the instant purchase offer. -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+
+  {# NEW REMOVED {% include "src/widgets/region-map/region-map.njk" %} #}
+  {# NEW REMOVED {% include "src/widgets/phone-cta-panel/phone-cta-panel.njk" %} #}
+
+  {% include "src/widgets/spacer/spacer.njk" %}
+
+  {% include "src/widgets/package-enquiry/package-enquiry.njk" %}
+  {% include "src/widgets/tour-tiles-slider/tour-tiles-slider.njk" %}
+
+  {% include "src/widgets/experience-ticker/experience-ticker.njk" %}
+
+  {% include "src/widgets/subscribe-to-win-widget/subscribe-to-win-widget.njk" %}
+{% endblock %}
+
+{% block afterArticle %}
+  {% include "src/widgets/new-footer/new-footer.njk" %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="scripts/package-detail.js"></script>
+{% endblock %}

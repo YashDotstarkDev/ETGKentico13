@@ -1,0 +1,360 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.package-accordion {
+  margin-top: 40px;
+
+  @media(--portrait) {
+    margin-top: 60px;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    @media(--mobileLargeMax) {
+      &:not(.top--content-inline) {
+        flex-direction: column;
+      }
+    }
+
+    @media(--landscape) {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    .expand {
+      margin-top: 20px;
+      text-align: right;
+
+      @media(--portrait) {
+        margin-top: 0;
+        margin-bottom: -10px; /* offset button margin when displayed inline */
+      }
+
+      a.ui.button {
+        display: block;
+        margin-bottom: 10px;
+        padding: 10px 30px;
+
+        @media(--portrait) {
+          display: inline-block;
+          margin-right: 0;
+          margin-left: 10px;
+          width: auto;
+        }
+      }
+    }
+  }
+
+  .ui.styled.accordion {
+    /* Accordion theme */
+    border-bottom: 1px solid #ededed;
+
+    > .title:first-child,
+    > .accordion-item:first-child .title {
+      border-top: 1px solid #ededed;
+    }
+
+    .content {
+      padding: 0 !important; /* fix collapse transition jump at end */
+      background-color: #fff;
+    }
+
+    .title {
+      border-top: 1px solid #ededed;
+      background-color: #fff;
+
+      &:hover,
+      &:hover.active {
+        background-color: #ededed;
+
+        .heading {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .active.content,
+    .animating {
+      background: #fff;
+    }
+
+    .active.title {
+      border-top-color: #ededed;
+      background-color: #fff;
+    }
+
+    /* END Accordion theme */
+
+    /* Accordion icon */
+    .title .dropdown.icon,
+    .accordion .title .dropdown.icon {
+      margin: 0 -7px 0 0;
+      color: $primary;
+      font-size: 30px;
+      font-family: 'icomoon';
+
+      &:before {
+        content: "\e900"; /* Chevron icon */
+      }
+    }
+
+    .active.title .dropdown.icon,
+    .accordion .active.title .dropdown.icon {
+      transform: rotate(180deg);
+    }
+
+    /* END Accordion icon */
+
+    .title {
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+      color: #333;
+
+      html.pdf-generation-template & {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .heading {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        color: #333;
+        font-size: 20px;
+        line-height: 1.4;
+        font-family: $lato;
+        font-weight: normal;
+      }
+
+      .icon {
+        flex-shrink: 0;
+      }
+    }
+
+    &.faqs-accordion .title .heading {
+      font-size: 20px; /* fallback */
+      font-size: responsive 16px 20px; /* min-size, max-size */
+      font-range: 768px 1200px; /* viewport widths between which font-size is fluid */
+    }
+
+    .content {
+      .inner-content {
+        padding: 5px 20px 20px;
+
+        html.pdf-generation-template & {
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        @media(--landscape) {
+          padding: 20px 20px 40px;
+        }
+      }
+    }
+  }
+
+
+  /* Unique accordion content */
+  .ui.styled.accordion .content {
+
+    &.freedom-of-choice {
+      .inner-content {
+        padding-bottom: 40px;
+
+        html.pdf-generation-template & {
+          display: flex;
+          flex-direction: row;
+        }
+
+        @media(--portrait), print {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+
+      .copy {
+        width: 100%;
+
+        html.pdf-generation-template & {
+          padding-left: 20px;
+        }
+
+        @media(--portrait), print {
+          padding-left: 20px;
+        }
+      }
+
+      .logo {
+        width: 100px;
+        flex-shrink: 0;
+        margin-bottom: 20px;
+
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  /* END Unique accordion content */
+}
+
+.content.accordion-content {
+  .inner-content {
+
+    /* Remove top/bottom margins from the only content element */
+    *:only-child {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Remove bottom margins from last content element */
+    * + *:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+/*
+Common component used on the package detail page.
+SVG icon left of text paragraph, and displays like an unordered list.
+ */
+.icons-listing {
+  margin: 20px 0;
+
+  .item {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin-bottom: 7px;
+
+    p {
+      margin: 0;
+    }
+
+    .icon {
+      margin-right: 15px;
+      /* set icon height to line height so icon is always vertically centered with text */
+      margin-top: 6px;
+    }
+  }
+}
+
+/*
+Common component used on the package detail page.
+Image with caption text positioned bottom/right overtop image.
+ */
+.image-w-caption {
+  position: relative;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .caption {
+    position: absolute;
+    z-index: 2;
+    right: 30px;
+    bottom: 15px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    line-height: 1.4;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 30%);
+
+    svg {
+      margin-right: 5px;
+      display: block;
+    }
+  }
+
+  .content.accordion-content & {
+    margin: 20px 0;
+  }
+}
+
+/*
+Common component used on the package detail page.
+List ul/ol displayed in two columns
+ */
+.list-columns {
+  @media(--portrait) {
+    columns: 2
+  }
+}
+
+.hotel-facilities {
+  ul {
+    @media(--portrait) {
+      columns: 2
+    }
+  }
+}
+
+
+/*
+Common component used on the package detail page.
+Display a group of images in two columns in grid layout
+ */
+.image-grid {
+  margin: 30px 0;
+
+  .i-image-grid {
+    display: grid;
+    grid-gap: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+
+    @media(--portrait), print {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    html.pdf-generation-template & {
+      display: block;
+      margin: -10px 0 0 -10px;
+
+      .image {
+        float: left;
+        margin-top: 10px;
+        margin-left: 10px;
+        width: calc(50% - 20px);
+      }
+    }
+  }
+
+  .image {
+    aspect-ratio: 16/9;
+    position: relative;
+
+    img {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .image-w-caption {
+    .caption {
+      right: 15px;
+      bottom: 10px;
+    }
+  }
+}

@@ -1,0 +1,92 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+@using Microsoft.Ajax.Utilities
+@model ETG.Web.Models.Pages.HomeViewModel
+
+@{
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+@if (Model?.Page == null)
+{
+    return;
+}
+@{
+    ViewBag.ShowCompetitionFormInFooter = Model.Page.PopupCompetition.ShowCompetitionPopup;
+    ViewBag.CompetitionFormTitle = Model.Page.PopupCompetition.PopupTitle;
+}
+
+@section HeadMeta {
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+
+    @Html.Raw(Model.Page.JsonSchema)
+    @if (!Model.FAQJsonSchema.IsNullOrEmpty())
+    {
+        <script type="application/ld+json">
+    @Html.Raw(Model.FAQJsonSchema)
+        </script>
+    }
+
+    <link rel="stylesheet" href="https://unpkg.com/instantsearch.css@7/themes/satellite-min.css" />
+    <link rel="stylesheet" href="@("https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic")" />
+
+    @if (!Model.HeroSliderImages.IsNullOrEmpty())
+    {
+        var image = Model.HeroSliderImages.FirstOrDefault();
+        <link rel="preload" fetchpriority="high" as="image" href="@Html.Raw(image.ImagePath.Imgixify(1296, 420))" type="image/webp">
+    }
+
+
+}
+
+@section AdditionalScripts {
+    @Html.Action("CompetitionPopup", "MasterPage")
+    @* NOTE jquery-ui and dayjs included in scripts bundle *@
+    @Html.ScriptTag("/scripts/new-homepage.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+
+
+@Html.Partial("Partial/Home/_HomepageHero", Model)
+
+@Html.Action("ExperiencesMatters", "Experiences")
+
+@Html.Kentico().EditableArea("editableAreaTop")
+
+@if (!Model.Experiences.IsNullOrEmpty())
+{
+    @Html.Partial("Partial/Experiences/_ExploreExperiences", Model.Experiences)
+}
+
+@Html.Kentico().EditableArea("middle")
+
+@if (Model.FeatureTours != null && !Model.FeatureTours.Tours.IsNullOrEmpty())
+{
+    @Html.Partial("Partial/Tour/_TourListing", (Model.FeatureTours, @Model.Page.FeatureTourTitle, string.Empty))
+}
+
+@Html.Kentico().EditableArea("bottom")
+@if (Model.FeatureTours2 != null && !Model.FeatureTours2.Tours.IsNullOrEmpty())
+{
+    @Html.Partial("Partial/Tour/_TourListing", (Model.FeatureTours2, @Model.Page.FeatureTourTitle2, string.Empty))
+}
+
+
+@Html.Kentico().EditableArea("bottom2")
+
+@if (Model.TravelBlogsComponent != null)
+{
+    <div class="spacer"></div>
+    @Html.Partial("Partial/Common/_Articles", Model.TravelBlogsComponent)
+}
+
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")

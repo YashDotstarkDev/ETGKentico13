@@ -1,0 +1,42 @@
+@import "../../styles/includes/settings.scss";
+@import "../../styles/includes/colours.scss";
+
+.side-email-order {
+  padding: 20px;
+  background-color: #ededed;
+
+  .title {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    font-weight: 900;
+
+    .icon {
+      color: $primary;
+      margin-right: 10px;
+    }
+  }
+
+  .brochures {
+    margin-bottom: 20px;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 20px 0;
+    border-bottom: 1px solid #dfdfdf;
+  }
+
+  .image {
+    width: 50px;
+    margin-right: 20px;
+    flex-shrink: 0;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}

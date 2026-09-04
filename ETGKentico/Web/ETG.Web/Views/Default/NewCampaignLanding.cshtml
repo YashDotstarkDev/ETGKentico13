@@ -1,0 +1,389 @@
+﻿@using Castle.Core.Internal
+@using ETG.Core.Extensions
+@using ETG.Web.Helpers
+
+@model ETG.Web.Models.PageTypes.PageItemViewModel
+
+@{
+    Layout = "~/Views/Shared/_MasterForLanding.cshtml";
+}
+
+@if (Model == null)
+{
+    return;
+}
+
+@section HeadMeta {
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:400,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Raleway:400,900&display=swap">
+    </noscript>
+
+    <link rel="preload" href="/styles/global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="/styles/global.css">
+    </noscript>
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css">
+    </noscript>
+
+    <script type="text/javascript" src="https://adriano-au.avanser.com/tagmanager/8341-1.js"></script>
+    @* Google Maps
+        NOTE: Google Maps script is loaded by '@googlemaps/js-api-loader', so do not directly link
+        <script defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDHeI_wYHKuPbRXvq5q5U-l3It4DTBYDZM"></script>
+    *@
+    @* Expose maps api key to pass into config for '@googlemaps/js-api-loader' *@
+    <script>
+        const GOOGLE_MAPS_API_KEY = 'AIzaSyBQSwFeJc6YO0wrcLPtvCu-9KSXXRMWReI'
+    </script>
+    @* END Google maps *@
+
+    @Html.Partial("Partial/MasterPage/_MetaTags", Model.Page)
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderStyles()
+    }
+}
+
+@section AdditionalScripts {
+    @* NOTE jquery-ui, fuse.js and dayjs included in scripts bundle *@
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    @Html.ScriptTag("/scripts/landing-page.js")
+    @if (Context.Kentico().PageBuilder().EditMode)
+    {
+        @Html.Kentico().PageBuilderScripts()
+    }
+}
+
+@* Hero *@
+<div class="widget landing-hero @(Model.PageHero != null && !Model.PageHero.GalleryImages.IsNullOrEmpty() ? "homepage-hero" : "")" data-widget="landing-hero">
+    <div class="top">
+        @if (Model.PageHero != null)
+        {
+            if (Model.PageHero.GalleryImages.IsNullOrEmpty())
+            {
+                <img class="bg lazyload" data-src="@Model.PageHero.HeroImage.Imgixify()" alt="" />
+                <div class="tint"></div>
+                @Html.Partial("Partial/Common/_SVGETGLogo")
+            }
+            else
+            {
+                <div class="bg">
+                    @Html.Partial("Partial/Common/_SVGETGLogo")
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            @foreach (var img in Model.PageHero.GalleryImages)
+                            {
+                                <div class="swiper-slide">
+                                    <img class="lazyload" data-sizes="auto" data-srcset="@img.ImagePath.ResponsiveDataSource(1000)" alt="@img.ImageAltText" />
+
+                                    @if (!string.IsNullOrWhiteSpace(img.ImageCaption))
+                                    {
+                                        <div class="sub-container">
+                                            <div class="author">
+                                                <span class="icon icon-pin"></span>@img.ImageCaption
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="tint"></div>
+            }
+
+            if (!string.IsNullOrWhiteSpace(Model.PageHero.HeroContactUsCtaPath) && !string.IsNullOrWhiteSpace(Model.PageHero.HeroPhone))
+            {
+                <div class="contact-links">
+                    @if (!string.IsNullOrWhiteSpace(Model.PageHero.HeroContactUsCtaPath))
+                    {
+                        <div class="link">
+                            <a href="@(Model.PageHero.HeroContactUsCtaPath)" class="ui primary button">Contact us</a>
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(Model.PageHero.HeroPhone))
+                    {
+                        <div class="phone">
+                            <a href="tel:@(Model.PageHero.HeroPhone)">
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.42578 1.51562L5.48828 0.578125C5.91797 0.460938 6.38672 0.695312 6.58203 1.125L8.45703 5.5C8.61328 5.89062 8.49609 6.32031 8.18359 6.59375L5.80078 8.54688C7.20703 11.5156 9.66797 14.0156 12.7148 15.4609L14.668 13.0781C14.9414 12.7656 15.3711 12.6484 15.7617 12.8047L20.1367 14.6797C20.5664 14.875 20.7617 15.3438 20.6836 15.7734L19.7461 19.8359C19.6289 20.2656 19.2773 20.5391 18.8086 20.5391C8.80859 20.5391 0.683594 12.4531 0.683594 2.41406C0.683594 1.98438 0.996094 1.63281 1.42578 1.51562Z" fill="white" />
+                                </svg>
+                                <span>@(Model.PageHero.HeroPhone)</span>
+                            </a>
+                        </div>
+                    }
+                </div>
+            }
+
+            if (Model.PageHero.GalleryImages.IsNullOrEmpty())
+            {
+                <div class="design">
+                    <img class="lazyload" data-src="@("/images/landing-design.png".Imgixify())" alt="">
+                </div>
+            }
+
+            <h1>
+                @Html.Raw(Model.PageHero.Heading)
+            </h1>
+
+            <div class="sub-container">
+                <div class="actions">
+                    @if (!Model.PageHero.HideShareButton && Model.PageHero.ShareLinks != null)
+                    {
+                        <a href="#" class="button ui white share-button"><span class="icon fas fa-share"></span>Share</a>
+                    }
+                </div>
+
+                @if (!Model.PageHero.HeroCaption.IsNullOrEmpty())
+                {
+                    <div class="author">
+                        <span class="icon icon-pin"></span>@Model.PageHero.HeroCaption
+                    </div>
+                }
+            </div>
+
+        }
+
+        @if (!Model.PageHero.HideShareButton && Model.PageHero.ShareLinks != null)
+        {
+            <div class="share-modal ui modal">
+                <i class="close icon">
+                    <span class="fal fa-times"></span>
+                </i>
+                <div class="links">
+                    @Html.Partial("Partial/Common/_ShareLinks", Model.PageHero.ShareLinks)
+                </div>
+            </div>
+        }
+    </div>
+    <div class="bottom">
+
+        @if (!string.IsNullOrWhiteSpace(Model.ProofPointsComponent?.Title))
+        {
+            <div class="experience-list">
+                <div class="title">@(Model.ProofPointsComponent.Title)</div>
+                <div class="list">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            @foreach (var tile in Model.ProofPointsComponent.ProofPoints)
+                            {
+                                <div class="swiper-slide">
+                                    @if (tile.Url.IsNullOrEmpty())
+                                    {
+                                        <div class="label">
+                                            <span class="icon @tile.IconClass"></span> @tile.Label
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <a href="@tile.Url" class="label">
+                                            <span class="icon @tile.IconClass"></span> @tile.Label
+                                        </a>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="widget landing-sticky-footer" data-widget="landing-sticky-footer">
+    <div class="bar expand-sticky">
+        <div class="left">
+            @Html.Partial("Partial/Common/_SVGETGLogo")
+        </div>
+        <div class="right">
+            @if (!string.IsNullOrWhiteSpace(Model.PageHero.HeroContactUsCtaPath) && !string.IsNullOrWhiteSpace(Model.PageHero.HeroPhone))
+            {
+                <div class="contact-links">
+                    @if (!string.IsNullOrWhiteSpace(Model.PageHero.HeroContactUsCtaPath))
+                    {
+                        <div class="link">
+                            <a href="@(Model.PageHero.HeroContactUsCtaPath)" class="ui primary button transparent">Contact us</a>
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(Model.PageHero.HeroPhone))
+                    {
+                        <div class="phone">
+                            <a href="tel:@(Model.PageHero.HeroPhone)">
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.42578 1.51562L5.48828 0.578125C5.91797 0.460938 6.38672 0.695312 6.58203 1.125L8.45703 5.5C8.61328 5.89062 8.49609 6.32031 8.18359 6.59375L5.80078 8.54688C7.20703 11.5156 9.66797 14.0156 12.7148 15.4609L14.668 13.0781C14.9414 12.7656 15.3711 12.6484 15.7617 12.8047L20.1367 14.6797C20.5664 14.875 20.7617 15.3438 20.6836 15.7734L19.7461 19.8359C19.6289 20.2656 19.2773 20.5391 18.8086 20.5391C8.80859 20.5391 0.683594 12.4531 0.683594 2.41406C0.683594 1.98438 0.996094 1.63281 1.42578 1.51562Z" fill="#ca568e" />
+                                </svg>
+                                <span>@(Model.PageHero.HeroPhone)</span>
+                            </a>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@Html.Kentico().EditableArea("Content")
+
+<div class="wrapper">
+    @Html.Kentico().EditableArea("WrappedContent")
+
+    @* Enquire Form *@
+    @if (Model.FormEnabled)
+    {
+        <div class="widget form" style="opacity: 1;" data-widget="form">
+            <div class="wrapper contained">
+                @if (!string.IsNullOrWhiteSpace(Model.FormTitle))
+                {
+                    <h2>@(Model.FormTitle)</h2>
+                }
+
+                <div id="enquireForm" class="ui form generic-form" data-validate-inline="data-validate-inline" data-validate-on="submit">
+                    @if (Model.Form != null && !Model.Form.ErrorMessage.IsNullOrEmpty())
+                    {
+                        <div class="field">
+                            <div class="ui basic red pointing prompt label">
+                                @Html.Raw(Model.Form.ErrorMessage)
+                            </div>
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("Index", "Enquire", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.TextBoxFor(m => m.Form.Reason, new { style = "display:none" })
+                        <div class="gr-10">
+                            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+                                <div class="field">
+                                    <label>First name</label>
+                                    @Html.TextBoxFor(m => m.Form.FirstName, new
+                                    {
+                                        data_rules = "regExp[/[aeiou]/]",
+                                        data_prompts = "Please enter a valid first name"
+                                    })
+                                </div>
+                            </div>
+                            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+                                <div class="field">
+                                    <label>Last name</label>
+                                    @Html.TextBoxFor(m => m.Form.LastName, new
+                                   {
+                                       data_rules = "regExp[/[aeiou]/]",
+                                       data_prompts = "Please enter a valid last name"
+                                   })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gr-10">
+                            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+                                <div class="field">
+                                    <label>Email</label>
+                                    @Html.TextBoxFor(m => m.Form.Email, new
+                                    {
+                                        data_rules = "empty,email",
+                                        data_prompts = ""
+                                    })
+                                </div>
+                            </div>
+                            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+                                <div class="field">
+                                    <label>Phone</label>
+                                    @Html.TextBoxFor(m => m.Form.Phone, new
+                                    {
+                                        data_rules = "numberVisible",
+                                        data_prompts = ""
+                                    })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gr-10">
+                            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+                                <div class="field">
+                                    <label>Preferred contact method</label>
+                                    <div class="grouped fields">
+                                        <input type="hidden" data-validate="checkboxGroup1" data-rules="checkboxCount[1]" data-prompts="You must select at least one" />
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                @Html.RadioButtonFor(m => m.Form.PreferredContactType, "Email", new { name = "preferredContact", @checked = "checked" })
+                                                <label>Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                @Html.RadioButtonFor(m => m.Form.PreferredContactType, "Phone", new { name = "preferredContact" })
+                                                <label>Phone</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+                                <div class="field">
+                                    <label>Preferred tour type</label>
+                                    @Html.DropDownListFor(m => m.Form.PreferredTourType, new List<SelectListItem>
+                                    {
+                                        new SelectListItem {Text = "Please select", Value = ""},
+                                        new SelectListItem {Text = "Small group tours", Value = "Small group tours"},
+                                        new SelectListItem {Text = "Escorted group tours", Value = "Escorted group tours"},
+                                        new SelectListItem {Text = "Private tours", Value = "Private tours"},
+                                        new SelectListItem {Text = "Independent tours", Value = "Independent tours"},
+                                        new SelectListItem {Text = "Packaged tours", Value = "Packaged tours"},
+                                        new SelectListItem {Text = "Day tours", Value = "Day tours"},
+                                    }, new { @class = "make-dropdown" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gr-10">
+                            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+                                <div class="field">
+                                    <label>Preferred destination</label>
+                                    @Html.DropDownListFor(m => m.Form.PreferredDestination, Model.Destinations, new { @class = "make-dropdown" })
+                                </div>
+                            </div>
+                            <div class="gc-12-12 gc-768-6-12 gc-1024-6-12">
+                                <div class="field">
+                                    <label>Preferred experience</label>
+                                    @Html.DropDownListFor(m => m.Form.PreferredExperience, Model.Experiences, new
+                                    {
+                                        @class = "make-dropdown"
+                                    })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Questions or comments</label>
+                            @Html.TextAreaFor(m => m.Form.Message, new
+                            {
+                                placeholder = "optional"
+                            })
+                        </div>
+                        @Html.Partial("Partial/Form/_Recaptcha")
+                        <div class="field">
+                            <div class="ui checkbox">
+                                @*@Html.CheckBoxFor(m => m.Form.SubscribeToNewsletter)*@
+                                <input type="checkbox" name="Form.SubscribeToNewsletter" value="true" />
+                                <label>Subscribe to our newsletter for special deals.</label>
+                            </div>
+                        </div>
+
+                        <div class="response-container"></div>
+                        <div class="submit-row">
+                            <input id="enquirebutton" type="submit" class="ui button submit primary" value="Submit" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    @Html.Kentico().EditableArea("WrappedContentBottom")
+</div>
+
+@Html.Kentico().EditableArea("ContentBottom")
+
+@Html.Action("GetNonPackageSticky", "NonPackageSticky")
